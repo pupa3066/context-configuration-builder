@@ -13,14 +13,18 @@
 - Whether the method is actually better is **UNANSWERED** pending a real-agent run.
 
 ## Pending (required for a publishable result — real work, real cost)
-1. Plug a real agent (via the `Agent` protocol) — e.g. an SWE-bench-capable scaffold + a real LLM.
-2. Obtain SWE-bench Verified tasks + the ETH developer-committed-context repo set.
-3. Run C0–C3 with fixed seeds/temperature=0, k repeats; log to JSONL.
-4. `analysis.py` (to write): power analysis, McNemar, bootstrap CIs, non-inferiority test, Pareto frontier.
-5. Learned tier assignment (upgrade the frequency-threshold policy to a learned classifier) for H4.
+The pipeline to produce real data is now BUILT (agents.py, swebench_run.py, tier_assign_adapter.py, run_real.md). Remaining is to EXECUTE it in an environment with:
+1. `pip install -r research/harness/requirements.txt` (datasets, swebench, openai/anthropic).
+2. An LLM API key (OPENAI_API_KEY / ANTHROPIC_API_KEY) + a token/$ budget.
+3. Docker running (SWE-bench grades patches by executing tests in containers).
+Then: `run_real.md` steps 2–4 produce `runs.jsonl` → `analysis.py` computes the verdict.
+
+Structurally verified offline (this session): all modules compile; `--dry-config` runs
+with no key/network; agent construction fails cleanly without deps (no fabrication).
 
 ## Estimated cost/effort to real result
-SWE-bench runs across 4 conditions × k repeats = significant API spend + compute hours. This is a multi-week effort, not a session. Budget and pin model versions before running.
+SWE-bench Verified × 4 conditions × repeats = real API spend + Docker compute hours.
+Start with `--limit 10` to estimate per-task cost, then scale.
 
 ## Honest bottom line
 This is a rigorous, runnable research *foundation* — the kind of apparatus a reviewer expects — but the empirical result that would make it publishable is NOT yet produced. Producing it is the next real step.
