@@ -62,6 +62,20 @@ Your mileage depends on your agent version and configuration.
 sh demo/demo.sh
 ```
 
+## Managing the rules/debug list (editable, like projects)
+
+Rules are a configurable list too — add/remove/list without hand-editing prose:
+
+```sh
+scripts/rules-builder.sh list                                  # show all rules
+scripts/rules-builder.sh add "Confirm before bulk deletes" --section "Repository"
+scripts/rules-builder.sh add "No writes to foreign repos" --priority   # -> R1, R2, ...
+scripts/rules-builder.sh remove C1        # remove a custom rule
+scripts/rules-builder.sh check            # validate (R0 present, no dup IDs)
+```
+
+Priority rules (`R0`, `R1`, …) override everything and are read first. `R0` (rule governance) is protected and cannot be removed by the builder. Custom rules use stable `[C1]`, `[C2]` … IDs so they survive edits and reordering.
+
 ## Compatibility — agent-independent
 
 The architecture is **agent-neutral**; only the loading mechanism differs per agent, handled by a thin **adapter**. Your context is written once (plain markdown in `~/.context-kit/`) and projected onto any supported agent.
