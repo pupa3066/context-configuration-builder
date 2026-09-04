@@ -100,6 +100,7 @@ class MockAgent:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--gen", type=int, default=0, help="generate N mock tasks for pipeline testing")
     a = ap.parse_args()
     if a.selftest:
         src = ("PREAMBLE rules and index\n"
@@ -113,3 +114,17 @@ if __name__ == "__main__":
         ]
         n = run(MockAgent(), tasks, out="research/harness/selftest_runs.jsonl")
         print(f"selftest: wrote {n} runs to research/harness/selftest_runs.jsonl")
+    elif a.gen:
+        import random as _r
+        _r.seed(0)
+        # synthetic corpus with many sections; each task needs one section's token
+        secs = [f"s{i}" for i in range(8)]
+        src = "PREAMBLE rules and index\n" + "".join(
+            f"## {s}\n{s} details TOKEN_{s.upper()} " + ("filler " * 30) + "\n" for s in secs)
+        tasks = []
+        for i in range(a.gen):
+            s = _r.choice(secs)
+            tasks.append(Task(f"t{i}", f"fix {s} NEEDS: TOKEN_{s.upper()}", src,
+                              references=[s], verify=lambda x: x == "PASS"))
+        n = run(MockAgent(), tasks, out="research/harness/runs.jsonl")
+        print(f"gen: wrote {n} runs to research/harness/runs.jsonl (MOCK — pipeline test only)")

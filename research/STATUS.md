@@ -2,13 +2,15 @@
 
 ## Built & tested (this apparatus)
 - `RESEARCH_PLAN.md` — pre-registration-style design: 4 hypotheses, C0–C3 conditions, SWE-bench, statistics, threats to validity.
-- `harness/harness.py` — runnable harness, 4 conditions, JSONL logging. **Self-test passes** (8 runs, mock agent).
-- `tier_assign/tier_assign.py` — automatic tier-assignment with a **cost-model-derived principled threshold**. **6/6 unit tests pass.**
+- `harness/harness.py` — runnable harness, 4 conditions, JSONL logging + mock-data generator (`--gen N`). **Self-test passes.**
+- `harness/analysis.py` — full statistics layer: per-condition rates/cost, McNemar, bootstrap CIs, non-inferiority test, Pareto frontier, structured verdict. **Runs end-to-end** on run logs.
+- `tier_assign/tier_assign.py` — automatic tier assignment with a **cost-model-derived principled threshold**. **6/6 unit tests pass.**
 - `RELATED_WORK.md` — positioning vs. verified ETH result + adjacent literature.
 
 ## What the current numbers ARE and ARE NOT
-- The self-test shows the harness correctly *measures* cost+success and that tiered loads fewer tokens than monolithic while a (mock) agent still resolves. This validates the **plumbing**, not the hypothesis.
-- The MockAgent resolves by string match — it does **not** prove H2/H3/H4. NO scientific claim is made from mock runs.
+- The harness self-test and `analysis.py` on `--gen` mock data prove the **measurement + statistics pipeline is correct**.
+- The MockAgent is RIGGED (resolves by string-match; never fails). Its "BETTER" verdict and ~0.83 token reduction are ARTIFACTS OF THE MOCK, not evidence. McNemar b=c=0 (no disagreements) is the tell. **NO scientific claim follows from mock runs.**
+- Whether the method is actually better is **UNANSWERED** pending a real-agent run.
 
 ## Pending (required for a publishable result — real work, real cost)
 1. Plug a real agent (via the `Agent` protocol) — e.g. an SWE-bench-capable scaffold + a real LLM.
