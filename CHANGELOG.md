@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to kiro-context-kit are documented here.
+All notable changes to context-config-builder are documented here.
 Format based on Keep a Changelog; this project uses semantic versioning.
 
 ## [0.2.0] - 2026-09-04

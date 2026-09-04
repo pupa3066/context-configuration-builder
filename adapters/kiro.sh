@@ -1,11 +1,11 @@
 #!/bin/sh
-# Kiro adapter: project the neutral context-kit core onto Kiro CLI.
+# Kiro adapter: project the neutral context-config-builder core onto Kiro CLI.
 #   always-on/*  -> ~/.kiro/steering/*
 #   projects/<n> -> ~/.kiro/skills/<n>/SKILL.md  (adds required frontmatter)
 # Usage: ./adapters/kiro.sh apply [--dry-run]
 set -eu
 
-CORE="${CONTEXT_KIT_HOME:-${HOME}/.context-kit}"
+CORE="${CCB_HOME:-${HOME}/.context-config-builder}"
 KIRO="${KIRO_HOME:-${HOME}/.kiro}"
 DRY=0; CMD="${1:-}"; [ "${2:-}" = "--dry-run" ] && DRY=1
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in kiro-context-kit.
+Thanks for your interest in context-config-builder.
 
 ## License note
 This project is under Business Source License 1.1. By contributing, you agree your

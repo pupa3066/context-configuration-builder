@@ -1,5 +1,5 @@
 #!/bin/sh
-# kiro-context-kit installer — POSIX sh, non-destructive, idempotent.
+# context-config-builder installer — POSIX sh, non-destructive, idempotent.
 # Copies templates into $KIRO_HOME (default ~/.kiro) without overwriting.
 #
 # Usage: ./install.sh [--dry-run] [--help]
@@ -14,7 +14,7 @@ SRC="${SCRIPT_DIR}/templates"
 
 usage() {
   cat <<EOF
-kiro-context-kit installer
+context-config-builder installer
 
 Usage: ./install.sh [options]
   --dry-run    Show what would be installed without writing
@@ -40,7 +40,7 @@ if [ ! -d "$SRC" ]; then
 fi
 command -v cp >/dev/null 2>&1 || { echo "error: cp not found" >&2; exit 1; }
 
-echo "kiro-context-kit -> $KIRO_HOME (non-destructive$([ "$DRY_RUN" -eq 1 ] && echo ', dry-run'))"
+echo "context-config-builder -> $KIRO_HOME (non-destructive$([ "$DRY_RUN" -eq 1 ] && echo ', dry-run'))"
 
 do_mkdir() { [ "$DRY_RUN" -eq 1 ] || mkdir -p "$1"; }
 

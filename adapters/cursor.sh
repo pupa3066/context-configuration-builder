@@ -5,7 +5,7 @@
 # Usage: ./adapters/cursor.sh apply [target-dir]
 set -eu
 
-CORE="${CONTEXT_KIT_HOME:-${HOME}/.context-kit}"
+CORE="${CCB_HOME:-${HOME}/.context-config-builder}"
 CMD="${1:-}"; DEST="${2:-$PWD}"
 
 [ "$CMD" = "apply" ] || { echo "usage: cursor.sh apply [target-dir]" >&2; exit 2; }

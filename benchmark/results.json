@@ -1,0 +1,35 @@
+{
+  "tokenizer": "gpt2-bpe (real)",
+  "always_on_tokens": 3859,
+  "n_projects_measured": 4,
+  "mean_body_tokens": 774,
+  "mean_meta_tokens": 73,
+  "measured_N": {
+    "monolithic_tokens_per_turn": 6958,
+    "tiered_tokens_per_turn": 5253,
+    "reduction": 0.245
+  },
+  "projected": {
+    "10": {
+      "mono": 11599,
+      "tiered": 5363,
+      "reduction": 0.538
+    },
+    "25": {
+      "mono": 23209,
+      "tiered": 6458,
+      "reduction": 0.722
+    },
+    "50": {
+      "mono": 42559,
+      "tiered": 8283,
+      "reduction": 0.805
+    },
+    "100": {
+      "mono": 81259,
+      "tiered": 11933,
+      "reduction": 0.853
+    }
+  },
+  "asymptote_reduction": 0.906
+}

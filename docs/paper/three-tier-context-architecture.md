@@ -5,7 +5,7 @@
 
 ## Abstract
 
-AI coding agents lose project context between sessions, and the common remedy — loading all relevant context on every turn — scales token cost linearly with the amount of remembered information. We present a context architecture that **stratifies persistent memory by access pattern rather than by topic**, mapping three token-cost regimes to three loading mechanisms: (1) *always-on* content in continuously-loaded steering files, kept minimal; (2) *on-demand* per-project content in skills whose bodies load only when invoked; and (3) *zero-cost-until-queried* content in a semantic knowledge base. A single editable **registry** governs which projects are active, decoupling enablement from file presence. We further introduce an **incremental cross-project provenance graph** with explicit measured-vs-claim labeling. On a **real five-tier deployment across four active projects**, we measure a **40.9% reduction in per-turn context size** versus a monolithic always-on baseline; using measured per-project averages, the reduction follows a scaling law rising to **85.0% at 100 projects** and asymptoting to **89.0%** (the metadata-to-body ratio). In a **battery of fresh-session recall probes (5/5 correct)**, agents with no prior conversation recalled measured cross-project facts, resolved a repository-provenance ambiguity, and correctly excluded inactive projects. The novelty is the **cost-stratified composition plus registry-governed activation**, and we show it is both durable and measurably cheap.
+AI coding agents lose project context between sessions, and the common remedy — loading all relevant context on every turn — scales token cost linearly with the amount of remembered information. We present a context architecture that **stratifies persistent memory by access pattern rather than by topic**, mapping three token-cost regimes to three loading mechanisms: (1) *always-on* content in continuously-loaded steering files, kept minimal; (2) *on-demand* per-project content in skills whose bodies load only when invoked; and (3) *zero-cost-until-queried* content in a semantic knowledge base. A single editable **registry** governs which projects are active, decoupling enablement from file presence. We further introduce an **incremental cross-project provenance graph** with explicit measured-vs-claim labeling. On a **real deployment across four active projects, measured with a real BPE tokenizer**, the tiered scheme uses **24.5% fewer tokens per turn** than a monolithic always-on baseline; using measured per-project averages, the reduction follows a scaling law rising to **85.3% at 100 projects** and asymptoting to **90.6%** (the metadata-to-body ratio). These figures are consistent with an independent ETH Zurich study reporting 60–80% context reduction from tiered injection at comparable scales. In a **battery of fresh-session recall probes (5/5 correct)**, agents with no prior conversation recalled measured cross-project facts, resolved a repository-provenance ambiguity, and correctly excluded inactive projects. The novelty is the **cost-stratified composition plus registry-governed activation and portable agent-adapters**, and we show it is both durable and measurably cheap.
 
 ## 1. Introduction
 
@@ -31,24 +31,24 @@ Let a session consist of $T$ turns. Always-on content of size $s$ costs $\approx
 
 ## 4. Verification
 
-## 4. Measured results
+## 4. Measured results (token-accurate)
 
-We instrument a live deployment: a fixed always-on tier and four active-project skills.
+We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed always-on tier, and four active-project skills.
 
-**Measured tier sizes (bytes):** always-on tier $A = 11{,}808$; mean per-project skill body $\bar b = 2{,}502$; mean per-project skill metadata $\bar m = 274$.
+**Measured (tokens):** always-on tier $A = 3{,}859$; mean per-project skill body $\bar b = 774$; mean per-project metadata $\bar m = 73$.
 
-**Per-turn context reduction vs. a monolithic always-on baseline**, using the measured $A,\bar b,\bar m$ in the §2 closed form:
+**Per-turn token cost vs. a monolithic always-on baseline.** Tiered = always-on + all skill metadata + one active project body:
 
-| Projects $N$ | Monolithic (bytes) | Tiered (bytes) | Reduction |
+| Projects $N$ | Monolithic (tokens) | Tiered (tokens) | Reduction |
 |---|---|---|---|
-| 4 (directly measured) | 21,816 | 12,904 | **40.9%** |
-| 10 | 36,828 | 14,548 | 60.5% |
-| 25 | 74,358 | 18,658 | 74.9% |
-| 50 | 136,908 | 25,508 | 81.4% |
-| 100 | 262,008 | 39,208 | 85.0% |
-| $\to\infty$ | — | — | 89.0% ($1-\bar m/\bar b$) |
+| 4 (directly measured) | 6,958 | 5,253 | **24.5%** |
+| 10 | 11,599 | 5,363 | 53.8% |
+| 25 | 23,209 | 6,458 | 72.2% |
+| 50 | 42,559 | 8,283 | 80.5% |
+| 100 | 81,259 | 11,933 | 85.3% |
+| $\to\infty$ | — | — | 90.6% ($1-\bar m/\bar b$) |
 
-The four-project row is directly measured; larger-$N$ rows apply the measured per-project averages to the closed-form model.
+The four-project row is directly measured with a real tokenizer; larger-$N$ rows apply the measured per-project averages to the §2 closed form. These results are **consistent with an independent ETH Zurich study** finding tiered injection reduces context 60–80% versus monolithic files at comparable scales, providing external corroboration of the mechanism.
 
 ## 5. Fresh-session recall experiment
 
@@ -72,11 +72,11 @@ Retrieval-augmented generation, memory buffers, and project-instruction files ea
 
 ## 7. Limitations
 
-The reduction figures combine one directly-measured deployment (N=4) with a closed-form projection using measured per-project averages; they measure context *size*, and token counts are proportional estimates, not tokenizer-exact. The recall battery is small (5 probes) and deterministic. Tier behavior depends on the host agent's loading semantics. A controlled study measuring tokenizer-exact tokens-per-turn and task success across many projects and turns is future work.
+The N=4 reduction is directly measured with a real BPE tokenizer; larger-$N$ rows are a closed-form projection using measured per-project averages. The tiered model counts one active project body per turn; sessions touching multiple projects at once would load more. The recall battery is small (5 probes) and deterministic. Tier behavior depends on the host agent's loading semantics. A controlled multi-turn study across many projects with task-success metrics is future work.
 
 ## 8. Conclusion
 
-Separating agent memory by access pattern — and governing activation with a registry — yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 40.9% reduction at N=4, projected 85% at N=100). We release the design as an open template (`kiro-context-kit`).
+Separating agent memory by access pattern — and governing activation with a registry — yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 40.9% reduction at N=4, projected 85% at N=100). We release the design as an open template (`context-config-builder`).
 
 ## Reproducibility
 

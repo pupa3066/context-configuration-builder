@@ -1,13 +1,13 @@
-# context-kit (agent-independent core)
+# Context Configuration Builder — agent-independent core
 
 The architecture is agent-neutral. Only the **loading mechanism** differs per agent, handled by a thin **adapter**.
 
 ## Neutral layout
 
-The kit stores context in an agent-neutral home (default `~/.context-kit/`):
+The kit stores context in an agent-neutral home (default `~/.context-config-builder/`):
 
 ```
-~/.context-kit/
+~/.context-config-builder/
 ├── always-on/          # Tier 1: rules + lean indexes (loaded every turn)
 │   ├── rules.md
 │   ├── portfolio.md
@@ -40,7 +40,7 @@ An adapter is a small script that **projects** the neutral core into the target 
 ## Quick start
 
 ```sh
-./install.sh                      # scaffolds ~/.context-kit (neutral)
+./install.sh                      # scaffolds ~/.context-config-builder (neutral)
 ./adapters/kiro.sh apply          # project onto Kiro CLI
 # or
 ./adapters/generic.sh build       # produce a single preamble.md for any LLM

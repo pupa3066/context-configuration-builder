@@ -1,8 +1,8 @@
-# kiro-context-kit
+# Context Configuration Builder
 
 **Persistent, token-efficient, cross-project memory for AI coding agents.**
 
-Your AI agent forgets everything between sessions and re-reads your whole codebase to catch up. kiro-context-kit gives it durable memory it loads once and updates as you work — with an explicit token-cost model so context stays cheap.
+Your AI agent forgets everything between sessions and re-reads your whole codebase to catch up. Context Configuration Builder (CCB) gives it durable memory it loads once and updates as you work — with an explicit, measured token-cost model so context stays cheap. Configure *which* projects and *which* rules are active as editable lists; project the same context onto any agent.
 
 > License: Business Source License 1.1 (source-available). Free for personal/internal use. Commercial redistribution or hosted resale requires a license until the Change Date, when it converts to Apache-2.0. See [LICENSE](LICENSE).
 
@@ -25,7 +25,7 @@ An editable **registry** decides which projects are active — add/remove with a
 ## Install
 
 ```bash
-git clone <your-repo> kiro-context-kit && cd kiro-context-kit
+git clone <your-repo> context-config-builder && cd context-config-builder
 ./install.sh            # non-destructive: won't overwrite an existing ~/.kiro
 ```
 
@@ -78,7 +78,7 @@ Priority rules (`R0`, `R1`, …) override everything and are read first. `R0` (r
 
 ## Compatibility — agent-independent
 
-The architecture is **agent-neutral**; only the loading mechanism differs per agent, handled by a thin **adapter**. Your context is written once (plain markdown in `~/.context-kit/`) and projected onto any supported agent.
+The architecture is **agent-neutral**; only the loading mechanism differs per agent, handled by a thin **adapter**. Your context is written once (plain markdown in `~/.context-config-builder/`) and projected onto any supported agent.
 
 | Agent | Adapter |
 |---|---|
@@ -88,7 +88,7 @@ The architecture is **agent-neutral**; only the loading mechanism differs per ag
 | Any LLM / generic | `adapters/generic.sh build` (single preamble) |
 
 ```sh
-./install-core.sh            # scaffold agent-neutral ~/.context-kit
+./install-core.sh            # scaffold agent-neutral ~/.context-config-builder
 ./adapters/<agent>.sh ...    # project onto your agent
 ```
 

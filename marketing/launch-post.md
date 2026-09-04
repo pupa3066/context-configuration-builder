@@ -32,10 +32,10 @@ It turned a pile of disconnected repos into one queryable research graph. When I
 
 ## Try it
 
-`kiro-context-kit` is source-available (BSL 1.1 — free for personal/internal use). Install is non-destructive, one command, and it never overwrites an existing setup.
+`context-config-builder` is source-available (BSL 1.1 — free for personal/internal use). Install is non-destructive, one command, and it never overwrites an existing setup.
 
 ```sh
-git clone <repo> && cd kiro-context-kit && ./install.sh
+git clone <repo> && cd context-config-builder && ./install.sh
 ```
 
 Feedback welcome — especially from anyone juggling many repos with an AI agent.

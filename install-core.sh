@@ -1,17 +1,17 @@
 #!/bin/sh
-# context-kit core installer (agent-neutral).
-# Scaffolds $CONTEXT_KIT_HOME (default ~/.context-kit) from templates. Non-destructive.
+# context-config-builder core installer (agent-neutral).
+# Scaffolds $CCB_HOME (default ~/.context-config-builder) from templates. Non-destructive.
 # Then run an adapter (adapters/<agent>.sh) to project onto your agent.
 # Usage: ./install-core.sh [--dry-run]
 set -eu
 
-CORE="${CONTEXT_KIT_HOME:-${HOME}/.context-kit}"
+CORE="${CCB_HOME:-${HOME}/.context-config-builder}"
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 SRC="${SCRIPT_DIR}/core/templates"
 DRY=0; [ "${1:-}" = "--dry-run" ] && DRY=1
 
 [ -d "$SRC" ] || { echo "error: core templates not found at $SRC" >&2; exit 1; }
-echo "context-kit core -> $CORE (non-destructive$([ "$DRY" -eq 1 ] && echo ', dry-run'))"
+echo "context-config-builder core -> $CORE (non-destructive$([ "$DRY" -eq 1 ] && echo ', dry-run'))"
 
 copy_if_absent() {
   src="$1"; dst="$2"
