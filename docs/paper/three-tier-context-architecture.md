@@ -68,6 +68,8 @@ We report the raw count (5/5) rather than a rate given the small battery; larger
 
 Retrieval-augmented generation, memory buffers, and project-instruction files each address parts of the problem. The contribution here is their **cost-stratified composition**: assigning content to a loading tier by access frequency, adding a **registry indirection** that separates activation from presence, and layering an **explicit provenance graph with confidence labels** for multi-project reasoning. To our knowledge this specific composition, framed by a measured per-turn cost model, is not packaged elsewhere.
 
+**Agent-independence.** The architecture is neutral markdown; only the loading mechanism is agent-specific. We demonstrate thin adapters projecting the same neutral core onto four distinct agents (Kiro CLI, Claude Code, Cursor, and a generic single-preamble target), showing the cost model and registry semantics transfer without rewriting context. A new agent requires only a small adapter, not a new context corpus.
+
 ## 7. Limitations
 
 The reduction figures combine one directly-measured deployment (N=4) with a closed-form projection using measured per-project averages; they measure context *size*, and token counts are proportional estimates, not tokenizer-exact. The recall battery is small (5 probes) and deterministic. Tier behavior depends on the host agent's loading semantics. A controlled study measuring tokenizer-exact tokens-per-turn and task success across many projects and turns is future work.

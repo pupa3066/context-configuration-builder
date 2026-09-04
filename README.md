@@ -62,6 +62,26 @@ Your mileage depends on your agent version and configuration.
 sh demo/demo.sh
 ```
 
-## Compatibility
+## Compatibility — agent-independent
 
-Built on documented Kiro CLI extension points (steering files, skills, agent resources). Concepts port to other agent frameworks with a steering/context-file mechanism.
+The architecture is **agent-neutral**; only the loading mechanism differs per agent, handled by a thin **adapter**. Your context is written once (plain markdown in `~/.context-kit/`) and projected onto any supported agent.
+
+| Agent | Adapter |
+|---|---|
+| Kiro CLI | `adapters/kiro.sh apply` |
+| Claude Code | `adapters/claude-code.sh apply` |
+| Cursor | `adapters/cursor.sh apply` |
+| Any LLM / generic | `adapters/generic.sh build` (single preamble) |
+
+```sh
+./install-core.sh            # scaffold agent-neutral ~/.context-kit
+./adapters/<agent>.sh ...    # project onto your agent
+```
+
+See `core/README.md` for the neutral layout and how to add a new agent (~30-line adapter).
+
+### Kiro-native quick start (original path, still supported)
+```bash
+./install.sh                 # installs directly into ~/.kiro (steering + skills)
+```
+Concepts port to any agent framework with an always-on + on-demand context mechanism.
