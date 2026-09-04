@@ -1,2 +1,7 @@
 .DS_Store
 *.log
+
+# research run logs (regenerate via harness)
+research/harness/*.jsonl
+__pycache__/
+*.pyc
