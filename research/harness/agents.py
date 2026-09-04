@@ -55,10 +55,17 @@ class AnthropicAgent:
         return patch, r.usage.input_tokens, r.usage.output_tokens, 1
 
 def make_agent(spec: str):
-    """spec like 'openai:gpt-4o-mini' or 'anthropic:claude-3-5-sonnet-20241022'."""
+    """spec like 'openai:gpt-4o-mini', 'anthropic:claude-...', or
+    'local:mlx-community/Qwen2.5-Coder-7B-Instruct-4bit' (MLX, zero API cost)."""
     provider, _, model = spec.partition(":")
     if provider == "openai":
         return OpenAIAgent(model or "gpt-4o-mini")
     if provider == "anthropic":
         return AnthropicAgent(model or "claude-3-5-sonnet-20241022")
+    if provider == "local":
+        from local_agent import make_local_agent
+        if not model:
+            raise ValueError("local agent requires a model path, e.g. "
+                             "local:mlx-community/Qwen2.5-Coder-7B-Instruct-4bit")
+        return make_local_agent(model)
     raise ValueError(f"unknown provider: {provider}")
