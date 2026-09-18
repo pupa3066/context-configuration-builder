@@ -52,3 +52,24 @@ so `skills/` = 6 real projects only. `benchmark.py` must be extended to measure 
 ## Status
 MEASURED, live, N=6. This is a STRUCTURE/COST result (37.2% per-turn reduction with all rules still
 firing via stubs), NOT a task-quality claim. Reproduce: re-run the measurement in this branch's commit.
+
+## Bottom-line comparison — what each change did (measured, real gpt2-BPE)
+| Change | Effect on a typical turn |
+|---|---|
+| Add on-demand tier (move detailed rules/cross-links off always-on) | **−1222 tokens (−28%)** ← the real win |
+| Fewer projects (7→6) | ~−70 tokens (a project you're not using already costs only its ~70-tok metadata under tiering, not its ~706-tok body — so the count barely matters) |
+
+Interpretation: the saving comes from **not loading detail you aren't using** (on-demand tier), NOT
+from having fewer projects. Tiering already makes idle projects nearly free (metadata only).
+
+## Per-query cost — the on-demand tier is ADAPTIVE (measured, N=6 live)
+Saving scales with what a turn actually needs; every query type still beats monolithic (8945 tok/turn):
+| Prompt (what it touches) | tiered/turn | monolithic | saving |
+|---|---|---|---|
+| "my 10-yr experience" (identity, normal turn) | 3491 | 8945 | 61.0% |
+| "AnimeVlog img2anime fault" (1 project) | 4593 | 8945 | 48.7% |
+| "publish to Figshare" (governance TRIGGER → loads appendix) | 4461 | 8945 | 50.1% |
+| cross-project reasoning (TRIGGER → loads cross-links) | 6356 | 8945 | 28.9% |
+
+The governance appendix (970 tok) and cross-links (666 tok) are charged ONLY on the turns that trigger
+them; a normal turn never pays for them. Constants: always_on=3071, sum_metadata=420, all_bodies=4238.
