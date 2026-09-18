@@ -98,9 +98,12 @@ def main():
 
     from agents import make_agent
     from tier_assign_adapter import RepoTierer  # thin adapter around tier_assign
+    from grounding import needed_facts_from_gold, measure as measure_grounding  # null-control
+    from metrics import env_factors  # model + OS factors
     agent = make_agent(a.agent)
     tierer = RepoTierer()
     tasks = load_tasks(a.split, a.limit)
+    factors = env_factors(a.agent)
 
     n = 0
     with open(a.out, "w") as fh:
@@ -108,23 +111,33 @@ def main():
             src = repo_context_text(inst)
             t = Task(inst["instance_id"], inst["problem_statement"], src,
                      references=tierer.references_for(inst, src))
+            # ground-truth facts the fix depends on (from the gold patch) — for grounding null-control
+            gold = inst.get("patch", "") or inst.get("test_patch", "")
+            needed = needed_facts_from_gold(gold, src)
             for rep in range(a.repeats):
                 for cond in conds:
                     ctx = build_context(cond, t, tierer=tierer)
+                    g = measure_grounding(cond, ctx, needed)  # was the needed info present?
                     row = {"task_id": t.task_id, "condition": cond, "repeat": rep,
-                           "config": cfg}
+                           "config": cfg, **factors,
+                           "grounding_needed": g.needed, "grounding_present": g.present,
+                           "grounding_coverage": g.coverage, "grounding_missing": g.missing_keys}
                     t0 = time.perf_counter()
                     try:
                         patch, itok, otok, steps = agent.solve(t.prompt, ctx)
                         resolved, note = grade(inst, patch)
                         row.update(resolved=resolved, input_tokens=itok, output_tokens=otok,
-                                   steps=steps, seconds=round(time.perf_counter()-t0, 3), note=note)
+                                   steps=steps, seconds=round(time.perf_counter()-t0, 3),
+                                   wall_seconds=round(time.perf_counter()-t0, 3), note=note)
                     except Exception as e:
                         row.update(resolved=False, input_tokens=0, output_tokens=0, steps=0,
                                    seconds=round(time.perf_counter()-t0, 3), error=str(e))
                     fh.write(json.dumps(row) + "\n"); fh.flush()
                     n += 1
-    print(f"wrote {n} real runs to {a.out}")
+    print(f"wrote {n} real runs to {a.out}  "
+          f"(each row logs: resolved, tokens, latency, grounding-coverage, model, os)")
+    print("Grounding is a NULL CONTROL for lossless tiering: C2/C3 coverage should equal C1. "
+          "Run analyze_metrics.py + grounding.lossless_holds() on the output.")
 
 if __name__ == "__main__":
     main()
