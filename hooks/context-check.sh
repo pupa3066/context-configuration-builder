@@ -40,7 +40,7 @@ fi
 
 # --- 3. Cross-project data freshness: kit advisor should still run on real study data ---------
 ADV="$PROJ/consistent-context-kit/research/precision_context/precision_advisor.py"
-STUDY_JSON="$PROJ/quant-memorization-study/analysis_popqa_qwen05.json"
+STUDY_JSON="${CCK_STUDY_JSON:-$PROJ/companion-study/analysis.json}"
 if [ -f "$ADV" ] && [ -f "$STUDY_JSON" ]; then
   if ! python3 "$ADV" "$STUDY_JSON" >/dev/null 2>&1; then
     add "LINK: precision_advisor.py failed to run on real study data — cross-project link broken."
@@ -48,10 +48,10 @@ if [ -f "$ADV" ] && [ -f "$STUDY_JSON" ]; then
   fi
 fi
 
-# --- 4. Uncommitted research data in the public study repo (should be pushed) ----------------
-if [ -d "$PROJ/quant-memorization-study/.git" ]; then
-  dirty=$(git -C "$PROJ/quant-memorization-study" status --porcelain 2>/dev/null | grep -cE '\.jsonl|\.json|\.md')
-  [ "${dirty:-0}" -gt 0 ] && add "UNCOMMITTED: $dirty research files in quant-memorization-study not committed/pushed."
+# --- 4. Uncommitted data in a linked study repo (optional; set CCK_STUDY_DIR to enable) -------
+if [ -n "${CCK_STUDY_DIR:-}" ] && [ -d "$CCK_STUDY_DIR/.git" ]; then
+  dirty=$(git -C "$CCK_STUDY_DIR" status --porcelain 2>/dev/null | grep -cE '\.jsonl|\.json|\.md')
+  [ "${dirty:-0}" -gt 0 ] && add "UNCOMMITTED: $dirty files in the linked study repo not committed/pushed."
 fi
 
 # --- Output (stdout -> added to agent context; keep terse) -----------------------------------

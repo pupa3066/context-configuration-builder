@@ -68,7 +68,7 @@ Saving scales with what a turn actually needs; every query type still beats mono
 |---|---|---|---|
 | "my 10-yr experience" (identity, normal turn) | 3491 | 8945 | 61.0% |
 | "AnimeVlog img2anime fault" (1 project) | 4593 | 8945 | 48.7% |
-| "publish to Figshare" (governance TRIGGER → loads appendix) | 4461 | 8945 | 50.1% |
+| "publish to a DOI archive" (governance TRIGGER → loads appendix) | 4461 | 8945 | 50.1% |
 | cross-project reasoning (TRIGGER → loads cross-links) | 6356 | 8945 | 28.9% |
 
 The governance appendix (970 tok) and cross-links (666 tok) are charged ONLY on the turns that trigger
