@@ -1,0 +1,35 @@
+{
+  "tokenizer": "gpt2-bpe (real)",
+  "structure": "3-LOCATION: steering (always-on) + on-demand (triggered) + skills (per-project)",
+  "measured_live_N": 6,
+  "tiers": {
+    "always_on_steering": {
+      "files": {
+        "00-rules.md": 1276,
+        "bootstrap.md": 923,
+        "context-registry.md": 564,
+        "portfolio.md": 308
+      },
+      "total": 3071
+    },
+    "on_demand": {
+      "files": {
+        "cross-links.md": 666,
+        "rules-governance-appendix.md": 970
+      },
+      "total": 1636,
+      "note": "loaded only on trigger (governance on publish/merge; cross-links on cross-project)"
+    },
+    "project_skills": {
+      "N": 6,
+      "mean_body": 706,
+      "mean_meta": 70,
+      "max_body": 1102
+    }
+  },
+  "per_turn_tokens": {
+    "monolithic": 7309,
+    "tiered": 4593,
+    "reduction": 0.372
+  }
+}
