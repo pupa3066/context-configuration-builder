@@ -1,17 +1,23 @@
-"""Token-accurate benchmark: monolithic (all context always-on) vs tiered
-(always-on + on-demand skill bodies loaded only when invoked).
+"""Token-accurate benchmark — 3-LOCATION variant (this branch).
 
-Uses a real BPE tokenizer (GPT-2 via transformers) for exact token counts,
-not byte estimates. Measures the author's LIVE deployment for N=4, then
-projects with the closed-form model using measured per-project averages.
+Extends the 2-location model to the live structure:
+  always-on  = ~/.kiro/steering/*.md            (every turn)
+  on-demand  = ~/.kiro/on-demand/*.md            (loaded ONLY when a task triggers it)
+  per-project= ~/.kiro/skills/*/SKILL.md         (metadata always; body on demand)
 
-Run: <venv>/bin/python benchmark.py [steering_dir] [skills_dir]
+Uses a real BPE tokenizer (GPT-2). The on-demand tier (governance appendix, cross-links)
+is charged at an assumed trigger frequency `f_od` (default 0.0 = not on a typical turn),
+so the every-turn baseline reflects the lean steering tier after the self-tiering split.
+
+Run: <venv>/bin/python benchmark.py [steering_dir] [skills_dir] [ondemand_dir] [f_od]
 Rule #2: real measured tokens.
 """
 import os, sys, glob, json
 
-STEER = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/.kiro/steering")
+STEER  = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/.kiro/steering")
 SKILLS = sys.argv[2] if len(sys.argv) > 2 else os.path.expanduser("~/.kiro/skills")
+ONDEMAND = sys.argv[3] if len(sys.argv) > 3 else os.path.expanduser("~/.kiro/on-demand")
+F_OD = float(sys.argv[4]) if len(sys.argv) > 4 else 0.0  # on-demand trigger frequency per turn
 
 from transformers import AutoTokenizer
 tok = AutoTokenizer.from_pretrained("gpt2")  # deterministic BPE, offline-cached
@@ -20,9 +26,13 @@ def toks(path):
     with open(path, encoding="utf-8", errors="ignore") as f:
         return len(tok.encode(f.read()))
 
-# Always-on tier = all steering files
+# Tier 1: always-on = all steering files
 steer_files = sorted(glob.glob(os.path.join(STEER, "*.md")))
 always_on = sum(toks(f) for f in steer_files)
+
+# Tier 2: on-demand = files loaded only when triggered (governance, cross-links)
+ondemand_files = sorted(glob.glob(os.path.join(ONDEMAND, "*.md")))
+on_demand_total = sum(toks(f) for f in ondemand_files)
 
 # Per-project skills: body (full file) and metadata (frontmatter block only)
 def meta_tokens(path):
@@ -40,21 +50,24 @@ N = len(skill_files)
 mean_body = sum(bodies)//N if N else 0
 mean_meta = sum(metas)//N if N else 0
 
-# Per-turn cost (avg over a session where any ONE project is active):
-# monolithic = always_on + all bodies (everything always loaded)
-# tiered     = always_on + all metadata + ONE body (the active project)
-mono_n = always_on + sum(bodies)
-tier_n = always_on + sum(metas) + (max(bodies) if bodies else 0)
+# Per-turn cost. 3-location model:
+#   monolithic = always_on + on_demand(always) + all bodies   (naive: everything resident)
+#   tiered     = always_on + f_od*on_demand + all metadata + ONE active body
+mono_n = always_on + on_demand_total + sum(bodies)
+tier_n = always_on + round(F_OD * on_demand_total) + sum(metas) + (max(bodies) if bodies else 0)
 reduction_measured = 1 - tier_n/mono_n if mono_n else 0
 
 def project(n):
-    mono = always_on + mean_body*n
-    tier = always_on + mean_meta*n + mean_body  # one active body
+    mono = always_on + on_demand_total + mean_body*n
+    tier = always_on + round(F_OD * on_demand_total) + mean_meta*n + mean_body
     return mono, tier, (1 - tier/mono if mono else 0)
 
 result = {
     "tokenizer": "gpt2-bpe (real)",
+    "structure": "3-location (steering always-on + on-demand triggered + skills per-project)",
     "always_on_tokens": always_on,
+    "on_demand_tokens": on_demand_total,
+    "on_demand_trigger_freq": F_OD,
     "n_projects_measured": N,
     "mean_body_tokens": mean_body,
     "mean_meta_tokens": mean_meta,
