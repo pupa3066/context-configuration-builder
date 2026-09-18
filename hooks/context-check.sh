@@ -4,7 +4,7 @@
 # WHY THIS EXISTS: research facts live in multiple files (study RESULTS, kit FINDINGS, steering
 # cross-links). When one is updated, others silently go stale (e.g. an overturned single-model
 # claim lingering in FINDINGS). This script detects that drift automatically so it never has to be
-# re-checked by hand. Designed to run as a kiro-cli `agentSpawn` hook: it emits a short context
+# re-checked by hand. Designed to run as a CLI-agent session-start hook: it emits a short context
 # summary on stdout (added to the agent's context) and only NON-ZERO-exits on a real problem.
 #
 # Runs from ANY working directory (uses absolute ~/.kiro + ~/Projects paths).

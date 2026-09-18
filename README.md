@@ -41,10 +41,10 @@ Start a new session; steering auto-loads. Verify with `/context show`.
 
 ## Verified behavior
 
-These are behaviors confirmed in a working Kiro CLI environment (not marketing claims):
-- Steering files placed in `~/.kiro/steering/` auto-load into a fresh session's context.
+These are behaviors confirmed in a working CLI-agent environment (not marketing claims):
+- Steering files placed in the agent's always-on context directory auto-load into a fresh session.
 - A project skill loads its full body only when invoked (`/<name>-context`).
-- Flipping ✅/⬜ in the registry changes which projects the agent treats as active, verified by querying a fresh session.
+- Flipping the active/inactive marker in the registry changes which projects the agent treats as active, verified by querying a fresh session.
 
 Your mileage depends on your agent version and configuration.
 

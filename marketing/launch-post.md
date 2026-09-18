@@ -40,4 +40,4 @@ git clone <repo> && cd context-config-builder && ./install.sh
 
 Feedback welcome — especially from anyone juggling many repos with an AI agent.
 
-*(Claims above reflect behavior verified in a working Kiro CLI environment; your results depend on your agent version and setup.)*
+*(Claims above reflect behavior verified in a working CLI-agent environment; your results depend on your agent version and setup.)*

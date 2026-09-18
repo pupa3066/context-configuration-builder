@@ -22,7 +22,7 @@ sh demo/demo.sh
 ```
 
 ## Reporting issues
-Include: OS + shell, Kiro CLI version, exact command, and expected vs actual behavior.
+Include: OS + shell, your agent and its version, exact command, and expected vs actual behavior.
 
 ## Contributing an empirical run (better hardware wanted)
 The token-cost and fidelity results are measured; the **task-success** result (does tiered context

@@ -10,7 +10,7 @@ Differentiator: the explicit **token-cost model** (always-on / on-demand / zero-
 - CTA: one-command install; ask for feedback from multi-repo users.
 
 ## 2. Ride the Kiro / agent ecosystem
-- List wherever Kiro community tools are shared; engage the Kiro CLI community directly.
+- List wherever AI-agent community tools are shared; engage the relevant agent communities directly.
 - Be *the* context-memory kit for a specific agent — a defensible niche beats a generic one.
 
 ## 3. Freemium wedge (commercial rights reserved by BSL)

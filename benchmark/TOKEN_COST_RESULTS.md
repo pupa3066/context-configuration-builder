@@ -51,4 +51,4 @@ This run replaces the estimate with a **real BPE tokenizer** and separates *meas
 
 ## Reproduce
 - Token cost: `benchmark/` (real BPE over the live steering+skills files).
-- Recall battery: fresh `kiro-cli --no-interactive` sessions, 5 probes.
+- Recall battery: fresh non-interactive agent sessions, 5 probes.

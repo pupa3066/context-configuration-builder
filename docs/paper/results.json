@@ -29,5 +29,5 @@
       "inactive project (mlx-vlm) exclusion"
     ]
   },
-  "notes": "N=4 directly measured; larger N via closed-form model with measured per-project averages. Reproduce: wc -c over the files; recall battery via fresh kiro-cli --no-interactive sessions."
+  "notes": "N=4 directly measured; larger N via closed-form model with measured per-project averages. Reproduce: wc -c over the files; recall battery via fresh non-interactive agent sessions."
 }

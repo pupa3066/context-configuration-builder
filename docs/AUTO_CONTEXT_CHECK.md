@@ -1,7 +1,7 @@
 # Automatic Context Consistency Check
 
 > Design fix so research/context drift is caught automatically — never re-checked by hand,
-> runs in parallel to any project on every kiro-cli session.
+> runs in parallel to any project on every CLI-agent session.
 
 ## The problem it solves
 Research facts live in multiple files (study `RESULTS_multimodel.md`, kit
@@ -18,11 +18,11 @@ updated, the others can silently go stale. This actually happened: an overturned
    It prints a one-line status to stdout (added to agent context) and never blocks the session.
 
 2. **`~/.kiro/agents/default.json` `agentSpawn` hook** — runs the check automatically every time a
-   kiro-cli session starts, in ANY working directory. Its stdout becomes part of the agent's context,
+   a CLI-agent session starts, in ANY working directory. Its stdout becomes part of the agent's context,
    so the agent (and you) see "[context-check] OK" or the specific drift, with zero manual effort.
 
 ## Why agentSpawn (the documented mechanism)
-kiro-cli hooks: `agentSpawn` fires on session start, is never cached, and its stdout (exit 0) is added
+CLI-agent hooks: `agentSpawn` fires on session start, is never cached, and its stdout (exit 0) is added
 to context. This is the supported way to run something in parallel to all projects — see the CLI
 Hooks System docs.
 
