@@ -3,6 +3,28 @@
 All notable changes to context-config-builder are documented here.
 Format based on Keep a Changelog; this project uses semantic versioning.
 
+## [Unreleased] - 2026-09-18
+### Added
+- Design registry: each tiering design is a named, defined, claim-paired, runnable unit.
+  `benchmark/DESIGNS.md` + `benchmark/designs.json` (token-cost axis) + `benchmark/designs_fidelity.json`
+  (fidelity axis), run via `benchmark/run_designs.py` and `benchmark/run_fidelity.py` against a committed
+  `benchmark/sample/` corpus, so a contributor can test any design without branch-hopping or a private setup.
+- Two labeled metric axes with explicit non-comparability: token-cost (always-on tokens + rule-firing
+  integrity) vs fidelity (grounding retention vs token saving). "Better" is defined per axis.
+- Contributor safeguard: `scripts/check_pr.py` + `.github/workflows/pr-safeguard.yml` scan every PR/fork
+  for sensitive-info leaks (personal paths, secrets, hostname emails) and surface the attribution gate;
+  a failing check blocks merge. Verified by injected-leak test.
+- Measured results (structure/cost, real gpt2-BPE, sample corpus): monolithic to 3-location tiering
+  reduces per-turn tokens with full rule-firing integrity; summarization has a grounding safe frontier
+  before a fidelity cliff. NOT task quality (that needs a real-agent SWE-bench run).
+### Changed
+- Agent-independent measurement: `benchmark/benchmark.py` and `research/harness/compare_all.py` accept a
+  context root via argument or `CCK_CONTEXT_ROOT` (default retained), so any agent's deployment can be
+  measured, not only the default path.
+- De-branded documentation: prose, examples, and marketing refer to a generic CLI agent rather than one
+  specific agent; the four adapters (including the Kiro adapter) remain as the agent-independence feature,
+  and research model names are unchanged.
+
 ## [0.2.0] - 2026-09-04
 ### Added
 - `scripts/rules-builder.sh` — manage the rules/debug list as data (list/add/remove/check).
