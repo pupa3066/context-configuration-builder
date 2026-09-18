@@ -16,28 +16,36 @@ Measured across all N=6 questions: `C2_lossless_all_identical_to_C1 = True`, mea
 retention = **1.0**. Lossless tiering is byte-identical to monolithic — zero fidelity loss. The token
 win comes from *deferral* (load full body on demand), not from shrinking content.
 
-## Result 2 — Summarization fidelity-vs-token curve (N=6, measured)
-| Level | mean token saving | mean grounding retention | verdict |
-|---|---|---|---|
-| 0.00 (lossless) | 0% | 1.0 | safe |
-| **0.33** | **13.7%** | **1.0** | **safe frontier — all 6 questions keep 100% of needed facts** |
-| 0.66 | 65.6% | **0.486** | UNSAFE — loses ~half the needed facts |
+## Result 2 — Summarization fidelity-vs-token curve (N=6, real gpt2-BPE, finer grid)
+| Level | token saving | retention mean | retention stdev | retention min | verdict |
+|---|---|---|---|---|---|
+| 0.00 | 0% | 1.000 | 0 | 1.0 | safe (lossless) |
+| 0.20 | 11.3% | 1.000 | 0 | 1.0 | safe |
+| 0.33 | 11.3% | 1.000 | 0 | 1.0 | safe |
+| **0.50** | **11.3%** | **1.000** | **0** | **1.0** | **safe frontier (measured)** |
+| 0.66 | 66.9% | 0.486 | 0.274 | 0.0 | UNSAFE — cliff |
+| 0.80 | 66.9% | 0.486 | 0.274 | 0.0 | UNSAFE |
+| 1.00 | 66.9% | 0.486 | 0.274 | 0.0 | UNSAFE |
 
-**Mean safe-compression frontier = 0.33 across all 6 questions.**
+**Three measured properties:**
+1. **Safe frontier = level 0.50** (finer grid; retention 1.0, stdev 0, min 1.0 up to 0.50). A coarser
+   grid earlier reported 0.33 — measuring more finely moved the safe frontier up to 0.50.
+2. **Sharp cliff between 0.50 and 0.66** — retention drops 1.0 → 0.486 with high variance (stdev 0.274,
+   min 0.0). Not gradual: a discontinuity where the operator stops dropping prose and starts dropping
+   structure/facts.
+3. **Bimodal token saving** — 11.3% in the safe zone, jumps to 66.9% only AFTER the cliff. No
+   intermediate free lunch: you cannot get large savings without crossing into fact loss.
 
-### Per-question (measured)
-| Question (project) | C2 lossless | C4 @0.33 save/ret | C4 @0.66 save/ret | safe |
-|---|---|---|---|---|
-| Q1 my 10-yr experience (resume) | ident, 1.0 | 0.096 / 1.0 | 0.865 / **0.0** | 0.33 |
-| Q2 AnimeVlog img2anime fault | ident, 1.0 | 0.195 / 1.0 | 0.574 / 0.6 | 0.33 |
-| Q3 apple-ml what it does | ident, 1.0 | 0.079 / 1.0 | 0.291 / 0.8 | 0.33 |
-| Q4 PhotoBack measured numbers | ident, 1.0 | 0.323 / 1.0 | 0.738 / 0.25 | 0.33 |
-| Q5 quant study headline | ident, 1.0 | 0.038 / 1.0 | 0.786 / 0.667 | 0.33 |
-| Q6 CCK token-cost result | ident, 1.0 | 0.092 / 1.0 | 0.679 / 0.6 | 0.33 |
-
-The narrative/experience question (Q1) is the MOST fragile: at level 0.66 it drops to 0.0 retention
-(all employer names gone) — narrative content compresses worst because the operator preserves
-code/identifier lines over prose, and Q1's facts live in prose.
+### Per-question at the cliff (level 0.66, measured)
+| Question (project) | retention @0.66 |
+|---|---|
+| Q1 my 10-yr experience (resume) | 0.0 (all employer names lost — narrative worst) |
+| Q4 PhotoBack numbers | 0.25 |
+| Q2 AnimeVlog / Q6 CCK | 0.60 |
+| Q5 quant headline | 0.667 |
+| Q3 apple-ml | 0.80 |
+Narrative/prose-heavy questions collapse hardest; code/identifier-heavy ones survive longer, because
+the operator preserves code lines over prose.
 
 ## Interpretation (for the 6-project deployment)
 - Use **lossless tiering** freely — it costs nothing in fidelity (confirmed N=6).
