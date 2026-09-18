@@ -2,16 +2,32 @@
 (always-on + on-demand skill bodies loaded only when invoked).
 
 Uses a real BPE tokenizer (GPT-2 via transformers) for exact token counts,
-not byte estimates. Measures the author's LIVE deployment for N=4, then
-projects with the closed-form model using measured per-project averages.
+not byte estimates.
 
-Run: <venv>/bin/python benchmark.py [steering_dir] [skills_dir]
+AGENT-INDEPENDENT: pass --context-root (or CCK_CONTEXT_ROOT env) to point at ANY agent's
+context directory (must contain steering/ and skills/ subdirs). Defaults to ~/.kiro (Kiro),
+but a Claude Code / Cursor / generic user points it at their own root. So the measurement,
+like the core+adapters, is not tied to one agent.
+
+Run:
+  python benchmark.py                                  # default ~/.kiro
+  python benchmark.py --context-root /path/to/context  # any agent's deployment
+  python benchmark.py <steering_dir> <skills_dir>       # explicit dirs (back-compat)
 Rule #2: real measured tokens.
 """
-import os, sys, glob, json
+import os, sys, glob, json, argparse
 
-STEER = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/.kiro/steering")
-SKILLS = sys.argv[2] if len(sys.argv) > 2 else os.path.expanduser("~/.kiro/skills")
+def _resolve_dirs():
+    ap = argparse.ArgumentParser(add_help=False)
+    ap.add_argument("--context-root", default=os.environ.get("CCK_CONTEXT_ROOT", os.path.expanduser("~/.kiro")))
+    ap.add_argument("pos", nargs="*")
+    a, _ = ap.parse_known_args()
+    if len(a.pos) >= 2:                        # explicit steering + skills dirs (back-compat)
+        return a.pos[0], a.pos[1]
+    root = a.context_root
+    return os.path.join(root, "steering"), os.path.join(root, "skills")
+
+STEER, SKILLS = _resolve_dirs()
 
 from transformers import AutoTokenizer
 tok = AutoTokenizer.from_pretrained("gpt2")  # deterministic BPE, offline-cached

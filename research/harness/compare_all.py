@@ -11,7 +11,7 @@ VARIANTS compared:
   - summarized_L<level>  (lossy compression tiers; from the summarization study)
 
 METRIC FAMILIES:
-  A. STRUCTURE / TOKEN-COST  — MEASURED NOW, zero budget (real gpt2-BPE over live ~/.kiro).
+  A. STRUCTURE / TOKEN-COST  — MEASURED NOW, zero budget (real gpt2-BPE; --steering/--skills/--ondemand override for any agent, default ~/.kiro).
   B. SWE TASK metrics        — resolved-rate, tokens, latency, grounding, determinism, per model/OS.
      These are AGGREGATED from runs*.jsonl produced by swebench_run.py / contribute_run.py.
      If no run files exist, family B is reported as AWAITING_RUN (honest: not measured yet).
@@ -65,7 +65,7 @@ def family_a(steer, skills, ondemand):
         "always_on_tokens": ao, "on_demand_tokens": od,
         "per_turn_tokens": variants,
         "reduction_vs_monolithic": {k: round(1 - v/base, 3) for k, v in variants.items() if base},
-        "note": "MEASURED (real gpt2-BPE, live ~/.kiro). Structure/cost only — not task quality.",
+        "note": "MEASURED (real gpt2-BPE; context dirs via args, default ~/.kiro). Structure/cost only — not task quality.",
     }
 
 # ---------- Family B: SWE task metrics (aggregate runs if present) ----------
