@@ -1,35 +1,35 @@
 {
   "tokenizer": "gpt2-bpe (real)",
-  "always_on_tokens": 3859,
-  "n_projects_measured": 4,
-  "mean_body_tokens": 774,
-  "mean_meta_tokens": 73,
+  "always_on_tokens": 4293,
+  "n_projects_measured": 6,
+  "mean_body_tokens": 706,
+  "mean_meta_tokens": 70,
   "measured_N": {
-    "monolithic_tokens_per_turn": 6958,
-    "tiered_tokens_per_turn": 5253,
-    "reduction": 0.245
+    "monolithic_tokens_per_turn": 8531,
+    "tiered_tokens_per_turn": 5815,
+    "reduction": 0.318
   },
   "projected": {
     "10": {
-      "mono": 11599,
-      "tiered": 5363,
-      "reduction": 0.538
+      "mono": 11353,
+      "tiered": 5699,
+      "reduction": 0.498
     },
     "25": {
-      "mono": 23209,
-      "tiered": 6458,
-      "reduction": 0.722
+      "mono": 21943,
+      "tiered": 6749,
+      "reduction": 0.692
     },
     "50": {
-      "mono": 42559,
-      "tiered": 8283,
-      "reduction": 0.805
+      "mono": 39593,
+      "tiered": 8499,
+      "reduction": 0.785
     },
     "100": {
-      "mono": 81259,
-      "tiered": 11933,
-      "reduction": 0.853
+      "mono": 74893,
+      "tiered": 11999,
+      "reduction": 0.84
     }
   },
-  "asymptote_reduction": 0.906
+  "asymptote_reduction": 0.901
 }
