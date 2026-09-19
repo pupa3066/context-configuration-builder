@@ -25,11 +25,15 @@ from harness import build_context, Task  # noqa: E402
 
 CONTEXT_FILE_NAMES = ("AGENTS.md", "CLAUDE.md", "README.md", "CONTRIBUTING.md")
 
-def load_tasks(split: str, limit: int):
+def load_tasks(split: str, limit: int, stride: int = 1):
     from datasets import load_dataset
-    name = {"verified": "princeton-nlp/SWE-bench_Verified",
-            "lite": "princeton-nlp/SWE-bench_Lite"}.get(split, split)
+    # same repo ids the swebench grader uses (princeton-nlp/* are redirects to these)
+    name = {"verified": "SWE-bench/SWE-bench_Verified",
+            "lite": "SWE-bench/SWE-bench_Lite"}.get(split, split)
     ds = load_dataset(name, split="test")
+    if stride > 1:
+        # dataset is sorted by repo; striding spreads a small pilot across repos
+        ds = ds.select(range(0, len(ds), stride))
     if limit:
         ds = ds.select(range(min(limit, len(ds))))
     return ds
@@ -82,17 +86,23 @@ def main():
     ap.add_argument("--agent", required=True, help="e.g. openai:gpt-4o-mini")
     ap.add_argument("--split", default="verified")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--stride", type=int, default=1,
+                    help="take every Nth instance before --limit (spreads a small pilot across repos)")
     ap.add_argument("--conditions", default="C0,C1,C2,C3")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--out", default="research/harness/runs.jsonl")
     ap.add_argument("--dry-config", action="store_true", help="print resolved config and exit")
+    ap.add_argument("--no-grade", action="store_true",
+                    help="generate + persist patches only; grade later with grade_patches.py "
+                         "(lets generation run on a GPU host and grading on a Docker host)")
     a = ap.parse_args()
 
     conds = tuple(
         {"C0": "C0_no_context", "C1": "C1_monolithic",
          "C2": "C2_tiered_manual", "C3": "C3_tiered_auto"}[c] for c in a.conditions.split(","))
     cfg = {"agent": a.agent, "split": a.split, "limit": a.limit,
-           "conditions": conds, "repeats": a.repeats, "out": a.out}
+           "stride": a.stride, "conditions": conds, "repeats": a.repeats, "out": a.out,
+           "graded_inline": not a.no_grade}
     if a.dry_config:
         print(json.dumps(cfg, indent=2)); return
 
@@ -100,7 +110,7 @@ def main():
     from tier_assign_adapter import RepoTierer  # thin adapter around tier_assign
     agent = make_agent(a.agent)
     tierer = RepoTierer()
-    tasks = load_tasks(a.split, a.limit)
+    tasks = load_tasks(a.split, a.limit, a.stride)
 
     n = 0
     with open(a.out, "w") as fh:
@@ -116,9 +126,14 @@ def main():
                     t0 = time.perf_counter()
                     try:
                         patch, itok, otok, steps = agent.solve(t.prompt, ctx)
-                        resolved, note = grade(inst, patch)
+                        gen_s = round(time.perf_counter()-t0, 3)
+                        if a.no_grade:
+                            resolved, note = None, "ungraded"
+                        else:
+                            resolved, note = grade(inst, patch)
+                        # persist the patch so runs can be (re)graded and inspected
                         row.update(resolved=resolved, input_tokens=itok, output_tokens=otok,
-                                   steps=steps, seconds=round(time.perf_counter()-t0, 3), note=note)
+                                   steps=steps, seconds=gen_s, note=note, patch=patch)
                     except Exception as e:
                         row.update(resolved=False, input_tokens=0, output_tokens=0, steps=0,
                                    seconds=round(time.perf_counter()-t0, 3), error=str(e))

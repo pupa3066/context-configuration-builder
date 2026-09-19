@@ -1,0 +1,9 @@
+# Local-model SWE-bench runs on NVIDIA GPUs (local-hf: agent). Install AFTER requirements.txt.
+#
+# RTX 50-series (Blackwell, sm_120) needs the cu128 PyTorch build. The cu121 wheels report
+# torch.cuda.is_available() == True and then fail on every kernel:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# For older GPUs (sm_86/sm_89) the default wheel is fine.
+transformers>=4.45
+accelerate>=1.0
+bitsandbytes>=0.45      # required for @int4 / @int8

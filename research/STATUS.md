@@ -13,7 +13,8 @@
 - Whether the method is actually better is **UNANSWERED** pending a real-agent run.
 
 ## Pending (required for a publishable result — real work, real cost)
-The pipeline to produce real data is now BUILT (agents.py, swebench_run.py, tier_assign_adapter.py, run_real.md). Remaining is to EXECUTE it in an environment with:
+The pipeline to produce real data is now BUILT (agents.py, swebench_run.py, tier_assign_adapter.py, run_real.md;
+local models via `local:` on MLX or `local-hf:` on CUDA — see run_real.md §2b). Remaining is to EXECUTE it in an environment with:
 1. `pip install -r research/harness/requirements.txt` (datasets, swebench, openai/anthropic).
 2. An LLM API key (OPENAI_API_KEY / ANTHROPIC_API_KEY) + a token/$ budget.
 3. Docker running (SWE-bench grades patches by executing tests in containers).

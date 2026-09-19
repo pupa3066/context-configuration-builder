@@ -30,3 +30,9 @@ The *tiered-injection technique* is validated independently (ETH Zurich study: 6
 - N=4 is directly measured; larger N is a closed-form projection from measured per-project averages.
 - Tiered counts one active project body/turn; multi-project turns load more.
 - Measures token cost, not task quality; the ETH study reports accuracy is maintained or improved.
+
+## Measured at every N (reproducible from this repo)
+`benchmark_measured.py` builds real skill files from the shipped template at N=1…100 and measures
+them instead of projecting, and also varies active-projects-per-turn and body length. Results and
+caveats: [`MEASURED_FINDINGS.md`](MEASURED_FINDINGS.md). The projection above holds to within 0.1pt;
+the headline % depends on your metadata/body ratio and on how many projects a turn touches.

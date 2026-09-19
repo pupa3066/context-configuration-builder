@@ -64,16 +64,19 @@ Your mileage depends on your agent version and configuration.
 ## Precision-aware context (evidence-backed feature)
 
 The kit's cost-tiering thesis generalizes beyond context loading. A companion study measured what
-model behavior actually changes under quantization (FP16→INT8→INT4):
-- **Factuality is robust to INT4** (N=100 PopQA, p=1.0, CI [−0.10,+0.08]) — aggressive compression is
-  safe for factual-recall workloads.
-- **Memorization erodes first** (reconstruction GAP declines with precision) — verbatim recall needs
-  higher precision.
+model behavior actually changes under quantization (FP16→INT8→INT4), on two hardware families:
+- **Factuality is robust to INT4** (N=100 PopQA; Apple/MLX p=1.0, CI [−0.10,+0.08]; replicated on
+  NVIDIA RTX 5060/CUDA p=1.0, CI [−0.07,+0.05]) — aggressive compression is safe for factual-recall
+  workloads.
+- **Memorization tracks model scale, not precision** (Qwen2.5 at fixed INT4: GAP 0.008 → 0.025 →
+  0.095 for 0.5B → 1.5B → 3B) — verbatim recall depends on which model you run more than on how
+  many bits you keep; load the specific source instead of relying on memory. Small-N; see caveats.
 
-`research/precision_context/precision_advisor.py` reads the study's real analysis JSON and emits a
-workload-aware recommendation (factual → tolerate INT4 + lean context; verbatim → preserve precision
-+ load specific source). It reports "underpowered / can't conclude" when the data doesn't support a
-claim — the same measure-don't-assert discipline the kit applies to context-cost numbers.
+`research/precision_context/precision_advisor.py` reads the study's real analysis JSON (CUDA copies
+vendored in `research/precision_context/data/cuda/`) and emits a workload-aware recommendation. It
+reports "underpowered / can't conclude" when the data doesn't support a claim — the same
+measure-don't-assert discipline the kit applies to context-cost numbers. See
+`research/precision_context/FINDINGS.md`.
 See `research/precision_context/FINDINGS.md`.
 
 ## Try it in 30 seconds (safe, no changes to your setup)

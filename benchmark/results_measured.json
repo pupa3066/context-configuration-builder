@@ -1,0 +1,509 @@
+{
+  "tokenizer": "gpt2-bpe (real)",
+  "always_on_tokens": 1150,
+  "steering_files": [
+    "00-rules.md",
+    "bootstrap.md",
+    "context-registry.md",
+    "cross-links.md",
+    "portfolio.md"
+  ],
+  "shipped_example_body_tokens": 221,
+  "shipped_example_meta_tokens": 46,
+  "note": "Every row is MEASURED from real generated skill files. 'projected' is the shipped closed-form formula applied to the same base sizes, for comparison. body_scale=1 is the shipped example skill verbatim (only name: substituted); larger scales repeat the body text with frontmatter held fixed, as a body-length sensitivity sweep.",
+  "asymptote_by_scale": {
+    "1.0": 0.7919,
+    "2.0": 0.8835,
+    "3.5": 0.9294
+  },
+  "projected_closed_form_scale1_k1": {
+    "1": -0.0336,
+    "4": 0.2355,
+    "10": 0.4551,
+    "25": 0.6223,
+    "50": 0.6991,
+    "100": 0.7432
+  },
+  "measured": [
+    {
+      "n": 1,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 1371,
+      "tiered": 1417,
+      "reduction": -0.0336
+    },
+    {
+      "n": 4,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 2034,
+      "tiered": 1555,
+      "reduction": 0.2355
+    },
+    {
+      "n": 4,
+      "body_scale": 1.0,
+      "k_active": 2,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 2034,
+      "tiered": 1776,
+      "reduction": 0.1268
+    },
+    {
+      "n": 4,
+      "body_scale": 1.0,
+      "k_active": 3,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 2034,
+      "tiered": 1997,
+      "reduction": 0.0182
+    },
+    {
+      "n": 10,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 3360,
+      "tiered": 1831,
+      "reduction": 0.4551
+    },
+    {
+      "n": 10,
+      "body_scale": 1.0,
+      "k_active": 2,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 3360,
+      "tiered": 2052,
+      "reduction": 0.3893
+    },
+    {
+      "n": 10,
+      "body_scale": 1.0,
+      "k_active": 3,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 3360,
+      "tiered": 2273,
+      "reduction": 0.3235
+    },
+    {
+      "n": 25,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 6675,
+      "tiered": 2521,
+      "reduction": 0.6223
+    },
+    {
+      "n": 25,
+      "body_scale": 1.0,
+      "k_active": 2,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 6675,
+      "tiered": 2742,
+      "reduction": 0.5892
+    },
+    {
+      "n": 25,
+      "body_scale": 1.0,
+      "k_active": 3,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 6675,
+      "tiered": 2963,
+      "reduction": 0.5561
+    },
+    {
+      "n": 50,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 12205,
+      "tiered": 3677,
+      "reduction": 0.6987
+    },
+    {
+      "n": 50,
+      "body_scale": 1.0,
+      "k_active": 2,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 12205,
+      "tiered": 3899,
+      "reduction": 0.6805
+    },
+    {
+      "n": 50,
+      "body_scale": 1.0,
+      "k_active": 3,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 12205,
+      "tiered": 4121,
+      "reduction": 0.6624
+    },
+    {
+      "n": 100,
+      "body_scale": 1.0,
+      "k_active": 1,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 23292,
+      "tiered": 6014,
+      "reduction": 0.7418
+    },
+    {
+      "n": 100,
+      "body_scale": 1.0,
+      "k_active": 2,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 23292,
+      "tiered": 6236,
+      "reduction": 0.7323
+    },
+    {
+      "n": 100,
+      "body_scale": 1.0,
+      "k_active": 3,
+      "mean_body": 221,
+      "mean_meta": 46,
+      "mono": 23292,
+      "tiered": 6458,
+      "reduction": 0.7227
+    },
+    {
+      "n": 1,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 1545,
+      "tiered": 1591,
+      "reduction": -0.0298
+    },
+    {
+      "n": 4,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 2730,
+      "tiered": 1729,
+      "reduction": 0.3667
+    },
+    {
+      "n": 4,
+      "body_scale": 2.0,
+      "k_active": 2,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 2730,
+      "tiered": 2124,
+      "reduction": 0.222
+    },
+    {
+      "n": 4,
+      "body_scale": 2.0,
+      "k_active": 3,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 2730,
+      "tiered": 2519,
+      "reduction": 0.0773
+    },
+    {
+      "n": 10,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 5100,
+      "tiered": 2005,
+      "reduction": 0.6069
+    },
+    {
+      "n": 10,
+      "body_scale": 2.0,
+      "k_active": 2,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 5100,
+      "tiered": 2400,
+      "reduction": 0.5294
+    },
+    {
+      "n": 10,
+      "body_scale": 2.0,
+      "k_active": 3,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 5100,
+      "tiered": 2795,
+      "reduction": 0.452
+    },
+    {
+      "n": 25,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 11025,
+      "tiered": 2695,
+      "reduction": 0.7556
+    },
+    {
+      "n": 25,
+      "body_scale": 2.0,
+      "k_active": 2,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 11025,
+      "tiered": 3090,
+      "reduction": 0.7197
+    },
+    {
+      "n": 25,
+      "body_scale": 2.0,
+      "k_active": 3,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 11025,
+      "tiered": 3485,
+      "reduction": 0.6839
+    },
+    {
+      "n": 50,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 20905,
+      "tiered": 3851,
+      "reduction": 0.8158
+    },
+    {
+      "n": 50,
+      "body_scale": 2.0,
+      "k_active": 2,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 20905,
+      "tiered": 4247,
+      "reduction": 0.7968
+    },
+    {
+      "n": 50,
+      "body_scale": 2.0,
+      "k_active": 3,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 20905,
+      "tiered": 4643,
+      "reduction": 0.7779
+    },
+    {
+      "n": 100,
+      "body_scale": 2.0,
+      "k_active": 1,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 40692,
+      "tiered": 6188,
+      "reduction": 0.8479
+    },
+    {
+      "n": 100,
+      "body_scale": 2.0,
+      "k_active": 2,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 40692,
+      "tiered": 6584,
+      "reduction": 0.8382
+    },
+    {
+      "n": 100,
+      "body_scale": 2.0,
+      "k_active": 3,
+      "mean_body": 395,
+      "mean_meta": 46,
+      "mono": 40692,
+      "tiered": 6980,
+      "reduction": 0.8285
+    },
+    {
+      "n": 1,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 1802,
+      "tiered": 1848,
+      "reduction": -0.0255
+    },
+    {
+      "n": 4,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 3758,
+      "tiered": 1986,
+      "reduction": 0.4715
+    },
+    {
+      "n": 4,
+      "body_scale": 3.5,
+      "k_active": 2,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 3758,
+      "tiered": 2638,
+      "reduction": 0.298
+    },
+    {
+      "n": 4,
+      "body_scale": 3.5,
+      "k_active": 3,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 3758,
+      "tiered": 3290,
+      "reduction": 0.1245
+    },
+    {
+      "n": 10,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 7670,
+      "tiered": 2262,
+      "reduction": 0.7051
+    },
+    {
+      "n": 10,
+      "body_scale": 3.5,
+      "k_active": 2,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 7670,
+      "tiered": 2914,
+      "reduction": 0.6201
+    },
+    {
+      "n": 10,
+      "body_scale": 3.5,
+      "k_active": 3,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 7670,
+      "tiered": 3566,
+      "reduction": 0.5351
+    },
+    {
+      "n": 25,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 17450,
+      "tiered": 2952,
+      "reduction": 0.8308
+    },
+    {
+      "n": 25,
+      "body_scale": 3.5,
+      "k_active": 2,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 17450,
+      "tiered": 3604,
+      "reduction": 0.7935
+    },
+    {
+      "n": 25,
+      "body_scale": 3.5,
+      "k_active": 3,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 17450,
+      "tiered": 4256,
+      "reduction": 0.7561
+    },
+    {
+      "n": 50,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 33755,
+      "tiered": 4108,
+      "reduction": 0.8783
+    },
+    {
+      "n": 50,
+      "body_scale": 3.5,
+      "k_active": 2,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 33755,
+      "tiered": 4761,
+      "reduction": 0.859
+    },
+    {
+      "n": 50,
+      "body_scale": 3.5,
+      "k_active": 3,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 33755,
+      "tiered": 5414,
+      "reduction": 0.8396
+    },
+    {
+      "n": 100,
+      "body_scale": 3.5,
+      "k_active": 1,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 66392,
+      "tiered": 6445,
+      "reduction": 0.9029
+    },
+    {
+      "n": 100,
+      "body_scale": 3.5,
+      "k_active": 2,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 66392,
+      "tiered": 7098,
+      "reduction": 0.8931
+    },
+    {
+      "n": 100,
+      "body_scale": 3.5,
+      "k_active": 3,
+      "mean_body": 652,
+      "mean_meta": 46,
+      "mono": 66392,
+      "tiered": 7751,
+      "reduction": 0.8833
+    }
+  ]
+}

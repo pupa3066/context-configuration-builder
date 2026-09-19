@@ -1,0 +1,511 @@
+{
+  "model": "Qwen2.5-3B-Instruct",
+  "precision": "fp16",
+  "context_limit": 32768,
+  "always_on_tokens": 980,
+  "facts_per_project": 5,
+  "questions_per_cell": 20,
+  "seed": 0,
+  "scoring": "normalized substring match of planted value in greedy 24-token answer",
+  "note": "Facts are random un-guessable strings; recall requires the fact to be in the prompt. 'in-inactive' under TIERED measures the true cost of not loading a project body. hardware_personal fields are single-laptop-GPU measurements, excluded from headline findings.",
+  "cells": [
+    {
+      "n": 4,
+      "k_active": 1,
+      "tokens": {
+        "mono": 2098,
+        "tiered": 1389
+      },
+      "mono": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          10,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 6
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 706.9,
+        "tiered_prefill_ms": 465.6,
+        "mono_peak_vram_mb": 6145.8,
+        "tiered_peak_vram_mb": 6061.3
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the staging hostname for project-000?",
+          "gold": "dw-5104",
+          "got": "dw-5104",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the staging hostname for project-000?",
+          "gold": "dw-5104",
+          "got": "dw-5104",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the build tag for project-001?",
+          "gold": "wx-4350",
+          "got": "wx-4350",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the build tag for project-001?",
+          "gold": "wx-4350",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 1.0,
+          "in-inactive": 1.0,
+          "overall": 1.0
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.338
+    },
+    {
+      "n": 4,
+      "k_active": 2,
+      "tokens": {
+        "mono": 2098,
+        "tiered": 1669
+      },
+      "mono": {
+        "in-active": [
+          9,
+          10
+        ],
+        "in-inactive": [
+          10,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 8
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 697.7,
+        "tiered_prefill_ms": 530.5,
+        "mono_peak_vram_mb": 6145.8,
+        "tiered_peak_vram_mb": 6093.3
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the on-call rotation name for project-000?",
+          "gold": "ks-6866",
+          "got": "ks-6866",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the on-call rotation name for project-000?",
+          "gold": "ks-6866",
+          "got": "ks-6866",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the ticket prefix for project-003?",
+          "gold": "um-9852",
+          "got": "um-9852",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the ticket prefix for project-003?",
+          "gold": "um-9852",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 0.9,
+          "in-inactive": 1.0,
+          "overall": 0.95
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.204
+    },
+    {
+      "n": 10,
+      "k_active": 1,
+      "tokens": {
+        "mono": 3775,
+        "tiered": 1580
+      },
+      "mono": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          9,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 6
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 1139.1,
+        "tiered_prefill_ms": 523.2,
+        "mono_peak_vram_mb": 6338.9,
+        "tiered_peak_vram_mb": 6083.1
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the release codename for project-000?",
+          "gold": "zy-4332",
+          "got": "zy-4332",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the release codename for project-000?",
+          "gold": "zy-4332",
+          "got": "zy-4332",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the default region for project-006?",
+          "gold": "dj-3185",
+          "got": "dj-3185",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the default region for project-006?",
+          "gold": "dj-3185",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 1.0,
+          "in-inactive": 0.9,
+          "overall": 0.95
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.581
+    },
+    {
+      "n": 10,
+      "k_active": 2,
+      "tokens": {
+        "mono": 3775,
+        "tiered": 1860
+      },
+      "mono": {
+        "in-active": [
+          9,
+          10
+        ],
+        "in-inactive": [
+          10,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 7
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 1136.2,
+        "tiered_prefill_ms": 585.8,
+        "mono_peak_vram_mb": 6338.9,
+        "tiered_peak_vram_mb": 6116.0
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the staging hostname for project-000?",
+          "gold": "wd-7410",
+          "got": "wd-7410",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the staging hostname for project-000?",
+          "gold": "wd-7410",
+          "got": "wd-7410",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the staging hostname for project-002?",
+          "gold": "zk-7357",
+          "got": "zk-7357",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the staging hostname for project-002?",
+          "gold": "zk-7357",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 0.9,
+          "in-inactive": 1.0,
+          "overall": 0.95
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.507
+    },
+    {
+      "n": 25,
+      "k_active": 1,
+      "tokens": {
+        "mono": 7980,
+        "tiered": 2061
+      },
+      "mono": {
+        "in-active": [
+          8,
+          10
+        ],
+        "in-inactive": [
+          9,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 8
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 2321.5,
+        "tiered_prefill_ms": 595.4,
+        "mono_peak_vram_mb": 6816.9,
+        "tiered_peak_vram_mb": 6138.9
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the license key suffix for project-000?",
+          "gold": "cc-9462",
+          "got": "cc-9462",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the license key suffix for project-000?",
+          "gold": "cc-9462",
+          "got": "cc-9462",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the default region for project-012?",
+          "gold": "xt-1947",
+          "got": "xt-1947",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the default region for project-012?",
+          "gold": "xt-1947",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 0.8,
+          "in-inactive": 0.9,
+          "overall": 0.85
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.742
+    },
+    {
+      "n": 25,
+      "k_active": 2,
+      "tokens": {
+        "mono": 7980,
+        "tiered": 2343
+      },
+      "mono": {
+        "in-active": [
+          8,
+          10
+        ],
+        "in-inactive": [
+          8,
+          10
+        ],
+        "overflow": false
+      },
+      "tiered": {
+        "in-active": [
+          10,
+          10
+        ],
+        "in-inactive": [
+          0,
+          10
+        ],
+        "unknown_on_inactive": 7
+      },
+      "hardware_personal": {
+        "mono_prefill_ms": 2320.7,
+        "tiered_prefill_ms": 658.1,
+        "mono_peak_vram_mb": 6816.9,
+        "tiered_peak_vram_mb": 6170.9
+      },
+      "examples": [
+        {
+          "cond": "mono",
+          "src": "in-active",
+          "q": "What is the ticket prefix for project-000?",
+          "gold": "eb-5922",
+          "got": "eb-5922",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-active",
+          "q": "What is the ticket prefix for project-000?",
+          "gold": "eb-5922",
+          "got": "eb-5922",
+          "hit": true
+        },
+        {
+          "cond": "mono",
+          "src": "in-inactive",
+          "q": "What is the staging hostname for project-021?",
+          "gold": "eg-4060",
+          "got": "eg-4060",
+          "hit": true
+        },
+        {
+          "cond": "tiered",
+          "src": "in-inactive",
+          "q": "What is the staging hostname for project-021?",
+          "gold": "eg-4060",
+          "got": "UNKNOWN",
+          "hit": false
+        }
+      ],
+      "recall": {
+        "mono": {
+          "in-active": 0.8,
+          "in-inactive": 0.8,
+          "overall": 0.8
+        },
+        "tiered": {
+          "in-active": 1.0,
+          "in-inactive": 0.0,
+          "overall": 0.5
+        }
+      },
+      "token_reduction": 0.706
+    }
+  ]
+}
