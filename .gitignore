@@ -6,3 +6,7 @@ research/harness/*.jsonl
 __pycache__/
 *.pyc
 research/harness/contrib_*/
+
+# PRIVATE benchmark inputs/outputs — real Q/A may contain Track-A/patent answers (R4, rule 16).
+# Never commit. Regenerate locally via run_real_fidelity.py / compare_algorithms.py.
+*.local.json

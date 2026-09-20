@@ -65,6 +65,22 @@
       ],
       "load_all_project_bodies": false,
       "claim": "Lowest always-on among SAFE designs; firing integrity still full (all must-fire rules bind)."
+    },
+    "L4_full_stack": {
+      "definition": "L3 depth-safe tiering (rule-tiered + context-tiered) PLUS project-scoped steering loader (active project's debug/research rules loaded on demand, not always-on) AND kiro default-resource inheritance DISABLED (chat.disableInheritingDefaultResources=true) so no AGENTS.md/README/duplicate-steering is auto-appended on top. This is the user's tested end-to-end configuration.",
+      "always_on": [
+        "steering/*"
+      ],
+      "on_demand": [
+        "on-demand/rules-governance-appendix.md",
+        "on-demand/formatting-appendix.md",
+        "on-demand/cross-links.md",
+        "on-demand/protection-tracks.md"
+      ],
+      "load_all_project_bodies": false,
+      "kiro_default_inheritance": false,
+      "project_scoped_steering_loader": true,
+      "claim": "MEASURED-ON-SAMPLE: matches L3 always-on/per-turn on this corpus (same tiering) with firing integrity full. REAL-DEPLOYMENT CLAIM (user-tested, to be reproduced as a committed probe): with kiro_default inheritance OFF + project-scoped loader, this config was least-token, lossless, and factuality=100 on the user's own projects — because disabling inheritance removes the auto-appended default resources that the L0-L3 sample corpus does not model. NOTE: the sample benchmark cannot measure the inheritance-off saving (no default resources in the sample); that saving + the factuality/lossless result must be captured by a real-deployment probe, not this sample run."
     }
   }
 }
