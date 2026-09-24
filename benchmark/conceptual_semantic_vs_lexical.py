@@ -79,6 +79,8 @@ def main():
     ap.add_argument("--n-per-repo",type=int,default=60)
     ap.add_argument("--k",type=int,default=6)
     ap.add_argument("--bootstrap",type=int,default=1000)
+    ap.add_argument("--max-chunks",type=int,default=1200,dest="max_chunks",
+                    help="chunks indexed per repo for the semantic arm (raise on 16GB Kaggle, e.g. 5000)")
     ap.add_argument("--out",default="conceptual_results.json")
     a=ap.parse_args()
     if not sem_available():
@@ -88,8 +90,11 @@ def main():
     corpus={n:load_repo_text(p) for n,p in repos.items()}
     chunks={n:chunk(corpus[n]) for n in corpus}
     bm25={n:BM25(chunks[n]) for n in corpus}
-    print("embedding chunks (one-time)...", flush=True)
-    sem={n:SemanticRetriever(chunks[n]) for n in corpus}
+    print(f"embedding chunks (one-time; max_chunks/repo={a.max_chunks})...", flush=True)
+    sem={n:SemanticRetriever(chunks[n], max_chunks=a.max_chunks) for n in corpus}
+    for n in sem:
+        print(f"  {n}: {len(chunks[n])} chunks -> indexed {sem[n].n_indexed}"
+              f"{' (CAPPED)' if sem[n].capped else ' (full)'}", flush=True)
 
     # build conceptual questions; presence-gate on the fact being in the corpus
     Q=[]
@@ -124,6 +129,8 @@ def main():
     verdict=("LEXICAL wins" if bm_ci[0]>sm_ci[0] else "SEMANTIC wins" if sm_ci[0]>bm_ci[0] else "TIE")
     print(f"VERDICT: {verdict} on conceptual code questions at N={len(Q)}")
     json.dump({"N":len(Q),"k":K,"query":"question_only_no_fact_leak",
+               "max_chunks_per_repo":a.max_chunks,
+               "indexed":{n:{"chunks":len(chunks[n]),"indexed":sem[n].n_indexed,"capped":sem[n].capped} for n in sem},
                "bm25":{"answerable":bm_ci[0],"ci95":[bm_ci[1],bm_ci[2]]},
                "semantic":{"answerable":sm_ci[0],"ci95":[sm_ci[1],sm_ci[2]]},
                "paired":{"bm25_only":bm_only,"semantic_only":sm_only},
