@@ -1,0 +1,25 @@
+{
+ "N": 100,
+ "k": 6,
+ "query": "question_only_no_fact_leak",
+ "bm25": {
+  "answerable": 0.9,
+  "ci95": [
+   0.84,
+   0.95
+  ]
+ },
+ "semantic": {
+  "answerable": 0.65,
+  "ci95": [
+   0.55,
+   0.74
+  ]
+ },
+ "paired": {
+  "bm25_only": 30,
+  "semantic_only": 5
+ },
+ "verdict": "LEXICAL wins",
+ "note": "conceptual (docstring-mined) questions; answerable-in-context proxy NOT task success"
+}

@@ -31,13 +31,24 @@ def _cos(a, b):
 
 
 class SemanticRetriever:
-    """Embed a fixed chunk list once; retrieve top-k per query by cosine similarity."""
-    def __init__(self, chunks, model_name="BAAI/bge-small-en-v1.5"):
+    """Embed a fixed chunk list once; retrieve top-k per query by cosine similarity.
+    Memory-safe on 8GB: caps chunk count (transparently reported via .n_indexed / .capped) and embeds
+    in batches so the full embedding set does not spike RAM. Capping samples evenly across the chunk
+    list to preserve coverage; the cap is reported so results state the indexed fraction honestly."""
+    def __init__(self, chunks, model_name="BAAI/bge-small-en-v1.5", max_chunks=1200, batch=64):
         if not _HAVE:
             raise RuntimeError("fastembed not available")
+        self.capped = len(chunks) > max_chunks
+        if self.capped:
+            step = len(chunks) / max_chunks
+            chunks = [chunks[int(i*step)] for i in range(max_chunks)]  # even sample across the repo
         self.chunks = chunks
+        self.n_indexed = len(chunks)
         self._model = TextEmbedding(model_name)
-        self._emb = list(self._model.embed(chunks)) if chunks else []
+        emb = []
+        for i in range(0, len(chunks), batch):
+            emb.extend(self._model.embed(chunks[i:i+batch]))   # batched: bounded peak memory
+        self._emb = emb
         self.dim = len(self._emb[0]) if self._emb else 0
 
     def topk(self, query, k):
