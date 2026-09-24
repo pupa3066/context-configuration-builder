@@ -1,0 +1,60 @@
+{
+ "n_testable": 195,
+ "corpus_tok": {
+  "requests": 176003,
+  "click": 424017,
+  "black": 825407
+ },
+ "bootstrap": 1000,
+ "results": {
+  "no_context": {
+   "answerable": 0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "avg_tokens": 0
+  },
+  "monolithic": {
+   "answerable": 1,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "avg_tokens": 471812.0
+  },
+  "summarized_L0.5": {
+   "answerable": 1,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "avg_tokens": 471551.0
+  },
+  "retrieval_bm25_k3": {
+   "answerable": 0.9846,
+   "ci95": [
+    0.9641,
+    1.0
+   ],
+   "avg_tokens": 309.0
+  },
+  "retrieval_bm25_k6": {
+   "answerable": 0.9897,
+   "ci95": [
+    0.9744,
+    1.0
+   ],
+   "avg_tokens": 624.0
+  },
+  "retrieval_bm25_k10": {
+   "answerable": 0.9949,
+   "ci95": [
+    0.9846,
+    1.0
+   ],
+   "avg_tokens": 1061.0
+  }
+ },
+ "note": "identifier-recall auto questions; token-cost + answerable proxy, NOT task success; lift over no_context is the signal"
+}

@@ -9,36 +9,93 @@
       "project": "requests",
       "q": "How does the library decide whether to reuse an existing TCP connection for a new request?",
       "facts": ["HTTPAdapter"],
-      "category": "conceptual",
-      "_verify": "confirm HTTPAdapter (connection pooling/reuse) appears in requests source; refine fact if a more specific symbol is the real answer"
+      "category": "conceptual"
     },
     {
       "project": "requests",
       "q": "What object holds cookies, auth, and default headers so they persist across multiple requests?",
       "facts": ["Session"],
-      "category": "paraphrase",
-      "_verify": "confirm 'Session' (or 'class Session') is the persistence object in sessions.py"
+      "category": "paraphrase"
     },
     {
       "project": "requests",
       "q": "Where is a failed HTTP status turned into a raised exception?",
       "facts": ["raise_for_status"],
-      "category": "conceptual",
-      "_verify": "confirm raise_for_status exists in models.py and is the mechanism"
+      "category": "conceptual"
     },
     {
       "project": "requests",
       "q": "What is the exception raised when a request exceeds the allotted time?",
       "facts": ["Timeout"],
-      "category": "identifier",
-      "_verify": "control/contrast: exact symbol Timeout in exceptions.py — everything should answer this"
+      "category": "identifier"
     },
     {
       "project": "requests",
       "q": "Which component follows redirects and rebuilds the request for the new location?",
       "facts": ["resolve_redirects"],
-      "category": "conceptual",
-      "_verify": "confirm resolve_redirects in sessions.py handles redirect following"
+      "category": "conceptual"
+    },
+    {
+      "project": "requests",
+      "q": "What holds the fully-built request (method, url, headers, body) just before it is sent?",
+      "facts": ["PreparedRequest"],
+      "category": "paraphrase"
+    },
+
+    {
+      "project": "click",
+      "q": "What object represents a single CLI command that can be invoked?",
+      "facts": ["Command"],
+      "category": "conceptual"
+    },
+    {
+      "project": "click",
+      "q": "What groups multiple sub-commands under one parent command?",
+      "facts": ["Group"],
+      "category": "paraphrase"
+    },
+    {
+      "project": "click",
+      "q": "What carries invocation state (params, parent, object) down through nested commands?",
+      "facts": ["Context"],
+      "category": "conceptual"
+    },
+    {
+      "project": "click",
+      "q": "What function prints to the terminal handling encoding and color stripping?",
+      "facts": ["echo"],
+      "category": "paraphrase"
+    },
+    {
+      "project": "click",
+      "q": "What is the class name for a command-line option?",
+      "facts": ["Option"],
+      "category": "identifier"
+    },
+
+    {
+      "project": "black",
+      "q": "Which function formats a string of source code and returns the reformatted string?",
+      "facts": ["format_str"],
+      "category": "conceptual"
+    },
+    {
+      "project": "black",
+      "q": "What tracks blank lines to enforce spacing rules between definitions?",
+      "facts": ["EmptyLineTracker"],
+      "category": "paraphrase"
+    },
+    {
+      "project": "black",
+      "q": "What object holds the formatting configuration such as line length and target versions?",
+      "facts": ["Mode"],
+      "category": "conceptual"
+    },
+    {
+      "project": "black",
+      "q": "What is the class representing a single logical line of output?",
+      "facts": ["Line"],
+      "category": "identifier"
     }
   ]
 }

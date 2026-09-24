@@ -1,15 +1,12 @@
-# Context-algorithm comparison (N=44 real questions, real gpt2 BPE)
+# Context-algorithm comparison (N=195 real questions, 3 real PyPI corpora, real gpt2 BPE)
 
-| algorithm | tokens/turn | answerable | vs monolithic |
-|---|---|---|---|
-| monolithic | 231,048 | 0.977 | +0.0% |
-| tiered_lossless | 234,835 | 0.977 | -1.6% |
-| summarized_L0.33 | 216,887 | 0.977 | +6.1% |
-| summarized_L0.50 | 216,887 | 0.977 | +6.1% |
-| summarized_L0.66 | 168,735 | 0.591 | +27.0% |
-| retrieval_bm25_top6 | 911 | 0.909 | +99.6% |
-| hybrid_bm25_top6 | 4,698 | 0.909 | +98.0% |
-| semantic_top6 | 924 | 0.614 | +99.6% |
-| hybrid_semantic_top6 | 4,711 | 0.614 | +98.0% |
+| algorithm | tokens/turn | answerable | 95% CI | vs monolithic tokens |
+|---|---|---|---|---|
+| no_context | 0 | 0.0000 | [0.0000, 0.0000] | n/a |
+| monolithic | 471,812 | 1.0000 | [1.0000, 1.0000] | +0.00% |
+| summarized_L0.5 | 471,551 | 1.0000 | [1.0000, 1.0000] | +0.06% |
+| retrieval_bm25_k3 | 309 | 0.9846 | [0.9641, 1.0000] | +99.93% |
+| retrieval_bm25_k6 | 624 | 0.9897 | [0.9744, 1.0000] | +99.87% |
+| retrieval_bm25_k10 | 1,061 | 0.9949 | [0.9846, 1.0000] | +99.78% |
 
-Preliminary: pilot N; answerable = ground-truth fact co-located with a query keyword (a proxy for usable-in-context, NOT task success). Retrieval arms use top-k=6. Finding: on an identifier/number-dense research corpus, lexical (BM25) retrieval recalls facts better than semantic embedding retrieval (0.909 vs 0.614), because DOIs/ORCIDs/p-values/module-names carry little semantic signal; both cut tokens ~99.6% vs monolithic. Safe summarization saves little (~6%).
+Preliminary: answerable = ground-truth identifier recalled in the assembled context (a proxy for usable-in-context, NOT task success); lift over no_context (0.0) is the signal. Corpora: requests, click, black (real PyPI source). Retrieval arms are BM25 at k=3/6/10. Finding: BM25 retrieval reaches 0.9846 (k=3), 0.9897 (k=6), and 0.9949 (k=10) answerable while cutting tokens versus the monolithic full-context arm (471,812 tokens/turn) by 99.93%, 99.87%, and 99.78% respectively. Safe summarization at L=0.5 saves only 0.06% of tokens (471,551) because lossless-safe compression cannot drop identifier content. CIs are 1000-sample bootstrap.
