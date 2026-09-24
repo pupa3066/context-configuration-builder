@@ -80,7 +80,7 @@
       "load_all_project_bodies": false,
       "kiro_default_inheritance": false,
       "project_scoped_steering_loader": true,
-      "claim": "MEASURED-ON-SAMPLE: matches L3 always-on/per-turn on this corpus (same tiering) with firing integrity full. REAL-DEPLOYMENT CLAIM (user-tested, to be reproduced as a committed probe): with kiro_default inheritance OFF + project-scoped loader, this config was least-token, lossless, and factuality=100 on the user's own projects — because disabling inheritance removes the auto-appended default resources that the L0-L3 sample corpus does not model. NOTE: the sample benchmark cannot measure the inheritance-off saving (no default resources in the sample); that saving + the factuality/lossless result must be captured by a real-deployment probe, not this sample run."
+      "claim": "MEASURED-ON-SAMPLE: matches L3 always-on/per-turn on this corpus (same tiering) with firing integrity full. REAL-DEPLOYMENT CLAIM (user-tested, to be reproduced as a committed probe): with kiro_default inheritance OFF + project-scoped loader, this config was least-token, lossless, and factuality=100 on the user's own projects - because disabling inheritance removes the auto-appended default resources that the L0-L3 sample corpus does not model. NOTE: the sample benchmark cannot measure the inheritance-off saving (no default resources in the sample); that saving + the factuality/lossless result must be captured by a real-deployment probe, not this sample run."
     }
   }
 }

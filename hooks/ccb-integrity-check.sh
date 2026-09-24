@@ -1,5 +1,5 @@
 #!/bin/sh
-# ccb-integrity-check.sh — SESSION-START verifier: confirm CCB rules loaded + override active.
+# ccb-integrity-check.sh - SESSION-START verifier: confirm CCB rules loaded + override active.
 #
 # Runs as an agentSpawn hook. Emits a short PASS/FAIL report so the agent (and Pupa) can see, every
 # new session, whether the Consistent Context Kit context is actually loaded and overriding kiro
@@ -29,14 +29,14 @@ if [ -z "$ov" ] && [ -f "$CLI" ] && command -v python3 >/dev/null 2>&1; then
   ov=$(python3 -c "import json,sys;print(str(json.load(open('$CLI')).get('chat.disableInheritingDefaultResources')).lower())" 2>/dev/null)
 fi
 case "$ov" in
-  true*) say "OVERRIDE ok — kiro default inheritance OFF (CCB is source of truth)";;
-  *)     FAIL "override not set (chat.disableInheritingDefaultResources != true) — kiro defaults may leak in";;
+  true*) say "OVERRIDE ok - kiro default inheritance OFF (CCB is source of truth)";;
+  *)     FAIL "override not set (chat.disableInheritingDefaultResources != true) - kiro defaults may leak in";;
 esac
 
 # 2. resources declared? (required when override is on)
 if command -v python3 >/dev/null 2>&1 && [ -f "$AGENT" ]; then
   res=$(python3 -c "import json;print(len(json.load(open('$AGENT')).get('resources',[])))" 2>/dev/null || echo 0)
-  if [ "${res:-0}" -ge 1 ]; then say "RESOURCES ok — agent declares $res explicit CCB resource pattern(s)"
+  if [ "${res:-0}" -ge 1 ]; then say "RESOURCES ok - agent declares $res explicit CCB resource pattern(s)"
   else FAIL "agent resources[] is EMPTY while override is on -> NO context would load"; fi
 fi
 
@@ -45,11 +45,11 @@ missing=""
 for f in 00-rules.md bootstrap.md context-registry.md portfolio.md; do
   [ -f "$KIRO/steering/$f" ] || missing="$missing $f"
 done
-[ -z "$missing" ] && say "RULES ok — CCB always-on steering present (00-rules/bootstrap/registry/portfolio)" \
+[ -z "$missing" ] && say "RULES ok - CCB always-on steering present (00-rules/bootstrap/registry/portfolio)" \
                    || FAIL "missing CCB steering:$missing"
 
 # 4. loader present?
-[ -x "$KIRO/hooks/project-steering-loader.sh" ] && say "LOADER ok — project-steering-loader installed" \
+[ -x "$KIRO/hooks/project-steering-loader.sh" ] && say "LOADER ok - project-steering-loader installed" \
                    || FAIL "project-steering-loader.sh missing/not executable"
 
 # 5. registry paths valid on disk? (catches the stale-path bug that broke context loading)
@@ -63,9 +63,9 @@ if [ -f "$REG" ]; then
   done <<EOF
 $(grep -E '^\| *\[x\]' "$REG" 2>/dev/null)
 EOF
-  [ "$bad" -eq 0 ] && say "REGISTRY ok — all active project paths exist"
+  [ "$bad" -eq 0 ] && say "REGISTRY ok - all active project paths exist"
 fi
 
-if [ "$fail" -eq 0 ]; then printf '[ccb-integrity] PASS — CCB loaded + override active.\n'
-else printf '[ccb-integrity] ISSUES ABOVE — CCB context may be incomplete this session.\n'; fi
+if [ "$fail" -eq 0 ]; then printf '[ccb-integrity] PASS - CCB loaded + override active.\n'
+else printf '[ccb-integrity] ISSUES ABOVE - CCB context may be incomplete this session.\n'; fi
 exit 0

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""compare_algorithms.py — head-to-head of context algorithms for a RESEARCH agent.
+"""compare_algorithms.py - head-to-head of context algorithms for a RESEARCH agent.
 
 Same corpus, same 50 real questions, both axes measured consistently:
   - per-turn tokens: what the agent actually injects to answer THAT question (real gpt2 BPE).

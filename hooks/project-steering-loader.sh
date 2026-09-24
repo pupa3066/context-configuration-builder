@@ -1,5 +1,5 @@
 #!/bin/sh
-# project-steering-loader.sh — CCK feature (AGENT-NEUTRAL): load the ACTIVE project's per-project
+# project-steering-loader.sh - CCK feature (AGENT-NEUTRAL): load the ACTIVE project's per-project
 # context/rules regardless of the directory the agent was launched from.
 #
 # PROBLEM: most agents only auto-load per-project rules from the CURRENT launch dir. If you start

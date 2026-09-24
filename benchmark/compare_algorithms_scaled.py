@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""compare_algorithms_scaled.py — POWERED version of the context-algorithm comparison.
+"""compare_algorithms_scaled.py - POWERED version of the context-algorithm comparison.
 
 Turns the N=44 pilot (compare_algorithms.py, private questions) into a reproducible, PUBLIC-corpus
-study with larger N, a k-sweep, and bootstrap confidence intervals — the "scale it up" step.
+study with larger N, a k-sweep, and bootstrap confidence intervals - the "scale it up" step.
 
 WHAT THIS ADDS over the pilot:
   1. PUBLIC corpus: clones open-source repos (no private/patent data) so anyone can reproduce.

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""conceptual_semantic_vs_lexical.py — the decisive test: does lexical retrieval beat semantic
+"""conceptual_semantic_vs_lexical.py - the decisive test: does lexical retrieval beat semantic
 embedding retrieval on CONCEPTUAL questions about code, at powered scale?
 
 FIXES a confound in compare_algorithms_scaled.py: that script's retrieval query included the
 ground-truth fact ("q + facts"), which trivially favors lexical string-match. Here the retrieval
-QUERY IS THE QUESTION ONLY — the retriever never sees the answer, like a real agent. The fact is used
+QUERY IS THE QUESTION ONLY - the retriever never sees the answer, like a real agent. The fact is used
 ONLY for scoring (did the retrieved chunk contain it), never for retrieval.
 
 CONCEPTUAL questions at scale: mined from function/class DOCSTRINGS in the public repos. A docstring's
 first sentence becomes a natural-language question; the ground-truth fact = the symbol name (verifiably
 present in the code). These are genuinely conceptual (worded in prose, not the symbol), which is where
-semantic retrieval SHOULD win if it ever does — the fair test of the contrarian claim.
+semantic retrieval SHOULD win if it ever does - the fair test of the contrarian claim.
 
 Arms: bm25 (lexical) vs semantic (fastembed bge-small cosine), both top-k, query=question only.
 Scoring: answerable-in-context = ground-truth symbol present in the retrieved chunks. Bootstrap CI.
@@ -84,7 +84,7 @@ def main():
     ap.add_argument("--out",default="conceptual_results.json")
     a=ap.parse_args()
     if not sem_available():
-        print("fastembed unavailable — cannot run semantic arm. Install fastembed."); sys.exit(1)
+        print("fastembed unavailable - cannot run semantic arm. Install fastembed."); sys.exit(1)
 
     repos=dict(p.split(":",1) for p in a.repos)
     corpus={n:load_repo_text(p) for n,p in repos.items()}
@@ -109,7 +109,7 @@ def main():
         hits=[]
         for q in Q:
             p=q["project"]
-            # QUERY = QUESTION ONLY — retriever never sees the answer
+            # QUERY = QUESTION ONLY - retriever never sees the answer
             if which=="bm25": ctx="\n".join(bm25[p].topk(q["q"],K))
             else: ctx="\n".join(sem[p].topk(q["q"],K))
             hits.append(1 if answerable(ctx,q["fact"]) else 0)

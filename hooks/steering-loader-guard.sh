@@ -1,9 +1,9 @@
 #!/bin/sh
-# steering-loader-guard.sh — self-healing wrapper for project-steering-loader.sh.
+# steering-loader-guard.sh - self-healing wrapper for project-steering-loader.sh.
 #
 # GOAL (honest scope): make the project-steering loader DURABLE across future kiro sessions and
 # resilient to kiro/config changes that might drop it. It does two things every agentSpawn:
-#   1. RUN the project-steering loader (emit active-project context) — the actual feature.
+#   1. RUN the project-steering loader (emit active-project context) - the actual feature.
 #   2. SELF-HEAL: verify the loader is still installed on disk AND still registered in the agent
 #      config; if either is missing (e.g. a kiro update rewrote the config, or the file was removed),
 #      re-install from the CCK canonical source and re-register the hook, so the NEXT session is fixed.

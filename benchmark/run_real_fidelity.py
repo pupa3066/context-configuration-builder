@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_real_fidelity.py — fidelity benchmark on REAL ground-truth questions (not synthetic).
+"""run_real_fidelity.py - fidelity benchmark on REAL ground-truth questions (not synthetic).
 
 Fixes the two validity flaws of run_fidelity.py:
   (1) REAL gpt2 BPE token counts (not len//4).
@@ -45,7 +45,7 @@ def load_full_context(root: str, rels: list) -> str:
         t = read(p)
         if t:
             parts.append(f"\n\n===== {rel} =====\n{t}")
-    # CONTEXT IS NOT JUST DOCS: include .kiro/steering, tracked text/code, and git history —
+    # CONTEXT IS NOT JUST DOCS: include .kiro/steering, tracked text/code, and git history  - 
     # anything the agent can actually retrieve to answer a question (per Pupa: a log item counts).
     import subprocess
     def _git(args):
@@ -57,7 +57,7 @@ def load_full_context(root: str, rels: list) -> str:
     # git log (all branches) + reflog + stash: recent-state / decision facts live here
     parts.append("\n\n===== git log --all =====\n" + _git(["log", "--all", "--oneline", "-n", "400"]))
     parts.append("\n\n===== git reflog =====\n" + _git(["reflog", "-n", "200"]))
-    # tracked text/code files (bounded) — code comments/configs are context too
+    # tracked text/code files (bounded) - code comments/configs are context too
     tracked = _git(["ls-files"]).splitlines()
     exts = (".md", ".py", ".txt", ".yaml", ".yml", ".toml", ".cff", ".json", ".tex", ".sh")
     for rel in tracked:
@@ -120,7 +120,7 @@ def main():
     print(f"real-fidelity: {len(cfg['questions'])} questions | stable={len(stable)} recent={len(recent)}")
     print(f"presence gate: testable(fact in FULL ctx)={len(testable)}  not_in_source={len(not_in_source)}")
     if not_in_source:
-        print("  not_in_source (id, project, missing facts) — excluded from fidelity denominator:")
+        print("  not_in_source (id, project, missing facts) - excluded from fidelity denominator:")
         for i, p, m in not_in_source:
             print(f"    #{i:<2} {p:<26} missing={m}")
 

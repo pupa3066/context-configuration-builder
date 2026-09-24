@@ -2,7 +2,7 @@
 
 Zero dependencies for the core (POSIX `sh`). Safe: non-destructive, no network. See SECURITY.md.
 
-## Option A — agent-neutral core (recommended)
+## Option A - agent-neutral core (recommended)
 ```sh
 git clone https://github.com/pupa3066/context-configuration-builder.git
 cd context-configuration-builder
@@ -10,12 +10,12 @@ sh install-core.sh                 # scaffolds ~/.context-config-builder (skips 
 sh adapters/kiro.sh apply          # or claude-code.sh / cursor.sh / generic.sh
 ```
 
-## Option B — Kiro-native
+## Option B - Kiro-native
 ```sh
 sh install.sh                      # installs into ~/.kiro directly
 ```
 
-## Option C — Kiro self-activating (override + resources + hooks + integrity check)
+## Option C - Kiro self-activating (override + resources + hooks + integrity check)
 `install.sh` and the adapters copy content only. To make Kiro load CCB and self-verify
 automatically on every new session, run the bootstrap. It is idempotent and self-checking:
 ```sh

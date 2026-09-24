@@ -1,5 +1,5 @@
 #!/bin/sh
-# ccb-bootstrap.sh — one-shot, idempotent, self-verifying installer for the
+# ccb-bootstrap.sh - one-shot, idempotent, self-verifying installer for the
 # Consistent Context Kit (CCB) on Kiro CLI.
 #
 # WHAT IT DOES (so CCB "does the default loading, override, and integrity check
@@ -33,7 +33,7 @@ DRY=0
 
 usage() {
   cat <<EOF
-ccb-bootstrap — self-installing CCB for Kiro CLI (override + resources + hooks + integrity check)
+ccb-bootstrap - self-installing CCB for Kiro CLI (override + resources + hooks + integrity check)
 
 Usage: ./ccb-bootstrap.sh [--dry-run] [--help]
 Environment:
@@ -63,7 +63,7 @@ run()  { [ "$DRY" -eq 1 ] || "$@"; }
 echo "ccb-bootstrap -> $KIRO_HOME$( [ "$DRY" -eq 1 ] && echo '  (dry-run)')"
 
 # ---------------------------------------------------------------------------
-# 1. HOOKS — vendored scripts, always refreshed (they are code, not user data)
+# 1. HOOKS - vendored scripts, always refreshed (they are code, not user data)
 # ---------------------------------------------------------------------------
 echo "[1/5] hooks"
 run mkdir -p "$KIRO_HOME/hooks"
@@ -76,7 +76,7 @@ for h in ccb-integrity-check.sh project-steering-loader.sh steering-loader-guard
 done
 
 # ---------------------------------------------------------------------------
-# 2. STEERING — non-destructive (never clobber edited steering)
+# 2. STEERING - non-destructive (never clobber edited steering)
 # ---------------------------------------------------------------------------
 echo "[2/5] steering (non-destructive)"
 run mkdir -p "$KIRO_HOME/steering"
@@ -88,7 +88,7 @@ for f in "$STEER_SRC"/*.md; do
 done
 
 # ---------------------------------------------------------------------------
-# 3. OVERRIDE — chat.disableInheritingDefaultResources = true
+# 3. OVERRIDE - chat.disableInheritingDefaultResources = true
 # ---------------------------------------------------------------------------
 echo "[3/5] override (cli.json)"
 run mkdir -p "$KIRO_HOME/settings"
@@ -111,7 +111,7 @@ else:
 PY
 
 # ---------------------------------------------------------------------------
-# 4. WIRE — resources[] + agentSpawn hooks in default.json (backup first)
+# 4. WIRE - resources[] + agentSpawn hooks in default.json (backup first)
 # ---------------------------------------------------------------------------
 echo "[4/5] agent config (default.json)"
 AGENT="$AGENT" DRY="$DRY" python3 - <<'PY'
@@ -182,7 +182,7 @@ else:
 PY
 
 # ---------------------------------------------------------------------------
-# 5. VERIFY — run the integrity check the same way the session hook does
+# 5. VERIFY - run the integrity check the same way the session hook does
 # ---------------------------------------------------------------------------
 echo "[5/5] self-verify (integrity check)"
 if [ "$DRY" -eq 1 ]; then

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""semantic_retriever.py — real semantic top-k retrieval for context selection.
+"""semantic_retriever.py - real semantic top-k retrieval for context selection.
 
-Embeds chunks once (BAAI/bge-small-en-v1.5 via fastembed: ONNX, CPU, no torch — fits an 8GB box),
+Embeds chunks once (BAAI/bge-small-en-v1.5 via fastembed: ONNX, CPU, no torch - fits an 8GB box),
 then selects the top-k chunks by cosine similarity to the query. This is the semantic upgrade over
 BM25-lite (lexical): it catches paraphrase/synonym matches BM25 misses, which is the gap that kept
 lexical retrieval under 0.95 answerable in the algorithm comparison.
 
 GRACEFUL FALLBACK: if fastembed/model is unavailable, is_semantic=False and the caller should skip
-the semantic arm (do NOT silently fall back to lexical and mislabel it semantic — that would be a
+the semantic arm (do NOT silently fall back to lexical and mislabel it semantic - that would be a
 false result). No network needed after the model is cached once.
 """
 from __future__ import annotations
