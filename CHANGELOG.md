@@ -5,6 +5,16 @@ Format based on Keep a Changelog; this project uses semantic versioning.
 
 ## [Unreleased] - 2026-09-18
 ### Added
+- Self-installing Kiro bootstrap (`ccb-bootstrap.sh`): one idempotent, self-verifying installer that
+  wires automatic session-start activation. It installs the hook scripts, copies always-on steering
+  (non-destructive), sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json`, declares
+  the CCB `resources[]` and registers the `agentSpawn` hooks in `agents/default.json` (integrity check
+  ordered first, timestamped backup before any edit), then runs the integrity check and prints PASS/FAIL.
+  Honors `KIRO_HOME` and supports `--dry-run`. Verified: clean install PASSes all five checks; a second
+  run is idempotent (no backup, no duplicate hooks/resources).
+- Vendored agent-neutral hooks into `hooks/`: `ccb-integrity-check.sh` (session-start verifier, now
+  honors `KIRO_HOME` and reads the override from `cli.json` when the live CLI is unavailable),
+  `project-steering-loader.sh`, and `steering-loader-guard.sh` (self-heal wrapper).
 - Design registry: each tiering design is a named, defined, claim-paired, runnable unit.
   `benchmark/DESIGNS.md` + `benchmark/designs.json` (token-cost axis) + `benchmark/designs_fidelity.json`
   (fidelity axis), run via `benchmark/run_designs.py` and `benchmark/run_fidelity.py` against a committed

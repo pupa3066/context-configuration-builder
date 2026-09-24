@@ -1,0 +1,7 @@
+algorithm,avg_tokens_per_turn,answerable_retention,ci95_low,ci95_high,N
+no_context,0,0.0,0.0,0.0,195
+monolithic,471812,1.0,1.0,1.0,195
+summarized_L0.5,471551,1.0,1.0,1.0,195
+retrieval_bm25_k3,309,0.9846,0.9641,1.0,195
+retrieval_bm25_k6,624,0.9897,0.9744,1.0,195
+retrieval_bm25_k10,1061,0.9949,0.9846,1.0,195

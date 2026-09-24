@@ -1,0 +1,69 @@
+# CCK Gemma Agent Port -- candidate agent config (DRAFT / UNTESTED)
+#
+# Status: DRAFT. Not validated against the real competition harness. Field names follow
+# the competition overview and may need reconciliation with the actual schema before use.
+# The base model is fixed by the competition and must not be changed.
+#
+# Design: one root coder agent (does the edits), one analyzer sub-agent (localizes the fix
+# before any edit), and one repo_navigation skill that encodes the identifier-first
+# retrieval policy. Rationale and measured grounding: SKILL.md.
+
+version: 0.1-draft
+
+model:
+  # Fixed by the competition. Do not change.
+  name: gemma-4-31b-it-qat-w4a16-ct
+  temperature: 0        # deterministic, matches the CCK/ETH single-sample protocol
+  max_output_tokens: 4096
+
+agents:
+  root:
+    role: coder
+    description: >
+      Root coding agent. Solves the task by localizing the change with the analyzer
+      sub-agent first, then applying minimal edits and running the provided commands.
+    prompt: prompts/system.md
+    skills:
+      - repo_navigation
+    tools:
+      # Retrieval (Tier 2, on-demand). Identifier-first per the CCK finding.
+      - get_code_neighbors     # structural, identifier-anchored -> preferred for exact symbols
+      - get_code_subgraph      # structural dependency neighborhood -> preferred for exact symbols
+      - search_similar_code    # embeddings -> fallback for conceptual/paraphrase queries
+      # Action (Tier 3, query-only).
+      - read
+      - edit
+      - write
+      - run_command
+    sub_agents:
+      - analyzer
+
+  analyzer:
+    role: localizer
+    description: >
+      Read-only localization sub-agent. Given the task, extracts identifiers, resolves them
+      to code locations via the structural tools, and returns a ranked shortlist of files,
+      symbols, and line ranges for the root agent to edit. Does not modify files.
+    prompt: prompts/analyzer.md
+    tools:
+      - get_code_neighbors
+      - get_code_subgraph
+      - search_similar_code
+      - read
+    # No edit/write/run_command: localization must be side-effect free.
+
+skills:
+  repo_navigation:
+    description: >
+      On-demand policy for choosing a retrieval tool by query type. Loads only when the
+      root agent engages navigation, keeping the always-on prompt small (CCK Tier 1).
+    file: skills/repo_navigation.md
+
+# Retrieval policy knobs (draft defaults). k range mirrors the CCK powered k-sweep
+# (3, 6, 10); k6 is a reasonable default on the measured token/answerable frontier, but
+# the right k for THIS harness and metric is unknown until measured.
+retrieval:
+  default_top_k: 6
+  identifier_first: true       # try structural tools on extracted identifiers before embeddings
+  semantic_fallback: true      # use search_similar_code when no identifier resolves
+  # NOTE: default_top_k is carried from a token/answerable proxy study, NOT tuned on this harness.
