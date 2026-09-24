@@ -1,0 +1,44 @@
+{
+  "_note": "PUBLIC curated questions for the scaled context-algorithm benchmark. These are the DISCRIMINATING set: conceptual/paraphrase questions where retrieval (esp. semantic vs lexical) should start to differ, unlike the auto identifier questions which everything answers. Schema matches compare_algorithms_scaled.py: each question needs project (must match a --repos name), q, facts (ground-truth strings that MUST appear verbatim in the repo so the presence gate passes), category.",
+  "_how_to_use": "Run the repo(s) with --repos <name>:<path>, then pass this file via --curated curated_questions.json. Only questions whose project matches a loaded repo AND whose facts appear in that corpus are scored.",
+  "_oracle_gate": "YOU (Pupa) verify each fact string is (a) correct and (b) present verbatim in the repo. Do not ship a fact you have not confirmed appears in the code. Rule 2: measured/verifiable only.",
+  "_categories": "conceptual = needs understanding not string-match; paraphrase = question wording differs from code wording; identifier = exact symbol (contrast/control).",
+
+  "questions": [
+    {
+      "project": "requests",
+      "q": "How does the library decide whether to reuse an existing TCP connection for a new request?",
+      "facts": ["HTTPAdapter"],
+      "category": "conceptual",
+      "_verify": "confirm HTTPAdapter (connection pooling/reuse) appears in requests source; refine fact if a more specific symbol is the real answer"
+    },
+    {
+      "project": "requests",
+      "q": "What object holds cookies, auth, and default headers so they persist across multiple requests?",
+      "facts": ["Session"],
+      "category": "paraphrase",
+      "_verify": "confirm 'Session' (or 'class Session') is the persistence object in sessions.py"
+    },
+    {
+      "project": "requests",
+      "q": "Where is a failed HTTP status turned into a raised exception?",
+      "facts": ["raise_for_status"],
+      "category": "conceptual",
+      "_verify": "confirm raise_for_status exists in models.py and is the mechanism"
+    },
+    {
+      "project": "requests",
+      "q": "What is the exception raised when a request exceeds the allotted time?",
+      "facts": ["Timeout"],
+      "category": "identifier",
+      "_verify": "control/contrast: exact symbol Timeout in exceptions.py — everything should answer this"
+    },
+    {
+      "project": "requests",
+      "q": "Which component follows redirects and rebuilds the request for the new location?",
+      "facts": ["resolve_redirects"],
+      "category": "conceptual",
+      "_verify": "confirm resolve_redirects in sessions.py handles redirect following"
+    }
+  ]
+}
