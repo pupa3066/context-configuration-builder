@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_designs.py — run any/all named tiering designs against the committed sample corpus.
+"""run_designs.py  -  run any/all named tiering designs against the committed sample corpus.
 
 A contributor runs this and, for each design, sees: the NAME, the DEFINITION, the CLAIM, the MEASURED
 result (real gpt2-BPE on benchmark/sample/), and whether the claim is CONFIRMED. This is what tells a

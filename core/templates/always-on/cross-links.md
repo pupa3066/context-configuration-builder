@@ -4,4 +4,4 @@
 
 - FACT [CLAIM]: <result relevant to >1 project>.
   origin: <project/file>
-  used-by: <projectA (why)> · <projectB (why)>
+  used-by: <projectA (why)> - <projectB (why)>

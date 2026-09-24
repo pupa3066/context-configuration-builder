@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""check_pr.py — safeguard gate for pull requests / fork contributions to this PUBLIC repo.
+"""check_pr.py  -  safeguard gate for pull requests / fork contributions to this PUBLIC repo.
 
 Runs in CI on every PR (and locally) to protect the repo BEFORE merge. It enforces, as HONEST
 gates (it flags problems; it never edits or fabricates):
@@ -97,15 +97,15 @@ def main():
     errs = s_errs + a_errs
 
     print("\n[1] Sensitive-info scan:")
-    print("  PASS — no paths/secrets/host-emails in tracked files" if not s_errs
-          else "\n".join(f"  ❌ {e}" for e in s_errs))
+    print("  PASS  -  no paths/secrets/host-emails in tracked files" if not s_errs
+          else "\n".join(f"  [x] {e}" for e in s_errs))
     print("\n[2/3] Attribution & provenance:")
-    for e in a_errs: print(f"  ❌ {e}")
-    for w in a_warns: print(f"  ⚠  {w}")
-    if not a_errs: print("  PASS — no missing provenance bundles")
+    for e in a_errs: print(f"  [x] {e}")
+    for w in a_warns: print(f"  [warn]  {w}")
+    if not a_errs: print("  PASS  -  no missing provenance bundles")
 
     if errs:
-        print(f"\n{len(errs)} blocking issue(s) — DO NOT MERGE until fixed.")
+        print(f"\n{len(errs)} blocking issue(s)  -  DO NOT MERGE until fixed.")
         return 1
     print("\nSafeguard PASS. Reviewer still confirms contributor attribution per CONTRIBUTING (rule 21a).")
     return 0

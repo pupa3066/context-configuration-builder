@@ -12,7 +12,7 @@ Consistent Context Kit is designed to be safe to install and run on any system.
   # -> no matches
   ```
 - The **optional `research/` pipeline** DOES make network calls (git clone of public
-  repos, LLM API calls, dataset download) — but only when you explicitly run it, with
+  repos, LLM API calls, dataset download)  -  but only when you explicitly run it, with
   your own keys. It is not part of the installable core and is opt-in.
 
 ## Filesystem posture

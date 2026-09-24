@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_fidelity.py — run FIDELITY-AXIS designs against the committed sample corpus.
+"""run_fidelity.py  -  run FIDELITY-AXIS designs against the committed sample corpus.
 
 DIFFERENT AXIS from run_designs.py. This measures GROUNDING RETENTION (fraction of task-needed facts
 still present after deferral/compression) vs TOKEN SAVING. It answers "does the design lose the facts a

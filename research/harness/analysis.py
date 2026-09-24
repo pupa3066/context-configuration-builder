@@ -1,4 +1,4 @@
-"""analysis.py — compute all study metrics from harness JSONL logs.
+"""analysis.py  -  compute all study metrics from harness JSONL logs.
 
 Implements the statistics specified in RESEARCH_PLAN.md:
 - per-condition resolved rate + token cost (mean, paired)
@@ -165,7 +165,7 @@ def main():
             }
     out["pareto_optimal_conditions"] = pareto(cond_stats)
 
-    # Verdict logic (structural — applies to whatever data): "better" = non-inferior quality AND lower tokens
+    # Verdict logic (structural  -  applies to whatever data): "better" = non-inferior quality AND lower tokens
     verdicts = {}
     for k, comp in out["comparisons"].items():
         ni = comp["non_inferiority"]["non_inferior"]

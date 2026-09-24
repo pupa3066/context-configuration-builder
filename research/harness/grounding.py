@@ -1,18 +1,18 @@
-"""grounding.py — grounding / context-fidelity NULL-CONTROL for the lossless study.
+"""grounding.py  -  grounding / context-fidelity NULL-CONTROL for the lossless study.
 
 Question this answers (the CCK analog of "factuality" for a coding agent):
     When context is tiered LOSSLESSLY (defer full body; load on demand), does the
     agent still receive every fact it needs? For lossless tiering the answer MUST be
-    "yes, identical to monolithic" — this module MEASURES that rather than asserting it.
+    "yes, identical to monolithic"  -  this module MEASURES that rather than asserting it.
 
 It is a NULL CONTROL: we expect NO degradation for C2/C3 vs C1 because CCK's current
 tiering never summarizes (tier_assign.py loads full `body`, verified). A non-null result
 here would be a BUG (a needed section wasn't loaded), not a fidelity/summarization loss.
 
-Metric — grounding coverage per (task, condition):
+Metric  -  grounding coverage per (task, condition):
     needed_facts(task)  = the ground-truth section keys / fact-tokens the gold patch depends on
     present_facts(ctx)  = which of those appear verbatim in the context actually given
-    coverage = |present ∩ needed| / |needed|      (1.0 = fully grounded)
+    coverage = |present intersect needed| / |needed|      (1.0 = fully grounded)
 
 For the LOSSLESS claim we test: coverage(C2)=coverage(C1) for every task where the needed
 section is loadable (i.e. the tierer selected it). Any C2<C1 gap is an information-loss bug.
@@ -40,7 +40,7 @@ class Grounding:
 def needed_facts_from_gold(gold_patch: str, context_source: str) -> set:
     """Ground-truth facts a solution depends on: identifiers/paths in the gold patch that
     also appear in the repo context source. These are the things the agent must be grounded on.
-    Uses the gold patch (available in SWE-bench instances) — real signal, not a heuristic guess."""
+    Uses the gold patch (available in SWE-bench instances)  -  real signal, not a heuristic guess."""
     if not gold_patch:
         return set()
     patch_syms = set(_TOKENISH.findall(gold_patch))
@@ -76,9 +76,9 @@ def lossless_holds(by_condition: dict) -> dict:
             out["verdict"][cond] = {"coverage": cc, "status": "NULL_CONFIRMED (lossless preserves grounding)"}
         elif cc < c1:
             out["verdict"][cond] = {"coverage": cc,
-                                    "status": f"DEGRADED by {round(c1-cc,4)} — INFORMATION-LOSS BUG (a needed section was not loaded)"}
+                                    "status": f"DEGRADED by {round(c1-cc,4)}  -  INFORMATION-LOSS BUG (a needed section was not loaded)"}
         else:
-            out["verdict"][cond] = {"coverage": cc, "status": "HIGHER_THAN_C1 (unexpected — investigate)"}
+            out["verdict"][cond] = {"coverage": cc, "status": "HIGHER_THAN_C1 (unexpected  -  investigate)"}
     return out
 
 

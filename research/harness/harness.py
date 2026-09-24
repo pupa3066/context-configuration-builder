@@ -9,7 +9,7 @@ Design goals:
 - Deterministic logging schema so analysis is reproducible.
 
 This is the APPARATUS. Real results require a real agent + SWE-bench tasks
-(see RESEARCH_PLAN §4). Nothing here fabricates results.
+(see RESEARCH_PLAN Section4). Nothing here fabricates results.
 """
 from __future__ import annotations
 import json, time, hashlib, argparse, sys
@@ -127,4 +127,4 @@ if __name__ == "__main__":
             tasks.append(Task(f"t{i}", f"fix {s} NEEDS: TOKEN_{s.upper()}", src,
                               references=[s], verify=lambda x: x == "PASS"))
         n = run(MockAgent(), tasks, out="research/harness/runs.jsonl")
-        print(f"gen: wrote {n} runs to research/harness/runs.jsonl (MOCK — pipeline test only)")
+        print(f"gen: wrote {n} runs to research/harness/runs.jsonl (MOCK  -  pipeline test only)")

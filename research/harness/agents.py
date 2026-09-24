@@ -1,4 +1,4 @@
-"""agents.py — real LLM agents for the SWE-bench pipeline (NOT mocks).
+"""agents.py  -  real LLM agents for the SWE-bench pipeline (NOT mocks).
 
 Each agent takes (task_prompt, context) and returns a unified-diff patch plus
 REAL token counts from the provider response. Providers are pluggable; keys via env.
@@ -14,7 +14,7 @@ from tenacity import retry, wait_exponential, stop_after_attempt
 SYSTEM = (
     "You are a software engineering agent. Given a repository issue and optional "
     "context, output ONLY a unified diff (git patch) that resolves the issue. "
-    "No prose, no fences — just the diff starting with 'diff --git'."
+    "No prose, no fences  -  just the diff starting with 'diff --git'."
 )
 
 def _build_user(task_prompt: str, context: str) -> str:

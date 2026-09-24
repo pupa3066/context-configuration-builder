@@ -1,4 +1,4 @@
-"""tier_assign_adapter.py — connect real repo context to the tier-assignment algorithm.
+"""tier_assign_adapter.py  -  connect real repo context to the tier-assignment algorithm.
 
 Turns a repo's assembled context text into Sections with token counts, estimates
 access frequency (from keyword overlap between the issue and each section as a

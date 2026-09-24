@@ -6,7 +6,7 @@
 ## Shared facts
 - FACT [CLAIM]: <a result relevant to >1 project>.
   origin: <project/file>
-  used-by: <projectA (why)> · <projectB (why)>
+  used-by: <projectA (why)> - <projectB (why)>
 
 ## Papers / deliverables in progress
 - <deliverable>: needs <data>, supplied by <project>.

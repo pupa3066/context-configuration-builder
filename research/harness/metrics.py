@@ -1,4 +1,4 @@
-"""metrics.py — measurement instruments for the context-tiering study.
+"""metrics.py  -  measurement instruments for the context-tiering study.
 
 Adds the extra measured axes requested for CCK evaluation, on TOP of the
 existing (resolved, tokens, steps, seconds) schema in harness.py:
@@ -10,7 +10,7 @@ existing (resolved, tokens, steps, seconds) schema in harness.py:
 
 DESIGN HONESTY (rule 6a): these are INSTRUMENTS, not results. They record what a
 real run measures. A mock run measures the mock. No metric here fabricates a value;
-if an instrument is unavailable (e.g. no psutil), it records None and says so —
+if an instrument is unavailable (e.g. no psutil), it records None and says so  - 
 never a guessed number.
 
 Deliberately EXCLUDED: factuality. Factuality is the precision axis of the companion
@@ -28,7 +28,7 @@ def _rss_mib() -> Optional[float]:
     try:
         import resource  # POSIX (macOS + Linux)
         r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-        # macOS reports bytes, Linux reports kilobytes — normalize.
+        # macOS reports bytes, Linux reports kilobytes  -  normalize.
         if sys.platform == "darwin":
             return round(r / (1024 * 1024), 2)
         return round(r / 1024, 2)

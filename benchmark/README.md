@@ -19,12 +19,12 @@ Run: `python benchmark.py [steering_dir] [skills_dir]` (defaults to a Kiro deplo
 | 25 | 23,209 | 6,458 | 72.2% |
 | 50 | 42,559 | 8,283 | 80.5% |
 | 100 | 81,259 | 11,933 | 85.3% |
-| ∞ | — | — | 90.6% |
+| inf |  -  |  -  | 90.6% |
 
 Raw data: `results.json`.
 
 ## Does this exist elsewhere?
-The *tiered-injection technique* is validated independently (ETH Zurich study: 60–80% context reduction vs monolithic). Token-optimization stacks exist for specific agents (e.g. Claude Code). This tool's distinct contribution is packaging it as a **portable, agent-independent, registry-governed configuration builder** (projects + rules as editable lists) with a **cross-project provenance graph** — not the tiering idea alone. Our measured numbers corroborate the published range.
+The *tiered-injection technique* is validated independently (ETH Zurich study: 60 - 80% context reduction vs monolithic). Token-optimization stacks exist for specific agents (e.g. Claude Code). This tool's distinct contribution is packaging it as a **portable, agent-independent, registry-governed configuration builder** (projects + rules as editable lists) with a **cross-project provenance graph**  -  not the tiering idea alone. Our measured numbers corroborate the published range.
 
 ## Honest notes
 - N=4 is directly measured; larger N is a closed-form projection from measured per-project averages.

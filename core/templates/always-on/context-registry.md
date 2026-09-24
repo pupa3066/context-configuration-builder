@@ -11,7 +11,7 @@
 ## Inactive
 | Enabled | Project | Reason |
 |---|---|---|
-| [ ] | some-fork | upstream fork — enable on demand |
+| [ ] | some-fork | upstream fork  -  enable on demand |
 
 ## Rule
 - Only [x] rows are active. Cross-project reasoning draws only from enabled projects.

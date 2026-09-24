@@ -31,8 +31,8 @@ for f in "$CORE"/projects/*.md; do
 done
 
 echo "Built:"
-echo "  $OUT/preamble.md            (attach every session — the always-on tier)"
-echo "  $OUT/projects/*.md          (attach on demand — the per-project tier)"
+echo "  $OUT/preamble.md            (attach every session  -  the always-on tier)"
+echo "  $OUT/projects/*.md          (attach on demand  -  the per-project tier)"
 echo
 echo "Usage with any LLM/agent: include preamble.md as system/context; when a task"
 echo "touches a project, also include projects/<name>.md. This preserves the tiering."

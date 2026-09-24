@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""precision_advisor.py — workload-aware precision recommendation, grounded in MEASURED data.
+"""precision_advisor.py  -  workload-aware precision recommendation, grounded in MEASURED data.
 
 Reads a quant-memorization-study analysis JSON (analysis_popqa_*.json / analysis_mem_*.json) and
-emits a recommendation for how aggressively to quantize, based on the ACTUAL confidence intervals —
+emits a recommendation for how aggressively to quantize, based on the ACTUAL confidence intervals  - 
 not hardcoded claims. If the data doesn't support a conclusion, it says so.
 
 Usage:
@@ -25,9 +25,9 @@ def factual_verdict(d):
         return "insufficient data", None
     # null if CI straddles 0 and p high
     if lo <= 0 <= hi and (p is None or p > 0.05):
-        return f"INT4 safe for factual recall (diff CI [{lo},{hi}], p={p}) — no measured degradation", True
+        return f"INT4 safe for factual recall (diff CI [{lo},{hi}], p={p})  -  no measured degradation", True
     if hi < 0:
-        return f"INT4 DEGRADES factual recall (diff CI [{lo},{hi}]) — prefer higher precision", False
+        return f"INT4 DEGRADES factual recall (diff CI [{lo},{hi}])  -  prefer higher precision", False
     return f"inconclusive (diff CI [{lo},{hi}], p={p})", None
 
 def memorization_verdict(d):
@@ -37,9 +37,9 @@ def memorization_verdict(d):
     if g16 is None or g4 is None:
         return "insufficient data", None
     if g16 <= 0.03:
-        return f"fp16 memorization baseline tiny ({g16}) — underpowered; can't conclude (use a bigger model)", None
+        return f"fp16 memorization baseline tiny ({g16})  -  underpowered; can't conclude (use a bigger model)", None
     if g4 < g16:
-        return f"quantization REDUCES memorization (GAP {g16} -> {g4}) — preserve precision for verbatim-recall workloads", False
+        return f"quantization REDUCES memorization (GAP {g16} -> {g4})  -  preserve precision for verbatim-recall workloads", False
     return f"memorization not clearly reduced (GAP {g16} -> {g4})", None
 
 def main():
@@ -65,7 +65,7 @@ def main():
         rec.append("Workload=verbatim/exact-recall: preserve higher precision and load the SPECIFIC "
                    "source context; compression erodes verbatim recall first.")
     else:
-        rec.append("No workload specified: choose precision by task — factual/synthesis tolerates "
+        rec.append("No workload specified: choose precision by task  -  factual/synthesis tolerates "
                    "INT4; verbatim recall does not. Same rule as context tiering.")
     out["recommendation"] = rec
     print(json.dumps(out, indent=2))

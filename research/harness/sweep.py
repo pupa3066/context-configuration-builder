@@ -1,4 +1,4 @@
-"""sweep.py — factor-grid runner producing metrics-instrumented rows.
+"""sweep.py  -  factor-grid runner producing metrics-instrumented rows.
 
 Generates one JSONL row per (task x condition x model x project_count x repeat),
 each carrying the extended metrics (memory/latency/behavior/factors) from metrics.py.
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     n = run(models, pcs, a.repeats, a.out)
     print(f"sweep(mock): wrote {n} rows to {a.out} "
           f"({len(models)} models x {len(pcs)} project-counts x 4 conditions x {a.repeats} repeats). "
-          f"NON-EMPIRICAL — pipeline test only.")
+          f"NON-EMPIRICAL  -  pipeline test only.")

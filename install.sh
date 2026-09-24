@@ -1,5 +1,5 @@
 #!/bin/sh
-# context-config-builder installer — POSIX sh, non-destructive, idempotent.
+# context-config-builder installer  -  POSIX sh, non-destructive, idempotent.
 # Copies templates into $KIRO_HOME (default ~/.kiro) without overwriting.
 #
 # Usage: ./install.sh [--dry-run] [--help]

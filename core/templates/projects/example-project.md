@@ -1,6 +1,6 @@
-# example-project — Deep Context (on-demand)
+# example-project  -  Deep Context (on-demand)
 
-Repo: `~/Projects/example-project` · visibility: private
+Repo: `~/Projects/example-project` - visibility: private
 
 ## What it is
 One paragraph.

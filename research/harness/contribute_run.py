@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""contribute_run.py — turnkey run + provenance capture for outside contributors.
+"""contribute_run.py  -  turnkey run + provenance capture for outside contributors.
 
 Purpose: let someone with BETTER HARDWARE (GPU + Docker, or an API budget) run the
 CCK context-tiering experiment and contribute results back with attribution + provenance
-already filled in — the same cross-hardware contribution path used for the quant study.
+already filled in  -  the same cross-hardware contribution path used for the quant study.
 
 It does NOT run the heavy experiment itself; it wraps swebench_run.py and:
   1. auto-captures the contributor's hardware/software environment (real, measured),
@@ -27,7 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def capture_env() -> dict:
-    """Real environment capture — hardware + key software versions."""
+    """Real environment capture  -  hardware + key software versions."""
     def sh(cmd):
         try:
             return subprocess.run(cmd, capture_output=True, text=True, timeout=15).stdout.strip()

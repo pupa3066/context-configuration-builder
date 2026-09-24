@@ -3,9 +3,9 @@ name: example-project-context
 description: Deep context for example-project. Load when working on example-project. Replace this with a one-line trigger describing when the agent should load this skill.
 ---
 
-# example-project — Deep Context
+# example-project  -  Deep Context
 
-Repo: `~/Projects/example-project` · remote `you/example-project` · visibility: private
+Repo: `~/Projects/example-project` - remote `you/example-project` - visibility: private
 
 ## What it is
 One paragraph: what the project does and its core approach.

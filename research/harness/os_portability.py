@@ -1,10 +1,10 @@
-"""os_portability.py — does Consistent Context Kit itself run on THIS operating system?
+"""os_portability.py  -  does Consistent Context Kit itself run on THIS operating system?
 
 This is a DIFFERENT question from SWE-bench task grading (which runs in Docker/Linux
 regardless of host). Here we check that CCK's own shell surface works on the host OS
 so a user on macOS / Linux / WSL can install and run the kit.
 
-Checks (each PASS/FAIL/SKIP with a reason — never a guessed pass):
+Checks (each PASS/FAIL/SKIP with a reason  -  never a guessed pass):
   1. shell available (sh/bash)
   2. install.sh --dry-run runs and is non-destructive
   3. context-check hook parses the registry without error

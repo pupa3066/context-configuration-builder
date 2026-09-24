@@ -1,12 +1,12 @@
 # Working Rules
 
-> Auto-loaded every session (global steering). Keep lean — costs tokens every turn.
+> Auto-loaded every session (global steering). Keep lean  -  costs tokens every turn.
 > Customize these for how you work. Examples below.
 
 ## Core
-1. Use measured facts and real data — label unverified claims as [CLAIM], verified as [MEASURED].
+1. Use measured facts and real data  -  label unverified claims as [CLAIM], verified as [MEASURED].
 2. Keep long command output in files, not streamed into context.
-3. Be efficient — minimize tokens and steps.
+3. Be efficient  -  minimize tokens and steps.
 
 ## Repository Visibility (customize)
 4. Set your default visibility policy here (e.g., "private by default; public only on explicit instruction").

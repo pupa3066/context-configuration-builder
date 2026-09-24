@@ -1,4 +1,4 @@
-"""Unit tests for tier_assign — the algorithmic contribution.
+"""Unit tests for tier_assign  -  the algorithmic contribution.
 Run: python -m pytest research/tier_assign/test_tier_assign.py -q
      (or: python research/tier_assign/test_tier_assign.py)
 """

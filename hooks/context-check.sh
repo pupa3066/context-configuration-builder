@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# context-check.sh — fast, dependency-free context/research consistency verifier.
+# context-check.sh  -  fast, dependency-free context/research consistency verifier.
 #
 # WHY THIS EXISTS: research facts live in multiple files (study RESULTS, kit FINDINGS, steering
 # cross-links). When one is updated, others silently go stale (e.g. an overturned single-model
@@ -24,12 +24,12 @@ for f in "$PROJ/consistent-context-kit/research/precision_context/FINDINGS.md" \
          "$KIRO/steering/cross-links.md"; do
   [ -f "$f" ] || continue
   if grep -Eiq "$STALE_PATTERN" "$f"; then
-    add "STALE: overturned single-model memorization claim present in $(basename "$f") — 6-model run says scale-dominated. Fix before citing."
+    add "STALE: overturned single-model memorization claim present in $(basename "$f")  -  6-model run says scale-dominated. Fix before citing."
     warn=1
   fi
 done
 
-# --- 2. Registry ↔ reality: every active repo path should exist ------------------------------
+# --- 2. Registry <-> reality: every active repo path should exist ------------------------------
 REG="$KIRO/steering/context-registry.md"
 if [ -f "$REG" ]; then
   while IFS= read -r path; do
@@ -43,7 +43,7 @@ ADV="$PROJ/consistent-context-kit/research/precision_context/precision_advisor.p
 STUDY_JSON="$PROJ/quant-memorization-study/analysis_popqa_qwen05.json"
 if [ -f "$ADV" ] && [ -f "$STUDY_JSON" ]; then
   if ! python3 "$ADV" "$STUDY_JSON" >/dev/null 2>&1; then
-    add "LINK: precision_advisor.py failed to run on real study data — cross-project link broken."
+    add "LINK: precision_advisor.py failed to run on real study data  -  cross-project link broken."
     warn=1
   fi
 fi
@@ -56,7 +56,7 @@ fi
 
 # --- Output (stdout -> added to agent context; keep terse) -----------------------------------
 if [ "$warn" -eq 0 ] && [ -z "$notes" ]; then
-  echo "[context-check] OK — research context consistent (no stale claims, registry matches, cross-links live)."
+  echo "[context-check] OK  -  research context consistent (no stale claims, registry matches, cross-links live)."
   exit 0
 else
   echo "[context-check] issues detected:"

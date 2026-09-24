@@ -1,15 +1,15 @@
-"""summarized_tier.py — C4: LOSSY tiering study (fidelity-vs-token tradeoff).
+"""summarized_tier.py  -  C4: LOSSY tiering study (fidelity-vs-token tradeoff).
 
 Unlike the lossless study (defer full bodies; grounding is a null control), this study
 adds a FOURTH condition C4 where a tier is SUMMARIZED / COMPRESSED to save more tokens
-than lossless deferral can. Here factuality/grounding CAN degrade — and measuring that
+than lossless deferral can. Here factuality/grounding CAN degrade  -  and measuring that
 degradation vs the token saving is the whole point.
 
     C4_tiered_summarized: always-on + metadata + a COMPRESSED version of the active body
 
 Central research question (the one Pupa's instinct pointed at):
     How far can a tier be compressed before the agent loses the facts it needs?
-    → a fidelity-vs-cost curve: token_saving(level) and grounding_loss(level).
+    -> a fidelity-vs-cost curve: token_saving(level) and grounding_loss(level).
 
 Honesty (rule 6a/6b): this is APPARATUS. It defines the compression operator and the
 fidelity metric and validates them on synthetic/self-test input. Real degradation numbers
@@ -31,12 +31,12 @@ _CODEISH = re.compile(r"`[^`]+`|def\s+\w+|class\s+\w+|\b\w+\([^)]*\)")
 
 
 def summarize(body: str, level: float) -> str:
-    """Deterministic, explicit compression operator (NOT an LLM — so loss is attributable).
+    """Deterministic, explicit compression operator (NOT an LLM  -  so loss is attributable).
     level in [0,1]:
       0.0  -> identity (lossless)
       mid  -> keep headers + code-signature lines + the first sentence of each paragraph
       1.0  -> headers/code-signatures only (maximal, most lossy)
-    Code-bearing lines are preserved LONGEST because coding tasks depend on them — the
+    Code-bearing lines are preserved LONGEST because coding tasks depend on them  -  the
     operator degrades prose before identifiers. This is a design choice to be validated."""
     if level <= 0:
         return body
@@ -76,7 +76,7 @@ class FidelityPoint:
 
 def fidelity_curve(body: str, needed_facts: set, levels=(0.0, 0.33, 0.66, 1.0)) -> list:
     """For each compression level, measure token saving AND grounding retention.
-    grounding_retention < 1.0 means summarization dropped a fact the task needs — the
+    grounding_retention < 1.0 means summarization dropped a fact the task needs  -  the
     exact factuality-degradation Pupa asked about. The curve shows the safe compression frontier."""
     orig_tok = token_estimate(body)
     out = []
@@ -120,4 +120,4 @@ if __name__ == "__main__":
     # self-test invariants: level 0 is lossless (retention 1.0, saving 0); higher levels lose more
     assert curve[0].grounding_retention == 1.0 and curve[0].token_saving == 0.0
     assert curve[-1].token_saving > 0  # max compression saves tokens
-    print("summarized_tier.py self-test OK (apparatus only — real loss numbers need the SWE-bench run)")
+    print("summarized_tier.py self-test OK (apparatus only  -  real loss numbers need the SWE-bench run)")

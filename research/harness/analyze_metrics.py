@@ -1,4 +1,4 @@
-"""analyze_metrics.py — multi-axis summary for the extended CCK evaluation.
+"""analyze_metrics.py  -  multi-axis summary for the extended CCK evaluation.
 
 Consumes JSONL run rows (from harness.py / swebench_run.py, instrumented with metrics.py)
 and reports, grouped by the requested factors:
@@ -12,7 +12,7 @@ Statistics stay honest: means with n; if a run set is from the MockAgent (detect
 every resolved value trivially tracks context-substring, no variance), it is FLAGGED as
 NON-EMPIRICAL and no scientific claim is attached (rule 6a + research/STATUS.md).
 
-Factuality is intentionally NOT a column here — see metrics.py header.
+Factuality is intentionally NOT a column here  -  see metrics.py header.
 
 Run: python research/harness/analyze_metrics.py research/harness/runs.jsonl
 """
@@ -103,9 +103,9 @@ def main():
     report = {
         "n_rows": len(rows),
         "EMPIRICAL": not _looks_mock(rows),
-        "note": ("Real-agent run — metrics are empirical."
+        "note": ("Real-agent run  -  metrics are empirical."
                  if not _looks_mock(rows)
-                 else "MOCK/self-test data — NO scientific claim (rule 6a). "
+                 else "MOCK/self-test data  -  NO scientific claim (rule 6a). "
                       "Proves the measurement pipeline only; run swebench_run.py "
                       "with a real --agent for empirical metrics."),
         "by_group": summary,

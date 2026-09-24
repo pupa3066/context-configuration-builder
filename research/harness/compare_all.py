@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""compare_all.py — UNIFIED cross-variant benchmark + comparison churner.
+"""compare_all.py  -  UNIFIED cross-variant benchmark + comparison churner.
 
 One entry point to compare every tiering variant on a common metric set, and to
 aggregate SWE-bench task-success runs across variants when they exist.
@@ -11,8 +11,8 @@ VARIANTS compared:
   - summarized_L<level>  (lossy compression tiers; from the summarization study)
 
 METRIC FAMILIES:
-  A. STRUCTURE / TOKEN-COST  — MEASURED NOW, zero budget (real gpt2-BPE; --steering/--skills/--ondemand override for any agent, default ~/.kiro).
-  B. SWE TASK metrics        — resolved-rate, tokens, latency, grounding, determinism, per model/OS.
+  A. STRUCTURE / TOKEN-COST   -  MEASURED NOW, zero budget (real gpt2-BPE; --steering/--skills/--ondemand override for any agent, default ~/.kiro).
+  B. SWE TASK metrics         -  resolved-rate, tokens, latency, grounding, determinism, per model/OS.
      These are AGGREGATED from runs*.jsonl produced by swebench_run.py / contribute_run.py.
      If no run files exist, family B is reported as AWAITING_RUN (honest: not measured yet).
 
@@ -65,7 +65,7 @@ def family_a(steer, skills, ondemand):
         "always_on_tokens": ao, "on_demand_tokens": od,
         "per_turn_tokens": variants,
         "reduction_vs_monolithic": {k: round(1 - v/base, 3) for k, v in variants.items() if base},
-        "note": "MEASURED (real gpt2-BPE; context dirs via args, default ~/.kiro). Structure/cost only — not task quality.",
+        "note": "MEASURED (real gpt2-BPE; context dirs via args, default ~/.kiro). Structure/cost only  -  not task quality.",
     }
 
 # ---------- Family B: SWE task metrics (aggregate runs if present) ----------
@@ -73,7 +73,7 @@ def family_b(run_files):
     if not run_files:
         return {"status": "AWAITING_RUN",
                 "note": "No runs*.jsonl found. SWE task-success/latency/grounding require a real-agent "
-                        "SWE-bench run (Docker + code model) — see contribute_run.py. NOT measured yet (rule 6a)."}
+                        "SWE-bench run (Docker + code model)  -  see contribute_run.py. NOT measured yet (rule 6a)."}
     rows = []
     for rf in run_files:
         with open(rf) as fh:
@@ -107,7 +107,7 @@ def family_b(run_files):
     return {"status": "MEASURED" if empirical else "MOCK_ONLY_NO_CLAIM",
             "by_variant_model": out,
             "note": ("Real-agent runs aggregated." if empirical
-                     else "Mock/self-test only — NO task-quality claim (rule 6a).")}
+                     else "Mock/self-test only  -  NO task-quality claim (rule 6a).")}
 
 def main():
     ap = argparse.ArgumentParser()
@@ -119,7 +119,7 @@ def main():
     a = ap.parse_args()
     run_files = [f for f in glob.glob(a.runs_glob, recursive=True) if os.path.isfile(f)]
     report = {
-        "benchmark": "compare_all — unified cross-variant comparison",
+        "benchmark": "compare_all  -  unified cross-variant comparison",
         "family_A_structure_tokencost": family_a(a.steering, a.skills, a.ondemand),
         "family_B_swe_task_metrics": family_b(run_files),
         "run_files_found": run_files,

@@ -1,5 +1,5 @@
 #!/bin/sh
-# rules-builder.sh — manage the editable rules/debug list as data.
+# rules-builder.sh  -  manage the editable rules/debug list as data.
 # Mirrors add-project.sh but for rules. Operates on the always-on rules file.
 #
 # Rules file format (machine-editable, one rule per line inside sections):
@@ -56,7 +56,7 @@ case "$CMD" in
       # next Rn
       maxr=$(grep -oE '^- \*\*R[0-9]+' "$RULES_FILE" | grep -oE '[0-9]+' | sort -n | tail -1)
       nid="R$(( ${maxr:--1} + 1 ))"
-      line="- **$nid — Custom:** $TEXT"
+      line="- **$nid  -  Custom:** $TEXT"
       # insert after the PRIORITY RULES header block (after last existing R-line)
       awk -v ins="$line" '
         /^- \*\*R[0-9]/ { last=NR }
@@ -87,7 +87,7 @@ case "$CMD" in
     esac
     before=$(wc -l < "$RULES_FILE")
     # remove priority rule (- **Rn ...) or numbered rule (n. ...)
-    grep -vE "^- \*\*$ID —|^$ID\. |^- \[$ID\] " "$RULES_FILE" > "$RULES_FILE.tmp" && mv "$RULES_FILE.tmp" "$RULES_FILE"
+    grep -vE "^- \*\*$ID  - |^$ID\. |^- \[$ID\] " "$RULES_FILE" > "$RULES_FILE.tmp" && mv "$RULES_FILE.tmp" "$RULES_FILE"
     after=$(wc -l < "$RULES_FILE")
     [ "$before" -ne "$after" ] && echo "removed $ID" || { echo "no rule matched ID '$ID'" >&2; exit 1; }
     ;;
@@ -97,7 +97,7 @@ case "$CMD" in
     dups=$(grep -oE '^- \*\*R[0-9]+' "$RULES_FILE" | sort | uniq -d)
     [ -z "$dups" ] || die "duplicate priority rule IDs: $dups"
     # R0 present?
-    grep -qE '^- \*\*R0 ' "$RULES_FILE" || die "R0 (rule governance) missing — must always be present"
+    grep -qE '^- \*\*R0 ' "$RULES_FILE" || die "R0 (rule governance) missing  -  must always be present"
     echo "check OK: R0 present, no duplicate priority IDs"
     ;;
 

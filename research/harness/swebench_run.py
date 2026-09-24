@@ -1,12 +1,12 @@
-"""swebench_run.py — execute the FULL context-tiering study on real SWE-bench.
+"""swebench_run.py  -  execute the FULL context-tiering study on real SWE-bench.
 
 This is a REAL experiment runner (no mocks):
   1. Load SWE-bench Verified tasks (datasets).
   2. For each task, build context per condition C0-C3 from the repo's REAL context
-     files (AGENTS.md/CLAUDE.md/README/docs) — same source text, different loading.
+     files (AGENTS.md/CLAUDE.md/README/docs)  -  same source text, different loading.
   3. Call a REAL LLM agent (agents.py) to produce a patch; log REAL token usage.
   4. Grade each patch by running the task's tests via the official swebench harness
-     (Docker) — REAL pass/fail.
+     (Docker)  -  REAL pass/fail.
   5. Write one JSONL row per (task, condition) for analysis.py.
 
 Run (needs API key + docker + compute; see run_real.md):

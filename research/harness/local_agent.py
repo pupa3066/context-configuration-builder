@@ -1,4 +1,4 @@
-"""local_agent.py — run the SWE-bench study on a LOCAL model via MLX (Apple Silicon).
+"""local_agent.py  -  run the SWE-bench study on a LOCAL model via MLX (Apple Silicon).
 
 Zero API cost. Requires: mlx_lm installed and a CODE-CAPABLE model (e.g.
 mlx-community/Qwen2.5-Coder-7B-Instruct-4bit). Token counts are the real
@@ -6,7 +6,7 @@ tokenizer token counts of the prompt and generated completion.
 
 IMPORTANT (modality): SWE-bench needs a code-generation model. Vision LoRAs
 (SmolVLM/SDXL) trained for image tasks are NOT valid here and will score ~0
-across all conditions — that measures nothing about context tiering. Use a
+across all conditions  -  that measures nothing about context tiering. Use a
 code/instruct LLM as the backend.
 
 Usage via swebench_run.py:  --agent local:mlx-community/Qwen2.5-Coder-7B-Instruct-4bit
@@ -16,7 +16,7 @@ from __future__ import annotations
 SYSTEM = (
     "You are a software engineering agent. Given a repository issue and optional "
     "context, output ONLY a unified diff (git patch) that resolves the issue. "
-    "No prose, no fences — just the diff starting with 'diff --git'."
+    "No prose, no fences  -  just the diff starting with 'diff --git'."
 )
 
 def _build_prompt(task_prompt: str, context: str) -> str:

@@ -5,13 +5,13 @@
 
 ## Abstract
 
-AI coding agents lose project context between sessions, and the common remedy — loading all relevant context on every turn — scales token cost linearly with the amount of remembered information. We present a context architecture that **stratifies persistent memory by access pattern rather than by topic**, mapping three token-cost regimes to three loading mechanisms: (1) *always-on* content in continuously-loaded steering files, kept minimal; (2) *on-demand* per-project content in skills whose bodies load only when invoked; and (3) *zero-cost-until-queried* content in a semantic knowledge base. A single editable **registry** governs which projects are active, decoupling enablement from file presence. We further introduce an **incremental cross-project provenance graph** with explicit measured-vs-claim labeling. On a **real deployment across four active projects, measured with a real BPE tokenizer**, the tiered scheme uses **24.5% fewer tokens per turn** than a monolithic always-on baseline; using measured per-project averages, the reduction follows a scaling law rising to **85.3% at 100 projects** and asymptoting to **90.6%** (the metadata-to-body ratio). This addresses a tension identified by ETH Zurich (Gloaguen et al., arXiv:2602.11988): repository-level context files often fail to improve task success while adding 20%+ inference cost — motivating structuring context by access pattern rather than loading it wholesale. In a **battery of fresh-session recall probes (5/5 correct)**, agents with no prior conversation recalled measured cross-project facts, resolved a repository-provenance ambiguity, and correctly excluded inactive projects. The novelty is the **cost-stratified composition plus registry-governed activation and portable agent-adapters**, and we show it is both durable and measurably cheap.
+AI coding agents lose project context between sessions, and the common remedy  -  loading all relevant context on every turn  -  scales token cost linearly with the amount of remembered information. We present a context architecture that **stratifies persistent memory by access pattern rather than by topic**, mapping three token-cost regimes to three loading mechanisms: (1) *always-on* content in continuously-loaded steering files, kept minimal; (2) *on-demand* per-project content in skills whose bodies load only when invoked; and (3) *zero-cost-until-queried* content in a semantic knowledge base. A single editable **registry** governs which projects are active, decoupling enablement from file presence. We further introduce an **incremental cross-project provenance graph** with explicit measured-vs-claim labeling. On a **real deployment across four active projects, measured with a real BPE tokenizer**, the tiered scheme uses **24.5% fewer tokens per turn** than a monolithic always-on baseline; using measured per-project averages, the reduction follows a scaling law rising to **85.3% at 100 projects** and asymptoting to **90.6%** (the metadata-to-body ratio). This addresses a tension identified by ETH Zurich (Gloaguen et al., arXiv:2602.11988): repository-level context files often fail to improve task success while adding 20%+ inference cost  -  motivating structuring context by access pattern rather than loading it wholesale. In a **battery of fresh-session recall probes (5/5 correct)**, agents with no prior conversation recalled measured cross-project facts, resolved a repository-provenance ambiguity, and correctly excluded inactive projects. The novelty is the **cost-stratified composition plus registry-governed activation and portable agent-adapters**, and we show it is both durable and measurably cheap.
 
 ## 1. Introduction
 
 Large-language-model coding agents operate within a bounded context window that is re-billed every turn. Practical "agent memory" schemes tend to either (a) re-derive context each session (expensive in latency and redundant reads) or (b) preload large context blocks that persist every turn (expensive in tokens). Neither addresses multi-project settings, where knowledge produced in one project is relevant to deliverables in another.
 
-We ask: *can persistent, cross-project agent memory be made both durable and token-efficient?* Our answer separates the two concerns — durability (does the agent remember?) and cost (what does remembering cost per turn?) — and shows they can be optimized jointly by matching content to a loading tier by its access frequency.
+We ask: *can persistent, cross-project agent memory be made both durable and token-efficient?* Our answer separates the two concerns  -  durability (does the agent remember?) and cost (what does remembering cost per turn?)  -  and shows they can be optimized jointly by matching content to a loading tier by its access frequency.
 
 ## 2. Problem formulation and cost model
 
@@ -19,13 +19,13 @@ Let a session consist of $T$ turns. Always-on content of size $s$ costs $\approx
 
 ## 3. Architecture
 
-**Tier 1 — Always-on (steering).** Rules and lean indexes: a portfolio index (one line per project), a cross-links graph, and the registry. Held small by construction.
+**Tier 1  -  Always-on (steering).** Rules and lean indexes: a portfolio index (one line per project), a cross-links graph, and the registry. Held small by construction.
 
-**Tier 2 — On-demand (skills).** One skill per project carrying deep context (what/why, debug approach, data plan, key facts). Metadata (name + trigger description) loads at startup; the body loads only when the project is engaged.
+**Tier 2  -  On-demand (skills).** One skill per project carrying deep context (what/why, debug approach, data plan, key facts). Metadata (name + trigger description) loads at startup; the body loads only when the project is engaged.
 
-**Tier 3 — Query-only (knowledge base).** A semantic mirror of all tiers, contributing nothing to per-turn context until queried.
+**Tier 3  -  Query-only (knowledge base).** A semantic mirror of all tiers, contributing nothing to per-turn context until queried.
 
-**Registry-governed activation.** An editable table marks each project active/inactive. Activation is decided by the registry, *not* by whether a skill file exists — enabling a large on-disk corpus with a small active working set.
+**Registry-governed activation.** An editable table marks each project active/inactive. Activation is decided by the registry, *not* by whether a skill file exists  -  enabling a large on-disk corpus with a small active working set.
 
 **Cross-project provenance graph.** Shared facts are recorded once with origin and consumers, labeled `[MEASURED]` (verified) or `[CLAIM]` (unverified), so downstream reasoning inherits calibrated confidence.
 
@@ -46,9 +46,9 @@ We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed a
 | 25 | 23,209 | 6,458 | 72.2% |
 | 50 | 42,559 | 8,283 | 80.5% |
 | 100 | 81,259 | 11,933 | 85.3% |
-| $\to\infty$ | — | — | 90.6% ($1-\bar m/\bar b$) |
+| $\to\infty$ |  -  |  -  | 90.6% ($1-\bar m/\bar b$) |
 
-The four-project row is directly measured with a real tokenizer; larger-$N$ rows apply the measured per-project averages to the §2 closed form. This directly targets the problem ETH Zurich (Gloaguen et al., arXiv:2602.11988) documented — monolithic context files adding 20%+ cost without reliably improving success — by making context cheap and selective rather than wholesale.
+The four-project row is directly measured with a real tokenizer; larger-$N$ rows apply the measured per-project averages to the Section2 closed form. This directly targets the problem ETH Zurich (Gloaguen et al., arXiv:2602.11988) documented  -  monolithic context files adding 20%+ cost without reliably improving success  -  by making context cheap and selective rather than wholesale.
 
 ## 5. Fresh-session recall experiment
 
@@ -56,7 +56,7 @@ To test durability, we issued a battery of probes to **fresh agent sessions with
 
 | Probe | Result |
 |---|---|
-| Recall a measured cross-project quantitative fact (Int4 compression 3.7×) | PASS |
+| Recall a measured cross-project quantitative fact (Int4 compression 3.7x) | PASS |
 | Attribute a bug to its originating project | PASS |
 | Recall a measured metric (composition zero-interference, Jaccard 0.0) | PASS |
 | Enumerate the active-context project set | PASS |
@@ -76,7 +76,7 @@ The N=4 reduction is directly measured with a real BPE tokenizer; larger-$N$ row
 
 ## 8. Conclusion
 
-Separating agent memory by access pattern — and governing activation with a registry — yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 40.9% reduction at N=4, projected 85% at N=100). We release the design as an open template (`context-config-builder`).
+Separating agent memory by access pattern  -  and governing activation with a registry  -  yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 40.9% reduction at N=4, projected 85% at N=100). We release the design as an open template (`context-config-builder`).
 
 ## Reproducibility
 

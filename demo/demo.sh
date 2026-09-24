@@ -1,5 +1,5 @@
 #!/bin/sh
-# demo.sh — clean-room walkthrough of context-config-builder.
+# demo.sh  -  clean-room walkthrough of context-config-builder.
 # Installs into a throwaway KIRO_HOME, adds/removes a project, shows structure.
 # Safe: never touches your real ~/.kiro. Basis for the demo GIF.
 set -eu

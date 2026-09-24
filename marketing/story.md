@@ -48,3 +48,31 @@ Two results stood out, and I report them as a pilot, not a settled law:
 The honest caveat: this is a small-sample study on structure and cost, not task success. The code,
 the questions, and the numbers are public in the repo so anyone can rerun and check them. The through
 line with the memory work is one idea: spend the expensive resource only where it changes the outcome.
+
+## What the measurements showed
+
+Why: once tiering worked, the sharper question was how to put a needed fact in front of an agent for
+the fewest tokens without losing the fact. I ran two pilot studies with a real gpt2 BPE tokenizer on
+real public repositories and report them as preliminary, not settled. Both studies score a
+grounding-retention proxy (is the needed content present in the assembled context), NOT task success.
+
+What (study one, token cost, N=195 identifier-recall questions on requests, click, black): injecting
+the whole context (monolithic) answered the proxy at 1.0 but cost 471812 tokens per turn. Summarizing
+first (summarized_L0.5) cost 471551 tokens, saving almost nothing, because code and identifiers are
+the part you cannot safely drop. Keyword retrieval of a few relevant chunks held grounding retention
+at or above 0.98 while collapsing cost: BM25 k3 kept 0.9846 at 309 tokens, k6 kept 0.9897 at 624
+tokens, k10 kept 0.9949 at 1061 tokens. Against monolithic that is roughly a 99.8 percent per-turn
+token cut at k3 while retaining at least 0.98 of the grounding proxy. No context answered 0.
+
+What (study two, semantic versus lexical, N=100 conceptual questions, question-only queries with no
+fact leak): plain keyword retrieval beat semantic embedding retrieval. BM25 scored 0.90 with a 95
+percent interval of 0.84 to 0.95; a bge-small semantic index scored 0.65 with an interval of 0.55 to
+0.74. On paired questions, 30 were answerable only by BM25 and 5 only by semantic. The verdict was
+that lexical wins for this identifier-heavy fact recall, because version numbers, function names, and
+ids carry little meaning for an embedding model, so it misses the exact lines a keyword match finds.
+
+How this connects: it is the same idea as the memory tiering, spend the expensive resource only where
+it changes the outcome. The code, questions, and numbers are public so anyone can rerun them:
+benchmark/POWERED_RESULTS.json, benchmark/CONCEPTUAL_RESULTS.json,
+benchmark/conceptual_semantic_vs_lexical.py, and benchmark/compare_algorithms_scaled.py. These are
+pilot-scale results on structure and cost, a grounding-retention proxy NOT task success.
