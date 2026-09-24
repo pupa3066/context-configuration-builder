@@ -6,8 +6,9 @@
 ## Active context (only these feed the agent's reasoning)
 | Enabled | Project | Origin | Skill | Repo path |
 |---|---|---|---|---|
-| [x] | example-project | you/example-project | /example-project-context | Projects/example-project |
-<!-- Add rows with scripts/add-project.sh. -->
+| [ ] | example-project | you/example-project | /example-project-context | Projects/example-project |
+<!-- Activate a row (flip [ ] -> [x]) only after the repo path exists on disk.
+     Add rows with scripts/add-project.sh. -->
 
 ## Inactive (present on disk, NOT in context unless enabled)
 | Enabled | Project | Reason inactive |

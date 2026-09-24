@@ -104,6 +104,13 @@ def main():
     corpus_tok={p:ntok(corpus[p]) for p in corpus}
     chunks={p:chunk(corpus[p]) for p in corpus}
     bm25={p:BM25(chunks[p]) for p in corpus}
+    # semantic retriever (fastembed bge-small); skip arm entirely if unavailable (no false fallback)
+    try:
+        from semantic_retriever import SemanticRetriever, available as sem_available
+    except Exception:
+        sem_available=lambda:False
+    SEM=sem_available()
+    sem={p:SemanticRetriever(chunks[p]) for p in corpus} if SEM else {}
     # always-on header proxy = current live steering always-on (rules+registry+portfolio+bootstrap)
     header_tok=sum(ntok(read(os.path.expanduser(f"~/.kiro/steering/{f}")))
                    for f in ("00-rules.md","bootstrap.md","context-registry.md","portfolio.md"))
@@ -115,6 +122,8 @@ def main():
     K=a.k
     algos=["monolithic","tiered_lossless","summarized_L0.33","summarized_L0.5","summarized_L0.66",
            f"retrieval_top{K}",f"hybrid_top{K}"]
+    if SEM:
+        algos += [f"semantic_top{K}", f"hybrid_semantic_top{K}"]
 
     def injected(algo,q):
         p=q["project"]; body=corpus[p]
@@ -122,6 +131,10 @@ def main():
         if algo=="tiered_lossless": return body, header_tok
         if algo.startswith("summarized_"):
             lv=float(algo.split("L")[1]); return summarize(body,lv), 0
+        if algo.startswith("hybrid_semantic_top"):
+            return "\n".join(sem[p].topk(q["q"]+" "+" ".join(q["facts"]),K)), header_tok
+        if algo.startswith("semantic_top"):
+            return "\n".join(sem[p].topk(q["q"]+" "+" ".join(q["facts"]),K)), 0
         if algo.startswith("retrieval_top"):
             return "\n".join(bm25[p].topk(q["q"]+" "+" ".join(q["facts"]),K)), 0
         if algo.startswith("hybrid_top"):
