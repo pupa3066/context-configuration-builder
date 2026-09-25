@@ -6,7 +6,7 @@
 ## Their actual methodology (verified)
 - **Conditions (3):** `None` (no context file) / `LLM` (agent-generated context file) / `Dev` (developer-committed context file; CTXbench only).
 - **Datasets:** SWE-bench **Lite** (300 tasks, popular repos, no dev context files) + **CTXbench** (138 instances, 12 niche repos WITH developer-committed context files).
-- **Agents (real, multi-step):** Claude Code+Sonnet-4.5; Codex+GPT-5.2 / GPT-5.1-mini; Qwen Code+Qwen3-30b-coder (local via vLLM). temp=0 (Qwen 0.7). Sampled once.
+- **Agents (real, multi-step):** Claude Code+Sonnet-4.5; Codex+GPT-5.2 / GPT-5.1-mini; Qwen Code+Qwen3-30b-coder (local via vLLM). temp=0 (Qwen 0.7). Sampled once. <!-- cited-setup -->
 - **Metrics:** success rate (all tests pass, `exec_{RoX}(T)=pass`); **# steps** (env interactions); **cost (USD)**; reasoning tokens.
 - **Stats:** Cochran-Mantel-Haenszel (success, stratified by repo); **stratified permutation tests** (steps, cost). Grading = run test suite T in Docker.
 - **Headline result:** None vs LLM success p=0.87 (SWE-bench) / 0.37 (CTXbench)  -  NOT significant; cost +20-23% (p<0.001). Dev > LLM (p=0.038).

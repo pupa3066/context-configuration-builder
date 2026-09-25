@@ -9,7 +9,7 @@ Differentiator: the explicit **token-cost model** (always-on / on-demand / zero-
 - Distribute: Show HN, r/LocalLLaMA, dev.to, X. Developers adopt tools they read a good writeup about.
 - CTA: one-command install; ask for feedback from multi-repo users.
 
-## 2. Ride the Kiro / agent ecosystem
+## 2. Ride the Model / agent ecosystem
 - List wherever AI-agent community tools are shared; engage the relevant agent communities directly.
 - Be *the* context-memory kit for a specific agent  -  a defensible niche beats a generic one.
 

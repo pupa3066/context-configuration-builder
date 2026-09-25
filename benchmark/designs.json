@@ -67,7 +67,7 @@
       "claim": "Lowest always-on among SAFE designs; firing integrity still full (all must-fire rules bind)."
     },
     "L4_full_stack": {
-      "definition": "L3 depth-safe tiering (rule-tiered + context-tiered) PLUS project-scoped steering loader (active project's debug/research rules loaded on demand, not always-on) AND kiro default-resource inheritance DISABLED (chat.disableInheritingDefaultResources=true) so no AGENTS.md/README/duplicate-steering is auto-appended on top. This is the user's tested end-to-end configuration.",
+      "definition": "L3 depth-safe tiering (rule-tiered + context-tiered) PLUS project-scoped steering loader (active project's debug/research rules loaded on demand, not always-on) AND model default-resource inheritance DISABLED (chat.disableInheritingDefaultResources=true) so no AGENTS.md/README/duplicate-steering is auto-appended on top. This is the user's tested end-to-end configuration.",
       "always_on": [
         "steering/*"
       ],

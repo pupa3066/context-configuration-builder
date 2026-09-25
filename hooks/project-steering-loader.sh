@@ -6,7 +6,7 @@
 # the agent from ~ (home) but work on a project elsewhere, that project's debug/research rules never
 # load. This hook detects the active project and emits its per-project context on demand.
 #
-# AGENT-NEUTRAL: the per-project rule locations are configurable, so this works for Kiro, Claude
+# AGENT-NEUTRAL: the per-project rule locations are configurable, so this works for Model, Claude
 # Code, Cursor, or any agent. Defaults cover the common conventions; override via env.
 #
 # CONFIG (env):
@@ -79,7 +79,7 @@ if root=$(git rev-parse --show-toplevel 2>/dev/null); then
 fi
 
 # 3. REGISTRY FALLBACK (the fix for launched-from-home sessions): if no explicit project and not
-# inside a repo (e.g. kiro started from ~), load the ACTIVE projects listed in the context-registry
+# inside a repo (e.g. model started from ~), load the ACTIVE projects listed in the context-registry
 # so per-project debug/research rules are NEVER silently missing regardless of launch dir. This is
 # the enforcement that closes the "launched from home => no project context" gap.
 REG="${CCK_REGISTRY:-$HOME/.kiro/steering/context-registry.md}"

@@ -9,10 +9,10 @@ non-portable (any other consumer got zero or the author's personal content) and 
 outside that one benchmark loop.
 
 This module extracts the SAME policy into a single clean function AND decouples the Tier-1 header
-from Kiro-CLI's default steering. The always-on header now comes from the repo's OWN bundled,
+from kiro-cli's default steering. The always-on header now comes from the repo's OWN bundled,
 agent-neutral consumer rules (core/templates/always-on/*.md) - generic and portable - or from a
 header the caller passes in. It never reads ~/.kiro. So any consumer gets the CCK algorithm +
-portable rules, with nothing personal and no Kiro dependency.
+portable rules, with nothing personal and no Model dependency.
 
 Reuses the existing, unchanged retrieval primitives (no algorithm change):
   - build_corpus / chunk / BM25         from compare_algorithms.py

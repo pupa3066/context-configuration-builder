@@ -1,20 +1,20 @@
 #!/bin/sh
 # steering-loader-guard.sh - self-healing wrapper for project-steering-loader.sh.
 #
-# GOAL (honest scope): make the project-steering loader DURABLE across future kiro sessions and
-# resilient to kiro/config changes that might drop it. It does two things every agentSpawn:
+# GOAL (honest scope): make the project-steering loader DURABLE across future model sessions and
+# resilient to model/config changes that might drop it. It does two things every agentSpawn:
 #   1. RUN the project-steering loader (emit active-project context) - the actual feature.
 #   2. SELF-HEAL: verify the loader is still installed on disk AND still registered in the agent
-#      config; if either is missing (e.g. a kiro update rewrote the config, or the file was removed),
+#      config; if either is missing (e.g. a model update rewrote the config, or the file was removed),
 #      re-install from the CCK canonical source and re-register the hook, so the NEXT session is fixed.
 #
 # HONEST LIMITS (stated plainly, not overclaimed):
-#   - This cannot make a file "unchangeable" against the kiro vendor. If a future kiro version removes
+#   - This cannot make a file "unchangeable" against the model vendor. If a future model version removes
 #     agentSpawn hooks entirely or changes the config schema, this self-heal may itself stop running.
 #   - What it DOES guarantee: if the hook entry is deleted from a still-compatible config, the next
 #     session detects it and restores it. So accidental/config-churn loss auto-recovers; you are not
 #     silently left without it.
-#   - It self-heals at MOST once per run and logs what it did, so you can see if kiro keeps fighting it.
+#   - It self-heals at MOST once per run and logs what it did, so you can see if model keeps fighting it.
 #
 # Read-only except the self-heal path (which edits ~/.kiro/agents/default.json using python json,
 # never eval). Safe, POSIX sh.
@@ -46,10 +46,10 @@ p = sys.argv[1]
 try:
     d = json.load(open(p))
 except Exception:
-    sys.exit(0)  # unrecognizable config (kiro schema change?) -> don't touch, don't crash
+    sys.exit(0)  # unrecognizable config (model schema change?) -> don't touch, don't crash
 hooks = d.setdefault("hooks", {})
 spawn = hooks.setdefault("agentSpawn", [])
-cmd = "~/.kiro/hooks/project-steering-loader.sh"
+cmd = "~/.kiro/hooks/ccb-project-context.sh"
 present = any(isinstance(h, dict) and h.get("command") == cmd for h in spawn)
 if not present:
     spawn.append({"command": cmd, "timeout_ms": 5000, "cache_ttl_seconds": 0})
@@ -65,6 +65,6 @@ if not present:
 PY
 fi
 
-# --- run the actual feature (never let its failure abort the session) ---
-[ -x "$INSTALLED" ] && sh "$INSTALLED" || true
+# --- the feature itself runs as its own hook (ccb-project-context.sh, registered above), which wraps
+# the loader and emits a short index; running the loader here too double-loaded and got truncated.
 exit 0

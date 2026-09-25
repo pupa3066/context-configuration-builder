@@ -10,13 +10,13 @@ sh install-core.sh                 # scaffolds ~/.context-config-builder (skips 
 sh adapters/kiro.sh apply          # or claude-code.sh / cursor.sh / generic.sh
 ```
 
-## Option B - Kiro-native
+## Option B - Model-native
 ```sh
 sh install.sh                      # installs into ~/.kiro directly
 ```
 
-## Option C - Kiro self-activating (override + resources + hooks + integrity check)
-`install.sh` and the adapters copy content only. To make Kiro load CCB and self-verify
+## Option C - Model self-activating (override + resources + hooks + integrity check)
+`install.sh` and the adapters copy content only. To make Model load CCB and self-verify
 automatically on every new session, run the bootstrap. It is idempotent and self-checking:
 ```sh
 sh ccb-bootstrap.sh                # wires ~/.kiro and verifies in one shot
@@ -24,7 +24,9 @@ sh ccb-bootstrap.sh                # wires ~/.kiro and verifies in one shot
 What it does (all under `$KIRO_HOME`, default `~/.kiro`):
 1. installs the hook scripts into `~/.kiro/hooks` (executable)
 2. copies always-on steering into `~/.kiro/steering` (non-destructive: never clobbers edited files)
-3. sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json` (CCB becomes source of truth)
+3. sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json` (CCB becomes source of truth),
+   plus `chat.defaultAgent=default` and `chat.agentEngine=v1` (without these, measured on kiro-cli 2.24.0,
+   a plain session runs the built-in agent or an engine that skips agentSpawn hooks, so no CCB hook runs)
 4. declares the CCB `resources[]` and registers the `agentSpawn` hooks in `agents/default.json`
    (integrity check ordered first; a timestamped `.bak.<ts>` is written before any edit)
 5. runs `ccb-integrity-check.sh` and prints a PASS/FAIL report
@@ -32,10 +34,20 @@ What it does (all under `$KIRO_HOME`, default `~/.kiro`):
 Re-running is safe: existing steering is skipped, config is edited only if the desired state is
 missing, and no backup is created when nothing changes. Preview first with `--dry-run`.
 
-After install, every new Kiro session runs the integrity check automatically. Re-check manually:
+After install, every new Model session runs the integrity check automatically. Re-check manually:
 ```sh
 sh ~/.kiro/hooks/ccb-integrity-check.sh
 ```
+
+## Option D - Model and Claude Code together (agent parity)
+After Option C, point Claude Code at the same files Model reads. Nothing is copied, so one edit applies
+to both agents:
+```sh
+sh adapters/claude-code.sh wire     # CLAUDE.md imports, same session hooks, same skill names
+sh scripts/agent-parity-probe.sh    # optional: ask both agents the same question and compare
+```
+Every new session in either agent then prints the same `[ccb-parity]` report (steering fingerprint
+plus PASS/FAIL). Details and measurements: `research/AGENT_PARITY.md`.
 
 ## Verify it works without touching your real setup
 ```sh

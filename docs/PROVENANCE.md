@@ -8,10 +8,10 @@ The context system was first built and battle-tested managing the author's own r
 then generalized  -  with all personal data removed  -  into this kit.
 
 ## Lineage (git + PR trail; nothing deleted)
-- `9f7fa2a`  -  Initial release v0.1.0 (Kiro-native templates, install, lifecycle scripts, marketing, paper).
+- `9f7fa2a`  -  Initial release v0.1.0 (agent-native templates, install, lifecycle scripts, marketing, paper).
 - `51908a2`  -  Paper backed with measured data (tier sizes, scaling law, 5/5 recall).
 - Branch `feat/agent-independent` (commit `12e04e3`) -> **PR #1** -> merge commit `92971b6`:
-  made the kit agent-independent (neutral core + adapters for Kiro, Claude Code, Cursor, generic).
+  made the kit agent-independent (neutral core + adapters for three coding agents and a generic preamble).
 
 Branches and PRs are preserved (not deleted) so the "what led to what" trail is auditable.
 
@@ -37,7 +37,7 @@ What led to what, in order:
   at both scales.
 - Added cck_context.py: extracts the tiered-context assembly into one callable function with
   a portable Tier-1 header from the repo's own core/templates/always-on files, decoupled from
-  any local ~/.kiro steering. This is the seam for a future task-success harness; it assembles
+  any local agent config directory. This is the seam for a future task-success harness; it assembles
   context only, runs no model and grades no patch.
 
 Open re-tests (planned, not yet run): a cap sweep at fixed embedder and an embedder sweep at
@@ -49,13 +49,27 @@ context), not agent task success. Preliminary until the sweeps land.
 
 Branches and PRs remain preserved for an auditable trail.
 
+## Agent parity lineage (branch feat/agent-parity, 2026-09-25)
+What led to what, in order:
+- Wiring the same CCB install into a second coding agent (agent B) next to the first (agent A) raised
+  a direct question: do both agents receive the same context? A headless probe (scripts/agent-parity-probe.sh) asked each agent to quote
+  its session-start output from loaded context.
+- The probe showed that plain agent A sessions ran the built-in profile with no CCB hooks, that agent A
+  engines v2 and v3 skipped the hooks, and that the full project dump (8,723 GPT-2 tokens) was truncated in both
+  agents while the integrity check still said PASS.
+- Fixes: bootstrap pins agent A's profile and engine; ccb-project-context.sh replaces the dump with a
+  140-token index plus on-demand files and mirrors repository steering for agent B; the agent B
+  adapter's wire command points agent B at the same files agent A reads; ccb-parity-check.sh
+  verifies all of it in both agents every session.
+- Full record, token table, and reproduction steps: research/AGENT_PARITY.md.
+
 ## Evidence artifacts
 - `docs/paper/three-tier-context-architecture.md`  -  the novelty write-up.
 - `docs/paper/results.json`  -  raw measured data (reproducible via `wc` + fresh-session probes).
 - `demo/demo.sh`  -  clean-room reproduction of the workflow.
 
 ## Verified behaviors (this repo's history)
-- Non-destructive, idempotent install (Kiro path + neutral core).
-- Four working adapters (Kiro, Claude Code, Cursor, generic), tested clean-room.
+- Non-destructive, idempotent install (agent A path + neutral core).
+- Four working adapters (three coding agents and a generic preamble), tested clean-room.
 - Measured per-turn context reduction 40.9% at N=4, projected 85% at N=100 (89% asymptote).
 - Fresh-session cross-project recall: 5/5 probes.
