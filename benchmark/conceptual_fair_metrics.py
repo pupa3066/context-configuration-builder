@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""conceptual_fair_metrics.py — RE-TEST of the semantic-vs-lexical finding under FAIRER scoring
+"""conceptual_fair_metrics.py - RE-TEST of the semantic-vs-lexical finding under FAIRER scoring
 metrics, to address caveat #4 (the original 'answerable = substring present anywhere' metric
 structurally favors lexical/BM25, because the ground truth IS a token string).
 
@@ -46,6 +46,10 @@ def main():
     ap.add_argument("--k",type=int,default=6)
     ap.add_argument("--bootstrap",type=int,default=1000)
     ap.add_argument("--max-chunks",type=int,default=1200,dest="max_chunks")
+    ap.add_argument("--embed-model",default="BAAI/bge-small-en-v1.5",dest="embed_model",
+                    help="fastembed model for the semantic arm. Default bge-small (original). "
+                         "Try BAAI/bge-base-en-v1.5 or jinaai/jina-embeddings-v2-base-en to test "
+                         "whether the lexical>semantic finding survives a stronger/larger embedder.")
     ap.add_argument("--out",default="conceptual_fair_results.json")
     a=ap.parse_args()
     if not sem_available():
@@ -55,8 +59,8 @@ def main():
     corpus={n:base.load_repo_text(p) for n,p in repos.items()}
     chunks={n:chunk(corpus[n]) for n in corpus}
     bm25={n:BM25(chunks[n]) for n in corpus}
-    print(f"embedding (max_chunks/repo={a.max_chunks})...",flush=True)
-    sem={n:SemanticRetriever(chunks[n],max_chunks=a.max_chunks) for n in corpus}
+    print(f"embedding (model={a.embed_model}, max_chunks/repo={a.max_chunks})...",flush=True)
+    sem={n:SemanticRetriever(chunks[n],model_name=a.embed_model,max_chunks=a.max_chunks) for n in corpus}
     model=sem[list(sem)[0]]._model  # reuse the embedding model for m3 semantic-credit
 
     Q=[]
@@ -87,7 +91,7 @@ def main():
             h1.append(int(s1));h2.append(int(s2));h3.append(int(s3))
         return h1,h2,h3
 
-    out={"N":len(Q),"k":a.k,"max_chunks":a.max_chunks,
+    out={"N":len(Q),"k":a.k,"max_chunks":a.max_chunks,"embed_model":a.embed_model,
          "metrics_explained":{"m1":"substring anywhere (favors lexical)",
                               "m2":"def/class defline (stricter)",
                               "m3":"substring OR semantic-credit cos>=0.72 (favors semantic)"},
