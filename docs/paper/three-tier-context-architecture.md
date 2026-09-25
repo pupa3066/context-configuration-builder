@@ -29,8 +29,6 @@ Let a session consist of $T$ turns. Always-on content of size $s$ costs $\approx
 
 **Cross-project provenance graph.** Shared facts are recorded once with origin and consumers, labeled `[MEASURED]` (verified) or `[CLAIM]` (unverified), so downstream reasoning inherits calibrated confidence.
 
-## 4. Verification
-
 ## 4. Measured results (token-accurate)
 
 We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed always-on tier, and four active-project skills.
@@ -48,7 +46,15 @@ We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed a
 | 100 | 81,259 | 11,933 | 85.3% |
 | $\to\infty$ |  -  |  -  | 90.6% ($1-\bar m/\bar b$) |
 
-The four-project row is directly measured with a real tokenizer; larger-$N$ rows apply the measured per-project averages to the Section2 closed form. This directly targets the problem ETH Zurich (Gloaguen et al., arXiv:2602.11988) documented  -  monolithic context files adding 20%+ cost without reliably improving success  -  by making context cheap and selective rather than wholesale.
+The four-project row is directly measured with a real tokenizer; larger-$N$ rows apply the measured per-project averages to the Section 2 closed form. This directly targets the problem ETH Zurich (Gloaguen et al., arXiv:2602.11988) documented  -  monolithic context files adding 20%+ cost without reliably improving success  -  by making context cheap and selective rather than wholesale.
+
+**Agent-baseline and honest deployment numbers.** The reductions above are *CCB-marginal*: measured on Kiro CLI with default resource loading disabled (`disableInheritingDefaultResources=true`), so the agent's own system prompt contributes zero tokens and the CCB steering is the sole context. This is the agent-agnostic baseline and the appropriate figure for comparing the tiering algorithm across deployments.
+
+For agents that do not expose a disable knob (e.g. Claude Code), the agent's system prompt is a fixed per-turn overhead $B$ present in both arms:
+
+$$\text{total monolithic} = B + A + N\bar{b}, \quad \text{total tiered} = B + A + N\bar{m} + \bar{b}$$
+
+The *absolute* token delta (monolithic minus tiered) is unchanged by $B$; only the *percentage* reduction is diluted. The CCB-marginal figure generalizes across agents; the total-context figure is the honest number for a specific deployment. Both are reported by `benchmark.py --agent-baseline B`. For the task-success harness (Section 5), the agent baseline $B$ is the Gemma system prompt size, measured once and held fixed across arms.
 
 ## 5. Fresh-session recall experiment
 
@@ -76,7 +82,7 @@ The N=4 reduction is directly measured with a real BPE tokenizer; larger-$N$ row
 
 ## 8. Conclusion
 
-Separating agent memory by access pattern  -  and governing activation with a registry  -  yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 40.9% reduction at N=4, projected 85% at N=100). We release the design as an open template (`context-config-builder`).
+Separating agent memory by access pattern  -  and governing activation with a registry  -  yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 24.5% reduction at N=4, projected 85.3% at N=100). We release the design as an open template (`context-config-builder`).
 
 ## Reproducibility
 

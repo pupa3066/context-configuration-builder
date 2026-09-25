@@ -9,25 +9,38 @@ context directory (must contain steering/ and skills/ subdirs). Defaults to ~/.k
 but a Claude Code / Cursor / generic user points it at their own root. So the measurement,
 like the core+adapters, is not tied to one agent.
 
+--agent-baseline TOKENS: fixed per-turn overhead the agent always loads (e.g. a system
+  prompt that cannot be disabled). Added to both monolithic and tiered totals.
+  Without it: output is CCB-marginal only (correct for Kiro with override on; understates
+  total context cost for agents like Claude Code that have no disable knob).
+  With it: output adds ccb_marginal_reduction (CCB-controlled savings, comparable across
+  agents) and total_reduction (honest total including the fixed overhead).
+
 Run:
-  python benchmark.py                                  # default ~/.kiro
-  python benchmark.py --context-root /path/to/context  # any agent's deployment
-  python benchmark.py <steering_dir> <skills_dir>       # explicit dirs (back-compat)
+  python benchmark.py                                         # default ~/.kiro
+  python benchmark.py --context-root /path/to/context         # any agent's deployment
+  python benchmark.py --agent-baseline 4096                   # with fixed agent overhead
+  python benchmark.py <steering_dir> <skills_dir>             # explicit dirs (back-compat)
 Rule #2: real measured tokens.
 """
 import os, sys, glob, json, argparse
 
-def _resolve_dirs():
+def _parse_args():
     ap = argparse.ArgumentParser(add_help=False)
     ap.add_argument("--context-root", default=os.environ.get("CCK_CONTEXT_ROOT", os.path.expanduser("~/.kiro")))
+    ap.add_argument("--agent-baseline", type=int, default=0, metavar="TOKENS",
+                    help="Fixed per-turn token overhead added to both mono and tiered totals.")
     ap.add_argument("pos", nargs="*")
-    a, _ = ap.parse_known_args()
-    if len(a.pos) >= 2:                        # explicit steering + skills dirs (back-compat)
-        return a.pos[0], a.pos[1]
-    root = a.context_root
-    return os.path.join(root, "steering"), os.path.join(root, "skills")
+    return ap.parse_known_args()[0]
 
-STEER, SKILLS = _resolve_dirs()
+_args = _parse_args()
+if len(_args.pos) >= 2:                        # explicit steering + skills dirs (back-compat)
+    STEER, SKILLS = _args.pos[0], _args.pos[1]
+else:
+    root = _args.context_root
+    STEER = os.path.join(root, "steering")
+    SKILLS = os.path.join(root, "skills")
+BASELINE = _args.agent_baseline
 
 from transformers import AutoTokenizer
 tok = AutoTokenizer.from_pretrained("gpt2")  # deterministic BPE, offline-cached
@@ -83,4 +96,36 @@ result = {
                             "reduction": round(project(n)[2], 3)} for n in (10, 25, 50, 100)},
     "asymptote_reduction": round(1 - mean_meta/mean_body, 3) if mean_body else 0,
 }
+
+if BASELINE > 0:
+    # ccb_marginal: savings on the CCB-controlled portion only (comparable across agents).
+    # total: savings on total context including the fixed agent overhead (honest for agents
+    # that cannot disable their system prompt, e.g. Claude Code).
+    result["agent_baseline_tokens"] = BASELINE
+    result["note_baseline"] = (
+        "[MEASURED] ccb_marginal excludes agent baseline (comparable to Kiro with override on). "
+        "total includes it (honest total-context figure for agents with no disable knob)."
+    )
+    mn = result["measured_N"]
+    mn["ccb_marginal_reduction"] = mn.pop("reduction")
+    mn["monolithic_tokens_per_turn_total"] = mono_n + BASELINE
+    mn["tiered_tokens_per_turn_total"] = tier_n + BASELINE
+    mn["total_reduction"] = round(1 - (tier_n + BASELINE) / (mono_n + BASELINE), 3)
+
+    for k, v in result["projected"].items():
+        m, t, _ = project(int(k))
+        v["ccb_marginal_reduction"] = v.pop("reduction")
+        v["mono_total"] = m + BASELINE
+        v["tiered_total"] = t + BASELINE
+        v["total_reduction"] = round(1 - (t + BASELINE) / (m + BASELINE), 3)
+
+    result["asymptote_ccb_marginal"] = result.pop("asymptote_reduction")
+    # Asymptote with baseline: as N->inf, mono->inf, tiered->baseline+always_on+mean_body
+    # reduction approaches 1 - mean_meta/mean_body still on CCB portion, but total asymptote
+    # is bounded by how large baseline is relative to the growing mono cost.
+    result["asymptote_total_note"] = (
+        "total asymptote converges to ccb_marginal asymptote as N grows "
+        "(baseline becomes negligible vs N*mean_body); honest only at measured N."
+    )
+
 print(json.dumps(result, indent=2))
