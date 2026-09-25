@@ -3,6 +3,14 @@
 All notable changes to context-config-builder are documented here.
 Format based on Keep a Changelog; this project uses semantic versioning.
 
+## Unreleased (feat/agent-parity)
+- Agent parity between Kiro and Claude Code, verified each session by hooks/ccb-parity-check.sh.
+- hooks/ccb-project-context.sh: project steering index (8,723 to 140 GPT-2 tokens at session start),
+  per-project files on demand, repository steering mirrored for Claude Code via CLAUDE.local.md.
+- ccb-bootstrap.sh: sets chat.defaultAgent=default and chat.agentEngine=v1; migrates the direct loader hook.
+- adapters/claude-code.sh wire: live wiring to the Kiro install (no copies).
+- scripts/agent-parity-probe.sh and research/AGENT_PARITY.md.
+
 ## [Unreleased] - 2026-09-18
 ### Added
 - Self-installing Kiro bootstrap (`ccb-bootstrap.sh`): one idempotent, self-verifying installer that

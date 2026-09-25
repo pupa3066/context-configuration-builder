@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-25",
+  "what": "size of session-start context components in one CCB deployment (3 active projects with .kiro/steering)",
+  "tokenizer": "gpt2-bpe (transformers 5.17.0, AutoTokenizer.from_pretrained('gpt2'))",
+  "agents": {"kiro-cli": "2.24.0", "claude-code": "2.1.282"},
+  "components": {
+    "always_on_steering_4_files": {"bytes": 13466, "tokens": 3902},
+    "project_context_full_dump_before": {"bytes": 26690, "tokens": 8723},
+    "project_context_index_after": {"bytes": 382, "tokens": 140},
+    "other_session_start_hook_output": {"bytes": 2485, "tokens": 748}
+  },
+  "project_context_reduction": 0.9839,
+  "measure": "cat ~/.kiro/steering/*.md; ~/.kiro/hooks/project-steering-loader.sh (from $HOME); ~/.kiro/hooks/ccb-project-context.sh; then len(tok.encode(text))"
+}

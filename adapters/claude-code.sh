@@ -5,7 +5,18 @@
 #
 # Usage:
 #   ./adapters/claude-code.sh apply [target-dir]
+#   ./adapters/claude-code.sh wire
 #   ./adapters/claude-code.sh measure [target-dir] [--baseline-tokens N]
+#
+# wire: live parity with a Kiro install (run after ccb-bootstrap.sh). Instead of copying the core,
+#   Claude Code reads the SAME files Kiro reads, so edits apply to both agents at once:
+#   - ~/.claude/CLAUDE.md gets a marked block that @imports every ~/.kiro/steering/*.md
+#   - ~/.claude/settings.json SessionStart runs the same hook files as Kiro's agentSpawn
+#     (the Kiro-only steering-loader-guard excluded); other settings are preserved
+#   - ~/.claude/skills/<frontmatter name> links to each ~/.kiro/skills/<dir> (same skill names)
+#   - repo steering: ccb-project-context.sh keeps each active repo's CLAUDE.local.md importing its
+#     .kiro/steering (what Kiro auto-loads as workspace steering), git-excluded, never committed
+#   Then runs ccb-parity-check.sh. Idempotent.
 #
 # measure: token-accurate breakdown of what CCB adds to Claude Code.
 #   Without --baseline-tokens: reports CCB-marginal savings only.
@@ -39,6 +50,50 @@ case "$CMD" in
       cp "$f" "$DEST/.claude/context/$(basename "$f")"
     done
     echo "Claude Code adapter: wrote $DEST/CLAUDE.md and $DEST/.claude/context/*"
+    ;;
+
+  wire)
+    KH="${KIRO_HOME:-$HOME/.kiro}"; CH="${CLAUDE_HOME:-$HOME/.claude}"
+    [ -d "$KH/steering" ] || { echo "error: $KH/steering not found; run ccb-bootstrap.sh first" >&2; exit 1; }
+    mkdir -p "$CH/skills"
+    KH="$KH" CH="$CH" python3 - <<'PY'
+import json, os, re
+KH, CH = os.environ["KH"], os.environ["CH"]
+# 1. CLAUDE.md: marked, regenerated block of @imports (content outside the markers is preserved)
+B, E = "<!-- ccb:steering begin (adapters/claude-code.sh wire) -->", "<!-- ccb:steering end -->"
+files = sorted(f for f in os.listdir(f"{KH}/steering") if f.endswith(".md"))
+block = "\n".join([B, "# CCB always-on steering (live imports; same files Kiro loads)"] + [f"@~/.kiro/steering/{f}" for f in files] + [E])
+p = f"{CH}/CLAUDE.md"
+cur = open(p).read() if os.path.exists(p) else ""
+new = re.sub(re.escape(B) + r".*?" + re.escape(E), lambda m: block, cur, flags=re.S) if B in cur else (block + "\n\n" + cur).rstrip() + "\n"
+if new != cur: open(p, "w").write(new)
+print(f"  CLAUDE.md: {len(files)} steering imports")
+# 2. settings.json SessionStart mirrors Kiro agentSpawn (guard excluded)
+def load(q):
+    try: return json.load(open(q))
+    except Exception: return {}
+spawn = load(f"{KH}/agents/default.json").get("hooks", {}).get("agentSpawn", [])
+cmds = [h["command"].replace("~/", "$HOME/", 1) for h in spawn if isinstance(h, dict) and h.get("command") and not h["command"].endswith("steering-loader-guard.sh")]
+sp = f"{CH}/settings.json"; st = load(sp)
+st.setdefault("hooks", {})["SessionStart"] = [{"hooks": [{"type": "command", "command": c, "timeout": 20} for c in cmds]}]
+json.dump(st, open(sp, "w"), indent=2); open(sp, "a").write("\n")
+print(f"  settings.json: SessionStart mirrors {len(cmds)} Kiro agentSpawn hook(s)")
+# 3. skills under their frontmatter name
+n = 0
+for d in sorted(os.listdir(f"{KH}/skills")) if os.path.isdir(f"{KH}/skills") else []:
+    sk = f"{KH}/skills/{d}/SKILL.md"
+    if not os.path.isfile(sk): continue
+    m = re.search(r"^name:\s*(\S+)", open(sk).read(), re.M); name = m.group(1) if m else d
+    dst = f"{CH}/skills/{name}"
+    if os.path.islink(dst) and os.path.realpath(dst) != os.path.realpath(f"{KH}/skills/{d}"): os.remove(dst)
+    if not os.path.exists(dst): os.symlink(f"{KH}/skills/{d}", dst)
+    n += 1
+print(f"  skills: {n} linked under frontmatter names")
+PY
+    # repo steering (CLAUDE.local.md) is maintained by the shared hook; run it once now
+    [ -x "$KH/hooks/ccb-project-context.sh" ] && sh "$KH/hooks/ccb-project-context.sh" >/dev/null 2>&1
+    echo "Claude Code adapter: wired to $KH (live, no copies)"
+    [ -x "$KH/hooks/ccb-parity-check.sh" ] && KIRO_HOME="$KH" CLAUDE_HOME="$CH" sh "$KH/hooks/ccb-parity-check.sh"
     ;;
 
   measure)
@@ -83,6 +138,7 @@ case "$CMD" in
 
   *)
     echo "usage: claude-code.sh apply [target-dir]" >&2
+    echo "       claude-code.sh wire" >&2
     echo "       claude-code.sh measure [target-dir] [--baseline-tokens N]" >&2
     exit 2
     ;;

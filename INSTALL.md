@@ -24,7 +24,9 @@ sh ccb-bootstrap.sh                # wires ~/.kiro and verifies in one shot
 What it does (all under `$KIRO_HOME`, default `~/.kiro`):
 1. installs the hook scripts into `~/.kiro/hooks` (executable)
 2. copies always-on steering into `~/.kiro/steering` (non-destructive: never clobbers edited files)
-3. sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json` (CCB becomes source of truth)
+3. sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json` (CCB becomes source of truth),
+   plus `chat.defaultAgent=default` and `chat.agentEngine=v1` (without these, measured on kiro-cli 2.24.0,
+   a plain session runs the built-in agent or an engine that skips agentSpawn hooks, so no CCB hook runs)
 4. declares the CCB `resources[]` and registers the `agentSpawn` hooks in `agents/default.json`
    (integrity check ordered first; a timestamped `.bak.<ts>` is written before any edit)
 5. runs `ccb-integrity-check.sh` and prints a PASS/FAIL report
@@ -36,6 +38,16 @@ After install, every new Kiro session runs the integrity check automatically. Re
 ```sh
 sh ~/.kiro/hooks/ccb-integrity-check.sh
 ```
+
+## Option D - Kiro and Claude Code together (agent parity)
+After Option C, point Claude Code at the same files Kiro reads. Nothing is copied, so one edit applies
+to both agents:
+```sh
+sh adapters/claude-code.sh wire     # CLAUDE.md imports, same session hooks, same skill names
+sh scripts/agent-parity-probe.sh    # optional: ask both agents the same question and compare
+```
+Every new session in either agent then prints the same `[ccb-parity]` report (steering fingerprint
+plus PASS/FAIL). Details and measurements: `research/AGENT_PARITY.md`.
 
 ## Verify it works without touching your real setup
 ```sh

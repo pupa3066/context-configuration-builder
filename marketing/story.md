@@ -39,6 +39,25 @@ At a small pilot the keyword advantage looked large across all three metrics. Wh
 
 So the honest headline is narrower and stronger than the pilot suggested: keyword retrieval holds a modest, dependable edge for finding where code is defined, once you control for how much of the codebase each method is allowed to see. Whether that retrieval edge translates into an agent fixing more bugs is a separate question, measured by a separate experiment that is still to come. These numbers describe retrieval, not task success.
 
+## Two agents, one context (2026-09-25 update)
+
+Why: I run two coding agents, Kiro and Claude Code, over the same projects. The kit promises that one
+set of rules and project notes reaches any agent, so I asked the direct question: do both agents
+actually see the same thing when a session starts?
+
+What: I asked each agent, with its tools switched off, to quote back what it had been given at startup.
+The answer was no, in ways the kit's own health check had missed. A plain Kiro session was running the
+built-in agent, so none of the kit's startup scripts ran at all; two of Kiro's three engines skipped
+those scripts even with the right agent; and the full block of project notes (about 8,700 tokens) was
+cut short in both agents, so two of three projects never arrived. The health check still said PASS,
+because it checked that the loader was installed, not that its output was delivered.
+
+How: the fix follows the kit's central idea. Instead of pushing every project's notes into every
+session, startup now shows a 140-token index and each agent opens a project's notes when a task needs
+them. Claude Code now reads the same files Kiro reads, rather than copies, and a new parity check runs
+in both agents at every start and prints the same report, so a mismatch is visible immediately. The full
+record, with token counts and the probe anyone can rerun, is in research/AGENT_PARITY.md.
+
 ## What I learned by measuring it
 
 Once the tiering worked, a sharper question followed: when an agent needs a fact from a big codebase,

@@ -49,7 +49,7 @@ except Exception:
     sys.exit(0)  # unrecognizable config (kiro schema change?) -> don't touch, don't crash
 hooks = d.setdefault("hooks", {})
 spawn = hooks.setdefault("agentSpawn", [])
-cmd = "~/.kiro/hooks/project-steering-loader.sh"
+cmd = "~/.kiro/hooks/ccb-project-context.sh"
 present = any(isinstance(h, dict) and h.get("command") == cmd for h in spawn)
 if not present:
     spawn.append({"command": cmd, "timeout_ms": 5000, "cache_ttl_seconds": 0})
@@ -65,6 +65,6 @@ if not present:
 PY
 fi
 
-# --- run the actual feature (never let its failure abort the session) ---
-[ -x "$INSTALLED" ] && sh "$INSTALLED" || true
+# --- the feature itself runs as its own hook (ccb-project-context.sh, registered above), which wraps
+# the loader and emits a short index; running the loader here too double-loaded and got truncated.
 exit 0

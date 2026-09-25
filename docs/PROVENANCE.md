@@ -49,6 +49,20 @@ context), not agent task success. Preliminary until the sweeps land.
 
 Branches and PRs remain preserved for an auditable trail.
 
+## Agent parity lineage (branch feat/agent-parity, 2026-09-25)
+What led to what, in order:
+- Wiring the same CCB install into Claude Code next to Kiro raised a direct question: do both agents
+  receive the same context? A headless probe (scripts/agent-parity-probe.sh) asked each agent to quote
+  its session-start output from loaded context.
+- The probe showed that plain Kiro sessions ran the built-in agent with no CCB hooks, that Kiro engines
+  v2 and v3 skipped the hooks, and that the full project dump (8,723 GPT-2 tokens) was truncated in both
+  agents while the integrity check still said PASS.
+- Fixes: bootstrap pins the Kiro agent and engine; ccb-project-context.sh replaces the dump with a
+  140-token index plus on-demand files and mirrors repository steering for Claude Code;
+  adapters/claude-code.sh wire points Claude Code at the same files Kiro reads; ccb-parity-check.sh
+  verifies all of it in both agents every session.
+- Full record, token table, and reproduction steps: research/AGENT_PARITY.md.
+
 ## Evidence artifacts
 - `docs/paper/three-tier-context-architecture.md`  -  the novelty write-up.
 - `docs/paper/results.json`  -  raw measured data (reproducible via `wc` + fresh-session probes).

@@ -67,7 +67,7 @@ echo "ccb-bootstrap -> $KIRO_HOME$( [ "$DRY" -eq 1 ] && echo '  (dry-run)')"
 # ---------------------------------------------------------------------------
 echo "[1/5] hooks"
 run mkdir -p "$KIRO_HOME/hooks"
-for h in ccb-integrity-check.sh project-steering-loader.sh steering-loader-guard.sh context-check.sh; do
+for h in ccb-integrity-check.sh project-steering-loader.sh steering-loader-guard.sh context-check.sh ccb-project-context.sh ccb-parity-check.sh; do
   if [ -f "$HOOK_SRC/$h" ]; then
     run cp "$HOOK_SRC/$h" "$KIRO_HOME/hooks/$h"
     run chmod +x "$KIRO_HOME/hooks/$h"
@@ -99,15 +99,20 @@ try:
     d = json.load(open(p))
 except Exception:
     d = {}
-key = "chat.disableInheritingDefaultResources"
-if d.get(key) is True:
-    print("  already set: %s=true" % key)
+# disableInheritingDefaultResources: CCB is the source of truth.
+# defaultAgent/agentEngine: measured 2026-09-25 (kiro-cli 2.24.0): without defaultAgent=default a plain
+# session runs the built-in kiro_default and NO agentSpawn hooks fire; engines v2 (default) and v3 skip
+# agentSpawn hooks even with the right agent. Only v1 ran them. ccb-parity-check.sh verifies both.
+want = {"chat.disableInheritingDefaultResources": True, "chat.defaultAgent": "default", "chat.agentEngine": "v1"}
+todo = {k: v for k, v in want.items() if d.get(k) != v}
+if not todo:
+    print("  already set: " + ", ".join("%s=%s" % kv for kv in want.items()))
 else:
-    d[key] = True
+    d.update(todo)
     if not dry:
         os.makedirs(os.path.dirname(p), exist_ok=True)
         json.dump(d, open(p, "w"), indent=2)
-    print("  set: %s=true" % key)
+    print("  set: " + ", ".join("%s=%s" % kv for kv in todo.items()))
 PY
 
 # ---------------------------------------------------------------------------
@@ -125,9 +130,12 @@ DESIRED_RES = [
 # integrity check MUST run first; loaders after. context-check optional.
 DESIRED_HOOKS = [
     "~/.kiro/hooks/ccb-integrity-check.sh",
-    "~/.kiro/hooks/steering-loader-guard.sh",
-    "~/.kiro/hooks/project-steering-loader.sh",
+    "~/.kiro/hooks/steering-loader-guard.sh",   # Kiro-only config self-heal, prints nothing
+    "~/.kiro/hooks/ccb-project-context.sh",     # wraps project-steering-loader: index + repo steering
+    "~/.kiro/hooks/ccb-parity-check.sh",        # Kiro <-> Claude Code parity report
 ]
+# migration: the loader used to run as its own hook; its full dump was truncated and double-loaded.
+LEGACY_HOOKS = ["~/.kiro/hooks/project-steering-loader.sh"]
 
 if os.path.exists(p):
     try:
@@ -153,6 +161,10 @@ d["resources"] = res
 hooks = d.setdefault("hooks", {})
 spawn = hooks.setdefault("agentSpawn", [])
 def has(cmd): return any(isinstance(h, dict) and h.get("command") == cmd for h in spawn)
+for old in LEGACY_HOOKS:
+    if has(old):
+        spawn[:] = [h for h in spawn if not (isinstance(h, dict) and h.get("command") == old)]
+        changed = True
 for cmd in DESIRED_HOOKS:
     if not has(cmd):
         entry = {"command": cmd, "timeout_ms": 8000, "cache_ttl_seconds": 0}
