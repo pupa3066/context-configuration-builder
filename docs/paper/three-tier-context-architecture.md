@@ -1,17 +1,17 @@
 # A Three-Tier, Cost-Stratified Context Architecture for Persistent Multi-Project Memory in AI Coding Agents
 
 **Author:** Purnima Pathak
-**Status:** Working paper / preprint draft, v0.2 (2026-09-25)
+**Status:** Working paper / preprint draft, v0.3 (2026-09-25)
 
 ## Abstract
 
-AI coding agents lose project context between sessions, and the common remedy -- loading all relevant context on every turn -- scales token cost linearly with the amount of remembered information. We present a context architecture that **stratifies persistent memory by access pattern rather than by topic**, mapping three token-cost regimes to three loading mechanisms: (1) *always-on* content in continuously-loaded steering files, kept minimal; (2) *on-demand* per-project content in skills whose bodies load only when invoked; and (3) *zero-cost-until-queried* content in a semantic knowledge base. A single editable **registry** governs which projects are active, decoupling enablement from file presence. On a **real deployment across four active projects, measured with a real BPE tokenizer**, the tiered scheme uses **24.5% fewer tokens per turn** than a monolithic always-on baseline, rising to **85.3% at 100 projects**. We further report a controlled **retrieval study** (N=240 conceptual questions, 3 public repositories, bootstrap CIs) that diagnoses a common evaluation artifact: a large lexical-over-semantic code-retrieval gap (0.87 vs 0.44) is almost entirely produced by **index truncation bias** -- asymmetric corpus coverage that disadvantages the semantic arm; at full index budget both retrievers score identically (0.87 vs 0.87, overlapping CIs). This addresses a tension identified by ETH Zurich (Gloaguen et al., arXiv:2602.11988): repository-level context files often fail to improve task success while adding 20%+ inference cost -- motivating structuring context by access pattern rather than loading it wholesale.
+We make two contributions. First, a controlled index-size ablation (N=240 conceptual questions, 3 public repositories, 95% bootstrap CIs) shows that a widely reported lexical-over-semantic code-retrieval gap (0.867 vs 0.442 on m1 at index budget 1,000) is almost entirely an **index truncation artifact**: BM25 scores all corpus chunks regardless of budget and is flat across all budget levels; the semantic arm improves monotonically as budget rises, converging to identical performance at full budget (0.867 vs 0.867, overlapping CIs on all three metrics). Evaluations that fix a truncated semantic index are measuring corpus coverage asymmetry, not retriever quality. Second, we present a context architecture that **stratifies persistent agent memory by access pattern**, mapping three token-cost regimes to three loading mechanisms: always-on steering files (kept minimal), on-demand per-project skills (body loads only when invoked), and a zero-cost knowledge base. On a real deployment across four active projects, measured with a real BPE tokenizer, the tiered scheme uses **24.5% fewer tokens per turn** than a monolithic baseline (directly measured, N=4). Token savings scale with project count following a closed-form cost model. This addresses the problem identified by ETH Zurich (Gloaguen et al., arXiv:2602.11988): monolithic context files add >20% inference cost without improving task success -- our architecture makes context selective rather than wholesale. Task-success validation on the Gemma harness is in progress.
 
 ## 1. Introduction
 
-Large-language-model coding agents operate within a bounded context window that is re-billed every turn. Practical "agent memory" schemes tend to either (a) re-derive context each session (expensive in latency and redundant reads) or (b) preload large context blocks that persist every turn (expensive in tokens). Neither addresses multi-project settings, where knowledge produced in one project is relevant to deliverables in another.
+Large-language-model coding agents operate within a bounded context window that is re-billed every turn. Practical agent memory schemes tend to either re-derive context each session (expensive in latency and redundant reads) or preload large context blocks that persist every turn (expensive in tokens). Neither addresses multi-project settings, where knowledge produced in one project is relevant to deliverables in another.
 
-We ask: *can persistent, cross-project agent memory be made both durable and token-efficient?* Our answer separates the two concerns -- durability (does the agent remember?) and cost (what does remembering cost per turn?) -- and shows they can be optimized jointly by matching content to a loading tier by its access frequency. We additionally ask: *does retrieval method choice matter for code comprehension, and how should that choice be evaluated?* A controlled index-size ablation reveals that the answer depends critically on evaluation methodology.
+We ask two questions. First: *can persistent, cross-project agent memory be made both durable and token-efficient?* Second: *does retrieval method choice matter for code comprehension, and how should retrieval be evaluated?* Our index-size ablation gives a precise answer to the second question -- the answer depends on whether the evaluation holds corpus coverage equal across compared methods. Task-success validation of the full tiered system on the Gemma agent harness is in progress and not reported here.
 
 ## 2. Problem formulation and cost model
 
@@ -25,13 +25,13 @@ Let a session consist of $T$ turns. Always-on content of size $s$ costs $\approx
 
 **Tier 3 -- Query-only (knowledge base).** A semantic mirror of all tiers, contributing nothing to per-turn context until queried.
 
-**Registry-governed activation.** An editable table marks each project active/inactive. Activation is decided by the registry, *not* by whether a skill file exists -- enabling a large on-disk corpus with a small active working set.
+**Registry-governed activation.** An editable table marks each project active/inactive. Activation is decided by the registry, not by whether a skill file exists -- enabling a large on-disk corpus with a small active working set.
 
 **Cross-project provenance graph.** Shared facts are recorded once with origin and consumers, labeled `[MEASURED]` (verified) or `[CLAIM]` (unverified), so downstream reasoning inherits calibrated confidence.
 
 ## 4. Token cost measurement
 
-We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed always-on tier, and four active-project skills.
+We instrument a live deployment with a real BPE tokenizer (GPT-2), a fixed always-on tier, and four active-project skills.
 
 **Measured (tokens):** always-on tier $A = 3{,}859$; mean per-project skill body $\bar b = 774$; mean per-project metadata $\bar m = 73$.
 
@@ -40,62 +40,47 @@ We instrument a live deployment with a **real BPE tokenizer** (GPT-2), a fixed a
 | Projects $N$ | Monolithic (tokens) | Tiered (tokens) | Reduction |
 |---|---|---|---|
 | 4 (directly measured) | 6,958 | 5,253 | **24.5%** |
-| 10 | 11,599 | 5,363 | 53.8% |
-| 25 | 23,209 | 6,458 | 72.2% |
-| 50 | 42,559 | 8,283 | 80.5% |
-| 100 | 81,259 | 11,933 | 85.3% |
-| $\to\infty$ | -- | -- | 90.6% ($1-\bar m/\bar b$) |
+| 10 (projected) | 11,599 | 5,363 | 53.8% |
+| 25 (projected) | 23,209 | 6,458 | 72.2% |
+| 50 (projected) | 42,559 | 8,283 | 80.5% |
+| 100 (projected) | 81,259 | 11,933 | 85.3% |
 
-The N=4 row is directly measured; larger-N rows apply the measured per-project averages to the Section 2 closed form. The reductions are *CCB-marginal*: measured with the agent's default resource loading disabled, so the steering is the sole context. For agents without a disable knob, the agent's own system prompt adds a fixed overhead to both arms; the absolute token delta is unchanged but the percentage reduction is diluted. Both figures are reported by `benchmark.py --agent-baseline B`.
+The N=4 row is directly measured; all other rows apply the measured per-project averages to the closed-form model in Section 2 and are projections, not measurements. The reductions are CCB-marginal: measured with the agent's default resource loading disabled so the steering is the sole context. For agents without a disable knob, the agent's own system prompt adds a fixed per-turn overhead $B$ to both arms; the absolute token delta is unchanged but the percentage reduction is diluted. Both figures are reported by `benchmark.py --agent-baseline B`.
 
-## 5. Retrieval study: diagnosing an evaluation artifact in code comprehension
+## 5. Retrieval study: index truncation bias in code comprehension benchmarks
 
-**Setup.** We compare BM25 (lexical) against bge-small-en-v1.5 (semantic, via fastembed ONNX) on N=240 conceptual questions mined from public repository docstrings (requests, click, black). Query is the question only -- no fact leak. Three scoring metrics: m1 (substring anywhere; favors lexical), m2 (definition line only; stricter), m3 (substring or cosine-credit >= 0.72; favors semantic). Bootstrap CIs, 1,000 resamples, run on Kaggle CPU (16GB, ONNX deterministic across machines).
+**Setup.** We compare BM25 (lexical) against bge-small-en-v1.5 (semantic, via fastembed ONNX, CPU-deterministic) on N=240 conceptual questions mined from public repository docstrings (psf/requests, pallets/click, psf/black). The retrieval query is the question only -- the ground-truth fact is withheld from the retriever and used only for scoring. Three metrics: m1 (substring anywhere; structurally favors lexical), m2 (symbol appears on a definition line; stricter, neither retriever favored), m3 (substring or cosine-credit >= 0.72 to the fact's definition embedding; actively favors semantic). Bootstrap CIs, 1,000 resamples, Kaggle CPU (16GB).
 
-**Index-size ablation.** BM25 scores all chunks regardless of index budget. The semantic arm embedded a truncated sample. We vary the index budget from 1,000 to 100,000 chunks per repository (effectively unconstrained: the largest repository has 6,975 chunks) while holding all else fixed. BM25 scores are flat across all budget levels -- the internal control confirming index budget is the sole variable.
+**Index-size ablation and the internal control.** BM25 operates over all corpus chunks unconditionally -- its score cannot depend on the semantic index budget. We therefore use BM25 as an internal control: if BM25 scores change as we vary the budget, some other variable changed; if they are flat, the index budget is the sole variable. BM25 is flat across all three budget levels on all three metrics (m1: 0.867 at every budget; m2: 0.821; m3: 0.958), confirming that the ablation is clean.
 
-| Cap | m1 BM25 | m1 Semantic | m2 BM25 | m2 Semantic |
-|---|---|---|---|---|
-| 1,000 | 0.867 [0.825, 0.908] | 0.442 [0.379, 0.508] | 0.821 [0.771, 0.867] | 0.279 [0.221, 0.338] |
-| 3,000 | 0.867 [0.825, 0.908] | 0.758 [0.704, 0.813] | 0.821 [0.771, 0.867] | 0.650 [0.592, 0.713] |
-| 100,000 (full) | 0.867 [0.825, 0.908] | **0.867 [0.821, 0.908]** | 0.821 [0.771, 0.867] | **0.813 [0.763, 0.858]** |
+| Index budget | m1 BM25 | m1 Semantic | m2 BM25 | m2 Semantic | m3 BM25 | m3 Semantic |
+|---|---|---|---|---|---|---|
+| 1,000 | 0.867 [0.825, 0.908] | 0.442 [0.379, 0.508] | 0.821 [0.771, 0.867] | 0.279 [0.221, 0.338] | 0.958 [0.933, 0.983] | 0.713 [0.654, 0.771] |
+| 3,000 | 0.867 [0.825, 0.908] | 0.758 [0.704, 0.813] | 0.821 [0.771, 0.867] | 0.650 [0.592, 0.713] | 0.958 [0.933, 0.983] | 0.863 [0.817, 0.904] |
+| 100,000 (full) | 0.867 [0.825, 0.908] | **0.867 [0.821, 0.908]** | 0.821 [0.771, 0.867] | **0.813 [0.763, 0.858]** | 0.958 [0.933, 0.983] | **0.933 [0.900, 0.963]** |
 
-**Finding.** At full index budget the gap disappears: m1 point estimates are identical (0.867 vs 0.867); m2 gap is 0.008 with fully overlapping CIs. The original large gap (0.867 vs 0.442 at budget=1,000) is almost entirely an **index truncation artifact** -- the semantic arm was never given the chunks it needed, not because embeddings are weak at code, but because the evaluation design structurally disadvantaged them through asymmetric corpus coverage.
+**Finding.** Semantic scores improve monotonically as index budget rises. At full budget all three metric gaps disappear: m1 point estimates are identical (0.867 vs 0.867, CIs overlap); m2 gap is 0.008 (CIs overlap); m3 gap is 0.025 (CIs overlap). The m3 result is notable: even under a metric that gives semantic retrieval explicit credit for cosine-similar chunks, the pattern holds. The original large m1 gap (0.867 vs 0.442 at budget=1,000) is an index truncation artifact -- the semantic arm was never given the chunks containing the answers. BM25's flatness rules out any other explanation.
 
-**Implication for code comprehension.** Retrieval method choice matters less than index budget completeness. Evaluations that compare lexical and semantic retrievers under a truncated semantic index are measuring index truncation bias, not retriever quality. For deployment, both methods are equivalent at full corpus coverage; the choice should be driven by latency and infrastructure constraints, not by truncated-index accuracy comparisons.
+**Implication.** Retrieval method choice matters less than index budget completeness for this class of code-comprehension questions. Evaluations that fix a truncated semantic index are measuring corpus coverage asymmetry, not retriever quality. Both methods are equivalent at full corpus coverage; deployment choice should be driven by latency and infrastructure constraints.
 
-## 6. Fresh-session recall experiment
+## 6. Related work and novelty
 
-To test durability, we issued a battery of probes to **fresh agent sessions with no prior conversation**, tools disabled, answering from loaded context alone. Result: **5/5 correct**.
+Retrieval-augmented generation, memory buffers, and project-instruction files each address parts of the persistent-context problem. The contribution here is their cost-stratified composition: assigning content to a loading tier by access frequency, adding a registry indirection that separates activation from presence, and layering an explicit provenance graph with confidence labels for multi-project reasoning.
 
-| Probe | Result |
-|---|---|
-| Recall a measured cross-project quantitative fact (Int4 compression 3.7x) | PASS |
-| Attribute a bug to its originating project | PASS |
-| Recall a measured metric (composition zero-interference, Jaccard 0.0) | PASS |
-| Enumerate the active-context project set | PASS |
-| Correctly exclude an inactive (registry-disabled) project | PASS |
+The retrieval study contributes to evaluation methodology for code comprehension. Prior lexical-vs-semantic comparisons for code typically hold index size fixed across methods without varying the budget as an independent variable. Our ablation isolates the budget effect and shows it accounts for nearly the entire reported gap, with direct implications for benchmark design.
 
-We report the raw count (5/5) rather than a rate given the small battery; larger-scale evaluation is future work.
+**Agent-independence.** The architecture is neutral markdown; only the loading mechanism is agent-specific. Thin adapters project the same core onto four agents (Kiro CLI, Claude Code, Cursor, generic preamble) without rewriting context.
 
-## 7. Related work and novelty
+**ETH Zurich extension.** Gloaguen et al. (arXiv:2602.11988) show monolithic context files do not improve task success and add >20% cost. Our tiered architecture addresses the cost side of that finding; our Gemma agent-config tests whether selective loading recovers task success at lower cost -- the constructive question their study left open.
 
-Retrieval-augmented generation, memory buffers, and project-instruction files each address parts of the problem. The contribution here is their **cost-stratified composition**: assigning content to a loading tier by access frequency, adding a **registry indirection** that separates activation from presence, and layering an **explicit provenance graph with confidence labels** for multi-project reasoning.
+## 7. Limitations
 
-The retrieval study contributes to the benchmarking and code-comprehension literature. Prior comparisons of lexical and semantic retrieval for code (e.g. CodeBERT-style embeddings vs BM25) typically use fixed, often small indexes. Our index-size ablation shows that reported gaps between methods may be index truncation artifacts rather than intrinsic properties of the retrievers, which has direct implications for how code-comprehension retrieval benchmarks should be designed.
+The N=4 token-cost reduction is directly measured; all larger-N rows are closed-form projections from those four data points, not measurements. The retrieval study uses three Python repositories (one language, one domain) and docstring-mined questions (formulaic, not human-written developer queries). The index truncation finding holds for this corpus and question type; it does not generalize to all retrieval settings without further study. Task-success validation on the Gemma harness is pending and is the critical gap between the mechanism findings reported here and a claim about agent performance.
 
-**Agent-independence.** The architecture is neutral markdown; only the loading mechanism is agent-specific. We demonstrate thin adapters projecting the same neutral core onto four distinct agents (Kiro CLI, Claude Code, Cursor, and a generic single-preamble target), showing the cost model and registry semantics transfer without rewriting context.
+## 8. Conclusion
 
-**ETH Zurich extension.** Gloaguen et al. (arXiv:2602.11988) show that monolithic repository context files do not improve task success and add >20% cost. Our tiered architecture directly addresses the cost side of that finding, and our agent-config submission to the Gemma harness tests whether selective loading recovers task success at lower cost -- the constructive question their study left open.
-
-## 8. Limitations
-
-The N=4 token-cost reduction is directly measured; larger-N rows are closed-form projections from measured per-project averages. The recall battery is small (5 probes) and deterministic. The retrieval study uses three Python repositories (one language, one domain) and docstring-mined questions (formulaic, not human-written). The index truncation finding does not imply that semantic and lexical retrievers are equivalent in all settings -- it implies they are equivalent for this corpus and question type at full index budget. Task-success validation on the Gemma harness is pending and is the critical next step.
-
-## 9. Conclusion
-
-Separating agent memory by access pattern -- and governing activation with a registry -- yields durable, cross-project context whose per-turn cost grows sublinearly with the number of projects (measured 24.5% reduction at N=4, projected 85.3% at N=100). A controlled index-size ablation reveals that widely reported lexical-over-semantic code-retrieval gaps are largely index truncation artifacts from asymmetric corpus coverage; at full index budget both retrievers perform equivalently. We release the architecture, benchmark code, and agent-config as open templates.
+A controlled index-size ablation over three metrics and three index budgets shows that widely reported lexical-over-semantic code-retrieval gaps are index truncation artifacts: BM25 is flat (internal control confirmed), semantic scores improve monotonically with budget, and both retrievers perform equivalently at full corpus coverage. Separately, a three-tier context architecture stratifies agent memory by access pattern, yielding a directly measured 24.5% per-turn token reduction at N=4 that scales following a closed-form cost model. We release the architecture, benchmark code, and agent-config as open templates.
 
 ## Reproducibility
 
-Token-cost measurements: `benchmark/benchmark.py` over the steering and skill files, GPT-2 BPE tokenizer, reproducible from any clone. Retrieval study: `benchmark/conceptual_fair_metrics.py` on public repositories (psf/requests, pallets/click, psf/black), fastembed ONNX (deterministic across machines), Kaggle CPU notebook. All result JSONs committed to the repository.
+Token-cost measurements: `benchmark/benchmark.py`, GPT-2 BPE tokenizer, reproducible from any clone. Retrieval study: `benchmark/conceptual_fair_metrics.py` on psf/requests, pallets/click, psf/black; fastembed ONNX (CPU-deterministic across machines); result JSONs committed to the repository. Agent-config: `benchmark/gemma_agent/agent.yaml` with prompts and skills.
