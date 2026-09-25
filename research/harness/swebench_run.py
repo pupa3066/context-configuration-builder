@@ -86,6 +86,8 @@ def main():
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--out", default="research/harness/runs.jsonl")
     ap.add_argument("--dry-config", action="store_true", help="print resolved config and exit")
+    ap.add_argument("--no-grade", action="store_true", dest="no_grade",
+                    help="skip Docker grading; persist patch only. Grade later with grade_patches.py")
     a = ap.parse_args()
 
     conds = tuple(
@@ -116,12 +118,17 @@ def main():
                     t0 = time.perf_counter()
                     try:
                         patch, itok, otok, steps = agent.solve(t.prompt, ctx)
-                        resolved, note = grade(inst, patch)
-                        row.update(resolved=resolved, input_tokens=itok, output_tokens=otok,
-                                   steps=steps, seconds=round(time.perf_counter()-t0, 3), note=note)
+                        if a.no_grade:
+                            resolved, note = None, "ungraded"
+                        else:
+                            resolved, note = grade(inst, patch)
+                        row.update(resolved=resolved, patch=patch, input_tokens=itok,
+                                   output_tokens=otok, steps=steps,
+                                   seconds=round(time.perf_counter()-t0, 3), note=note)
                     except Exception as e:
-                        row.update(resolved=False, input_tokens=0, output_tokens=0, steps=0,
-                                   seconds=round(time.perf_counter()-t0, 3), error=str(e))
+                        row.update(resolved=False, patch="", input_tokens=0, output_tokens=0,
+                                   steps=0, seconds=round(time.perf_counter()-t0, 3),
+                                   error=str(e))
                     fh.write(json.dumps(row) + "\n"); fh.flush()
                     n += 1
     print(f"wrote {n} real runs to {a.out}")

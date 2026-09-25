@@ -65,7 +65,12 @@ def make_agent(spec: str):
     if provider == "local":
         from local_agent import make_local_agent
         if not model:
-            raise ValueError("local agent requires a model path, e.g. "
-                             "local:mlx-community/Qwen2.5-Coder-7B-Instruct-4bit")
+            raise ValueError("local agent requires a model path")
         return make_local_agent(model)
+    if provider == "local-hf":
+        from local_hf_agent import make_local_hf_agent
+        if not model:
+            raise ValueError("local-hf agent requires a model path, e.g. "
+                             "local-hf:google/gemma-2b-it")
+        return make_local_hf_agent(model)
     raise ValueError(f"unknown provider: {provider}")
