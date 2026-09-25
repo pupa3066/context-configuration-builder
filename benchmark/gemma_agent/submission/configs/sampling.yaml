@@ -1,0 +1,6 @@
+# Harness guidance (HARNESS_README section 10.1): bound thinking so edit_file calls are not cut off.
+temperature: 0.0
+seed: 0
+max_output_tokens: 16384
+thinking_config:
+  thinking_budget: 4096
