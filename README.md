@@ -102,7 +102,7 @@ The architecture is **agent-neutral**; only the loading mechanism differs per ag
 
 | Agent | Adapter |
 |---|---|
-| Kiro CLI | `adapters/kiro.sh apply` |
+| Model CLI | `adapters/kiro.sh apply` |
 | Claude Code | `adapters/claude-code.sh apply` |
 | Cursor | `adapters/cursor.sh apply` |
 | Any LLM / generic | `adapters/generic.sh build` (single preamble) |
@@ -114,7 +114,7 @@ The architecture is **agent-neutral**; only the loading mechanism differs per ag
 
 See `core/README.md` for the neutral layout and how to add a new agent (~30-line adapter).
 
-### Kiro-native quick start (original path, still supported)
+### Model-native quick start (original path, still supported)
 ```bash
 ./install.sh                 # installs directly into ~/.kiro (steering + skills)
 ```

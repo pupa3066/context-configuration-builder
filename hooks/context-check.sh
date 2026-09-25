@@ -9,7 +9,7 @@
 #
 # Runs from ANY working directory (uses absolute ~/.kiro + ~/Projects paths).
 set -u
-KIRO=~/.kiro
+MODEL=~/.kiro
 PROJ=~/Projects
 warn=0
 notes=""
@@ -21,7 +21,7 @@ add(){ notes="${notes}$1"$'\n'; }
 # If it reappears anywhere in kit FINDINGS or steering, flag it.
 STALE_PATTERN='monotonic.*(0\.025|INT4 erases memorization)|0\.025 . 0\.017 . 0\.000'
 for f in "$PROJ/consistent-context-kit/research/precision_context/FINDINGS.md" \
-         "$KIRO/steering/cross-links.md"; do
+         "$MODEL/steering/cross-links.md"; do
   [ -f "$f" ] || continue
   if grep -Eiq "$STALE_PATTERN" "$f"; then
     add "STALE: overturned single-model memorization claim present in $(basename "$f")  -  6-model run says scale-dominated. Fix before citing."
@@ -30,7 +30,7 @@ for f in "$PROJ/consistent-context-kit/research/precision_context/FINDINGS.md" \
 done
 
 # --- 2. Registry <-> reality: every active repo path should exist ------------------------------
-REG="$KIRO/steering/context-registry.md"
+REG="$MODEL/steering/context-registry.md"
 if [ -f "$REG" ]; then
   while IFS= read -r path; do
     [ -z "$path" ] && continue

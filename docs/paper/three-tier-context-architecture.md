@@ -69,7 +69,7 @@ Retrieval-augmented generation, memory buffers, and project-instruction files ea
 
 The retrieval study contributes to evaluation methodology for code comprehension. Prior lexical-vs-semantic comparisons for code typically hold index size fixed across methods without varying the budget as an independent variable. Our ablation isolates the budget effect and shows it accounts for nearly the entire reported gap, with direct implications for benchmark design.
 
-**Agent-independence.** The architecture is neutral markdown; only the loading mechanism is agent-specific. Thin adapters project the same core onto four agents (Kiro CLI, Claude Code, Cursor, generic preamble) without rewriting context.
+**Agent-independence.** The architecture is neutral markdown; only the loading mechanism is agent-specific. Thin adapters project the same core onto four agent types (three coding agents and a generic preamble) without rewriting context.
 
 **ETH Zurich extension.** Gloaguen et al. (arXiv:2602.11988) show monolithic context files do not improve task success and add >20% cost. Our tiered architecture addresses the cost side of that finding; our Gemma agent-config tests whether selective loading recovers task success at lower cost -- the constructive question their study left open.
 

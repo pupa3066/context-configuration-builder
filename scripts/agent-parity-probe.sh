@@ -1,5 +1,5 @@
 #!/bin/sh
-# agent-parity-probe.sh - ask Kiro and Claude Code the SAME question about their session-start context
+# agent-parity-probe.sh - ask Model and Claude Code the SAME question about their session-start context
 # and print both answers side by side. Each agent must answer from loaded context only (no tools), so the
 # answer reflects what actually reached context, not what is on disk.
 #
@@ -16,7 +16,7 @@ Q="Answer ONLY from context loaded at session start; call no tools. Terse number
 6) Was any session-start output truncated? yes/no."
 strip() { sed 's/\x1b\[[0-9;?]*[a-zA-Z]//g' | grep -v '^[[:space:]]*$' | grep -v 'hooks finished\|WARNING: --trust-tools\|Credits:'; }
 echo "launch dir: $DIR"
-echo "=== Kiro ($(kiro-cli --version 2>/dev/null))"
+echo "=== Model ($(kiro-cli --version 2>/dev/null))"
 ( cd "$DIR" && kiro-cli chat --no-interactive --trust-tools= "$Q" 2>&1 | strip )
 echo "=== Claude Code ($(claude --version 2>/dev/null))"
 ( cd "$DIR" && claude -p "$Q" < /dev/null 2>&1 )

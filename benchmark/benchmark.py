@@ -5,13 +5,13 @@ Uses a real BPE tokenizer (GPT-2 via transformers) for exact token counts,
 not byte estimates.
 
 AGENT-INDEPENDENT: pass --context-root (or CCK_CONTEXT_ROOT env) to point at ANY agent's
-context directory (must contain steering/ and skills/ subdirs). Defaults to ~/.kiro (Kiro),
+context directory (must contain steering/ and skills/ subdirs). Defaults to ~/.kiro (Model),
 but a Claude Code / Cursor / generic user points it at their own root. So the measurement,
 like the core+adapters, is not tied to one agent.
 
 --agent-baseline TOKENS: fixed per-turn overhead the agent always loads (e.g. a system
   prompt that cannot be disabled). Added to both monolithic and tiered totals.
-  Without it: output is CCB-marginal only (correct for Kiro with override on; understates
+  Without it: output is CCB-marginal only (correct for Model with override on; understates
   total context cost for agents like Claude Code that have no disable knob).
   With it: output adds ccb_marginal_reduction (CCB-controlled savings, comparable across
   agents) and total_reduction (honest total including the fixed overhead).
@@ -103,7 +103,7 @@ if BASELINE > 0:
     # that cannot disable their system prompt, e.g. Claude Code).
     result["agent_baseline_tokens"] = BASELINE
     result["note_baseline"] = (
-        "[MEASURED] ccb_marginal excludes agent baseline (comparable to Kiro with override on). "
+        "[MEASURED] ccb_marginal excludes agent baseline (comparable to Model with override on). "
         "total includes it (honest total-context figure for agents with no disable knob)."
     )
     mn = result["measured_N"]

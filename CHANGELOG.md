@@ -4,16 +4,16 @@ All notable changes to context-config-builder are documented here.
 Format based on Keep a Changelog; this project uses semantic versioning.
 
 ## Unreleased (feat/agent-parity)
-- Agent parity between Kiro and Claude Code, verified each session by hooks/ccb-parity-check.sh.
+- Agent parity between Model and Claude Code, verified each session by hooks/ccb-parity-check.sh.
 - hooks/ccb-project-context.sh: project steering index (8,723 to 140 GPT-2 tokens at session start),
   per-project files on demand, repository steering mirrored for Claude Code via CLAUDE.local.md.
 - ccb-bootstrap.sh: sets chat.defaultAgent=default and chat.agentEngine=v1; migrates the direct loader hook.
-- adapters/claude-code.sh wire: live wiring to the Kiro install (no copies).
+- adapters/claude-code.sh wire: live wiring to the Model install (no copies).
 - scripts/agent-parity-probe.sh and research/AGENT_PARITY.md.
 
 ## [Unreleased] - 2026-09-18
 ### Added
-- Self-installing Kiro bootstrap (`ccb-bootstrap.sh`): one idempotent, self-verifying installer that
+- Self-installing Model bootstrap (`ccb-bootstrap.sh`): one idempotent, self-verifying installer that
   wires automatic session-start activation. It installs the hook scripts, copies always-on steering
   (non-destructive), sets `chat.disableInheritingDefaultResources=true` in `settings/cli.json`, declares
   the CCB `resources[]` and registers the `agentSpawn` hooks in `agents/default.json` (integrity check
@@ -40,14 +40,14 @@ Format based on Keep a Changelog; this project uses semantic versioning.
   context root via argument or `CCK_CONTEXT_ROOT` (default retained), so any agent's deployment can be
   measured, not only the default path.
 - De-branded documentation: prose, examples, and marketing refer to a generic CLI agent rather than one
-  specific agent; the four adapters (including the Kiro adapter) remain as the agent-independence feature,
+  specific agent; the four adapters (including the Model adapter) remain as the agent-independence feature,
   and research model names are unchanged.
 
 ## [0.2.0] - 2026-09-04
 ### Added
 - `scripts/rules-builder.sh`: manage the rules/debug list as data (list/add/remove/check).
   Priority rules (R0..Rn) read first; R0 protected; custom rules use stable [Cn] IDs.
-- Agent-independent core + adapters (Kiro, Claude Code, Cursor, generic).
+- Agent-independent core + adapters (Model, Claude Code, Cursor, generic).
 
 ## [0.1.0] - 2026-09-04
 ### Added
