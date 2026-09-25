@@ -1,0 +1,46 @@
+{
+ "N": 90,
+ "k": 6,
+ "max_chunks": 1000,
+ "metrics_explained": {
+  "m1": "substring anywhere (favors lexical)",
+  "m2": "def/class defline (stricter)",
+  "m3": "substring OR semantic-credit cos>=0.72 (favors semantic)"
+ },
+ "arms": {
+  "bm25": {
+   "m1_substring": [
+    0.9,
+    0.8444,
+    0.9556
+   ],
+   "m2_defline": [
+    0.8556,
+    0.7889,
+    0.9222
+   ],
+   "m3_sem_credit": [
+    0.9778,
+    0.9444,
+    1.0
+   ]
+  },
+  "semantic": {
+   "m1_substring": [
+    0.5444,
+    0.4444,
+    0.6333
+   ],
+   "m2_defline": [
+    0.4333,
+    0.3333,
+    0.5333
+   ],
+   "m3_sem_credit": [
+    0.8111,
+    0.7333,
+    0.8889
+   ]
+  }
+ }
+}
