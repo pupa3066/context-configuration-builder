@@ -24,7 +24,7 @@ This is plain markdown  -  no agent-specific syntax. The three tiers and the reg
 
 | Agent | Always-on tier | On-demand tier | Adapter |
 |---|---|---|---|
-| Kiro CLI | `~/.kiro/steering/*.md` | `~/.kiro/skills/*/SKILL.md` | `adapters/kiro.sh` |
+| Model CLI | `~/.kiro/steering/*.md` | `~/.kiro/skills/*/SKILL.md` | `adapters/kiro.sh` |
 | Claude Code | `CLAUDE.md` / project memory | referenced files loaded on demand | `adapters/claude-code.sh` |
 | Cursor | `.cursor/rules/*.mdc` | referenced docs | `adapters/cursor.sh` |
 | Generic / any LLM | concatenated preamble file | `@include` on request | `adapters/generic.sh` |
@@ -33,7 +33,7 @@ An adapter is a small script that **projects** the neutral core into the target 
 
 ## Why this matters
 
-- **Portable:** your context isn't locked to one vendor. Move between Kiro, Claude Code, Cursor without rewriting.
+- **Portable:** your context isn't locked to one vendor. Move between Model, Claude Code, Cursor without rewriting.
 - **Same cost model:** always-on stays tiny; per-project detail loads on demand; the registry gates activation  -  regardless of agent.
 - **Future-proof:** a new agent = a new ~30-line adapter, not a rewrite.
 
@@ -41,7 +41,7 @@ An adapter is a small script that **projects** the neutral core into the target 
 
 ```sh
 ./install.sh                      # scaffolds ~/.context-config-builder (neutral)
-./adapters/kiro.sh apply          # project onto Kiro CLI
+./adapters/kiro.sh apply          # project onto Model CLI
 # or
 ./adapters/generic.sh build       # produce a single preamble.md for any LLM
 ```

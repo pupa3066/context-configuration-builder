@@ -10,7 +10,9 @@ Per-turn context tokens for a live 4-active-project deployment, comparing:
 - **Tiered**: always-on tier (rules + indexes) + on-demand skills loaded only when a task touches a project.
 
 Tokenizer: **real GPT-2 BPE** (not a bytes/token estimate). Reproduce: run the tokenizer over
-`~/.kiro/steering/*.md` (always-on) and `~/.kiro/skills/*/SKILL.md` (per-project bodies + metadata).
+`<agent-config-dir>/steering/*.md` (always-on) and `<agent-config-dir>/skills/*/SKILL.md` (per-project bodies + metadata).
+
+Environment: agent config directory = ~/.kiro (Kiro CLI).
 
 ## Measured (N=4, real BPE)
 | Metric | Tokens/turn |

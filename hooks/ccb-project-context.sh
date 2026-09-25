@@ -1,14 +1,14 @@
 #!/bin/sh
-# ccb-project-context.sh - agent-neutral (Kiro + Claude Code) project context, rule 18b parity.
+# ccb-project-context.sh - agent-neutral (Model + Claude Code) project context, rule 18b parity.
 #
-# 1. INDEX: wraps project-steering-loader.sh. Both Kiro and Claude Code truncate large session-start
+# 1. INDEX: wraps project-steering-loader.sh. Both Model and Claude Code truncate large session-start
 #    hook output to a short preview, so the full per-project dump silently never reached context.
 #    The loader output is saved to one file per project and only a short index is printed.
-# 2. REPO STEERING: Kiro auto-loads the launch repo's .kiro/steering/*.md in full; Claude Code does
+# 2. REPO STEERING: Model auto-loads the launch repo's .kiro/steering/*.md in full; Claude Code does
 #    not. For every active registry repo with .kiro/steering, keep a CLAUDE.local.md that @imports
 #    those files (live, not copied), so Claude Code loads the same repo steering in full from the
 #    same repo. CLAUDE.local.md is excluded via .git/info/exclude (local only, never committed).
-#    Files marked inclusion: manual/fileMatch are skipped, as Kiro and the loader skip them.
+#    Files marked inclusion: manual/fileMatch are skipped, as Model and the loader skip them.
 set -u
 K="$HOME/.kiro"
 OUT="$K/context/projects"
@@ -56,5 +56,22 @@ if [ -s "$OUT/.index" ]; then
 else
   echo "[ccb-project-context] no project steering emitted for this launch dir."
 fi
-[ -n "$root" ] && [ -d "$root/.kiro/steering" ] && echo "[ccb-project-context] launch repo steering loads in full natively (Kiro: workspace steering; Claude Code: CLAUDE.local.md)."
+[ -n "$root" ] && [ -d "$root/.kiro/steering" ] && echo "[ccb-project-context] launch repo steering loads in full natively (Model: workspace steering; Claude Code: CLAUDE.local.md)."
+# --- 3. project tasks + advisor recommendations (rules 6c/18c): read when opening a project ---
+NOTES="$K/hooks/agent-notes.sh"
+if [ -x "$NOTES" ]; then
+  if [ -n "$root" ] && [ -d "$root/.agent" ]; then
+    items=$("$NOTES" show "$root" 2>/dev/null)
+    echo "[agent-notes] $(basename "$root") open tasks/recommendations (read $root/.agent/ before working):"
+    [ -n "$items" ] && echo "$items" || echo "  none open"
+  elif [ -z "$root" ] && [ -f "$REG" ]; then
+    grep -E '^\| *\[x\]' "$REG" | while IFS='|' read -r _ mk nm og cx rp rest; do
+      p=$(printf '%s' "$rp" | sed 's/^ *//;s/ *$//'); [ -n "$p" ] || continue
+      case "$p" in /*) full="$p";; Projects/*) full="$HOME/$p";; *) full="$HOME/Projects/$p";; esac
+      [ -d "$full/.agent" ] || continue
+      n=$("$NOTES" show "$full" 2>/dev/null | wc -l | tr -d ' ')
+      [ "$n" -gt 0 ] && echo "[agent-notes] $(basename "$full"): $n open (read $full/.agent/ when a task touches it)"
+    done
+  fi
+fi
 exit 0

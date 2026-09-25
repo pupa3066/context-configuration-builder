@@ -33,7 +33,7 @@ done
 cat <<EOF
 
 Core installed at $CORE. Next: project it onto your agent:
-  ./adapters/kiro.sh apply             # Kiro CLI
+  ./adapters/kiro.sh apply             # Model CLI
   ./adapters/claude-code.sh apply      # Claude Code (writes ./CLAUDE.md)
   ./adapters/cursor.sh apply           # Cursor (.cursor/rules)
   ./adapters/generic.sh build          # any LLM (single preamble.md)

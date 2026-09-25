@@ -9,7 +9,7 @@ Token-accurate comparison of **tiered** context (this tool) vs. a **monolithic**
 - **Monolithic per-turn** = always-on + every project body (all loaded, always).
 - **Tiered per-turn** = always-on + every project's metadata + one active project body.
 
-Run: `python benchmark.py [steering_dir] [skills_dir]` (defaults to a Kiro deployment).
+Run: `python benchmark.py [steering_dir] [skills_dir]` (defaults to the agent config directory of a live deployment).
 
 ## Results (measured, this deployment)
 | N projects | Monolithic (tok) | Tiered (tok) | Reduction |
@@ -24,7 +24,7 @@ Run: `python benchmark.py [steering_dir] [skills_dir]` (defaults to a Kiro deplo
 Raw data: `results.json`.
 
 ## Does this exist elsewhere?
-The *tiered-injection technique* is validated independently (ETH Zurich study: 60 - 80% context reduction vs monolithic). Token-optimization stacks exist for specific agents (e.g. Claude Code). This tool's distinct contribution is packaging it as a **portable, agent-independent, registry-governed configuration builder** (projects + rules as editable lists) with a **cross-project provenance graph**  -  not the tiering idea alone. Our measured numbers corroborate the published range.
+The *tiered-injection technique* is validated independently (ETH Zurich study: 60 - 80% context reduction vs monolithic). Token-optimization stacks exist for specific coding agents. This tool's distinct contribution is packaging it as a **portable, agent-independent, registry-governed configuration builder** (projects + rules as editable lists) with a **cross-project provenance graph**  -  not the tiering idea alone. Our measured numbers corroborate the published range.
 
 ## Honest notes
 - N=4 is directly measured; larger N is a closed-form projection from measured per-project averages.

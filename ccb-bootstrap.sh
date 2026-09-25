@@ -1,6 +1,6 @@
 #!/bin/sh
 # ccb-bootstrap.sh - one-shot, idempotent, self-verifying installer for the
-# Consistent Context Kit (CCB) on Kiro CLI.
+# Consistent Context Kit (CCB) on Model CLI.
 #
 # WHAT IT DOES (so CCB "does the default loading, override, and integrity check
 # on its own for every new session"):
@@ -8,7 +8,7 @@
 #   2. STEERING  copy the always-on steering templates into $KIRO_HOME/steering
 #                (non-destructive: never clobbers steering you already edited)
 #   3. OVERRIDE  set chat.disableInheritingDefaultResources=true in settings/cli.json
-#                (turns kiro's default resource inheritance OFF -> CCB is source of truth)
+#                (turns model's default resource inheritance OFF -> CCB is source of truth)
 #   4. WIRE      in agents/default.json: declare the CCB resources[] explicitly and
 #                register the agentSpawn hooks (integrity-check FIRST, then loaders).
 #                A timestamped backup is written before any edit.
@@ -22,7 +22,7 @@
 # Writes only under $KIRO_HOME.
 #
 # Usage: ./ccb-bootstrap.sh [--dry-run] [--help]
-#   KIRO_HOME=/custom/path ./ccb-bootstrap.sh     # target a different kiro home (e.g. a test dir)
+#   KIRO_HOME=/custom/path ./ccb-bootstrap.sh     # target a different model home (e.g. a test dir)
 set -eu
 
 KIRO_HOME="${KIRO_HOME:-${HOME}/.kiro}"
@@ -33,11 +33,11 @@ DRY=0
 
 usage() {
   cat <<EOF
-ccb-bootstrap - self-installing CCB for Kiro CLI (override + resources + hooks + integrity check)
+ccb-bootstrap - self-installing CCB for Model CLI (override + resources + hooks + integrity check)
 
 Usage: ./ccb-bootstrap.sh [--dry-run] [--help]
 Environment:
-  KIRO_HOME   Target kiro home (default: \$HOME/.kiro)
+  KIRO_HOME   Target model home (default: \$HOME/.kiro)
 EOF
 }
 
@@ -67,7 +67,7 @@ echo "ccb-bootstrap -> $KIRO_HOME$( [ "$DRY" -eq 1 ] && echo '  (dry-run)')"
 # ---------------------------------------------------------------------------
 echo "[1/5] hooks"
 run mkdir -p "$KIRO_HOME/hooks"
-for h in ccb-integrity-check.sh project-steering-loader.sh steering-loader-guard.sh context-check.sh ccb-project-context.sh ccb-parity-check.sh; do
+for h in ccb-integrity-check.sh project-steering-loader.sh steering-loader-guard.sh context-check.sh ccb-project-context.sh ccb-parity-check.sh agent-notes.sh; do
   if [ -f "$HOOK_SRC/$h" ]; then
     run cp "$HOOK_SRC/$h" "$KIRO_HOME/hooks/$h"
     run chmod +x "$KIRO_HOME/hooks/$h"
@@ -130,9 +130,9 @@ DESIRED_RES = [
 # integrity check MUST run first; loaders after. context-check optional.
 DESIRED_HOOKS = [
     "~/.kiro/hooks/ccb-integrity-check.sh",
-    "~/.kiro/hooks/steering-loader-guard.sh",   # Kiro-only config self-heal, prints nothing
+    "~/.kiro/hooks/steering-loader-guard.sh",   # Model-only config self-heal, prints nothing
     "~/.kiro/hooks/ccb-project-context.sh",     # wraps project-steering-loader: index + repo steering
-    "~/.kiro/hooks/ccb-parity-check.sh",        # Kiro <-> Claude Code parity report
+    "~/.kiro/hooks/ccb-parity-check.sh",        # Model <-> Claude Code parity report
 ]
 # migration: the loader used to run as its own hook; its full dump was truncated and double-loaded.
 LEGACY_HOOKS = ["~/.kiro/hooks/project-steering-loader.sh"]
@@ -205,5 +205,5 @@ else
 fi
 
 echo
-echo "Done. Start a new Kiro session; CCB loads + self-checks automatically."
+echo "Done. Start a new Model session; CCB loads + self-checks automatically."
 echo "Manual re-check any time:  sh $KIRO_HOME/hooks/ccb-integrity-check.sh"

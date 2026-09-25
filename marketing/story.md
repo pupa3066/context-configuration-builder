@@ -25,7 +25,7 @@ I tested it honestly, fresh agent session, no prior chat, tools off. I asked it 
 
 ## What it became
 
-I extracted the mechanism from my personal data, made it work on any agent (Kiro, Claude Code, Cursor, or a plain LLM preamble), and wrote it up. The same system that untangled my own work is now something anyone juggling many projects can install in one command.
+I extracted the mechanism from my personal data, made it work on any coding agent (or a plain LLM preamble), and wrote it up. The same system that untangled my own work is now something anyone juggling many projects can install in one command.
 
 I built persistent memory for my AI because I needed it. It changed how I work. That's the whole pitch.
 
@@ -41,20 +41,20 @@ So the honest headline is narrower and stronger than the pilot suggested: keywor
 
 ## Two agents, one context (2026-09-25 update)
 
-Why: I run two coding agents, Kiro and Claude Code, over the same projects. The kit promises that one
+Why: I run two coding agents over the same projects. The kit promises that one
 set of rules and project notes reaches any agent, so I asked the direct question: do both agents
 actually see the same thing when a session starts?
 
 What: I asked each agent, with its tools switched off, to quote back what it had been given at startup.
-The answer was no, in ways the kit's own health check had missed. A plain Kiro session was running the
-built-in agent, so none of the kit's startup scripts ran at all; two of Kiro's three engines skipped
+The answer was no, in ways the kit's own health check had missed. A plain session of the first agent was running
+its built-in profile, so none of the kit's startup scripts ran at all; two of its three engines skipped
 those scripts even with the right agent; and the full block of project notes (about 8,700 tokens) was
 cut short in both agents, so two of three projects never arrived. The health check still said PASS,
 because it checked that the loader was installed, not that its output was delivered.
 
 How: the fix follows the kit's central idea. Instead of pushing every project's notes into every
 session, startup now shows a 140-token index and each agent opens a project's notes when a task needs
-them. Claude Code now reads the same files Kiro reads, rather than copies, and a new parity check runs
+them. The second agent now reads the same files the first one reads, rather than copies, and a new parity check runs
 in both agents at every start and prints the same report, so a mismatch is visible immediately. The full
 record, with token counts and the probe anyone can rerun, is in research/AGENT_PARITY.md.
 
