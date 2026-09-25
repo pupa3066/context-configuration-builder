@@ -51,6 +51,10 @@ def main():
                          "Try BAAI/bge-base-en-v1.5 or jinaai/jina-embeddings-v2-base-en to test "
                          "whether the lexical>semantic finding survives a stronger/larger embedder.")
     ap.add_argument("--out",default="conceptual_fair_results.json")
+    ap.add_argument("--sem-threshold",type=float,default=0.72,dest="sem_threshold",
+                    help="cosine cutoff for the m3 semantic-credit hit (default 0.72). Sweep "
+                         "0.65 to 0.80 to show the lexical-vs-semantic conclusion is stable "
+                         "and not driven by this threshold choice.")
     a=ap.parse_args()
     if not sem_available():
         print("fastembed unavailable"); sys.exit(1)
@@ -87,14 +91,14 @@ def main():
             if s1: s3=True
             else:
                 ce=list(model.embed(ch)); fe=fact_emb[fact]
-                s3=any(_cos(fe,c)>=0.72 for c in ce)   # 0.72 = strong semantic match threshold
+                s3=any(_cos(fe,c)>=a.sem_threshold for c in ce)   # m3 semantic-credit cutoff (--sem-threshold)
             h1.append(int(s1));h2.append(int(s2));h3.append(int(s3))
         return h1,h2,h3
 
-    out={"N":len(Q),"k":a.k,"max_chunks":a.max_chunks,"embed_model":a.embed_model,
+    out={"N":len(Q),"k":a.k,"max_chunks":a.max_chunks,"embed_model":a.embed_model,"sem_threshold":a.sem_threshold,
          "metrics_explained":{"m1":"substring anywhere (favors lexical)",
                               "m2":"def/class defline (stricter)",
-                              "m3":"substring OR semantic-credit cos>=0.72 (favors semantic)"},
+                              "m3":f"substring OR semantic-credit cos>={a.sem_threshold} (favors semantic)"},
          "arms":{}}
     for arm in ("bm25","semantic"):
         h1,h2,h3=score_all(arm)
