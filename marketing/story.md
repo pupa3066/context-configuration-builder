@@ -29,6 +29,16 @@ I extracted the mechanism from my personal data, made it work on any agent (Kiro
 
 I built persistent memory for my AI because I needed it. It changed how I work. That's the whole pitch.
 
+## What the measurements showed (2026-09-25 update)
+
+The kit made a specific, testable claim: for code, keyword retrieval surfaces the right chunk better than embedding similarity, because identifiers carry the signal. I tested that, then tried hard to break my own result.
+
+A first pass compared BM25 (keyword) against a compact embedding model on conceptual questions mined from code. Keyword retrieval won by a wide margin. But a fair critic would note the scoring favored keywords: the answer was an identifier string, and keyword search matches strings. So I re-scored under three metrics, including one deliberately built to favor the embedding model (it counts a hit when a retrieved chunk is merely close in meaning, no exact token needed).
+
+At a small pilot the keyword advantage looked large across all three metrics. When I scaled up (more questions, three repositories, a larger index budget), the picture changed honestly: the embedding model recovered a lot of ground, gaining about twenty points on the loosest metric. Reading across the two scales, much of the pilot's large gap turned out to be an artifact of an index cap that had starved the embedding arm, not a fundamental weakness. The one place keyword retrieval kept a clean, repeatable lead was the strictest metric: surfacing the actual definition line, where the symbol is defined and where an editing agent needs to land.
+
+So the honest headline is narrower and stronger than the pilot suggested: keyword retrieval holds a modest, dependable edge for finding where code is defined, once you control for how much of the codebase each method is allowed to see. Whether that retrieval edge translates into an agent fixing more bugs is a separate question, measured by a separate experiment that is still to come. These numbers describe retrieval, not task success.
+
 ## What I learned by measuring it
 
 Once the tiering worked, a sharper question followed: when an agent needs a fact from a big codebase,

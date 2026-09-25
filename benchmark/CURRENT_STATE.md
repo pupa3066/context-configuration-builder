@@ -61,3 +61,38 @@ for an embedding model, so it misses exact lines a keyword match finds.
 Kaggle uncapped three-repo confirmation: rerun the semantic versus lexical comparison without the
 1200-chunk cap, on three repos, to confirm whether lexical still wins once the semantic index is
 uncapped.
+
+## Update 2026-09-25: fair-metric re-test and the capping artifact
+
+Added benchmark/conceptual_fair_metrics.py to address the metric-bias caveat without changing any
+committed value. It scores three metrics: m1 substring anywhere (favors lexical); m2 def/class
+definition line (stricter); m3 substring or cosine >= 0.72 semantic-credit (favors semantic).
+
+Fair-metric results (answerable proxy, not task success):
+
+| Run | N | repos | cap | metric | BM25 [95% CI] | semantic [95% CI] |
+|-----|---|-------|-----|--------|---------------|-------------------|
+| pilot | 90 | 2 | 1000 | m1 | 0.90 [0.84, 0.96] | 0.54 [0.44, 0.63] |
+| pilot | 90 | 2 | 1000 | m2 | 0.86 [0.79, 0.92] | 0.43 [0.33, 0.53] |
+| pilot | 90 | 2 | 1000 | m3 | 0.98 [0.94, 1.00] | 0.81 [0.73, 0.89] |
+| scaled | 240 | 3 | 3000 | m1 | 0.83 [0.78, 0.88] | 0.75 [0.70, 0.81] |
+| scaled | 240 | 3 | 3000 | m2 | 0.80 [0.74, 0.85] | 0.66 [0.60, 0.72] |
+| scaled | 240 | 3 | 3000 | m3 | 0.93 [0.90, 0.96] | 0.88 [0.85, 0.92] |
+
+pilot source: benchmark/CONCEPTUAL_FAIR_RESULTS.json (committed).
+scaled source: Kaggle run output /kaggle/working/CONCEPTUAL_FAIR_KAGGLE.json (not committed here).
+
+Reading: semantic gained about 20 points on m1 (0.54 to 0.75) as the cap rose from 1000 to 3000 and
+N grew; BM25 (uncapped by construction) barely moved. The pilot gap was partly an asymmetric
+index-capping artifact that starved the semantic arm, not solely retriever quality. At N=240 the m1
+and m3 CIs overlap; only m2 (definition-line) keeps a clean non-overlapping lexical lead. m2 is also
+the most task-relevant metric (find where a symbol is defined, which is where an editing agent acts).
+
+Corrected honest claim: lexical holds a modest, metric-dependent edge, robust on definition-line
+retrieval, once index budget is controlled. Still a grounding-retention proxy, not task success.
+
+Also added benchmark/cck_context.py: the tiered-context assembly as one callable function, portable
+Tier-1 header from core/templates/always-on (not personal steering). Assembly only; no model, no grading.
+
+Open re-tests (planned): cap sweep at fixed embedder; embedder sweep (bge-small, bge-base, jina-base)
+at fixed uncapped index, to decompose cap vs embedder vs N; m3 cosine-threshold sweep 0.65 to 0.80.
