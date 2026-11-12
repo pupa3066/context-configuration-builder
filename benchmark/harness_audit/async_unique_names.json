@@ -1,0 +1,29 @@
+[
+ {
+  "repo": "fastapi/fastapi",
+  "async_only_names": 375,
+  "found_in_graph": 0,
+  "examples_found": [],
+  "examples_missing": [
+   "__aenter__",
+   "__aexit__",
+   "_async_stream_jsonl",
+   "_async_stream_raw",
+   "_extract_form_body",
+   "_keepalive_inserter",
+   "_producer",
+   "_run_asgi_and_cancel"
+  ]
+ },
+ {
+  "repo": "encode/httpx",
+  "async_only_names": 3,
+  "found_in_graph": 0,
+  "examples_found": [],
+  "examples_missing": [
+   "__aenter__",
+   "__aexit__",
+   "callback"
+  ]
+ }
+]

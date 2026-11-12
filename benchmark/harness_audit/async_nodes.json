@@ -1,0 +1,38 @@
+[
+ {
+  "repo": "fastapi/fastapi",
+  "commit": "ee22a4b",
+  "tasks_for_repo": 67,
+  "source_sync_defs": 3652,
+  "graph_sync_def_nodes": 3581,
+  "source_async_defs": 914,
+  "graph_async_def_nodes": 0
+ },
+ {
+  "repo": "psf/requests",
+  "commit": "6f205ff",
+  "tasks_for_repo": 13,
+  "source_sync_defs": 707,
+  "graph_sync_def_nodes": 668,
+  "source_async_defs": 0,
+  "graph_async_def_nodes": 0
+ },
+ {
+  "repo": "Textualize/rich",
+  "commit": "fc41075",
+  "tasks_for_repo": 48,
+  "source_sync_defs": 1817,
+  "graph_sync_def_nodes": 1768,
+  "source_async_defs": 1,
+  "graph_async_def_nodes": 0
+ },
+ {
+  "repo": "encode/httpx",
+  "commit": "4acf5c2",
+  "tasks_for_repo": 1,
+  "source_sync_defs": 662,
+  "graph_sync_def_nodes": 662,
+  "source_async_defs": 100,
+  "graph_async_def_nodes": 0
+ }
+]

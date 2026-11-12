@@ -1,0 +1,46 @@
+[
+ {
+  "repo": "fastapi/fastapi",
+  "commit": "ee22a4b",
+  "graph_nodes": 4263,
+  "sync_defs": 590,
+  "async_defs": 475,
+  "sync_in_graph": 1.0,
+  "async_in_graph": 0.602,
+  "sync_in_embeddings": null,
+  "async_in_embeddings": null
+ },
+ {
+  "repo": "psf/requests",
+  "commit": "6f205ff",
+  "graph_nodes": 759,
+  "sync_defs": 267,
+  "async_defs": 0,
+  "sync_in_graph": 1.0,
+  "async_in_graph": null,
+  "sync_in_embeddings": null,
+  "async_in_embeddings": null
+ },
+ {
+  "repo": "Textualize/rich",
+  "commit": "fc41075",
+  "graph_nodes": 2015,
+  "sync_defs": 982,
+  "async_defs": 0,
+  "sync_in_graph": 1.0,
+  "async_in_graph": null,
+  "sync_in_embeddings": null,
+  "async_in_embeddings": null
+ },
+ {
+  "repo": "encode/httpx",
+  "commit": "4acf5c2",
+  "graph_nodes": 740,
+  "sync_defs": 521,
+  "async_defs": 100,
+  "sync_in_graph": 1.0,
+  "async_in_graph": 0.83,
+  "sync_in_embeddings": null,
+  "async_in_embeddings": null
+ }
+]
