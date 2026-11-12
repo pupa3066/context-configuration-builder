@@ -17,7 +17,9 @@ import zipfile
 
 import yaml
 
-MODEL = "gemma-4-31b-it-qat-w4a16-ct"
+# Variants the organizers support (discussion "New Gemma 4 Models Available"); all agents must share one.
+MODELS = ("gemma-4-31b-it-qat-w4a16-ct", "gemma-4-12b-it-qat-w4a16-ct",
+          "gemma-4-e4b-it-qat-w4a16-ct", "gemma-4-e2b-it-qat-w4a16-ct")
 TOOLS = {"run_command", "submit_patch", "get_status", "read_file", "edit_file", "write_file",
          "get_code_neighbors", "search_similar_code", "get_code_subgraph"}
 ROOTS = ("agent.yaml", "agent.yml", "root_agent.yaml", "root_agent.yml")
@@ -90,8 +92,8 @@ def check_agent(root, cfg, where, seen):
     if not cfg.get("name"):
         err(f"{where}: missing name")
     if cls == "LlmAgent":
-        if cfg.get("model") != MODEL:
-            err(f"{where}: model must be {MODEL} (got {cfg.get('model')!r})")
+        if cfg.get("model") not in MODELS:
+            err(f"{where}: model must be one of {MODELS} (got {cfg.get('model')!r})")
         for t in cfg.get("tools") or []:
             if isinstance(t, str):
                 if t not in TOOLS:
