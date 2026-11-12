@@ -1,0 +1,48 @@
+{
+ "N": 240,
+ "k": 6,
+ "max_chunks": 100000,
+ "embed_model": "BAAI/bge-small-en-v1.5",
+ "sem_threshold": 0.65,
+ "metrics_explained": {
+  "m1": "substring anywhere (favors lexical)",
+  "m2": "def/class defline (stricter)",
+  "m3": "substring OR semantic-credit cos>=0.65 (favors semantic)"
+ },
+ "arms": {
+  "bm25": {
+   "m1_substring": [
+    0.8542,
+    0.8083,
+    0.9
+   ],
+   "m2_defline": [
+    0.8292,
+    0.7792,
+    0.875
+   ],
+   "m3_sem_credit": [
+    0.9792,
+    0.9583,
+    0.9958
+   ]
+  },
+  "semantic": {
+   "m1_substring": [
+    0.8917,
+    0.85,
+    0.9292
+   ],
+   "m2_defline": [
+    0.8,
+    0.7417,
+    0.85
+   ],
+   "m3_sem_credit": [
+    0.9792,
+    0.9625,
+    0.9958
+   ]
+  }
+ }
+}
