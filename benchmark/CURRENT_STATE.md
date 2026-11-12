@@ -182,7 +182,7 @@ Embedder window probe (bge-small): a change after 128 or 400 filler words alters
 Truncation isolated (400-word chunks, identical questions and returned text; dense scores each chunk by its
 best window of at most 480 tokens; BM25 hits identical across the two files): dense m1 0.663 to 0.888, gain
 0.225 [0.171, 0.279], 56 questions fixed and 2 broken, McNemar p = 1.2e-14; m2 0.504 to 0.829, 81 fixed and 3
-broken, p = 1.0e-20; m3 0.804 to 0.917, p = 4.6e-7. Windowing removes 67%, 66% and 58% of the BM25 gap on
+broken, p = 1.0e-20; m3 0.804 to 0.917, p = 4.6e-7. Windowing removes 67%, 66% and 57% of the BM25 gap on
 m1, m2 and m3.
 
 Scope and open items:
