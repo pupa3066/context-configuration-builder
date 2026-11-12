@@ -55,6 +55,65 @@ class FastSem(SemanticRetriever):
         return [self.chunks[i] for i in idx]
 
 
+class WindowSem:
+    """Dense retriever that sees the WHOLE chunk: each chunk is split into token windows that fit the
+    embedder (exact character spans from the tokenizer's offset mapping), every window is embedded,
+    and a chunk scores the max cosine over its windows. Returned items are the original full chunks,
+    so the text handed to the metrics is identical to the whole-chunk condition; only truncation is
+    removed. The cap is applied exactly as SemanticRetriever does (even sample over the chunk list)."""
+    def __init__(self, chunks, model_name, max_chunks, tokenizer, win=480, stride=400, batch=64):
+        from fastembed import TextEmbedding
+        if len(chunks) > max_chunks:
+            step = len(chunks) / max_chunks
+            chunks = [chunks[int(i * step)] for i in range(max_chunks)]
+        self.chunks = chunks; self.n_indexed = len(chunks)
+        self._model = TextEmbedding(model_name)
+        texts, owner = [], []
+        for ci, c in enumerate(chunks):
+            off = tokenizer(c, add_special_tokens=False, return_offsets_mapping=True)["offset_mapping"]
+            if len(off) <= win:
+                texts.append(c); owner.append(ci); continue
+            s = 0
+            while s < len(off):
+                e = min(s + win, len(off))
+                texts.append(c[off[s][0]:off[e - 1][1]]); owner.append(ci)
+                if e == len(off): break
+                s += stride
+        emb = []
+        for i in range(0, len(texts), batch):
+            emb.extend(self._model.embed(texts[i:i + batch]))
+        W = np.asarray(emb, dtype=np.float32)
+        self._Wn = W / np.maximum(np.linalg.norm(W, axis=1, keepdims=True), 1e-9)
+        self._owner = np.asarray(owner)
+        self.n_windows = len(texts)
+
+    def topk(self, query, k):
+        if not len(self.chunks):
+            return []
+        q = np.asarray(list(self._model.embed([query]))[0], dtype=np.float32)
+        q = q / max(float(np.linalg.norm(q)), 1e-9)
+        sims = self._Wn @ q
+        best = np.full(len(self.chunks), -np.inf, dtype=np.float32)
+        np.maximum.at(best, self._owner, sims)
+        idx = np.argsort(-best, kind="stable")[:k]
+        return [self.chunks[i] for i in idx]
+
+
+def window_probe(model_name, positions=(128, 400, 600, 1200, 3000, 7000)):
+    """Measures the embedder's effective input window: two texts share N filler tokens and differ
+    only in the tail. If their embeddings are (near) identical, the model never saw the tail."""
+    from fastembed import TextEmbedding
+    m = TextEmbedding(model_name)
+    tails = (" def parse_config(path): return load(path)", " class TokenBucket: rate limiter for sockets")
+    out = {}
+    for n in positions:
+        filler = " ".join(["value"] * n)
+        a, b = list(m.embed([filler + tails[0], filler + tails[1]]))
+        out[str(n)] = round(float(_cos(a, b)), 6)
+    seen = [int(n) for n, c in out.items() if c < 0.9999]
+    return {"cosine_by_filler_words": out, "tail_seen_up_to_filler_words": max(seen) if seen else 0}
+
+
 def git_head(path):
     try:
         return subprocess.run(["git", "-C", path, "rev-parse", "HEAD"], capture_output=True,
@@ -107,6 +166,12 @@ def main():
     ap.add_argument("--embed-model", default="BAAI/bge-small-en-v1.5")
     ap.add_argument("--sem-threshold", type=float, default=0.72)
     ap.add_argument("--out-dir", default=".")
+    ap.add_argument("--sem-mode", choices=["whole", "maxwin"], default="whole",
+                    help="whole = embed each chunk as one input (default, committed behavior); "
+                         "maxwin = embed token windows and score a chunk by its best window")
+    ap.add_argument("--token-limit", type=int, default=512,
+                    help="documented input limit of the embedder, used for chunk length stats")
+    ap.add_argument("--tag", default="", help="extra label in the output file name")
     a = ap.parse_args()
     if not sem_available():
         print("fastembed unavailable"); sys.exit(1)
@@ -123,7 +188,13 @@ def main():
     chunks = {n: CHUNKERS[a.chunker](corpus[n]) for n in corpus}
     n_chunks = {n: len(c) for n, c in chunks.items()}
     print("chunks per repo:", n_chunks, flush=True)
-    tstats = token_stats(chunks, a.embed_model)
+    tstats = token_stats(chunks, a.embed_model, limit=a.token_limit)
+    probe = window_probe(a.embed_model)
+    print("embedder window probe:", probe, flush=True)
+    wtok = None
+    if a.sem_mode == "maxwin":
+        from transformers import AutoTokenizer
+        wtok = AutoTokenizer.from_pretrained(a.embed_model)
     print("chunk token stats vs embedder limit:", tstats, flush=True)
     bm25 = {n: BM25(chunks[n]) for n in corpus}
     prov = {"repo_heads": {n: git_head(p) for n, p in repos.items()},
@@ -131,7 +202,11 @@ def main():
 
     for cap in a.caps:
         print(f"\n=== chunker={a.chunker} cap={cap}", flush=True)
-        sem = {n: FastSem(chunks[n], model_name=a.embed_model, max_chunks=cap) for n in corpus}
+        if a.sem_mode == "maxwin":
+            sem = {n: WindowSem(chunks[n], a.embed_model, cap, wtok) for n in corpus}
+            print("windows embedded per repo:", {n: sem[n].n_windows for n in sem}, flush=True)
+        else:
+            sem = {n: FastSem(chunks[n], model_name=a.embed_model, max_chunks=cap) for n in corpus}
         indexed = {n: sem[n].n_indexed for n in sem}
         model = sem[list(sem)[0]]._model
         facts = [q["fact"] for q in Q]
@@ -160,7 +235,11 @@ def main():
                "indexed_fraction": {n: round(indexed[n] / max(n_chunks[n], 1), 4) for n in indexed},
                "chunk_token_stats": tstats, "provenance": prov, "summary": summary, "hits": hits}
         os.makedirs(a.out_dir, exist_ok=True)
-        fn = os.path.join(a.out_dir, f"CONFOUND_{a.chunker}_cap{cap}.json")
+        out["sem_mode"] = a.sem_mode; out["window_probe"] = probe
+        if a.sem_mode == "maxwin":
+            out["n_windows"] = {n: sem[n].n_windows for n in sem}
+        parts = [a.chunker] + ([a.sem_mode] if a.sem_mode != "whole" else []) + ([a.tag] if a.tag else [])
+        fn = os.path.join(a.out_dir, f"CONFOUND_{'_'.join(parts)}_cap{cap}.json")
         json.dump(out, open(fn, "w"), indent=1)
         for m in ("m1_substring", "m2_defline", "m3_sem_credit"):
             b = summary["arms"]["bm25"][m]; s = summary["arms"]["semantic"][m]; pr = summary["paired"][m]
