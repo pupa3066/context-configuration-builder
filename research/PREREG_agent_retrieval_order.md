@@ -74,3 +74,24 @@ fallback) and benchmark/gemma_agent/submission_v7_dense (B: search_similar_code 
 Both are generated from one template and differ only in retrieval order and the agent name label.
 Hypothesis, outcome, analysis and interpretation rules are unchanged. The commit time of this amendment is
 its registration time.
+
+## Amendment 3 (registered before any v8 result)
+
+Arm A (v7 lexical) was submitted at 15:28:51 UTC on 12 November and resolved 0 of 58; an earlier configuration
+also resolved 0 of 58. Two zero scores from different configurations indicate a failure in how our agents run,
+not an effect of retrieval order, so the v7 comparison is closed as uninformative and arm B (v7 dense) will not be
+submitted.
+
+The test continues with v8 arms (benchmark/gemma_agent/submission_v8_lexical and submission_v8_dense, commit
+4be0fc1). Both are built on the organizers' sample prompt, a single agent with all nine harness tools, sampling
+temperature 0.2, top_p 0.95, max_output_tokens 8192, thinking budget 4096 with thoughts included, and an
+eval_config.yaml budget of 8 minutes, 28 tool calls, 240 s per command and 80 turns, the settings shared by public
+configurations reported to score above zero. BM25 is delivered as a skill script (skills/bm25-localize,
+run with run_skill_script) instead of a shell command in the prompt; it ranks 8-line chunks of every non-test .py
+file. The arms differ only in a step-0 block: v8 lexical calls the BM25 skill first and search_similar_code as
+fallback; v8 dense uses the reverse order.
+
+Both arms are first run on published tasks with the self-test harness (benchmark/gemma_agent/diag_agent_selftest.ipynb).
+That run checks that the configuration executes and produces patches; it is not the registered outcome. The
+registered outcome is the public leaderboard score of each v8 arm, analyzed as in the Outcome and analysis section.
+Hypothesis, analysis and interpretation rules are unchanged.
