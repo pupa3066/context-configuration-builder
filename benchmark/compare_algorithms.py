@@ -27,7 +27,8 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, "research", "harness"))
 from summarized_tier import summarize  # noqa: E402
 from transformers import AutoTokenizer
-_tok = AutoTokenizer.from_pretrained("gpt2")
+# Gemma SentencePiece tokenizer (ungated mirror -- same vocab as gemma-2-2b, matches competition model family)
+_tok = AutoTokenizer.from_pretrained("unsloth/gemma-2-2b-bnb-4bit")
 def ntok(s): return len(_tok.encode(s))
 
 _WORD = re.compile(r"[A-Za-z0-9_.\-]+")

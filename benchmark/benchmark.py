@@ -1,7 +1,7 @@
 """Token-accurate benchmark: monolithic (all context always-on) vs tiered
 (always-on + on-demand skill bodies loaded only when invoked).
 
-Uses a real BPE tokenizer (GPT-2 via transformers) for exact token counts,
+Uses a real BPE tokenizer (Gemma via transformers) for exact token counts,
 not byte estimates.
 
 AGENT-INDEPENDENT: pass --context-root (or CCK_CONTEXT_ROOT env) to point at ANY agent's
@@ -43,7 +43,8 @@ else:
 BASELINE = _args.agent_baseline
 
 from transformers import AutoTokenizer
-tok = AutoTokenizer.from_pretrained("gpt2")  # deterministic BPE, offline-cached
+# Gemma SentencePiece tokenizer (ungated mirror -- same vocab as gemma-2-2b, matches competition model family)
+tok = AutoTokenizer.from_pretrained("unsloth/gemma-2-2b-bnb-4bit")
 
 def toks(path):
     with open(path, encoding="utf-8", errors="ignore") as f:
@@ -82,7 +83,7 @@ def project(n):
     return mono, tier, (1 - tier/mono if mono else 0)
 
 result = {
-    "tokenizer": "gpt2-bpe (real)",
+    "tokenizer": "gemma-2-2b (real)",
     "always_on_tokens": always_on,
     "n_projects_measured": N,
     "mean_body_tokens": mean_body,
