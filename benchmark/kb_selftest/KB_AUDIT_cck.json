@@ -1,0 +1,378 @@
+{
+ "root": "kb",
+ "symbols": 277,
+ "rows": [
+  {
+   "policy": "all",
+   "chunker": "lines8",
+   "cap": 300,
+   "chunks_total": 4748,
+   "chunks_indexed": 300,
+   "coverage": {
+    "class": {
+     "indexed": 3,
+     "total": 25,
+     "share": 0.12
+    },
+    "def": {
+     "indexed": 18,
+     "total": 229,
+     "share": 0.0786
+    },
+    "shell function": {
+     "indexed": 5,
+     "total": 23,
+     "share": 0.2174
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 300,
+    "median": 16,
+    "p90": 132,
+    "share_over_limit": 0.0,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "all",
+   "chunker": "lines8",
+   "cap": 100000,
+   "chunks_total": 4748,
+   "chunks_indexed": 4748,
+   "coverage": {
+    "class": {
+     "indexed": 25,
+     "total": 25,
+     "share": 1.0
+    },
+    "def": {
+     "indexed": 229,
+     "total": 229,
+     "share": 1.0
+    },
+    "shell function": {
+     "indexed": 23,
+     "total": 23,
+     "share": 1.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 600,
+    "median": 16,
+    "p90": 132,
+    "share_over_limit": 0.0,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "all",
+   "chunker": "words400",
+   "cap": 300,
+   "chunks_total": 411,
+   "chunks_indexed": 300,
+   "coverage": {
+    "class": {
+     "indexed": 18,
+     "total": 25,
+     "share": 0.72
+    },
+    "def": {
+     "indexed": 166,
+     "total": 229,
+     "share": 0.7249
+    },
+    "shell function": {
+     "indexed": 15,
+     "total": 23,
+     "share": 0.6522
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 300,
+    "median": 645,
+    "p90": 1239,
+    "share_over_limit": 0.5633,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "all",
+   "chunker": "words400",
+   "cap": 100000,
+   "chunks_total": 411,
+   "chunks_indexed": 411,
+   "coverage": {
+    "class": {
+     "indexed": 25,
+     "total": 25,
+     "share": 1.0
+    },
+    "def": {
+     "indexed": 229,
+     "total": 229,
+     "share": 1.0
+    },
+    "shell function": {
+     "indexed": 23,
+     "total": 23,
+     "share": 1.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 411,
+    "median": 634,
+    "p90": 1211,
+    "share_over_limit": 0.5766,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "md-only",
+   "chunker": "lines8",
+   "cap": 300,
+   "chunks_total": 425,
+   "chunks_indexed": 300,
+   "coverage": {
+    "class": {
+     "indexed": 0,
+     "total": 25,
+     "share": 0.0
+    },
+    "def": {
+     "indexed": 0,
+     "total": 229,
+     "share": 0.0
+    },
+    "shell function": {
+     "indexed": 0,
+     "total": 23,
+     "share": 0.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 300,
+    "median": 120,
+    "p90": 231,
+    "share_over_limit": 0.0067,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "md-only",
+   "chunker": "lines8",
+   "cap": 100000,
+   "chunks_total": 425,
+   "chunks_indexed": 425,
+   "coverage": {
+    "class": {
+     "indexed": 0,
+     "total": 25,
+     "share": 0.0
+    },
+    "def": {
+     "indexed": 0,
+     "total": 229,
+     "share": 0.0
+    },
+    "shell function": {
+     "indexed": 0,
+     "total": 23,
+     "share": 0.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 425,
+    "median": 121,
+    "p90": 230,
+    "share_over_limit": 0.0071,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "md-only",
+   "chunker": "words400",
+   "cap": 300,
+   "chunks_total": 144,
+   "chunks_indexed": 144,
+   "coverage": {
+    "class": {
+     "indexed": 0,
+     "total": 25,
+     "share": 0.0
+    },
+    "def": {
+     "indexed": 0,
+     "total": 229,
+     "share": 0.0
+    },
+    "shell function": {
+     "indexed": 0,
+     "total": 23,
+     "share": 0.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 144,
+    "median": 422,
+    "p90": 828,
+    "share_over_limit": 0.4653,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "md-only",
+   "chunker": "words400",
+   "cap": 100000,
+   "chunks_total": 144,
+   "chunks_indexed": 144,
+   "coverage": {
+    "class": {
+     "indexed": 0,
+     "total": 25,
+     "share": 0.0
+    },
+    "def": {
+     "indexed": 0,
+     "total": 229,
+     "share": 0.0
+    },
+    "shell function": {
+     "indexed": 0,
+     "total": 23,
+     "share": 0.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 144,
+    "median": 422,
+    "p90": 828,
+    "share_over_limit": 0.4653,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "code-only",
+   "chunker": "lines8",
+   "cap": 300,
+   "chunks_total": 786,
+   "chunks_indexed": 300,
+   "coverage": {
+    "class": {
+     "indexed": 10,
+     "total": 25,
+     "share": 0.4
+    },
+    "def": {
+     "indexed": 90,
+     "total": 229,
+     "share": 0.393
+    },
+    "shell function": {
+     "indexed": 12,
+     "total": 23,
+     "share": 0.5217
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 300,
+    "median": 118,
+    "p90": 180,
+    "share_over_limit": 0.0,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "code-only",
+   "chunker": "lines8",
+   "cap": 100000,
+   "chunks_total": 786,
+   "chunks_indexed": 786,
+   "coverage": {
+    "class": {
+     "indexed": 25,
+     "total": 25,
+     "share": 1.0
+    },
+    "def": {
+     "indexed": 229,
+     "total": 229,
+     "share": 1.0
+    },
+    "shell function": {
+     "indexed": 23,
+     "total": 23,
+     "share": 1.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 600,
+    "median": 117,
+    "p90": 181,
+    "share_over_limit": 0.0,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "code-only",
+   "chunker": "words400",
+   "cap": 300,
+   "chunks_total": 120,
+   "chunks_indexed": 120,
+   "coverage": {
+    "class": {
+     "indexed": 25,
+     "total": 25,
+     "share": 1.0
+    },
+    "def": {
+     "indexed": 229,
+     "total": 229,
+     "share": 1.0
+    },
+    "shell function": {
+     "indexed": 23,
+     "total": 23,
+     "share": 1.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 120,
+    "median": 990,
+    "p90": 1342,
+    "share_over_limit": 0.7583,
+    "limit": 512
+   }
+  },
+  {
+   "policy": "code-only",
+   "chunker": "words400",
+   "cap": 100000,
+   "chunks_total": 120,
+   "chunks_indexed": 120,
+   "coverage": {
+    "class": {
+     "indexed": 25,
+     "total": 25,
+     "share": 1.0
+    },
+    "def": {
+     "indexed": 229,
+     "total": 229,
+     "share": 1.0
+    },
+    "shell function": {
+     "indexed": 23,
+     "total": 23,
+     "share": 1.0
+    }
+   },
+   "chunk_tokens": {
+    "sampled": 120,
+    "median": 990,
+    "p90": 1342,
+    "share_over_limit": 0.7583,
+    "limit": 512
+   }
+  }
+ ]
+}
