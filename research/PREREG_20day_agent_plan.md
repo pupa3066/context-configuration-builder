@@ -83,3 +83,16 @@ the private-repository tasks used for scoring touch an async function. On the le
 reclassified as a negative control: it is predicted to match L, and a difference would point to something other
 than async coverage. The async effect of A0 is tested only on published tasks with the self-test harness, using the
 secondary analysis above. All other arms, tests and the schedule are unchanged.
+
+## Amendment 2 (recorded 2026-11-12 16:40 MT, before any result of these arms)
+
+Small-model arms for the organizers' small-model prize (Gemma E2B or E4B, one of a team's two final submissions):
+L-E4B = submission_v81e4b_lexical and N-E4B = submission_v81e4b_noskill, identical to L and N except the model line
+(gemma-4-e4b-it-qat-w4a16-ct). One change per arm, so model size is the only difference from L and N.
+
+Self-test first, no leaderboard slot: both arms on the same 16 published tasks as L and N, with the same harness and
+budgets. Predictions: (1) each E4B arm resolves no more tasks than its 31B counterpart; (2) exploratory, L-E4B
+resolves at least as many tasks as N-E4B, on the view that a smaller model gains more from retrieval that reaches
+every file. Tests: exact McNemar per pair; with 16 tasks only large differences are detectable and a null is reported
+as not detected. Any use of a leaderboard slot for an E4B arm, and the choice of final submissions (intended: one 31B
+and one E4B), is registered here before that submission.
