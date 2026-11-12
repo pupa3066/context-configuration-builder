@@ -95,3 +95,13 @@ Both arms are first run on published tasks with the self-test harness (benchmark
 That run checks that the configuration executes and produces patches; it is not the registered outcome. The
 registered outcome is the public leaderboard score of each v8 arm, analyzed as in the Outcome and analysis section.
 Hypothesis, analysis and interpretation rules are unchanged.
+
+## Amendment 4 (before any v8 result): description of arm B's retriever
+
+The harness documentation (HARNESS_README.md, section 6.3) states that search_similar_code runs offline without
+a neural text encoder: it resolves the query against graph node names, then ranks nodes by cosine similarity of
+the pre-computed node embeddings, with a lexical token-overlap fallback for multi-word queries. Arm B therefore
+does not test dense retrieval of the issue text; it tests the harness's node index first, an index that
+contains no async functions (benchmark/harness_audit/). The registered comparison is accordingly read as a
+coverage comparison: BM25 over every non-test Python file first, against the harness node index first. The arms,
+outcome, analysis and interpretation rules are unchanged.
