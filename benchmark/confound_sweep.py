@@ -228,6 +228,23 @@ def main():
             return {"m1_substring": h1, "m2_defline": h2, "m3_sem_credit": h3}
 
         hits = {arm: score(arm) for arm in ("bm25", "semantic")}
+        # Gold-chunk coverage: is a chunk holding the answer's def/class line in the full corpus, and in
+        # the dense index at this cap? Same definition-line pattern as metric m2.
+        import re as _re
+        gold_in_corpus, gold_indexed = [], []
+        for q in Q:
+            pat = _re.compile(r"(?:def|class)\s+" + _re.escape(q["fact"]) + r"\b")
+            gold_in_corpus.append(int(any(pat.search(c) for c in chunks[q["project"]])))
+            gold_indexed.append(int(any(pat.search(c) for c in sem[q["project"]].chunks)))
+        def _cond(h, mask):
+            sel = [x for x, g in zip(h, mask) if g]
+            return {"n": len(sel), "rate": round(sum(sel) / len(sel), 4) if sel else None}
+        gold = {"gold_in_corpus": gold_in_corpus, "gold_indexed": gold_indexed,
+                "frac_gold_indexed": round(sum(gold_indexed) / len(Q), 4),
+                "dense_given_gold_indexed": {m: _cond(hits["semantic"][m], gold_indexed) for m in hits["semantic"]},
+                "dense_given_gold_missing": {m: _cond(hits["semantic"][m], [g and not i for g, i in zip(gold_in_corpus, gold_indexed)]) for m in hits["semantic"]}}
+        print("gold chunk indexed fraction:", gold["frac_gold_indexed"], "| dense m1 given gold indexed:",
+              gold["dense_given_gold_indexed"]["m1_substring"], "| given gold missing:", gold["dense_given_gold_missing"]["m1_substring"], flush=True)
         summary = {"arms": {arm: {m: base.bootstrap_ci(h, a.bootstrap) for m, h in hits[arm].items()}
                             for arm in hits},
                    "paired": {m: paired(hits["bm25"][m], hits["semantic"][m], a.bootstrap)
@@ -235,7 +252,7 @@ def main():
         out = {"N": len(Q), "k": a.k, "chunker": a.chunker, "cap": cap, "embed_model": a.embed_model,
                "sem_threshold": a.sem_threshold, "n_chunks": n_chunks, "n_indexed": indexed,
                "indexed_fraction": {n: round(indexed[n] / max(n_chunks[n], 1), 4) for n in indexed},
-               "chunk_token_stats": tstats, "provenance": prov, "summary": summary, "hits": hits}
+               "chunk_token_stats": tstats, "provenance": prov, "summary": summary, "hits": hits, "gold": gold}
         os.makedirs(a.out_dir, exist_ok=True)
         out["sem_mode"] = a.sem_mode; out["window_probe"] = probe
         if a.sem_mode == "maxwin":
