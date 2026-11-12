@@ -11,6 +11,7 @@ Usage: python validate_submission.py <submission_dir> [--zip out.zip]
 Needs: PyYAML.
 """
 import os
+import re
 import sys
 import zipfile
 
@@ -108,6 +109,12 @@ def check_agent(root, cfg, where, seen):
             fm = txt.split("---")[1] if txt.startswith("---") and txt.count("---") >= 2 else ""
             if "name:" not in fm:
                 err(f"{s}/SKILL.md: YAML frontmatter with name: is required")
+            else:
+                # The harness (google.adk skills Frontmatter) rejects any name that is not lowercase
+                # kebab-case; one underscore makes every task fail to compile (measured 2026-11-12).
+                nm = next((l.split(":", 1)[1].strip().strip("'\"") for l in fm.splitlines() if l.strip().startswith("name:")), "")
+                if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", nm):
+                    err(f"{s}/SKILL.md: skill name {nm!r} must be lowercase kebab-case (a-z, 0-9, single hyphens)")
         adapter = cfg.get("adapter")
         if adapter and not os.path.isfile(os.path.join(root, "adapters", adapter, "adapter_model.safetensors")):
             err(f"{where}: adapter {adapter!r} not found under adapters/")
