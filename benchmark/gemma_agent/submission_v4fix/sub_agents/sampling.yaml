@@ -1,0 +1,6 @@
+# Analyzer: lower thinking budget (grep + read, no deep reasoning needed)
+temperature: 0.0
+seed: 0
+max_output_tokens: 16384
+thinking_config:
+  thinking_budget: 2048

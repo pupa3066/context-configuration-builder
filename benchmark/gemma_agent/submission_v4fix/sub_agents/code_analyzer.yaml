@@ -1,0 +1,11 @@
+name: code_analyzer
+model: gemma-4-31b-it-qat-w4a16-ct
+description: Read-only localizer. Given the issue, returns a ranked shortlist of files, symbols and line ranges to edit. Never modifies files.
+instruction: !include analyzer.md
+tools:
+  - run_command
+  - read_file
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+generate_content_config: !include sampling.yaml

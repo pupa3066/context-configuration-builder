@@ -1,0 +1,6 @@
+# T=0.2: empirically validated over T=0 and T=1.0 on this harness (ablation evidence).
+temperature: 0.2
+seed: 0
+max_output_tokens: 16384
+thinking_config:
+  thinking_budget: 8192
