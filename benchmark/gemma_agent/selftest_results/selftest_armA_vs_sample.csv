@@ -1,0 +1,7 @@
+agent,task,resolved,patch_chars,tool_calls,exit_code,seconds,error
+armA_lexical,fastapi_15661,False,0,0,-1,5.8,
+armA_lexical,fastapi_15588,False,0,0,-1,4.5,
+armA_lexical,fastapi_15589,False,0,0,-1,4.4,
+control_sample,fastapi_15661,False,2542,17,2,224.4,
+control_sample,fastapi_15588,False,3989,40,1,365.8,
+control_sample,fastapi_15589,True,7137,40,0,582.5,

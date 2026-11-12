@@ -1,0 +1,7 @@
+agent,task,resolved,patch_chars,tool_calls,exit_code,seconds,error
+v81_lexical,fastapi_15661,False,2480,17,2,376.3,
+v81_lexical,fastapi_15588,False,2652,27,1,235.6,
+v81_lexical,fastapi_15589,True,4174,19,0,460.1,
+v81_dense,fastapi_15661,False,3524,17,2,360.8,
+v81_dense,fastapi_15588,False,1311,18,1,210.9,
+v81_dense,fastapi_15589,True,1971,28,0,391.1,

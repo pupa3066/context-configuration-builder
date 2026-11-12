@@ -115,3 +115,13 @@ arm and 0 of 3 of the other, so the arms barely differed in practice. The regist
 mandatory, and search_similar_code is called with a function, class or module name in both arms, as the harness
 documentation advises. Nothing else changes. v8.1 is self-tested before submission. Hypothesis, outcome,
 analysis and interpretation rules are unchanged.
+
+## Amendment 6 (before any leaderboard result for v8.1): measured compliance
+
+The v8.1 self-test (purnimapathak15/cck-diag-v81, three published tasks per arm; benchmark/gemma_agent/selftest_results/)
+produced a patch on all six runs and resolved one of three tasks in each arm. The lexical arm called the BM25 skill
+first in two of three runs. The search-first arm called search_similar_code in none of three runs, despite the
+instruction to make it the first call. A leaderboard comparison of the two arms therefore would not isolate retrieval
+order: in practice arm B does not use the harness index. Arm A (v8.1 lexical) is submitted as registered, as a
+measurement of a working full-coverage configuration; arm B is held until a version that actually calls the harness
+search tool is confirmed in a self-test. Hypothesis, outcome and analysis rules are unchanged.

@@ -1,0 +1,70 @@
+{
+ "v8_lexical": {
+  "fastapi_15588": {
+   "first_tool": "read_file",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  },
+  "fastapi_15589": {
+   "first_tool": "run_skill_script",
+   "bm25_skill_used": true,
+   "search_similar_code_used": true
+  },
+  "fastapi_15661": {
+   "first_tool": "read_file",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  }
+ },
+ "v8_dense": {
+  "fastapi_15588": {
+   "first_tool": "read_file",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  },
+  "fastapi_15589": {
+   "first_tool": "run_command",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  },
+  "fastapi_15661": {
+   "first_tool": "read_file",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  }
+ },
+ "v81_lexical": {
+  "fastapi_15588": {
+   "first_tool": "run_skill_script",
+   "bm25_skill_used": true,
+   "search_similar_code_used": false
+  },
+  "fastapi_15589": {
+   "first_tool": "run_skill_script",
+   "bm25_skill_used": true,
+   "search_similar_code_used": true
+  },
+  "fastapi_15661": {
+   "first_tool": "run_command",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  }
+ },
+ "v81_dense": {
+  "fastapi_15588": {
+   "first_tool": "read_file",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  },
+  "fastapi_15589": {
+   "first_tool": "run_command",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  },
+  "fastapi_15661": {
+   "first_tool": "run_command",
+   "bm25_skill_used": false,
+   "search_similar_code_used": false
+  }
+ }
+}
