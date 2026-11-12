@@ -140,3 +140,57 @@ rebuilt from these files by benchmark/cck_kaggle_results_public.ipynb.
   possible from them; benchmark/confound_sweep.py stores hits for that.
 - Invalid, do not cite: outputs of cck_kaggle_sweep.ipynb and cck_kaggle_full_corroboration.ipynb
   (inline reimplementation with 400-word chunks; the cap never bound).
+
+## Studies four and five: coverage and chunk length as controlled factors (2026-11-12)
+
+[MEASURED] Runner: benchmark/confound_sweep.py (imports the committed miner, BM25, line chunker, retriever and
+metrics; only the dense ranking uses numpy, verified identical to the committed runner on all 12 cells of
+SWEEP_cap_*.json). Kaggle CPU, N=240 per repository set, k=6, bge-small-en-v1.5 unless noted, bootstrap 1000
+(10,000 for the equivalence test). Repository commits: requests 3c7baaa, click 8abb77a, black b4f1fca,
+flask 49943b5, httpx b5addb6, rich 3a109cc. Every table below is rebuilt by
+benchmark/cck_kaggle_results_public.ipynb.
+
+Coverage, paired (8-line chunks). BM25 minus dense, m1, with exact McNemar on discordant questions:
+
+| Repositories | Cap | Dense indexed fraction | m1 diff [95% CI] | McNemar p |
+|---|---|---|---|---|
+| requests/click/black | 1000 | 66% / 26% / 13% | 0.400 [0.325, 0.471] | < 1e-6 |
+| requests/click/black | full | 100% | -0.038 [-0.088, 0.013] | 0.19 |
+| flask/httpx/rich | 1000 | 43% / 45% / 15% | 0.283 [0.217, 0.354] | < 1e-6 |
+| flask/httpx/rich | full | 100% | -0.033 [-0.079, 0.008] | 0.20 |
+
+Equivalence at full coverage (paired TOST, 90% interval inside the margin): equivalent at margin 0.10 on
+m1, m2 and m3 for both repository sets and pooled (N=480); smallest margins 0.023 to 0.079. Pooled m1 shows
+a small dense advantage, -0.035 [-0.069, -0.002] at 95%.
+
+Embedder and threshold at full coverage (interval overlap only; committed runner stores no per-question
+hits): bge-base-en-v1.5 m1 BM25 0.854 vs dense 0.888, m2 0.829 vs 0.825, m3 0.950 vs 0.954, all intervals
+overlap (SWEEP_bge_base_full_N240.json). m3 at threshold 0.65 0.979 vs 0.979, 0.72 0.942 vs 0.946, 0.80
+0.867 vs 0.892, all overlap.
+
+Chunk length at full coverage (requests/click/black):
+
+| Chunker | Median tokens | Chunks over 512 | Dense m1 | BM25 m1 | m1 diff [95% CI] |
+|---|---|---|---|---|---|
+| 8 lines | 71 | 0.5% | 0.892 | 0.854 | -0.038 [-0.088, 0.013] |
+| 32 lines | 301 | 3.2% | 0.821 | 0.975 | 0.154 [0.104, 0.204] |
+| 400 words | 1,081 | 100% | 0.663 | 1.000 | 0.338 [0.275, 0.396] |
+
+Embedder window probe (bge-small): a change after 128 or 400 filler words alters the embedding (cosine 0.764,
+0.824); after 600 or more filler words it does not (cosine 1.000).
+
+Truncation isolated (400-word chunks, identical questions and returned text; dense scores each chunk by its
+best window of at most 480 tokens; BM25 hits identical across the two files): dense m1 0.663 to 0.888, gain
+0.225 [0.171, 0.279], 56 questions fixed and 2 broken, McNemar p = 1.2e-14; m2 0.504 to 0.829, 81 fixed and 3
+broken, p = 1.0e-20; m3 0.804 to 0.917, p = 4.6e-7. Windowing removes 67%, 66% and 58% of the BM25 gap on
+m1, m2 and m3.
+
+Scope and open items:
+- Across chunkers the retrieved text per question differs (k=6 chunks of different sizes) and BM25 reaches
+  its ceiling at 400 words, so cross-chunker gaps are compressed and partly a text-volume effect. The direction
+  that holds: dense accuracy falls as chunks grow even though more text is returned.
+- The residual gap after windowing (m1 0.113) and the 32-line gap are not explained by truncation; dilution of
+  a single embedding over more content is one candidate, untested.
+- Long-window embedder run (jina-embeddings-v2-base-en) dropped after two kernel deaths; only its window probe
+  is recorded (embedding changes after 7,000 filler words).
+- Docstring-mined questions, Python only, k=6, one embedder family. Retrieval proxy, not task success.
