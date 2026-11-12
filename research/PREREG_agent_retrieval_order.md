@@ -59,3 +59,18 @@ bias the comparison against arm A. In both arms identically it is replaced by a 
 (`grep -rnE --include=*.py "(def|class) IDENTIFIER\b"`, the same pattern as retrieval metric m2) followed by
 a file list (`grep -rlw`). The arms still differ only in retrieval order. Hypothesis, outcome, analysis and
 interpretation rules are unchanged. The commit time of this amendment is its registration time.
+
+## Amendment 2 (before either submission)
+
+grep is removed from both arms. The lexical retriever is now BM25, written by the agent to /tmp/bm25.py from
+text in its prompt and run with run_command. It uses the tokenizer, stopword list, 8-line chunk length and
+parameters (k1=1.5, b=0.75) of benchmark/compare_algorithms.py, with one difference: chunks are formed per
+file, so it can report file and line locations, instead of over the concatenated corpus. It indexes every
+.py file under /workspace and prints the top 6 chunks. A Kaggle check (notebook purnimapathak15/cck-bm25-check)
+on black and fastapi: exit code 0, about 0.6 s per query, 1,372 to 1,867 characters of output.
+
+The arms are now benchmark/gemma_agent/submission_v7_lexical (A: BM25 first, search_similar_code as
+fallback) and benchmark/gemma_agent/submission_v7_dense (B: search_similar_code first, BM25 as fallback).
+Both are generated from one template and differ only in retrieval order and the agent name label.
+Hypothesis, outcome, analysis and interpretation rules are unchanged. The commit time of this amendment is
+its registration time.
