@@ -125,3 +125,19 @@ instruction to make it the first call. A leaderboard comparison of the two arms 
 order: in practice arm B does not use the harness index. Arm A (v8.1 lexical) is submitted as registered, as a
 measurement of a working full-coverage configuration; arm B is held until a version that actually calls the harness
 search tool is confirmed in a self-test. Hypothesis, outcome and analysis rules are unchanged.
+
+## Amendment 7: paired self-test of a full-coverage localizer (registered before it runs)
+
+Because the search-first arm does not call the harness search tool, retrieval order cannot be tested with it. We
+register a different paired comparison, run with the self-test harness on published tasks before the paper deadline:
+
+- Arm L: v8.1 lexical (benchmark/gemma_agent/submission_v81_lexical).
+- Arm N: v8.1 without the BM25 skill (benchmark/gemma_agent/submission_v81_noskill): the same files with the step-0
+  block and the skills entry removed. The agent keeps all harness tools, including grep through run_command.
+- Tasks: 16 published tasks, the same for both arms, drawn with random.Random(0).sample from tasks 4 to 129 of
+  tasks.jsonl: fastapi_13713, fastapi_14077, fastapi_14360, fastapi_14361, fastapi_14372, fastapi_14485, fastapi_14986, fastapi_5624, rich_2725, rich_3064, rich_3469, rich_3480, rich_3521, rich_3772, rich_3777, rich_3953.
+- Budget: each arm's eval_config.yaml (8 minutes, 28 tool calls); same model, harness and machine type.
+- Outcome: tasks resolved per arm; exact two-sided McNemar test on the discordant tasks. With 16 tasks only large
+  differences are detectable; a small or null difference is reported as inconclusive.
+- Prediction: arm L resolves at least as many tasks as arm N. This is a directional expectation from the coverage
+  results, not a claim the test is powered to confirm.
