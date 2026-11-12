@@ -64,3 +64,14 @@ An arm that fails its self-test is replaced in the schedule by the next arm and 
 ## Final selections
 
 Up to two final leaderboard selections: the arm with the highest mean replicate score, and L if it is not that arm.
+
+## Contingency: if the competition data or harness changes (registered before any change)
+
+The audit in benchmark/harness_audit/ measured the competition data released on 13 October 2026.
+
+- If a new data or harness version is released, the audit is re-run on it with the same script, and the version and
+  date are recorded with every later result.
+- If the code graph gains async functions, arm N is submitted once before the change takes effect (if a slot allows)
+  and once after it, with no other change; the difference is reported as the effect of the index change on task
+  success. Arm A0 is kept as a deliberate recreation of the old gap.
+- Scores from different data versions are never pooled or compared without stating the versions.
