@@ -96,3 +96,23 @@ resolves at least as many tasks as N-E4B, on the view that a smaller model gains
 every file. Tests: exact McNemar per pair; with 16 tasks only large differences are detectable and a null is reported
 as not detected. Any use of a leaderboard slot for an E4B arm, and the choice of final submissions (intended: one 31B
 and one E4B), is registered here before that submission.
+
+## Amendment 3 (recorded 2026-11-12 16:47 MT, before any result of the E4B arms)
+
+Decision rule for the E4B arms. After the 16-task self-tests of amendment 2 finish:
+- If at least one E4B arm resolves one or more of the 16 tasks, the E4B arm that resolves more tasks (L-E4B on a
+  tie) is called E. Otherwise no E4B arm is submitted and the schedule below reverts to the original.
+- E takes three leaderboard slots, on days 2, 6 and 10, and the original rotation moves back by one day each time:
+
+| Days | Arms |
+|---|---|
+| 1 | L (submitted 2026-11-13 00:00 UTC) |
+| 2 to 5 | E, N, C50, A0 |
+| 6 to 9 | E, L, N, C50 |
+| 10 to 13 | E, A0, L, N |
+| 14 to 15 | C50, A0 (third replicates complete) |
+| 16 to 20 | replicate the largest registered difference, as in the original plan |
+
+Final submissions: the 31B arm with the highest mean public score over its replicates, and E, so the team is eligible
+for both the main ranking and the small-model prize. Ties go to the arm with more replicates. The choice is recorded
+here before it is made on Kaggle.
