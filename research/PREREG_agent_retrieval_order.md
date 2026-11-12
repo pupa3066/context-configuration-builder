@@ -50,3 +50,12 @@ equivalence for task success.
   falls, and as evidence against the prediction.
 - Both arms 0 of 58: reported as uninformative about retrieval order (a failure common to both arms).
 - No other outcomes or subsets will be analyzed.
+
+## Amendment 1 (before either submission)
+
+The lexical command in both arms was `grep -rn ... | head -40`, which keeps the first 40 matches in
+directory order. That cuts the lexical retriever's coverage, the confound this repository studies, and would
+bias the comparison against arm A. In both arms identically it is replaced by a definition-line search
+(`grep -rnE --include=*.py "(def|class) IDENTIFIER\b"`, the same pattern as retrieval metric m2) followed by
+a file list (`grep -rlw`). The arms still differ only in retrieval order. Hypothesis, outcome, analysis and
+interpretation rules are unchanged. The commit time of this amendment is its registration time.
