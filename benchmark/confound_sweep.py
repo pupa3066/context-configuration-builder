@@ -172,6 +172,8 @@ def main():
     ap.add_argument("--token-limit", type=int, default=512,
                     help="documented input limit of the embedder, used for chunk length stats")
     ap.add_argument("--tag", default="", help="extra label in the output file name")
+    ap.add_argument("--embed-batch", type=int, default=64,
+                    help="chunks per embedding call; lower it for long-input embedders to bound memory")
     a = ap.parse_args()
     if not sem_available():
         print("fastembed unavailable"); sys.exit(1)
@@ -203,10 +205,10 @@ def main():
     for cap in a.caps:
         print(f"\n=== chunker={a.chunker} cap={cap}", flush=True)
         if a.sem_mode == "maxwin":
-            sem = {n: WindowSem(chunks[n], a.embed_model, cap, wtok) for n in corpus}
+            sem = {n: WindowSem(chunks[n], a.embed_model, cap, wtok, batch=a.embed_batch) for n in corpus}
             print("windows embedded per repo:", {n: sem[n].n_windows for n in sem}, flush=True)
         else:
-            sem = {n: FastSem(chunks[n], model_name=a.embed_model, max_chunks=cap) for n in corpus}
+            sem = {n: FastSem(chunks[n], model_name=a.embed_model, max_chunks=cap, batch=a.embed_batch) for n in corpus}
         indexed = {n: sem[n].n_indexed for n in sem}
         model = sem[list(sem)[0]]._model
         facts = [q["fact"] for q in Q]
