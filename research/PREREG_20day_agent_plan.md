@@ -75,3 +75,11 @@ The audit in benchmark/harness_audit/ measured the competition data released on 
   and once after it, with no other change; the difference is reported as the effect of the index change on task
   success. Arm A0 is kept as a deliberate recreation of the old gap.
 - Scores from different data versions are never pooled or compared without stating the versions.
+
+## Amendment 1 (recorded 2026-11-12 16:08 MT, before any leaderboard result of this plan)
+
+The organizers state (competition discussion "Note on Code Graphs for Async Functions", 5 October 2026) that none of
+the private-repository tasks used for scoring touch an async function. On the leaderboard, A0 is therefore
+reclassified as a negative control: it is predicted to match L, and a difference would point to something other
+than async coverage. The async effect of A0 is tested only on published tasks with the self-test harness, using the
+secondary analysis above. All other arms, tests and the schedule are unchanged.
