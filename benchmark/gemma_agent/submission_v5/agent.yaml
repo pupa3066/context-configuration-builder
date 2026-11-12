@@ -1,0 +1,13 @@
+name: cck_coder_v5
+model: gemma-4-31b-it-qat-w4a16-ct
+description: Single-agent SWE coder. Localizes via grep then edits with heredoc-first strategy. No sub-agents.
+instruction: !include system.md
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - get_status
+  - submit_patch
+skills:
+  - skills/repo_navigation
+generate_content_config: !include sampling.yaml
