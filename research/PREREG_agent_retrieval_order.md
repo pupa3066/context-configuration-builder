@@ -141,3 +141,10 @@ register a different paired comparison, run with the self-test harness on publis
   differences are detectable; a small or null difference is reported as inconclusive.
 - Prediction: arm L resolves at least as many tasks as arm N. This is a directional expectation from the coverage
   results, not a claim the test is powered to confirm.
+
+## Outcome of amendment 7 (recorded 2026-11-12)
+
+resolved L 4/16, N 4/16; L only ['rich_3777']; N only ['rich_3480']; McNemar exact p = 1.0
+non-empty patches L 13/16, N 11/16
+Per the registered rule, the difference is reported as not detected; with 16 tasks only large differences were
+detectable. Files: benchmark/gemma_agent/selftest_results/selftest16_v81_lexical.csv and selftest16_v81_noskill.csv.
