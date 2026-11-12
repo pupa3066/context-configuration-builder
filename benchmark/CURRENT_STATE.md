@@ -118,3 +118,25 @@ Tier-1 header from core/templates/always-on (not personal steering).
    jinaai/jina-embeddings-v2-base-en at cap=100000. K3 gate: download size must confirm model loaded.
 3. m3 threshold sensitivity sweep (0.65-0.80) to close the forking-paths attack.
 4. Task-success harness (Gemma + SWE-bench): the only path past the grounding-retention proxy.
+
+## Study three replication: committed runner on a fresh clone (2026-11-11)
+
+[MEASURED] Runner: conceptual_fair_metrics.py at commit b8cc6d8, run unchanged on Kaggle (CPU) on fresh
+depth-200 clones of requests, click and black. N=240, k=6, bootstrap=1000, bge-small-en-v1.5,
+m3 threshold 0.72. Files: benchmark/SWEEP_cap_1000.json, benchmark/SWEEP_cap_100000.json. Tables are
+rebuilt from these files by benchmark/cck_kaggle_results_public.ipynb.
+
+| Cap | m1 BM25 | m1 Semantic | m2 BM25 | m2 Semantic | m3 BM25 | m3 Semantic |
+|-----|---------|-------------|---------|-------------|---------|-------------|
+| 1000 | 0.8542 [0.8083,0.9] | 0.4542 [0.3917,0.525] | 0.8292 [0.7792,0.875] | 0.2958 [0.2375,0.3542] | 0.9417 [0.9125,0.9667] | 0.7042 [0.6458,0.7625] |
+| 100000 | 0.8542 [0.8083,0.9] | 0.8917 [0.85,0.9292] | 0.8292 [0.7792,0.875] | 0.8 [0.7417,0.85] | 0.9417 [0.9125,0.9667] | 0.9458 [0.9167,0.9708] |
+
+- Internal control holds: BM25 is identical at both caps on every metric.
+- At cap 1000 every interval pair is disjoint; at full corpus every pair overlaps.
+- Against the 2026-09-25 run, every cell differs by at most 0.025 (largest: semantic m1 at full corpus,
+  0.8667 to 0.8917). BM25 shifted by the same amount at both caps, consistent with a changed corpus or
+  question set from the newer clone, not with the dense budget.
+- Interval overlap is not equivalence. These files lack per-question hits, so no paired test is
+  possible from them; benchmark/confound_sweep.py stores hits for that.
+- Invalid, do not cite: outputs of cck_kaggle_sweep.ipynb and cck_kaggle_full_corroboration.ipynb
+  (inline reimplementation with 400-word chunks; the cap never bound).
