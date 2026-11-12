@@ -105,3 +105,13 @@ does not test dense retrieval of the issue text; it tests the harness's node ind
 contains no async functions (benchmark/harness_audit/). The registered comparison is accordingly read as a
 coverage comparison: BM25 over every non-test Python file first, against the harness node index first. The arms,
 outcome, analysis and interpretation rules are unchanged.
+
+## Amendment 5 (before any leaderboard result for v8 or v8.1)
+
+A self-test of v8 on three published tasks (purnimapathak15/cck-diag-v8) showed both arms compile, make 16 to 28
+tool calls and produce a patch on every run, but the step-0 instruction was followed in 1 of 3 runs of the lexical
+arm and 0 of 3 of the other, so the arms barely differed in practice. The registered arms are replaced by v8.1
+(benchmark/gemma_agent/submission_v81_lexical and submission_v81_dense, commit c83184b): the first tool call is made
+mandatory, and search_similar_code is called with a function, class or module name in both arms, as the harness
+documentation advises. Nothing else changes. v8.1 is self-tested before submission. Hypothesis, outcome,
+analysis and interpretation rules are unchanged.
