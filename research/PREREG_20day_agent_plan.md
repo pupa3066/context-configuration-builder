@@ -126,7 +126,7 @@ L-E4B vs L: p = 0.5; N-E4B vs N: p = 0.25. Prediction 1 (E4B resolves no more th
 least one task and L-E4B resolves more, so E = L-E4B and takes the day-2 slot of the amendment 3 schedule.
 Files: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_lexical.csv and selftest16_v81e4b_noskill.csv.
 
-## Amendment 4 (recorded 2026-11-12 17:20 MT, before the leaderboard score of arm L)
+## Amendment 4 (recorded 2026-11-12 17:09 MT, before the leaderboard score of arm L)
 
 Defect found in the BM25 skill. The traces of every BM25 arm (L, C50, A0 on 31B; L-E4B) show the skill script ranked
 its own skill folder (scripts/localize.py, scores 0.00) in 15 of 16 tasks, not the repository. The script searches
