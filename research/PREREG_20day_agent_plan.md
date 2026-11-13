@@ -184,3 +184,13 @@ Secondary, fixed now: (a) the 113 tasks outside the 16-task set; (b) the 21 task
 function (benchmark/harness_audit/TASK_AUDIT_all129.json): fastapi_15030, fastapi_14962, fastapi_15023, fastapi_14986, fastapi_14978, fastapi_14099, fastapi_14609, fastapi_14487, fastapi_14306, fastapi_14448, fastapi_14419, fastapi_14262, fastapi_14077, httpx_3672, fastapi_15800, fastapi_14371, fastapi_15745, fastapi_14303, fastapi_13537, fastapi_13786, fastapi_11194. A null is reported as not detected.
 The resolved G trajectories are kept as candidate training data for the E4B distillation LoRA; its held-out split
 is registered before any training.
+
+## Outcome of amendment 7 and the first leaderboard score (recorded 2026-11-13 08:52 MT)
+
+All 129 published tasks, no errors: G resolved 30 (0.233), N 28 (0.217); 5 only G, 3 only N, exact McNemar
+p = 0.73. Registered subsets: the 113 tasks outside the 16-task set, G 27 vs N 25, 5 vs 3, p = 0.73; the 21 tasks
+whose gold patch edits an async function, G 4 vs N 3, 1 vs 0, p = 1.0. No difference is detected; G is not worse.
+By repository: fastapi G 18 vs N 14 of 67, rich 11 vs 13 of 48, requests 1 vs 1 of 13, httpx 0 vs 0 of 1.
+Leaderboard: arm L (ref 58287913, the BM25 skill that searched its own folder, amendment 4) scored 0.17 public,
+so a corrected skill name compiles and runs on the scorer and the skill call does not break the agent.
+Files: benchmark/gemma_agent/selftest_results/selftest129_v81_grep.csv and selftest129_v81_noskill.csv.
