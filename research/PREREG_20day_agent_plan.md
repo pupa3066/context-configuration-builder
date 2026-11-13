@@ -125,3 +125,17 @@ L-E4B vs L: p = 0.5; N-E4B vs N: p = 0.25. Prediction 1 (E4B resolves no more th
 (L-E4B at least N-E4B) holds; no difference is detected at this size. Decision rule: both E4B arms resolve at
 least one task and L-E4B resolves more, so E = L-E4B and takes the day-2 slot of the amendment 3 schedule.
 Files: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_lexical.csv and selftest16_v81e4b_noskill.csv.
+
+## Amendment 4 (recorded 2026-11-12 17:20 MT, before the leaderboard score of arm L)
+
+Defect found in the BM25 skill. The traces of every BM25 arm (L, C50, A0 on 31B; L-E4B) show the skill script ranked
+its own skill folder (scripts/localize.py, scores 0.00) in 15 of 16 tasks, not the repository. The script searches
+/workspace if that path exists, else its working directory; skill scripts run outside the agent's sandbox, where the
+repository is not at /workspace (in the self-test it is under /tmp/swegemma_sandbox_*). So no BM25 arm searched the
+repository: L, C50 and A0 differ from N only by one uninformative first call, and the 16-task comparisons of L, N,
+C50, A0, L-E4B and N-E4B do not test coverage. They stand as measurements of those configurations, not of BM25.
+The leaderboard submission of L (ref 58287913) has the same defect and is reported as such.
+
+Consequences: the E selection of amendment 3 is withdrawn, and no BM25 arm is submitted until a corrected
+localizer is shown in the traces to rank repository files. The corrected design runs lexical search inside the
+sandbox through run_command, where the repository is visible. Its arms are registered here before any result.
