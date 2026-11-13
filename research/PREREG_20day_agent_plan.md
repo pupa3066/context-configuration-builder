@@ -204,3 +204,9 @@ in 12 to 14 of 16 tasks) but writes wrong fixes, so more reasoning per turn is t
 Test: T-E4B vs S-E4B, exact McNemar on the same 16 published tasks; a null is reported as not detected.
 LoRA groundwork (no GPU): the 129-task runs give 33 unique resolved 31B trajectories (fastapi 18, rich 14,
 requests 1). Any distillation LoRA, its data, held-out split and test are registered before training.
+
+## Outcome of amendment 8 (recorded 2026-11-13 13:47 MT)
+
+T-E4B resolved 1 of 16 (fastapi_14077, patches 14), the same task as S-E4B; no discordant tasks, p = 1.0. Doubling
+the reasoning budget changed nothing detectable. E4B stays at 1 to 2 of 16 across every non-training lever.
+File: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_think.csv.
