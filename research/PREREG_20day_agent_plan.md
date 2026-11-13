@@ -210,3 +210,17 @@ requests 1). Any distillation LoRA, its data, held-out split and test are regist
 T-E4B resolved 1 of 16 (fastapi_14077, patches 14), the same task as S-E4B; no discordant tasks, p = 1.0. Doubling
 the reasoning budget changed nothing detectable. E4B stays at 1 to 2 of 16 across every non-training lever.
 File: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_think.csv.
+
+## Amendment 9 (recorded 2026-11-13 15:36 MT, before any result of these runs or submissions)
+
+(a) Fastapi replicate. The 129-task outcome showed, in an analysis not registered beforehand, that all of G's net
+gain was on fastapi (G only 4, N only 0, exact p = 0.125), the repository whose index omits 914 async functions;
+on rich it was G only 1, N only 3. To test that lead, G and N run again with the self-test harness on the 67 fastapi
+published tasks, fresh runs, same arms and budgets. Primary: G vs N on these 67 new paired runs, exact McNemar,
+two-sided; prediction G resolves more. Secondary: the 20 fastapi tasks whose gold patch edits an async function.
+The earlier 129-task fastapi results are not pooled into the primary test. A null is reported as not detected.
+
+(b) Leaderboard schedule. L, C50 and A0 are withdrawn (amendment 4). From 2026-11-14 00:00 UTC the daily slots
+alternate G and N (G first), giving paired replicates of a working full-coverage search against no search step on
+the hidden set; E4B arms enter only if one resolves more than 2 of 16 published tasks. Final picks per amendment 3,
+recorded before selection.
