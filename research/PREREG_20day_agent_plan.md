@@ -168,3 +168,10 @@ rewrite keeps the in-sandbox grep first step and adds one rule motivated by meas
 with edit_file, never write_file (G-E4B produced patches of 23,723 and 178,225 characters, consistent with whole-file
 rewrites). Test: S-E4B vs G-E4B, exact McNemar on the same 16 published tasks; secondary, the number of patches over
 10,000 characters. A null is reported as not detected.
+
+## Outcome of amendment 6 (recorded 2026-11-12 20:53 MT)
+
+S-E4B resolved 1 of 16 (fastapi_14077), G-E4B 1 (rich_2725); each resolved one the other did not, exact McNemar
+p = 1.0, no difference detected. Secondary: patches over 10,000 characters fell from 2 to 0, so the edit_file rule
+removed whole-file rewrites; patches 13 vs 15. Gate passed (grep first in 16 of 16, repository paths in 12).
+File: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_short.csv.
