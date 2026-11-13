@@ -139,3 +139,15 @@ The leaderboard submission of L (ref 58287913) has the same defect and is report
 Consequences: the E selection of amendment 3 is withdrawn, and no BM25 arm is submitted until a corrected
 localizer is shown in the traces to rank repository files. The corrected design runs lexical search inside the
 sandbox through run_command, where the repository is visible. Its arms are registered here before any result.
+
+## Amendment 5 (recorded 2026-11-12 17:10 MT, before any result of these arms)
+
+Corrected localizer. G = submission_v81_grep (31B) and G-E4B = submission_v81e4b_grep: identical to N and N-E4B except
+the prompt, whose first step is a grep over every Python file run through run_command inside the sandbox, where the
+repository is visible (full-coverage literal search), and whose step 1 no longer forbids repository-wide grep.
+Gate before any leaderboard use: in the self-test traces, the first call is that grep and it prints repository paths
+in most tasks. Tests: G vs N and G-E4B vs N-E4B, exact McNemar on the same 16 published tasks; a null is reported as
+not detected. Small-model levers, each one change from the better E4B arm and registered before its result: a
+prompt shortened for a small model, then a larger budget (the measured E4B runs used 7 to 26 of 28 tool calls and
+1 to 7 of 8 minutes, so this lever is ranked last). A distillation LoRA (31B trajectories that resolved published
+tasks, tested on held-out tasks) is considered only if these plateau, and registered before training.
