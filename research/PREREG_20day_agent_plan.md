@@ -159,3 +159,12 @@ Gate: the first call was the grep in 16 of 16 tasks for both arms, and its outpu
 fastapi_5624 and rich_3777, N only rich_3480, exact McNemar p = 1.0. G-E4B resolved 1 (patches 15), N-E4B 1; each
 resolved one task the other did not, p = 1.0. No difference is detected at this size.
 Files: benchmark/gemma_agent/selftest_results/selftest16_v81_grep.csv and selftest16_v81e4b_grep.csv.
+
+## Amendment 6 (recorded 2026-11-12 20:15 MT, before any result of this arm)
+
+S-E4B = submission_v81e4b_short: identical to G-E4B except the prompt, rewritten for a small model (668 to 226
+words, five numbered steps). G-E4B is the base because it tied N-E4B (1 of 16 each) and passes the trace gate. The
+rewrite keeps the in-sandbox grep first step and adds one rule motivated by measured traces: edit existing files only
+with edit_file, never write_file (G-E4B produced patches of 23,723 and 178,225 characters, consistent with whole-file
+rewrites). Test: S-E4B vs G-E4B, exact McNemar on the same 16 published tasks; secondary, the number of patches over
+10,000 characters. A null is reported as not detected.
