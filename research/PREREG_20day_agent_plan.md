@@ -151,3 +151,11 @@ not detected. Small-model levers, each one change from the better E4B arm and re
 prompt shortened for a small model, then a larger budget (the measured E4B runs used 7 to 26 of 28 tool calls and
 1 to 7 of 8 minutes, so this lever is ranked last). A distillation LoRA (31B trajectories that resolved published
 tasks, tested on held-out tasks) is considered only if these plateau, and registered before training.
+
+## Outcome of amendment 5 (recorded 2026-11-12 19:10 MT)
+
+Gate: the first call was the grep in 16 of 16 tasks for both arms, and its output listed repository .py paths in
+12 of 16 (G) and 14 of 16 (G-E4B), so both pass. 16 published tasks: G resolved 5 (patches 13), N 4; G only
+fastapi_5624 and rich_3777, N only rich_3480, exact McNemar p = 1.0. G-E4B resolved 1 (patches 15), N-E4B 1; each
+resolved one task the other did not, p = 1.0. No difference is detected at this size.
+Files: benchmark/gemma_agent/selftest_results/selftest16_v81_grep.csv and selftest16_v81e4b_grep.csv.
