@@ -1,0 +1,13 @@
+{
+ "tasks_checked": 129,
+ "tasks_missing": 0,
+ "tasks_with_any_async_in_index": 0,
+ "tasks_with_async_in_source": 116,
+ "tasks_gold_edits_async_function": 21,
+ "tasks_gold_edits_async_by_repo": {
+  "fastapi/fastapi": 20,
+  "encode/httpx": 1
+ },
+ "tasks_with_gold_symbol_missing_from_index": 17,
+ "tasks_gold_only_new_files": 1
+}

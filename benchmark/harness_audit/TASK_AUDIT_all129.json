@@ -1,0 +1,5532 @@
+[
+ {
+  "task": "fastapi_15661",
+  "repo": "fastapi/fastapi",
+  "commit": "ee22a4b",
+  "graph_nodes": 4263,
+  "graph_async_nodes": 0,
+  "source_async_defs": 932,
+  "gold_files": [],
+  "gold_new_files": [
+   "scripts/prepare_release.py"
+  ],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15588",
+  "repo": "fastapi/fastapi",
+  "commit": "cb83b83",
+  "graph_nodes": 4256,
+  "graph_async_nodes": 0,
+  "source_async_defs": 931,
+  "gold_files": [
+   "fastapi/sse.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "EventSourceResponse"
+   ],
+   [
+    "class",
+    "ServerSentEvent"
+   ],
+   [
+    "def",
+    "_check_id_no_null"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "EventSourceResponse",
+   "ServerSentEvent",
+   "_check_id_no_null"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15589",
+  "repo": "fastapi/fastapi",
+  "commit": "22b02e2",
+  "graph_nodes": 4259,
+  "graph_async_nodes": 0,
+  "source_async_defs": 931,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "request_params_to_args"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "request_params_to_args"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15030",
+  "repo": "fastapi/fastapi",
+  "commit": "48d58ae",
+  "graph_nodes": 4194,
+  "graph_async_nodes": 0,
+  "source_async_defs": 911,
+  "gold_files": [
+   "fastapi/openapi/utils.py",
+   "fastapi/responses.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [
+   "docs_src/server_sent_events/tutorial001_py310.py",
+   "docs_src/server_sent_events/tutorial002_py310.py",
+   "docs_src/server_sent_events/tutorial003_py310.py",
+   "docs_src/server_sent_events/tutorial004_py310.py",
+   "docs_src/server_sent_events/tutorial005_py310.py",
+   "fastapi/sse.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "_async_stream_jsonl"
+   ],
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "class",
+    "APIRoute"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_serialize_item"
+   ],
+   [
+    "def",
+    "_sync_stream_jsonl"
+   ],
+   [
+    "def",
+    "get_openapi_path"
+   ],
+   [
+    "def",
+    "get_request_handler"
+   ],
+   [
+    "def",
+    "get_route_handler"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "APIRoute",
+   "__init__",
+   "_serialize_item",
+   "_sync_stream_jsonl",
+   "get_openapi_path",
+   "get_request_handler",
+   "get_route_handler"
+  ],
+  "gold_symbols_not_in_index": [
+   "_async_stream_jsonl",
+   "app"
+  ]
+ },
+ {
+  "task": "fastapi_14962",
+  "repo": "fastapi/fastapi",
+  "commit": "1e78a36",
+  "graph_nodes": 4106,
+  "graph_async_nodes": 0,
+  "source_async_defs": 882,
+  "gold_files": [
+   "docs_src/custom_response/tutorial010_py310.py",
+   "fastapi/_compat/v2.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "async def",
+    "read_items"
+   ],
+   [
+    "async def",
+    "serialize_response"
+   ],
+   [
+    "class",
+    "ModelField"
+   ],
+   [
+    "def",
+    "__hash__"
+   ],
+   [
+    "def",
+    "serialize"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "read_items",
+   "ModelField",
+   "__hash__",
+   "serialize"
+  ],
+  "gold_symbols_not_in_index": [
+   "app",
+   "serialize_response"
+  ]
+ },
+ {
+  "task": "fastapi_15280",
+  "repo": "fastapi/fastapi",
+  "commit": "6ee8747",
+  "graph_nodes": 4248,
+  "graph_async_nodes": 0,
+  "source_async_defs": 931,
+  "gold_files": [
+   "fastapi/applications.py"
+  ],
+  "gold_new_files": [
+   "docs_src/vibe/tutorial001_py310.py"
+  ],
+  "gold_symbols": [
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "def",
+    "trace"
+   ],
+   [
+    "def",
+    "websocket_route"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "FastAPI",
+   "trace",
+   "websocket_route"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14964",
+  "repo": "fastapi/fastapi",
+  "commit": "bc06e42",
+  "graph_nodes": 4115,
+  "graph_async_nodes": 0,
+  "source_async_defs": 882,
+  "gold_files": [
+   "fastapi/responses.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ORJSONResponse"
+   ],
+   [
+    "class",
+    "UJSONResponse"
+   ],
+   [
+    "def",
+    "render"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ORJSONResponse",
+   "UJSONResponse",
+   "render"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15023",
+  "repo": "fastapi/fastapi",
+  "commit": "c0836dc",
+  "graph_nodes": 4193,
+  "graph_async_nodes": 0,
+  "source_async_defs": 911,
+  "gold_files": [
+   "docs_src/stream_data/tutorial002_py310.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "stream_image"
+   ],
+   [
+    "async def",
+    "stream_image_no_annotation"
+   ],
+   [
+    "def",
+    "stream_image_no_async"
+   ],
+   [
+    "def",
+    "stream_image_no_async_no_annotation"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "stream_image_no_async",
+   "stream_image_no_async_no_annotation"
+  ],
+  "gold_symbols_not_in_index": [
+   "stream_image",
+   "stream_image_no_annotation"
+  ]
+ },
+ {
+  "task": "fastapi_14986",
+  "repo": "fastapi/fastapi",
+  "commit": "2f9c914",
+  "graph_nodes": 4151,
+  "graph_async_nodes": 0,
+  "source_async_defs": 892,
+  "gold_files": [
+   "fastapi/applications.py",
+   "fastapi/openapi/docs.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "openapi"
+   ],
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "def",
+    "get_swagger_ui_html"
+   ],
+   [
+    "def",
+    "setup"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "openapi",
+   "FastAPI",
+   "get_swagger_ui_html",
+   "setup"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14978",
+  "repo": "fastapi/fastapi",
+  "commit": "94a1ee7",
+  "graph_nodes": 4128,
+  "graph_async_nodes": 0,
+  "source_async_defs": 882,
+  "gold_files": [
+   "fastapi/applications.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [
+   "docs_src/strict_content_type/tutorial001_py310.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "class",
+    "APIRoute"
+   ],
+   [
+    "class",
+    "APIRouter"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "add_api_route"
+   ],
+   [
+    "def",
+    "get_request_handler"
+   ],
+   [
+    "def",
+    "get_route_handler"
+   ],
+   [
+    "def",
+    "include_router"
+   ],
+   [
+    "def",
+    "matches"
+   ],
+   [
+    "def",
+    "route"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "APIRoute",
+   "APIRouter",
+   "__init__",
+   "add_api_route",
+   "get_request_handler",
+   "get_route_handler",
+   "include_router",
+   "matches",
+   "route"
+  ],
+  "gold_symbols_not_in_index": [
+   "app"
+  ]
+ },
+ {
+  "task": "requests_7505",
+  "repo": "psf/requests",
+  "commit": "6f205ff",
+  "graph_nodes": 759,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/_types.py",
+   "src/requests/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "SupportsItems"
+   ],
+   [
+    "def",
+    "_encode_files"
+   ],
+   [
+    "def",
+    "_encode_params"
+   ],
+   [
+    "def",
+    "items"
+   ],
+   [
+    "def",
+    "prepare_body"
+   ],
+   [
+    "def",
+    "read"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "SupportsItems",
+   "_encode_files",
+   "_encode_params",
+   "items",
+   "prepare_body",
+   "read"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7502",
+  "repo": "psf/requests",
+  "commit": "661970d",
+  "graph_nodes": 758,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_encode_files"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_encode_files"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7433",
+  "repo": "psf/requests",
+  "commit": "0b401c7",
+  "graph_nodes": 754,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "prepare_body"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "prepare_body"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7427",
+  "repo": "psf/requests",
+  "commit": "b684dcb",
+  "graph_nodes": 753,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "should_bypass_proxies"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "should_bypass_proxies"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7315",
+  "repo": "psf/requests",
+  "commit": "6360477",
+  "graph_nodes": 733,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/adapters.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "request_url"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "request_url"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7328",
+  "repo": "psf/requests",
+  "commit": "cbce031",
+  "graph_nodes": 733,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/sessions.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "resolve_redirects"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "resolve_redirects"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7309",
+  "repo": "psf/requests",
+  "commit": "7407309",
+  "graph_nodes": 733,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_parse_content_type_header"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_parse_content_type_header"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_7205",
+  "repo": "psf/requests",
+  "commit": "1b40fdd",
+  "graph_nodes": 732,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_netrc_auth"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_netrc_auth"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4070",
+  "repo": "Textualize/rich",
+  "commit": "fc41075",
+  "graph_nodes": 2015,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/_emoji_replace.py",
+   "rich/console.py",
+   "rich/emoji.py",
+   "rich/logging.py",
+   "rich/protocol.py",
+   "rich/repr.py",
+   "rich/segment.py",
+   "rich/syntax.py",
+   "rich/theme.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Console"
+   ],
+   [
+    "class",
+    "ControlType"
+   ],
+   [
+    "class",
+    "Emoji"
+   ],
+   [
+    "class",
+    "RichHandler"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_caller_frame_info"
+   ],
+   [
+    "def",
+    "_collect_renderables"
+   ],
+   [
+    "def",
+    "_emoji_replace"
+   ],
+   [
+    "def",
+    "_svg_hash"
+   ],
+   [
+    "def",
+    "auto_rich_repr"
+   ],
+   [
+    "def",
+    "emit"
+   ],
+   [
+    "def",
+    "export_html"
+   ],
+   [
+    "def",
+    "export_svg"
+   ],
+   [
+    "def",
+    "from_file"
+   ],
+   [
+    "def",
+    "input"
+   ],
+   [
+    "def",
+    "log"
+   ],
+   [
+    "def",
+    "render"
+   ],
+   [
+    "def",
+    "render_message"
+   ],
+   [
+    "def",
+    "rich_cast"
+   ],
+   [
+    "def",
+    "save_svg"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Console",
+   "ControlType",
+   "Emoji",
+   "RichHandler",
+   "__init__",
+   "_caller_frame_info",
+   "_collect_renderables",
+   "_emoji_replace",
+   "_svg_hash",
+   "auto_rich_repr",
+   "emit",
+   "export_html",
+   "export_svg",
+   "from_file",
+   "input",
+   "log",
+   "render",
+   "render_message",
+   "rich_cast",
+   "save_svg"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4077",
+  "repo": "Textualize/rich",
+  "commit": "58ac151",
+  "graph_nodes": 2017,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/file_proxy.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "FileProxy"
+   ],
+   [
+    "def",
+    "fileno"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "FileProxy",
+   "fileno"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4079",
+  "repo": "Textualize/rich",
+  "commit": "19c67b9",
+  "graph_nodes": 2021,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/markdown.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ListElement"
+   ],
+   [
+    "class",
+    "TableDataElement"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "on_text"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ListElement",
+   "TableDataElement",
+   "__init__",
+   "on_text"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4076",
+  "repo": "Textualize/rich",
+  "commit": "9cb1989",
+  "graph_nodes": 2016,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/ansi.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "AnsiDecoder"
+   ],
+   [
+    "def",
+    "decode"
+   ],
+   [
+    "def",
+    "decode_line"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "AnsiDecoder",
+   "decode",
+   "decode_line"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4075",
+  "repo": "Textualize/rich",
+  "commit": "1fc7cb2",
+  "graph_nodes": 2015,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Console"
+   ],
+   [
+    "def",
+    "export_text"
+   ],
+   [
+    "def",
+    "print"
+   ],
+   [
+    "def",
+    "save_text"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Console",
+   "export_text",
+   "print",
+   "save_text"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_4006",
+  "repo": "Textualize/rich",
+  "commit": "2770102",
+  "graph_nodes": 2014,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/cells.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "split_graphemes"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "split_graphemes"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14258",
+  "repo": "fastapi/fastapi",
+  "commit": "e94028a",
+  "graph_nodes": 4364,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1105,
+  "gold_files": [
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "include_router"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "include_router"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14851",
+  "repo": "fastapi/fastapi",
+  "commit": "8e50c55",
+  "graph_nodes": 4363,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1097,
+  "gold_files": [
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "APIRouter"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_merge_lifespan_context"
+   ],
+   [
+    "def",
+    "trace"
+   ],
+   [
+    "def",
+    "websocket_session"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "APIRouter",
+   "__init__",
+   "_merge_lifespan_context",
+   "trace",
+   "websocket_session"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14873",
+  "repo": "fastapi/fastapi",
+  "commit": "cd31576",
+  "graph_nodes": 4363,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1105,
+  "gold_files": [
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__init__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__init__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_13920",
+  "repo": "fastapi/fastapi",
+  "commit": "0dd42b7",
+  "graph_nodes": 4353,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1095,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "analyze_param"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "analyze_param"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14794",
+  "repo": "fastapi/fastapi",
+  "commit": "464c359",
+  "graph_nodes": 4338,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1095,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "analyze_param"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "analyze_param"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14786",
+  "repo": "fastapi/fastapi",
+  "commit": "eacbce2",
+  "graph_nodes": 4330,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1091,
+  "gold_files": [
+   "fastapi/security/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_authorization_scheme_param"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_authorization_scheme_param"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14492",
+  "repo": "fastapi/fastapi",
+  "commit": "a456e92",
+  "graph_nodes": 4330,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1091,
+  "gold_files": [
+   "docs_src/metadata/tutorial001_1_py39.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14479",
+  "repo": "fastapi/fastapi",
+  "commit": "2b212dd",
+  "graph_nodes": 4269,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1094,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "analyze_param"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "analyze_param"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14463",
+  "repo": "fastapi/fastapi",
+  "commit": "f2687dc",
+  "graph_nodes": 4275,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1091,
+  "gold_files": [
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_openapi_path"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_openapi_path"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_12942",
+  "repo": "fastapi/fastapi",
+  "commit": "27c0f7e",
+  "graph_nodes": 3314,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1059,
+  "gold_files": [
+   "fastapi/_compat.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "field_annotation_is_complex"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "field_annotation_is_complex"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14099",
+  "repo": "fastapi/fastapi",
+  "commit": "861b22c",
+  "graph_nodes": 3263,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1052,
+  "gold_files": [
+   "fastapi/applications.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [
+   "docs_src/dependencies/tutorial013_an_py310.py",
+   "docs_src/dependencies/tutorial014_an_py310.py",
+   "fastapi/middleware/asyncexitstack.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_prepare_response_content"
+   ],
+   [
+    "def",
+    "get_request_handler"
+   ],
+   [
+    "def",
+    "get_websocket_app"
+   ],
+   [
+    "def",
+    "openapi"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "FastAPI",
+   "__init__",
+   "_prepare_response_content",
+   "get_request_handler",
+   "get_websocket_app",
+   "openapi"
+  ],
+  "gold_symbols_not_in_index": [
+   "app"
+  ]
+ },
+ {
+  "task": "fastapi_14609",
+  "repo": "fastapi/fastapi",
+  "commit": "1b3bea8",
+  "graph_nodes": 4596,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1095,
+  "gold_files": [
+   "docs_src/request_form_models/tutorial002_pv1_an_py39.py",
+   "docs_src/request_form_models/tutorial002_pv1_py39.py",
+   "fastapi/_compat/__init__.py",
+   "fastapi/_compat/main.py",
+   "fastapi/_compat/may_v1.py",
+   "fastapi/_compat/model_field.py",
+   "fastapi/_compat/shared.py",
+   "fastapi/_compat/v1.py",
+   "fastapi/_compat/v2.py",
+   "fastapi/datastructures.py",
+   "fastapi/dependencies/utils.py",
+   "fastapi/encoders.py",
+   "fastapi/exceptions.py",
+   "fastapi/openapi/models.py",
+   "fastapi/openapi/utils.py",
+   "fastapi/param_functions.py",
+   "fastapi/params.py",
+   "fastapi/routing.py",
+   "fastapi/temp_pydantic_v1_params.py",
+   "fastapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_extract_form_body"
+   ],
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "async def",
+    "login"
+   ],
+   [
+    "async def",
+    "request_body_to_args"
+   ],
+   [
+    "async def",
+    "serialize_response"
+   ],
+   [
+    "class",
+    "AnyUrl"
+   ],
+   [
+    "class",
+    "BaseConfig"
+   ],
+   [
+    "class",
+    "BaseModel"
+   ],
+   [
+    "class",
+    "Body"
+   ],
+   [
+    "class",
+    "Color"
+   ],
+   [
+    "class",
+    "Config"
+   ],
+   [
+    "class",
+    "Cookie"
+   ],
+   [
+    "class",
+    "CoreSchema"
+   ],
+   [
+    "class",
+    "EmailStr"
+   ],
+   [
+    "class",
+    "ErrorWrapper"
+   ],
+   [
+    "class",
+    "FastAPIDeprecationWarning"
+   ],
+   [
+    "class",
+    "FieldInfo"
+   ],
+   [
+    "class",
+    "File"
+   ],
+   [
+    "class",
+    "Form"
+   ],
+   [
+    "class",
+    "FormData"
+   ],
+   [
+    "class",
+    "GenerateJsonSchema"
+   ],
+   [
+    "class",
+    "GetJsonSchemaHandler"
+   ],
+   [
+    "class",
+    "Header"
+   ],
+   [
+    "class",
+    "JsonSchemaValue"
+   ],
+   [
+    "class",
+    "ModelField"
+   ],
+   [
+    "class",
+    "NameEmail"
+   ],
+   [
+    "class",
+    "Param"
+   ],
+   [
+    "class",
+    "Path"
+   ],
+   [
+    "class",
+    "PydanticSchemaGenerationError"
+   ],
+   [
+    "class",
+    "Query"
+   ],
+   [
+    "class",
+    "RequiredParam"
+   ],
+   [
+    "class",
+    "SecretBytes"
+   ],
+   [
+    "class",
+    "SecretStr"
+   ],
+   [
+    "class",
+    "Undefined"
+   ],
+   [
+    "class",
+    "UndefinedType"
+   ],
+   [
+    "class",
+    "UploadFile"
+   ],
+   [
+    "class",
+    "Url"
+   ],
+   [
+    "def",
+    "Body"
+   ],
+   [
+    "def",
+    "Cookie"
+   ],
+   [
+    "def",
+    "File"
+   ],
+   [
+    "def",
+    "Form"
+   ],
+   [
+    "def",
+    "Header"
+   ],
+   [
+    "def",
+    "Path"
+   ],
+   [
+    "def",
+    "Query"
+   ],
+   [
+    "def",
+    "__get_pydantic_core_schema__"
+   ],
+   [
+    "def",
+    "__get_pydantic_json_schema__"
+   ],
+   [
+    "def",
+    "__hash__"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__repr__"
+   ],
+   [
+    "def",
+    "_annotation_is_complex"
+   ],
+   [
+    "def",
+    "_get_flat_fields_from_params"
+   ],
+   [
+    "def",
+    "_get_model_config"
+   ],
+   [
+    "def",
+    "_get_multidict_value"
+   ],
+   [
+    "def",
+    "_get_openapi_operation_parameters"
+   ],
+   [
+    "def",
+    "_has_computed_fields"
+   ],
+   [
+    "def",
+    "_is_error_wrapper"
+   ],
+   [
+    "def",
+    "_is_model_class"
+   ],
+   [
+    "def",
+    "_is_model_field"
+   ],
+   [
+    "def",
+    "_is_undefined"
+   ],
+   [
+    "def",
+    "_merge_lifespan_context"
+   ],
+   [
+    "def",
+    "_model_dump"
+   ],
+   [
+    "def",
+    "_normalize_errors"
+   ],
+   [
+    "def",
+    "_prepare_response_content"
+   ],
+   [
+    "def",
+    "_regenerate_error_with_loc"
+   ],
+   [
+    "def",
+    "_should_embed_body_fields"
+   ],
+   [
+    "def",
+    "_validate_value_with_model_field"
+   ],
+   [
+    "def",
+    "alias"
+   ],
+   [
+    "def",
+    "analyze_param"
+   ],
+   [
+    "def",
+    "annotation_is_pydantic_v1"
+   ],
+   [
+    "def",
+    "copy_field_info"
+   ],
+   [
+    "def",
+    "create_body_model"
+   ],
+   [
+    "def",
+    "create_cloned_field"
+   ],
+   [
+    "def",
+    "create_model_field"
+   ],
+   [
+    "def",
+    "default"
+   ],
+   [
+    "def",
+    "generate_operation_id_for_path"
+   ],
+   [
+    "def",
+    "get_annotation_from_field_info"
+   ],
+   [
+    "def",
+    "get_body_field"
+   ],
+   [
+    "def",
+    "get_cached_model_fields"
+   ],
+   [
+    "def",
+    "get_compat_model_name_map"
+   ],
+   [
+    "def",
+    "get_default"
+   ],
+   [
+    "def",
+    "get_definitions"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ],
+   [
+    "def",
+    "get_fields_from_routes"
+   ],
+   [
+    "def",
+    "get_flat_models_from_fields"
+   ],
+   [
+    "def",
+    "get_flat_models_from_model"
+   ],
+   [
+    "def",
+    "get_long_model_name"
+   ],
+   [
+    "def",
+    "get_model_definitions"
+   ],
+   [
+    "def",
+    "get_model_fields"
+   ],
+   [
+    "def",
+    "get_model_name_map"
+   ],
+   [
+    "def",
+    "get_openapi_operation_request_body"
+   ],
+   [
+    "def",
+    "get_openapi_path"
+   ],
+   [
+    "def",
+    "get_request_handler"
+   ],
+   [
+    "def",
+    "get_schema_from_model_field"
+   ],
+   [
+    "def",
+    "is_bytes_field"
+   ],
+   [
+    "def",
+    "is_bytes_sequence_field"
+   ],
+   [
+    "def",
+    "is_pv1_scalar_field"
+   ],
+   [
+    "def",
+    "is_scalar_field"
+   ],
+   [
+    "def",
+    "is_scalar_sequence_field"
+   ],
+   [
+    "def",
+    "is_sequence_field"
+   ],
+   [
+    "def",
+    "is_union_of_base_models"
+   ],
+   [
+    "def",
+    "is_uploadfile_sequence_annotation"
+   ],
+   [
+    "def",
+    "jsonable_encoder"
+   ],
+   [
+    "def",
+    "request_params_to_args"
+   ],
+   [
+    "def",
+    "required"
+   ],
+   [
+    "def",
+    "serialize"
+   ],
+   [
+    "def",
+    "serialize_sequence_value"
+   ],
+   [
+    "def",
+    "type_"
+   ],
+   [
+    "def",
+    "validate"
+   ],
+   [
+    "def",
+    "websocket_session"
+   ],
+   [
+    "def",
+    "with_info_plain_validator_function"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "login",
+   "AnyUrl",
+   "BaseConfig",
+   "BaseModel",
+   "Body",
+   "Color",
+   "Config",
+   "Cookie",
+   "CoreSchema",
+   "EmailStr",
+   "ErrorWrapper",
+   "FastAPIDeprecationWarning",
+   "FieldInfo",
+   "File",
+   "Form",
+   "FormData",
+   "GenerateJsonSchema",
+   "GetJsonSchemaHandler",
+   "Header",
+   "JsonSchemaValue",
+   "ModelField",
+   "NameEmail",
+   "Param",
+   "Path",
+   "PydanticSchemaGenerationError",
+   "Query",
+   "RequiredParam",
+   "SecretBytes",
+   "SecretStr",
+   "Undefined",
+   "UndefinedType",
+   "UploadFile",
+   "Url",
+   "Body",
+   "Cookie",
+   "File",
+   "Form",
+   "Header",
+   "Path",
+   "Query",
+   "__get_pydantic_core_schema__",
+   "__get_pydantic_json_schema__",
+   "__hash__",
+   "__init__",
+   "__repr__",
+   "_annotation_is_complex",
+   "_get_flat_fields_from_params",
+   "_get_model_config",
+   "_get_multidict_value",
+   "_get_openapi_operation_parameters",
+   "_has_computed_fields",
+   "_is_error_wrapper",
+   "_is_model_class",
+   "_is_model_field",
+   "_is_undefined",
+   "_merge_lifespan_context",
+   "_model_dump",
+   "_normalize_errors",
+   "_prepare_response_content",
+   "_regenerate_error_with_loc",
+   "_should_embed_body_fields",
+   "_validate_value_with_model_field",
+   "alias",
+   "analyze_param",
+   "annotation_is_pydantic_v1",
+   "copy_field_info",
+   "create_body_model",
+   "create_cloned_field",
+   "create_model_field",
+   "default",
+   "generate_operation_id_for_path",
+   "get_annotation_from_field_info",
+   "get_body_field",
+   "get_cached_model_fields",
+   "get_compat_model_name_map",
+   "get_default",
+   "get_definitions",
+   "get_dependant",
+   "get_fields_from_routes",
+   "get_flat_models_from_fields",
+   "get_flat_models_from_model",
+   "get_long_model_name",
+   "get_model_definitions",
+   "get_model_fields",
+   "get_model_name_map",
+   "get_openapi_operation_request_body",
+   "get_openapi_path",
+   "get_request_handler",
+   "get_schema_from_model_field",
+   "is_bytes_field",
+   "is_bytes_sequence_field",
+   "is_pv1_scalar_field",
+   "is_scalar_field",
+   "is_scalar_sequence_field",
+   "is_sequence_field",
+   "is_union_of_base_models",
+   "is_uploadfile_sequence_annotation",
+   "jsonable_encoder",
+   "request_params_to_args",
+   "required",
+   "serialize",
+   "serialize_sequence_value",
+   "type_",
+   "validate",
+   "websocket_session",
+   "with_info_plain_validator_function"
+  ],
+  "gold_symbols_not_in_index": [
+   "_extract_form_body",
+   "app",
+   "request_body_to_args",
+   "serialize_response"
+  ]
+ },
+ {
+  "task": "fastapi_14372",
+  "repo": "fastapi/fastapi",
+  "commit": "566e315",
+  "graph_nodes": 3689,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1077,
+  "gold_files": [
+   "fastapi/dependencies/utils.py",
+   "fastapi/params.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Depends"
+   ],
+   [
+    "class",
+    "Security"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "analyze_param"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Depends",
+   "Security",
+   "__init__",
+   "analyze_param"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14349",
+  "repo": "fastapi/fastapi",
+  "commit": "eaf611f",
+  "graph_nodes": 3685,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1076,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_replace_refs"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_replace_refs"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14512",
+  "repo": "fastapi/fastapi",
+  "commit": "1fcec88",
+  "graph_nodes": 4479,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1298,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "BaseConfig"
+   ],
+   [
+    "def",
+    "__post_init__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "BaseConfig",
+   "__post_init__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14487",
+  "repo": "fastapi/fastapi",
+  "commit": "4a98a66",
+  "graph_nodes": 3944,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1208,
+  "gold_files": [
+   "docs_src/handling_errors/tutorial004.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "validation_exception_handler"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": [
+   "validation_exception_handler"
+  ]
+ },
+ {
+  "task": "fastapi_11355",
+  "repo": "fastapi/fastapi",
+  "commit": "811fa89",
+  "graph_nodes": 3818,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1147,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_typed_return_annotation"
+   ],
+   [
+    "def",
+    "get_typed_signature"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_typed_return_annotation",
+   "get_typed_signature"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14485",
+  "repo": "fastapi/fastapi",
+  "commit": "60699f3",
+  "graph_nodes": 3939,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1204,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_flat_params"
+   ],
+   [
+    "def",
+    "get_typed_return_annotation"
+   ],
+   [
+    "def",
+    "get_typed_signature"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_flat_params",
+   "get_typed_return_annotation",
+   "get_typed_signature"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14482",
+  "repo": "fastapi/fastapi",
+  "commit": "71a17b5",
+  "graph_nodes": 3931,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1204,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ModelField"
+   ],
+   [
+    "def",
+    "__post_init__"
+   ],
+   [
+    "def",
+    "alias"
+   ],
+   [
+    "def",
+    "get_default"
+   ],
+   [
+    "def",
+    "get_model_fields"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ModelField",
+   "__post_init__",
+   "alias",
+   "get_default",
+   "get_model_fields"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14306",
+  "repo": "fastapi/fastapi",
+  "commit": "08b09e5",
+  "graph_nodes": 3837,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1159,
+  "gold_files": [
+   "fastapi/exceptions.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "async def",
+    "serialize_response"
+   ],
+   [
+    "class",
+    "HTTPException"
+   ],
+   [
+    "class",
+    "RequestValidationError"
+   ],
+   [
+    "class",
+    "ResponseValidationError"
+   ],
+   [
+    "class",
+    "ValidationException"
+   ],
+   [
+    "class",
+    "WebSocketRequestValidationError"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__str__"
+   ],
+   [
+    "def",
+    "_merge_lifespan_context"
+   ],
+   [
+    "def",
+    "errors"
+   ],
+   [
+    "def",
+    "get_websocket_app"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "HTTPException",
+   "RequestValidationError",
+   "ResponseValidationError",
+   "ValidationException",
+   "WebSocketRequestValidationError",
+   "__init__",
+   "__str__",
+   "_merge_lifespan_context",
+   "errors",
+   "get_websocket_app"
+  ],
+  "gold_symbols_not_in_index": [
+   "app",
+   "serialize_response"
+  ]
+ },
+ {
+  "task": "fastapi_14458",
+  "repo": "fastapi/fastapi",
+  "commit": "5161694",
+  "graph_nodes": 3837,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1155,
+  "gold_files": [
+   "fastapi/dependencies/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "def",
+    "is_async_gen_callable"
+   ],
+   [
+    "def",
+    "is_coroutine_callable"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "is_async_gen_callable",
+   "is_coroutine_callable",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14459",
+  "repo": "fastapi/fastapi",
+  "commit": "eb1d504",
+  "graph_nodes": 3826,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1150,
+  "gold_files": [
+   "fastapi/dependencies/models.py",
+   "fastapi/dependencies/utils.py",
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "class",
+    "SecurityRequirement"
+   ],
+   [
+    "def",
+    "_impartial"
+   ],
+   [
+    "def",
+    "_uses_scopes"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ],
+   [
+    "def",
+    "get_flat_dependant"
+   ],
+   [
+    "def",
+    "get_openapi_security_definitions"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "SecurityRequirement",
+   "_impartial",
+   "_uses_scopes",
+   "get_dependant",
+   "get_flat_dependant",
+   "get_openapi_security_definitions",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14448",
+  "repo": "fastapi/fastapi",
+  "commit": "c57ac7b",
+  "graph_nodes": 3792,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1114,
+  "gold_files": [
+   "fastapi/dependencies/models.py",
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_solve_generator"
+   ],
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "class",
+    "SecurityRequirement"
+   ],
+   [
+    "def",
+    "_unwrapped_call"
+   ],
+   [
+    "def",
+    "_uses_scopes"
+   ],
+   [
+    "def",
+    "computed_scope"
+   ],
+   [
+    "def",
+    "is_async_gen_callable"
+   ],
+   [
+    "def",
+    "is_coroutine_callable"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "SecurityRequirement",
+   "_unwrapped_call",
+   "_uses_scopes",
+   "computed_scope",
+   "is_async_gen_callable",
+   "is_coroutine_callable",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": [
+   "_solve_generator"
+  ]
+ },
+ {
+  "task": "fastapi_14455",
+  "repo": "fastapi/fastapi",
+  "commit": "603df6e",
+  "graph_nodes": 3822,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1147,
+  "gold_files": [
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_openapi_security_definitions"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_openapi_security_definitions"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_9753",
+  "repo": "fastapi/fastapi",
+  "commit": "aee8e78",
+  "graph_nodes": 3780,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1096,
+  "gold_files": [
+   "fastapi/dependencies/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "def",
+    "_unwrapped_call"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "_unwrapped_call",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14430",
+  "repo": "fastapi/fastapi",
+  "commit": "cff2236",
+  "graph_nodes": 3774,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1096,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "serialize_sequence_value"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "serialize_sequence_value"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_5077",
+  "repo": "fastapi/fastapi",
+  "commit": "930b27e",
+  "graph_nodes": 3775,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1096,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_typed_return_annotation"
+   ],
+   [
+    "def",
+    "get_typed_signature"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_typed_return_annotation",
+   "get_typed_signature"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_9555",
+  "repo": "fastapi/fastapi",
+  "commit": "4976568",
+  "graph_nodes": 3768,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1090,
+  "gold_files": [
+   "fastapi/dependencies/models.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "def",
+    "_uses_scopes"
+   ],
+   [
+    "def",
+    "is_async_gen_callable"
+   ],
+   [
+    "def",
+    "is_coroutine_callable"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "_uses_scopes",
+   "is_async_gen_callable",
+   "is_coroutine_callable",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14361",
+  "repo": "fastapi/fastapi",
+  "commit": "5265c4f",
+  "graph_nodes": 3698,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1077,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_remap_definitions_and_field_mappings"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_remap_definitions_and_field_mappings"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_13207",
+  "repo": "fastapi/fastapi",
+  "commit": "5126e09",
+  "graph_nodes": 3768,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1090,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_definitions"
+   ],
+   [
+    "def",
+    "get_schema_from_model_field"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_definitions",
+   "get_schema_from_model_field"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14360",
+  "repo": "fastapi/fastapi",
+  "commit": "eead41b",
+  "graph_nodes": 3761,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1087,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "request_params_to_args"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "request_params_to_args"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14356",
+  "repo": "fastapi/fastapi",
+  "commit": "6cf40df",
+  "graph_nodes": 3750,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1083,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "request_params_to_args"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "request_params_to_args"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_5624",
+  "repo": "fastapi/fastapi",
+  "commit": "c6487ed",
+  "graph_nodes": 3715,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1077,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_dependant"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_dependant"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14419",
+  "repo": "fastapi/fastapi",
+  "commit": "63d7a2b",
+  "graph_nodes": 3717,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1080,
+  "gold_files": [
+   "fastapi/dependencies/models.py",
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "solve_dependencies"
+   ],
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "def",
+    "cache_key"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ],
+   [
+    "def",
+    "get_parameterless_sub_dependant"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "cache_key",
+   "get_dependant",
+   "get_parameterless_sub_dependant",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": [
+   "solve_dependencies"
+  ]
+ },
+ {
+  "task": "fastapi_14301",
+  "repo": "fastapi/fastapi",
+  "commit": "972a967",
+  "graph_nodes": 3677,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1076,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_parameterless_sub_dependant"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_parameterless_sub_dependant"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14262",
+  "repo": "fastapi/fastapi",
+  "commit": "425a4c5",
+  "graph_nodes": 3630,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1068,
+  "gold_files": [
+   "fastapi/dependencies/models.py",
+   "fastapi/dependencies/utils.py",
+   "fastapi/exceptions.py",
+   "fastapi/param_functions.py",
+   "fastapi/params.py",
+   "fastapi/routing.py",
+   "fastapi/types.py"
+  ],
+  "gold_new_files": [
+   "docs_src/dependencies/tutorial008e.py",
+   "docs_src/dependencies/tutorial008e_an.py",
+   "docs_src/dependencies/tutorial008e_an_py39.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "app"
+   ],
+   [
+    "async def",
+    "solve_dependencies"
+   ],
+   [
+    "async def",
+    "solve_generator"
+   ],
+   [
+    "class",
+    "Dependant"
+   ],
+   [
+    "class",
+    "Depends"
+   ],
+   [
+    "class",
+    "FastAPIError"
+   ],
+   [
+    "class",
+    "SolvedDependency"
+   ],
+   [
+    "class",
+    "ValidationException"
+   ],
+   [
+    "def",
+    "Depends"
+   ],
+   [
+    "def",
+    "Security"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__post_init__"
+   ],
+   [
+    "def",
+    "add_param_to_fields"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ],
+   [
+    "def",
+    "get_flat_dependant"
+   ],
+   [
+    "def",
+    "get_parameterless_sub_dependant"
+   ],
+   [
+    "def",
+    "is_async_gen_callable"
+   ],
+   [
+    "def",
+    "is_coroutine_callable"
+   ],
+   [
+    "def",
+    "is_gen_callable"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "Dependant",
+   "Depends",
+   "FastAPIError",
+   "SolvedDependency",
+   "ValidationException",
+   "Depends",
+   "Security",
+   "__init__",
+   "__post_init__",
+   "add_param_to_fields",
+   "get_dependant",
+   "get_flat_dependant",
+   "get_parameterless_sub_dependant",
+   "is_async_gen_callable",
+   "is_coroutine_callable",
+   "is_gen_callable"
+  ],
+  "gold_symbols_not_in_index": [
+   "app",
+   "solve_dependencies",
+   "solve_generator"
+  ]
+ },
+ {
+  "task": "fastapi_14266",
+  "repo": "fastapi/fastapi",
+  "commit": "2cf04ee",
+  "graph_nodes": 3627,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1067,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_dependant"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_dependant"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14246",
+  "repo": "fastapi/fastapi",
+  "commit": "7132a69",
+  "graph_nodes": 3619,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1066,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_definitions"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_definitions"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14186",
+  "repo": "fastapi/fastapi",
+  "commit": "6e49dc0",
+  "graph_nodes": 3601,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1066,
+  "gold_files": [
+   "fastapi/_compat/__init__.py",
+   "fastapi/_compat/main.py",
+   "fastapi/_compat/shared.py",
+   "fastapi/_compat/v1.py",
+   "fastapi/_compat/v2.py",
+   "fastapi/dependencies/utils.py",
+   "fastapi/encoders.py",
+   "fastapi/temp_pydantic_v1_params.py",
+   "fastapi/utils.py"
+  ],
+  "gold_new_files": [
+   "fastapi/_compat/may_v1.py"
+  ],
+  "gold_symbols": [
+   [
+    "class",
+    "ModelField"
+   ],
+   [
+    "def",
+    "_annotation_is_complex"
+   ],
+   [
+    "def",
+    "_get_model_config"
+   ],
+   [
+    "def",
+    "_is_error_wrapper"
+   ],
+   [
+    "def",
+    "_is_model_class"
+   ],
+   [
+    "def",
+    "_is_model_field"
+   ],
+   [
+    "def",
+    "_is_undefined"
+   ],
+   [
+    "def",
+    "_model_dump"
+   ],
+   [
+    "def",
+    "_model_rebuild"
+   ],
+   [
+    "def",
+    "_normalize_errors"
+   ],
+   [
+    "def",
+    "_regenerate_error_with_loc"
+   ],
+   [
+    "def",
+    "_validate_value_with_model_field"
+   ],
+   [
+    "def",
+    "analyze_param"
+   ],
+   [
+    "def",
+    "annotation_is_pydantic_v1"
+   ],
+   [
+    "def",
+    "copy_field_info"
+   ],
+   [
+    "def",
+    "create_body_model"
+   ],
+   [
+    "def",
+    "create_cloned_field"
+   ],
+   [
+    "def",
+    "create_model_field"
+   ],
+   [
+    "def",
+    "get_annotation_from_field_info"
+   ],
+   [
+    "def",
+    "get_cached_model_fields"
+   ],
+   [
+    "def",
+    "get_compat_model_name_map"
+   ],
+   [
+    "def",
+    "get_definitions"
+   ],
+   [
+    "def",
+    "get_schema_from_model_field"
+   ],
+   [
+    "def",
+    "is_bytes_field"
+   ],
+   [
+    "def",
+    "is_bytes_sequence_field"
+   ],
+   [
+    "def",
+    "is_pv1_scalar_sequence_field"
+   ],
+   [
+    "def",
+    "is_scalar_field"
+   ],
+   [
+    "def",
+    "is_scalar_sequence_field"
+   ],
+   [
+    "def",
+    "is_sequence_field"
+   ],
+   [
+    "def",
+    "jsonable_encoder"
+   ],
+   [
+    "def",
+    "serialize_sequence_value"
+   ],
+   [
+    "def",
+    "validate"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ModelField",
+   "_annotation_is_complex",
+   "_get_model_config",
+   "_is_error_wrapper",
+   "_is_model_class",
+   "_is_model_field",
+   "_is_undefined",
+   "_model_dump",
+   "_model_rebuild",
+   "_normalize_errors",
+   "_regenerate_error_with_loc",
+   "_validate_value_with_model_field",
+   "analyze_param",
+   "annotation_is_pydantic_v1",
+   "copy_field_info",
+   "create_body_model",
+   "create_cloned_field",
+   "create_model_field",
+   "get_annotation_from_field_info",
+   "get_cached_model_fields",
+   "get_compat_model_name_map",
+   "get_definitions",
+   "get_schema_from_model_field",
+   "is_bytes_field",
+   "is_bytes_sequence_field",
+   "is_pv1_scalar_sequence_field",
+   "is_scalar_field",
+   "is_scalar_sequence_field",
+   "is_sequence_field",
+   "jsonable_encoder",
+   "serialize_sequence_value",
+   "validate"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_9425",
+  "repo": "fastapi/fastapi",
+  "commit": "0bdc3ca",
+  "graph_nodes": 3250,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1050,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_typed_annotation"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_typed_annotation"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_13713",
+  "repo": "fastapi/fastapi",
+  "commit": "5c1f87c",
+  "graph_nodes": 3238,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1050,
+  "gold_files": [
+   "fastapi/applications.py",
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "get_openapi"
+   ],
+   [
+    "def",
+    "openapi"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "FastAPI",
+   "__init__",
+   "get_openapi",
+   "openapi"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14077",
+  "repo": "fastapi/fastapi",
+  "commit": "16d75d9",
+  "graph_nodes": 3238,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1050,
+  "gold_files": [
+   "docs_src/handling_errors/tutorial005.py",
+   "fastapi/exception_handlers.py",
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "http_exception_handler"
+   ],
+   [
+    "async def",
+    "request_validation_exception_handler"
+   ],
+   [
+    "async def",
+    "validation_exception_handler"
+   ],
+   [
+    "def",
+    "get_openapi_path"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "http_exception_handler",
+   "request_validation_exception_handler",
+   "get_openapi_path"
+  ],
+  "gold_symbols_not_in_index": [
+   "validation_exception_handler"
+  ]
+ },
+ {
+  "task": "rich_3718",
+  "repo": "Textualize/rich",
+  "commit": "7d36119",
+  "graph_nodes": 1984,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/panel.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__rich_console__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__rich_console__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3934",
+  "repo": "Textualize/rich",
+  "commit": "6764b24",
+  "graph_nodes": 1998,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/live.py",
+   "rich/live_render.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "LiveRender"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "set_renderable"
+   ],
+   [
+    "def",
+    "stop"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "LiveRender",
+   "__init__",
+   "set_renderable",
+   "stop"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3953",
+  "repo": "Textualize/rich",
+  "commit": "1d402e0",
+  "graph_nodes": 2012,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/cells.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_cell_len"
+   ],
+   [
+    "def",
+    "get_character_cell_size"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_cell_len",
+   "get_character_cell_size"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3944",
+  "repo": "Textualize/rich",
+  "commit": "36fe3f7",
+  "graph_nodes": 2011,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/cells.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "get_character_cell_size"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "get_character_cell_size"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3942",
+  "repo": "Textualize/rich",
+  "commit": "c595fa9",
+  "graph_nodes": 2010,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/default_styles.py",
+   "rich/markdown.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "CodeBlock"
+   ],
+   [
+    "class",
+    "Heading"
+   ],
+   [
+    "class",
+    "TableElement"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ],
+   [
+    "def",
+    "create"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "CodeBlock",
+   "Heading",
+   "TableElement",
+   "__rich_console__",
+   "create"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3938",
+  "repo": "Textualize/rich",
+  "commit": "05ff970",
+  "graph_nodes": 2006,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py",
+   "rich/segment.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Segment"
+   ],
+   [
+    "def",
+    "print"
+   ],
+   [
+    "def",
+    "split_and_crop_lines"
+   ],
+   [
+    "def",
+    "split_lines"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Segment",
+   "print",
+   "split_and_crop_lines",
+   "split_lines"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3882",
+  "repo": "Textualize/rich",
+  "commit": "4d6d631",
+  "graph_nodes": 1986,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/prompt.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "PromptBase"
+   ],
+   [
+    "def",
+    "on_validate_error"
+   ],
+   [
+    "def",
+    "pre_prompt"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "PromptBase",
+   "on_validate_error",
+   "pre_prompt"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3894",
+  "repo": "Textualize/rich",
+  "commit": "4d6d631",
+  "graph_nodes": 1986,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/_inspect.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_get_signature"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_get_signature"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3935",
+  "repo": "Textualize/rich",
+  "commit": "fe55a13",
+  "graph_nodes": 2001,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/table.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Table"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ],
+   [
+    "def",
+    "_calculate_column_widths"
+   ],
+   [
+    "def",
+    "_get_padding_width"
+   ],
+   [
+    "def",
+    "_measure_column"
+   ],
+   [
+    "def",
+    "_render"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Table",
+   "__rich_console__",
+   "_calculate_column_widths",
+   "_get_padding_width",
+   "_measure_column",
+   "_render"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3905",
+  "repo": "Textualize/rich",
+  "commit": "96dd4b6",
+  "graph_nodes": 2000,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/progress.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Progress"
+   ],
+   [
+    "def",
+    "__enter__"
+   ],
+   [
+    "def",
+    "stop"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Progress",
+   "__enter__",
+   "stop"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3930",
+  "repo": "Textualize/rich",
+  "commit": "53757bc",
+  "graph_nodes": 1986,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/__main__.py",
+   "rich/_cell_widths.py",
+   "rich/cells.py"
+  ],
+  "gold_new_files": [
+   "rich/_unicode_data/__init__.py",
+   "rich/_unicode_data/_versions.py",
+   "rich/_unicode_data/unicode10-0-0.py",
+   "rich/_unicode_data/unicode11-0-0.py",
+   "rich/_unicode_data/unicode12-0-0.py",
+   "rich/_unicode_data/unicode12-1-0.py",
+   "rich/_unicode_data/unicode13-0-0.py",
+   "rich/_unicode_data/unicode14-0-0.py",
+   "rich/_unicode_data/unicode15-0-0.py",
+   "rich/_unicode_data/unicode15-1-0.py",
+   "rich/_unicode_data/unicode16-0-0.py",
+   "rich/_unicode_data/unicode17-0-0.py",
+   "rich/_unicode_data/unicode4-1-0.py",
+   "rich/_unicode_data/unicode5-0-0.py",
+   "rich/_unicode_data/unicode5-1-0.py",
+   "rich/_unicode_data/unicode5-2-0.py",
+   "rich/_unicode_data/unicode6-0-0.py",
+   "rich/_unicode_data/unicode6-1-0.py",
+   "rich/_unicode_data/unicode6-2-0.py",
+   "rich/_unicode_data/unicode6-3-0.py",
+   "rich/_unicode_data/unicode7-0-0.py",
+   "rich/_unicode_data/unicode8-0-0.py",
+   "rich/_unicode_data/unicode9-0-0.py"
+  ],
+  "gold_symbols": [
+   [
+    "def",
+    "cached_cell_len"
+   ],
+   [
+    "def",
+    "cell_len"
+   ],
+   [
+    "def",
+    "chop_cells"
+   ],
+   [
+    "def",
+    "get_character_cell_size"
+   ],
+   [
+    "def",
+    "set_cell_size"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "cached_cell_len",
+   "cell_len",
+   "chop_cells",
+   "get_character_cell_size",
+   "set_cell_size"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "httpx_3672",
+  "repo": "encode/httpx",
+  "commit": "4acf5c2",
+  "graph_nodes": 740,
+  "graph_async_nodes": 0,
+  "source_async_defs": 100,
+  "gold_files": [
+   "src/ahttpx/_parsers.py",
+   "src/ahttpx/_pool.py",
+   "src/ahttpx/_server.py",
+   "src/httpx/_network.py",
+   "src/httpx/_parsers.py",
+   "src/httpx/_pool.py",
+   "src/httpx/_server.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_close"
+   ],
+   [
+    "async def",
+    "_complete"
+   ],
+   [
+    "async def",
+    "_recv_body"
+   ],
+   [
+    "async def",
+    "_send_body"
+   ],
+   [
+    "async def",
+    "close"
+   ],
+   [
+    "async def",
+    "complete"
+   ],
+   [
+    "async def",
+    "handle_requests"
+   ],
+   [
+    "async def",
+    "recv_body"
+   ],
+   [
+    "async def",
+    "send"
+   ],
+   [
+    "class",
+    "Connection"
+   ],
+   [
+    "class",
+    "HTTPConnection"
+   ],
+   [
+    "class",
+    "HTTPParser"
+   ],
+   [
+    "class",
+    "HTTPServer"
+   ],
+   [
+    "class",
+    "NetworkServer"
+   ],
+   [
+    "class",
+    "NetworkStream"
+   ],
+   [
+    "def",
+    "__exit__"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__repr__"
+   ],
+   [
+    "def",
+    "_close"
+   ],
+   [
+    "def",
+    "_complete"
+   ],
+   [
+    "def",
+    "_handler"
+   ],
+   [
+    "def",
+    "_recv_body"
+   ],
+   [
+    "def",
+    "_send_body"
+   ],
+   [
+    "def",
+    "_serve"
+   ],
+   [
+    "def",
+    "close"
+   ],
+   [
+    "def",
+    "complete"
+   ],
+   [
+    "def",
+    "handle_requests"
+   ],
+   [
+    "def",
+    "host"
+   ],
+   [
+    "def",
+    "is_idle"
+   ],
+   [
+    "def",
+    "recv_body"
+   ],
+   [
+    "def",
+    "send"
+   ],
+   [
+    "def",
+    "wait"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "_close",
+   "_complete",
+   "_recv_body",
+   "_send_body",
+   "close",
+   "complete",
+   "handle_requests",
+   "recv_body",
+   "send",
+   "Connection",
+   "HTTPConnection",
+   "HTTPParser",
+   "HTTPServer",
+   "NetworkServer",
+   "NetworkStream",
+   "__exit__",
+   "__init__",
+   "__repr__",
+   "_close",
+   "_complete",
+   "_handler",
+   "_recv_body",
+   "_send_body",
+   "_serve",
+   "close",
+   "complete",
+   "handle_requests",
+   "host",
+   "is_idle",
+   "recv_body",
+   "send",
+   "wait"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14791",
+  "repo": "fastapi/fastapi",
+  "commit": "0892440",
+  "graph_nodes": 4330,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1091,
+  "gold_files": [
+   "fastapi/openapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15800",
+  "repo": "fastapi/fastapi",
+  "commit": "f1d750f",
+  "graph_nodes": 4401,
+  "graph_async_nodes": 0,
+  "source_async_defs": 949,
+  "gold_files": [
+   "fastapi/applications.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [
+   "docs_src/frontend/tutorial001_py310.py",
+   "docs_src/frontend/tutorial002_py310.py",
+   "docs_src/frontend/tutorial003_py310.py",
+   "docs_src/frontend/tutorial004_py310.py",
+   "docs_src/frontend/tutorial005_py310.py",
+   "docs_src/frontend/tutorial006_py310.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "handle"
+   ],
+   [
+    "class",
+    "APIRouter"
+   ],
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "class",
+    "_IncludedRouter"
+   ],
+   [
+    "class",
+    "_RouterIncludeContext"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_build_effective_context"
+   ],
+   [
+    "def",
+    "_get_fastapi_scope"
+   ],
+   [
+    "def",
+    "_get_scope_effective_route_context"
+   ],
+   [
+    "def",
+    "_iter_routes_with_context"
+   ],
+   [
+    "def",
+    "_mark_routes_changed"
+   ],
+   [
+    "def",
+    "add_api_route"
+   ],
+   [
+    "def",
+    "add_websocket_route"
+   ],
+   [
+    "def",
+    "api_route"
+   ],
+   [
+    "def",
+    "combine"
+   ],
+   [
+    "def",
+    "effective_candidates"
+   ],
+   [
+    "def",
+    "matches"
+   ],
+   [
+    "def",
+    "path_for"
+   ],
+   [
+    "def",
+    "route"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "APIRouter",
+   "FastAPI",
+   "_IncludedRouter",
+   "_RouterIncludeContext",
+   "__init__",
+   "_build_effective_context",
+   "_get_fastapi_scope",
+   "_get_scope_effective_route_context",
+   "_iter_routes_with_context",
+   "_mark_routes_changed",
+   "add_api_route",
+   "add_websocket_route",
+   "api_route",
+   "combine",
+   "effective_candidates",
+   "matches",
+   "path_for",
+   "route"
+  ],
+  "gold_symbols_not_in_index": [
+   "handle"
+  ]
+ },
+ {
+  "task": "fastapi_15785",
+  "repo": "fastapi/fastapi",
+  "commit": "202b2d2",
+  "graph_nodes": 4380,
+  "graph_async_nodes": 0,
+  "source_async_defs": 949,
+  "gold_files": [
+   "fastapi/openapi/utils.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "_IncludedRouter"
+   ],
+   [
+    "def",
+    "_get_api_route_for_openapi"
+   ],
+   [
+    "def",
+    "_iter_included_route_candidates"
+   ],
+   [
+    "def",
+    "_iter_routes_with_context"
+   ],
+   [
+    "def",
+    "get_fields_from_routes"
+   ],
+   [
+    "def",
+    "get_openapi"
+   ],
+   [
+    "def",
+    "url_path_for"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_IncludedRouter",
+   "_get_api_route_for_openapi",
+   "_iter_included_route_candidates",
+   "_iter_routes_with_context",
+   "get_fields_from_routes",
+   "get_openapi",
+   "url_path_for"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14371",
+  "repo": "fastapi/fastapi",
+  "commit": "3fe6522",
+  "graph_nodes": 4487,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1300,
+  "gold_files": [
+   "fastapi/_compat/v2.py",
+   "fastapi/dependencies/utils.py",
+   "fastapi/openapi/utils.py",
+   "fastapi/params.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_extract_form_body"
+   ],
+   [
+    "async def",
+    "request_body_to_args"
+   ],
+   [
+    "class",
+    "ModelField"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "_get_multidict_value"
+   ],
+   [
+    "def",
+    "_get_openapi_operation_parameters"
+   ],
+   [
+    "def",
+    "alias"
+   ],
+   [
+    "def",
+    "get_body_field"
+   ],
+   [
+    "def",
+    "get_schema_from_model_field"
+   ],
+   [
+    "def",
+    "request_params_to_args"
+   ],
+   [
+    "def",
+    "required"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "ModelField",
+   "__init__",
+   "_get_multidict_value",
+   "_get_openapi_operation_parameters",
+   "alias",
+   "get_body_field",
+   "get_schema_from_model_field",
+   "request_params_to_args",
+   "required"
+  ],
+  "gold_symbols_not_in_index": [
+   "_extract_form_body",
+   "request_body_to_args"
+  ]
+ },
+ {
+  "task": "fastapi_14605",
+  "repo": "fastapi/fastapi",
+  "commit": "6b53786",
+  "graph_nodes": 4597,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1095,
+  "gold_files": [
+   "fastapi/dependencies/utils.py",
+   "fastapi/exceptions.py",
+   "fastapi/openapi/utils.py",
+   "fastapi/params.py",
+   "fastapi/routing.py",
+   "fastapi/temp_pydantic_v1_params.py",
+   "fastapi/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "generate_operation_id"
+   ],
+   [
+    "def",
+    "generate_operation_id_for_path"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__init__",
+   "generate_operation_id",
+   "generate_operation_id_for_path",
+   "get_dependant"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15763",
+  "repo": "fastapi/fastapi",
+  "commit": "9a9c4ad",
+  "graph_nodes": 4377,
+  "graph_async_nodes": 0,
+  "source_async_defs": 949,
+  "gold_files": [
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "include_router"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "include_router"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14583",
+  "repo": "fastapi/fastapi",
+  "commit": "6513d4d",
+  "graph_nodes": 4264,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1094,
+  "gold_files": [
+   "fastapi/dependencies/utils.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "get_dependant"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__init__",
+   "get_dependant"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_15745",
+  "repo": "fastapi/fastapi",
+  "commit": "016ab76",
+  "graph_nodes": 4287,
+  "graph_async_nodes": 0,
+  "source_async_defs": 932,
+  "gold_files": [
+   "docs_src/path_operation_advanced_configuration/tutorial002_py310.py",
+   "fastapi/applications.py",
+   "fastapi/openapi/utils.py",
+   "fastapi/routing.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "read_items"
+   ],
+   [
+    "class",
+    "APIRoute"
+   ],
+   [
+    "class",
+    "APIRouter"
+   ],
+   [
+    "class",
+    "FastAPI"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "add_api_route"
+   ],
+   [
+    "def",
+    "add_api_websocket_route"
+   ],
+   [
+    "def",
+    "api_route"
+   ],
+   [
+    "def",
+    "generate_operation_id"
+   ],
+   [
+    "def",
+    "generate_operation_summary"
+   ],
+   [
+    "def",
+    "get_fields_from_routes"
+   ],
+   [
+    "def",
+    "get_openapi"
+   ],
+   [
+    "def",
+    "get_openapi_operation_metadata"
+   ],
+   [
+    "def",
+    "get_openapi_path"
+   ],
+   [
+    "def",
+    "get_route_handler"
+   ],
+   [
+    "def",
+    "include_router"
+   ],
+   [
+    "def",
+    "matches"
+   ],
+   [
+    "def",
+    "openapi"
+   ],
+   [
+    "def",
+    "route"
+   ],
+   [
+    "def",
+    "setup"
+   ],
+   [
+    "def",
+    "use_route_names_as_operation_ids"
+   ],
+   [
+    "def",
+    "websocket"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "read_items",
+   "APIRoute",
+   "APIRouter",
+   "FastAPI",
+   "__init__",
+   "add_api_route",
+   "add_api_websocket_route",
+   "api_route",
+   "generate_operation_id",
+   "generate_operation_summary",
+   "get_fields_from_routes",
+   "get_openapi",
+   "get_openapi_operation_metadata",
+   "get_openapi_path",
+   "get_route_handler",
+   "include_router",
+   "matches",
+   "openapi",
+   "route",
+   "setup",
+   "use_route_names_as_operation_ids",
+   "websocket"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14297",
+  "repo": "fastapi/fastapi",
+  "commit": "3c54a8f",
+  "graph_nodes": 3757,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1086,
+  "gold_files": [
+   "fastapi/_compat/v2.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "serialize_sequence_value"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "serialize_sequence_value"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14303",
+  "repo": "fastapi/fastapi",
+  "commit": "740ec27",
+  "graph_nodes": 3745,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1083,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_extract_form_body"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": [
+   "_extract_form_body"
+  ]
+ },
+ {
+  "task": "fastapi_13537",
+  "repo": "fastapi/fastapi",
+  "commit": "3b4b5ab",
+  "graph_nodes": 3743,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1081,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_extract_form_body"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": [
+   "_extract_form_body"
+  ]
+ },
+ {
+  "task": "fastapi_14953",
+  "repo": "fastapi/fastapi",
+  "commit": "d2c17b6",
+  "graph_nodes": 4094,
+  "graph_async_nodes": 0,
+  "source_async_defs": 882,
+  "gold_files": [
+   "fastapi/_compat/v2.py",
+   "fastapi/datastructures.py"
+  ],
+  "gold_new_files": [
+   "docs_src/json_base64_bytes/tutorial001_py310.py",
+   "scripts/playwright/json_base64_bytes/image01.py"
+  ],
+  "gold_symbols": [
+   [
+    "class",
+    "UploadFile"
+   ],
+   [
+    "def",
+    "__get_pydantic_core_schema__"
+   ],
+   [
+    "def",
+    "__get_pydantic_json_schema__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "UploadFile",
+   "__get_pydantic_core_schema__",
+   "__get_pydantic_json_schema__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_13786",
+  "repo": "fastapi/fastapi",
+  "commit": "e2354a0",
+  "graph_nodes": 3698,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1077,
+  "gold_files": [
+   "docs_src/security/tutorial003.py",
+   "docs_src/security/tutorial003_an.py",
+   "docs_src/security/tutorial003_an_py310.py",
+   "docs_src/security/tutorial003_an_py39.py",
+   "docs_src/security/tutorial003_py310.py",
+   "fastapi/security/api_key.py",
+   "fastapi/security/http.py",
+   "fastapi/security/oauth2.py",
+   "fastapi/security/open_id_connect_url.py"
+  ],
+  "gold_new_files": [
+   "docs_src/authentication_error_status_code/tutorial001_an.py",
+   "docs_src/authentication_error_status_code/tutorial001_an_py39.py"
+  ],
+  "gold_symbols": [
+   [
+    "async def",
+    "__call__"
+   ],
+   [
+    "async def",
+    "get_current_user"
+   ],
+   [
+    "class",
+    "APIKeyBase"
+   ],
+   [
+    "class",
+    "APIKeyCookie"
+   ],
+   [
+    "class",
+    "APIKeyHeader"
+   ],
+   [
+    "class",
+    "APIKeyQuery"
+   ],
+   [
+    "class",
+    "HTTPBase"
+   ],
+   [
+    "class",
+    "HTTPBasic"
+   ],
+   [
+    "class",
+    "HTTPDigest"
+   ],
+   [
+    "class",
+    "OAuth2"
+   ],
+   [
+    "class",
+    "OpenIdConnect"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "check_api_key"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [
+   "__call__",
+   "get_current_user",
+   "APIKeyBase",
+   "APIKeyCookie",
+   "APIKeyHeader",
+   "APIKeyQuery",
+   "HTTPBase",
+   "HTTPBasic",
+   "HTTPDigest",
+   "OAuth2",
+   "OpenIdConnect",
+   "__init__",
+   "check_api_key"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_14616",
+  "repo": "fastapi/fastapi",
+  "commit": "54f8aee",
+  "graph_nodes": 4354,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1097,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_get_multidict_value"
+   ],
+   [
+    "def",
+    "_validate_value_with_model_field"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_get_multidict_value",
+   "_validate_value_with_model_field"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "fastapi_11194",
+  "repo": "fastapi/fastapi",
+  "commit": "a7f2dbe",
+  "graph_nodes": 3255,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1052,
+  "gold_files": [
+   "fastapi/dependencies/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "async def",
+    "_extract_form_body"
+   ]
+  ],
+  "gold_edits_async": true,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": [
+   "_extract_form_body"
+  ]
+ },
+ {
+  "task": "requests_6757",
+  "repo": "psf/requests",
+  "commit": "0e322af",
+  "graph_nodes": 730,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/compat.py",
+   "src/requests/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "super_len"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "super_len"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_6629",
+  "repo": "psf/requests",
+  "commit": "7a13c04",
+  "graph_nodes": 712,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/exceptions.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "HTTPError"
+   ],
+   [
+    "def",
+    "__init__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "HTTPError",
+   "__init__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_6644",
+  "repo": "psf/requests",
+  "commit": "382fc2c",
+  "graph_nodes": 714,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/adapters.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "request_url"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "request_url"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_6589",
+  "repo": "psf/requests",
+  "commit": "7a13c04",
+  "graph_nodes": 712,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/utils.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "super_len"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "super_len"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "requests_6592",
+  "repo": "psf/requests",
+  "commit": "0b4d494",
+  "graph_nodes": 711,
+  "graph_async_nodes": 0,
+  "source_async_defs": 0,
+  "gold_files": [
+   "src/requests/status_codes.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3180",
+  "repo": "Textualize/rich",
+  "commit": "e76f3c3",
+  "graph_nodes": 1936,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/_wrap.py",
+   "rich/cells.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "chop_cells"
+   ],
+   [
+    "def",
+    "divide_line"
+   ],
+   [
+    "def",
+    "set_cell_size"
+   ],
+   [
+    "def",
+    "words"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "chop_cells",
+   "divide_line",
+   "set_cell_size",
+   "words"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3486",
+  "repo": "Textualize/rich",
+  "commit": "d0de442",
+  "graph_nodes": 1962,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/default_styles.py",
+   "rich/syntax.py",
+   "rich/traceback.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Frame"
+   ],
+   [
+    "class",
+    "Syntax"
+   ],
+   [
+    "class",
+    "_SyntaxHighlightRange"
+   ],
+   [
+    "def",
+    "_apply_stylized_ranges"
+   ],
+   [
+    "def",
+    "_get_line_numbers_color"
+   ],
+   [
+    "def",
+    "_process_code"
+   ],
+   [
+    "def",
+    "_render_stack"
+   ],
+   [
+    "def",
+    "bar"
+   ],
+   [
+    "def",
+    "error"
+   ],
+   [
+    "def",
+    "extract"
+   ],
+   [
+    "def",
+    "foo"
+   ],
+   [
+    "def",
+    "highlight"
+   ],
+   [
+    "def",
+    "stylize_range"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Frame",
+   "Syntax",
+   "_SyntaxHighlightRange",
+   "_apply_stylized_ranges",
+   "_get_line_numbers_color",
+   "_process_code",
+   "_render_stack",
+   "bar",
+   "error",
+   "extract",
+   "foo",
+   "highlight",
+   "stylize_range"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3777",
+  "repo": "Textualize/rich",
+  "commit": "49117ce",
+  "graph_nodes": 1979,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py",
+   "rich/diagnose.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "report"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__init__",
+   "report"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3468",
+  "repo": "Textualize/rich",
+  "commit": "ae15db6",
+  "graph_nodes": 1954,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Console"
+   ],
+   [
+    "def",
+    "_check_buffer"
+   ],
+   [
+    "def",
+    "log"
+   ],
+   [
+    "def",
+    "render_lines"
+   ],
+   [
+    "def",
+    "render_str"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Console",
+   "_check_buffer",
+   "log",
+   "render_lines",
+   "render_str"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3782",
+  "repo": "Textualize/rich",
+  "commit": "3b70db5",
+  "graph_nodes": 1980,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/syntax.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Syntax"
+   ],
+   [
+    "class",
+    "_SyntaxHighlightRange"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ],
+   [
+    "def",
+    "__rich_measure__"
+   ],
+   [
+    "def",
+    "_get_syntax"
+   ],
+   [
+    "def",
+    "from_path"
+   ],
+   [
+    "def",
+    "guess_lexer"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Syntax",
+   "_SyntaxHighlightRange",
+   "__init__",
+   "__rich_console__",
+   "__rich_measure__",
+   "_get_syntax",
+   "from_path",
+   "guess_lexer"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3772",
+  "repo": "Textualize/rich",
+  "commit": "2809954",
+  "graph_nodes": 1978,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/traceback.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "extract"
+   ],
+   [
+    "def",
+    "safe_str"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "extract",
+   "safe_str"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3296",
+  "repo": "Textualize/rich",
+  "commit": "fde5d6e",
+  "graph_nodes": 1953,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/syntax.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Syntax"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Syntax",
+   "__rich_console__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3675",
+  "repo": "Textualize/rich",
+  "commit": "edc6b0a",
+  "graph_nodes": 1971,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py",
+   "rich/diagnose.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "decorator"
+   ],
+   [
+    "def",
+    "group"
+   ],
+   [
+    "def",
+    "is_terminal"
+   ],
+   [
+    "def",
+    "report"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__init__",
+   "decorator",
+   "group",
+   "is_terminal",
+   "report"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3676",
+  "repo": "Textualize/rich",
+  "commit": "2b5d648",
+  "graph_nodes": 1970,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/default_styles.py",
+   "rich/traceback.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Stack"
+   ],
+   [
+    "class",
+    "_SyntaxError"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ],
+   [
+    "def",
+    "extract"
+   ],
+   [
+    "def",
+    "get_locals"
+   ],
+   [
+    "def",
+    "safe_str"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Stack",
+   "_SyntaxError",
+   "__rich_console__",
+   "extract",
+   "get_locals",
+   "safe_str"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3518",
+  "repo": "Textualize/rich",
+  "commit": "5ba9cb5",
+  "graph_nodes": 1969,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/table.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "add_row"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "add_row"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3535",
+  "repo": "Textualize/rich",
+  "commit": "0f2f51b",
+  "graph_nodes": 1970,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/cells.py",
+   "rich/segment.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "split_cells"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "split_cells"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3521",
+  "repo": "Textualize/rich",
+  "commit": "6607492",
+  "graph_nodes": 1970,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/segment.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Segment"
+   ],
+   [
+    "def",
+    "_split_cells"
+   ],
+   [
+    "def",
+    "split_cells"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Segment",
+   "_split_cells",
+   "split_cells"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3506",
+  "repo": "Textualize/rich",
+  "commit": "4101991",
+  "graph_nodes": 1964,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/segment.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Segment"
+   ],
+   [
+    "def",
+    "_split_cells"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Segment",
+   "_split_cells"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3480",
+  "repo": "Textualize/rich",
+  "commit": "9ec4191",
+  "graph_nodes": 1961,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/text.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "append"
+   ],
+   [
+    "def",
+    "append_text"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "append",
+   "append_text"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3472",
+  "repo": "Textualize/rich",
+  "commit": "b6f2f7a",
+  "graph_nodes": 1959,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/pretty.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_traverse"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_traverse"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3454",
+  "repo": "Textualize/rich",
+  "commit": "e1e6d74",
+  "graph_nodes": 1953,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/highlighter.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ReprHighlighter"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ReprHighlighter"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3471",
+  "repo": "Textualize/rich",
+  "commit": "e2a982d",
+  "graph_nodes": 1958,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/text.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "append_tokens"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "append_tokens"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3470",
+  "repo": "Textualize/rich",
+  "commit": "0ba607d",
+  "graph_nodes": 1958,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/console.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_write_buffer"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_write_buffer"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3469",
+  "repo": "Textualize/rich",
+  "commit": "c478588",
+  "graph_nodes": 1957,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/markdown.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__rich_console__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__rich_console__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3052",
+  "repo": "Textualize/rich",
+  "commit": "7a168a2",
+  "graph_nodes": 1936,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/prompt.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "PromptBase"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "ask"
+   ],
+   [
+    "def",
+    "check_choice"
+   ],
+   [
+    "def",
+    "on_validate_error"
+   ],
+   [
+    "def",
+    "process_response"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "PromptBase",
+   "__init__",
+   "ask",
+   "check_choice",
+   "on_validate_error",
+   "process_response"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3278",
+  "repo": "Textualize/rich",
+  "commit": "4c5d305",
+  "graph_nodes": 1952,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/ansi.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_2943",
+  "repo": "Textualize/rich",
+  "commit": "610fd75",
+  "graph_nodes": 1949,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/style.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "clear_meta_and_links"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "clear_meta_and_links"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_2725",
+  "repo": "Textualize/rich",
+  "commit": "577def2",
+  "graph_nodes": 1944,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/table.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "_render"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "_render"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3105",
+  "repo": "Textualize/rich",
+  "commit": "9f620dc",
+  "graph_nodes": 1936,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/_export_format.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3130",
+  "repo": "Textualize/rich",
+  "commit": "720800e",
+  "graph_nodes": 1933,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/markdown.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ListElement"
+   ],
+   [
+    "class",
+    "TableDataElement"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "create"
+   ],
+   [
+    "def",
+    "on_text"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ListElement",
+   "TableDataElement",
+   "__init__",
+   "create",
+   "on_text"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3043",
+  "repo": "Textualize/rich",
+  "commit": "8a616de",
+  "graph_nodes": 1926,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/_export_format.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3067",
+  "repo": "Textualize/rich",
+  "commit": "1ad6f73",
+  "graph_nodes": 1933,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/highlighter.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "ReprHighlighter"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "ReprHighlighter"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3006",
+  "repo": "Textualize/rich",
+  "commit": "0c8bb03",
+  "graph_nodes": 1926,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/repr.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "auto_rich_repr"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "auto_rich_repr"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3064",
+  "repo": "Textualize/rich",
+  "commit": "01b85ac",
+  "graph_nodes": 1925,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/markdown.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "__rich_console__"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "__rich_console__"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3063",
+  "repo": "Textualize/rich",
+  "commit": "368e8ad",
+  "graph_nodes": 1924,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/markup.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "def",
+    "escape"
+   ],
+   [
+    "def",
+    "escape_backslashes"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "escape",
+   "escape_backslashes"
+  ],
+  "gold_symbols_not_in_index": []
+ },
+ {
+  "task": "rich_3061",
+  "repo": "Textualize/rich",
+  "commit": "aca9467",
+  "graph_nodes": 1920,
+  "graph_async_nodes": 0,
+  "source_async_defs": 1,
+  "gold_files": [
+   "rich/text.py"
+  ],
+  "gold_new_files": [],
+  "gold_symbols": [
+   [
+    "class",
+    "Text"
+   ],
+   [
+    "def",
+    "__init__"
+   ],
+   [
+    "def",
+    "__rich_console__"
+   ],
+   [
+    "def",
+    "append"
+   ],
+   [
+    "def",
+    "append_text"
+   ],
+   [
+    "def",
+    "append_tokens"
+   ],
+   [
+    "def",
+    "assemble"
+   ],
+   [
+    "def",
+    "divide"
+   ],
+   [
+    "def",
+    "expand_tabs"
+   ],
+   [
+    "def",
+    "from_ansi"
+   ],
+   [
+    "def",
+    "get_style_at_offset"
+   ],
+   [
+    "def",
+    "highlight_regex"
+   ],
+   [
+    "def",
+    "right_crop"
+   ]
+  ],
+  "gold_edits_async": false,
+  "gold_symbols_in_index": [
+   "Text",
+   "__init__",
+   "__rich_console__",
+   "append",
+   "append_text",
+   "append_tokens",
+   "assemble",
+   "divide",
+   "expand_tabs",
+   "from_ansi",
+   "get_style_at_offset",
+   "highlight_regex",
+   "right_crop"
+  ],
+  "gold_symbols_not_in_index": []
+ }
+]

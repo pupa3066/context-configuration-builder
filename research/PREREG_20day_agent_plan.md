@@ -175,3 +175,12 @@ S-E4B resolved 1 of 16 (fastapi_14077), G-E4B 1 (rich_2725); each resolved one t
 p = 1.0, no difference detected. Secondary: patches over 10,000 characters fell from 2 to 0, so the edit_file rule
 removed whole-file rewrites; patches 13 vs 15. Gate passed (grep first in 16 of 16, repository paths in 12).
 File: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_short.csv.
+
+## Amendment 7 (recorded 2026-11-12 20:52 MT, before any result of these runs)
+
+Full-set paired test. G and N run with the self-test harness on all 129 published tasks (same budgets, 4 tasks in
+parallel). Primary: G vs N, exact McNemar over 129 paired tasks; prediction G resolves at least as many as N.
+Secondary, fixed now: (a) the 113 tasks outside the 16-task set; (b) the 21 tasks whose gold patch edits an async
+function (benchmark/harness_audit/TASK_AUDIT_all129.json): fastapi_15030, fastapi_14962, fastapi_15023, fastapi_14986, fastapi_14978, fastapi_14099, fastapi_14609, fastapi_14487, fastapi_14306, fastapi_14448, fastapi_14419, fastapi_14262, fastapi_14077, httpx_3672, fastapi_15800, fastapi_14371, fastapi_15745, fastapi_14303, fastapi_13537, fastapi_13786, fastapi_11194. A null is reported as not detected.
+The resolved G trajectories are kept as candidate training data for the E4B distillation LoRA; its held-out split
+is registered before any training.

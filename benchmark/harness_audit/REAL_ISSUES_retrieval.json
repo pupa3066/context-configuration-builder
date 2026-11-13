@@ -1,0 +1,504 @@
+{
+ "N": 38,
+ "k": 6,
+ "cap": "25% of chunks",
+ "rates": {
+  "bm25": [
+   0.2632,
+   0.1316,
+   0.3947
+  ],
+  "bge-small-en-v1.5_full": [
+   0.3684,
+   0.2105,
+   0.5263
+  ],
+  "bge-small-en-v1.5_cap25": [
+   0.2368,
+   0.1053,
+   0.3684
+  ],
+  "bge-small-en-v1.5_gold_in_cap25": [
+   0.5526,
+   0.3947,
+   0.7105
+  ],
+  "all-MiniLM-L6-v2_full": [
+   0.3158,
+   0.1579,
+   0.4737
+  ],
+  "all-MiniLM-L6-v2_cap25": [
+   0.1316,
+   0.0263,
+   0.2632
+  ],
+  "all-MiniLM-L6-v2_gold_in_cap25": [
+   0.5526,
+   0.3947,
+   0.7105
+  ]
+ },
+ "paired": {
+  "bm25_vs_bge-small-en-v1.5_full": {
+   "mean_diff_bm25_minus_sem": -0.1053,
+   "ci95": [
+    -0.2895,
+    0.0789
+   ],
+   "bm25_only": 5,
+   "sem_only": 9,
+   "mcnemar_exact_p": 0.42395
+  },
+  "bm25_vs_bge-small-en-v1.5_cap25": {
+   "mean_diff_bm25_minus_sem": 0.0263,
+   "ci95": [
+    -0.1316,
+    0.1842
+   ],
+   "bm25_only": 5,
+   "sem_only": 4,
+   "mcnemar_exact_p": 1.0
+  },
+  "bm25_vs_all-MiniLM-L6-v2_full": {
+   "mean_diff_bm25_minus_sem": -0.0526,
+   "ci95": [
+    -0.2368,
+    0.1316
+   ],
+   "bm25_only": 5,
+   "sem_only": 7,
+   "mcnemar_exact_p": 0.774414
+  },
+  "bm25_vs_all-MiniLM-L6-v2_cap25": {
+   "mean_diff_bm25_minus_sem": 0.1316,
+   "ci95": [
+    -0.0263,
+    0.2632
+   ],
+   "bm25_only": 7,
+   "sem_only": 2,
+   "mcnemar_exact_p": 0.179688
+  }
+ },
+ "rows": [
+  {
+   "task": "requests_7309",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6757",
+   "chunks": 789,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7433",
+   "chunks": 869,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6644",
+   "chunks": 765,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7328",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_6589",
+   "chunks": 764,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7205",
+   "chunks": 774,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7505",
+   "chunks": 870,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7427",
+   "chunks": 868,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7502",
+   "chunks": 870,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_6592",
+   "chunks": 764,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 1,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6629",
+   "chunks": 764,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7315",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3486",
+   "chunks": 3641,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3067",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3454",
+   "chunks": 3635,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3535",
+   "chunks": 3649,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3772",
+   "chunks": 3661,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4070",
+   "chunks": 5139,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 1,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3061",
+   "chunks": 3621,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 1,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3105",
+   "chunks": 3628,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3521",
+   "chunks": 3649,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 1,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3930",
+   "chunks": 3663,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3064",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_2725",
+   "chunks": 3626,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_5077",
+   "chunks": 3003,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_5624",
+   "chunks": 2993,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14463",
+   "chunks": 2732,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_12942",
+   "chunks": 2751,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14962",
+   "chunks": 2893,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14851",
+   "chunks": 2872,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_13537",
+   "chunks": 2997,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_13920",
+   "chunks": 2870,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14455",
+   "chunks": 3011,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_15280",
+   "chunks": 2997,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14258",
+   "chunks": 2868,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15030",
+   "chunks": 2942,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 0,
+   "all-MiniLM-L6-v2_cap25": 0,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  },
+  {
+   "task": "httpx_3672",
+   "chunks": 926,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1,
+   "all-MiniLM-L6-v2_full": 1,
+   "all-MiniLM-L6-v2_cap25": 1,
+   "all-MiniLM-L6-v2_gold_in_cap25": 1
+  }
+ ]
+}
