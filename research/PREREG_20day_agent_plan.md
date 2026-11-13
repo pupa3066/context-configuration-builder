@@ -194,3 +194,13 @@ By repository: fastapi G 18 vs N 14 of 67, rich 11 vs 13 of 48, requests 1 vs 1 
 Leaderboard: arm L (ref 58287913, the BM25 skill that searched its own folder, amendment 4) scored 0.17 public,
 so a corrected skill name compiles and runs on the scorer and the skill call does not break the agent.
 Files: benchmark/gemma_agent/selftest_results/selftest129_v81_grep.csv and selftest129_v81_noskill.csv.
+
+## Amendment 8 (recorded 2026-11-13 09:05 MT, before any result of this arm)
+
+T-E4B = submission_v81e4b_think: identical to S-E4B except sampling, thinking_budget 4096 to 8192 and
+max_output_tokens 8192 to 16384 (the harness default; limits are 32768). S-E4B is the base because it tied G-E4B
+(1 of 16 each) and removed whole-file rewrites. Rationale: E4B finds the files (grep output listed repository paths
+in 12 to 14 of 16 tasks) but writes wrong fixes, so more reasoning per turn is the cheapest relevant lever.
+Test: T-E4B vs S-E4B, exact McNemar on the same 16 published tasks; a null is reported as not detected.
+LoRA groundwork (no GPU): the 129-task runs give 33 unique resolved 31B trajectories (fastapi 18, rich 14,
+requests 1). Any distillation LoRA, its data, held-out split and test are registered before training.
