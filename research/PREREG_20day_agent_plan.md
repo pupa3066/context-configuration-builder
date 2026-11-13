@@ -116,3 +116,12 @@ Decision rule for the E4B arms. After the 16-task self-tests of amendment 2 fini
 Final submissions: the 31B arm with the highest mean public score over its replicates, and E, so the team is eligible
 for both the main ranking and the small-model prize. Ties go to the arm with more replicates. The choice is recorded
 here before it is made on Kaggle.
+
+## Outcome of amendments 2 and 3 (recorded 2026-11-12 17:05 MT)
+
+16 published tasks, same harness and budgets: L-E4B resolved 2 (patches 16), N-E4B resolved 1 (patches 13); the 31B
+arms L and N resolved 4 each. L-E4B vs N-E4B: one task only L-E4B, none only N-E4B, exact McNemar p = 1.0.
+L-E4B vs L: p = 0.5; N-E4B vs N: p = 0.25. Prediction 1 (E4B resolves no more than 31B) holds; prediction 2
+(L-E4B at least N-E4B) holds; no difference is detected at this size. Decision rule: both E4B arms resolve at
+least one task and L-E4B resolves more, so E = L-E4B and takes the day-2 slot of the amendment 3 schedule.
+Files: benchmark/gemma_agent/selftest_results/selftest16_v81e4b_lexical.csv and selftest16_v81e4b_noskill.csv.
