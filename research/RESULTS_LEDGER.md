@@ -30,12 +30,12 @@ the end.
 | 40-line windowed reads (W) vs G, 16 tasks | amendment 11 (b) | 31B tokens -1.2 percent (p = 0.47); E4B -19.1 percent (p = 0.07) |
 | Windowed reads, E4B, 56 new tasks (replication) | amendment 12 | -3.6 percent (p = 0.74); did not replicate |
 | Small-model arms (E4B): BM25 skill, grep, shorter prompt, larger reasoning budget | amendments 2, 5, 6, 8 | 1 to 2 of 16 in every arm; no difference detected |
-| Test before submit (V), larger budget (B), new files (F) vs G, 16 tasks | amendments 15 to 17 | V 4, B 6, G 5 (p = 1.0 both); F pending |
+| Test before submit (V), larger budget (B), new files (F) vs G, 16 tasks | amendments 15 to 18 | V 4, B 6, F 4, G 5 (p = 1.0 each; 9 of the 16 tasks are scorable). F created none of the new files its rule asked for. B, the only arm above G, is being confirmed on the 72 scorable tasks |
 | Tiered vs monolithic repository context | tiered-context registration and amendments 1 and 2 | Paused before any outcome; rerun after a quota reset |
 
 ## Exploratory analyses (not registered; leads only)
 
-- Failure analysis of G's 129 runs: 6 to 10 of 99 failures are localization failures; 67 are wrong fixes in the right file; 57 of those never ran tests; all 11 tasks needing new files failed (amendment 14).
+- Failure analysis of G's runs (amendment 14, redone on the 72 scorable tasks in amendment 17): of 45 failures, 3 never found the right file, 6 edited elsewhere, 26 were wrong fixes in the right file (23 never ran pytest), 10 produced no patch. Of the 11 tasks needing new files, 4 are scorable locally.
 - Small model: on 56 tasks E4B never finds the right file in 15 (27 percent) against 3 (5 percent) for 31B.
 - G's net gain on fastapi in the 129-task run (4 vs 0); tested and not replicated (amendment 9).
 
