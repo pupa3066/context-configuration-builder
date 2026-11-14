@@ -1,0 +1,21 @@
+name: cck_tiered_fastapi
+model: gemma-4-31b-it-qat-w4a16-ct
+instruction: !include prompts/system.md
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - write_file
+  - get_status
+  - submit_patch
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+generate_content_config: !include configs/sampling.yaml
+skills:
+  - skills/ctx-fastapi-fastapi
+  - skills/ctx-fastapi-fastapi-compat
+  - skills/ctx-fastapi-fastapi-dependencies
+  - skills/ctx-fastapi-fastapi-middleware
+  - skills/ctx-fastapi-fastapi-openapi
+  - skills/ctx-fastapi-fastapi-security

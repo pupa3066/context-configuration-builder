@@ -1,0 +1,4 @@
+fastapi fastapi/fastapi ee22a4b8ca46dcce26c8c183afc4992a888d8be2
+httpx encode/httpx 4acf5c2c37714cc63b5cf71b3e284fca83c90311
+requests psf/requests 6f205ff422bccd5e4c4fc0b64c5f3e7df5181db6
+rich Textualize/rich fc41075a3206d2a5fd846c6f41c4d2becab814fa

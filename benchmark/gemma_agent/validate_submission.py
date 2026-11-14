@@ -109,8 +109,14 @@ def check_agent(root, cfg, where, seen):
                 continue
             txt = open(sk, encoding="utf-8").read()
             fm = txt.split("---")[1] if txt.startswith("---") and txt.count("---") >= 2 else ""
-            if "name:" not in fm:
-                err(f"{s}/SKILL.md: YAML frontmatter with name: is required")
+            # The harness parses this block with yaml.safe_load and refuses to compile the agent on any error
+            # (an unquoted ": " in a description zeroed a 129-task run, measured 2026-11-14).
+            try:
+                meta = yaml.safe_load(fm) if fm.strip() else None
+            except yaml.YAMLError as e:
+                err(f"{s}/SKILL.md: frontmatter is not valid YAML ({str(e).splitlines()[0]})"); continue
+            if not isinstance(meta, dict) or not meta.get("name") or not meta.get("description"):
+                err(f"{s}/SKILL.md: YAML frontmatter needs name: and description:")
             else:
                 # The harness (google.adk skills Frontmatter) rejects any name that is not lowercase
                 # kebab-case; one underscore makes every task fail to compile (measured 2026-11-12).
