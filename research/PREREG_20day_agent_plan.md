@@ -224,3 +224,12 @@ The earlier 129-task fastapi results are not pooled into the primary test. A nul
 alternate G and N (G first), giving paired replicates of a working full-coverage search against no search step on
 the hidden set; E4B arms enter only if one resolves more than 2 of 16 published tasks. Final picks per amendment 3,
 recorded before selection.
+
+## Outcome of amendment 9 (recorded 2026-11-13 23:13 MT)
+
+(a) Fastapi replicate, 67 fresh paired runs, no errors: G resolved 14, N 15; G only 2, N only 3, exact McNemar
+p = 1.0. Secondary, 20 async-fix tasks: G 2, N 3, 0 vs 1, p = 1.0. The prediction (G resolves more) is not
+supported: the fastapi lead from the 129-task runs (4 vs 0) did not replicate and is treated as noise. Across all
+paired self-tests, a mandatory full-coverage search step does not change task success detectably for the 31B agent.
+(b) Arm G submitted to the leaderboard 2026-11-14 00:00:47 UTC (ref 58324271); score pending.
+Files: benchmark/gemma_agent/selftest_results/selftest67fa_v81_grep.csv and selftest67fa_v81_noskill.csv.
