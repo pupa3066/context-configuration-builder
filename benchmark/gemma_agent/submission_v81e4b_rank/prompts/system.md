@@ -11,18 +11,18 @@ Aim to understand, resolve, and submit the fix in the minimum number of tool cal
 ```
 python3 - "KEYWORDS" <<'EOF'
 import os,re,sys,math
-q=set(re.findall(r'[A-Za-z_][A-Za-z0-9_]{2,}',sys.argv[1].lower()));C=[]
+q=set(re.findall(r'[A-Za-z_][A-Za-z0-9_][A-Za-z0-9_]+',sys.argv[1].lower()));C=[]
 for r,d,f in os.walk('.'):
  d[:]=[x for x in d if x[0]!='.'and x not in('tests','test','docs')]
  for n in f:
   if n.endswith('.py')and not n.startswith('test'):
    p=os.path.join(r,n);L=open(p,errors='ignore').read().split('\n')
-   for i in range(0,len(L),8):C.append((p,i+1,re.findall(r'[A-Za-z_][A-Za-z0-9_]{2,}','\n'.join(L[i:i+8]).lower())))
-N=len(C);A=sum(len(c[2])for c in C)/max(N,1);D={}
+   for i in range(0,len(L),8):C.append((p,i+1,re.findall(r'[A-Za-z_][A-Za-z0-9_][A-Za-z0-9_]+','\n'.join(L[i:i+8]).lower())))
+N=len(C);A=sum(len(c[2])for c in C)/max(N,1);D=dict()
 for c in C:
  for w in set(c[2]):D[w]=D.get(w,0)+1
 def s(t):return sum(math.log(1+(N-D[w]+.5)/(D[w]+.5))*t.count(w)*2.5/(t.count(w)+1.5*(.25+.75*len(t)/A))for w in q if w in D)
-for p,l,t in sorted(C,key=lambda c:-s(c[2]))[:10]:print(f'{p}:{l}-{l+7}')
+for p,l,t in sorted(C,key=lambda c:-s(c[2]))[:10]:print(p+':'+str(l)+'-'+str(l+7))
 EOF
 ```
 

@@ -431,3 +431,10 @@ Test: R-E4B vs G-E4B on E4B's 46 scorable tasks of its 56-task set (G-E4B from i
 Primary: resolved, exact McNemar, prediction R-E4B resolves more. Secondary: tasks whose failure is "never found the
 right file" (prediction fewer) and total tokens per task (paired Wilcoxon, prediction fewer). A null is reported as not
 detected. Leaderboard use only if R-E4B resolves more than G-E4B, and only on Pupa's go.
+
+### Amendment 20, smoke-run correction (recorded 2026-11-14 15:52 MT, before any outcome)
+
+The first smoke run (3 tasks) had 0 tool calls: the agent framework fills {name} in the instruction from session state,
+and the ranker's f-string made it look for a variable named p, so the agent never started. The ranker now uses no
+braces (same logic and output); the validator now reads the included prompt and rejects template variables the harness
+cannot fill. The gate and test are unchanged; the smoke run is repeated.
