@@ -349,3 +349,20 @@ Self-tests: V and B on the 16-task set; F on the 11 tasks whose gold fix creates
 (G's 16-task run; G's 129-task results for the 11). Primary: resolved, exact McNemar, prediction arm resolves more.
 Combination rule, fixed now: every arm whose resolved count exceeds G's on its primary set joins one combined arm,
 confirmed on as many tasks as quota allows before any submission. Risk noted: B raises per-task time on the scorer.
+
+## Amendment 16 (recorded 2026-11-14 12:42 MT, before any result of the amendment 15 arms)
+
+From the harness source (swegemma 0.2.11, harness/verification.py), read to explain failures:
+- A task is resolved only if pytest exits 0 on every test file the hidden test patch touches (whole files, not only
+  the new tests), with no failures or errors in the JUnit report and every required test passing. A change that
+  breaks any other test in those files fails the task. Exit code 2 is a collection error, typically a failed import.
+- Before verification the harness drops every agent edit to protected paths: any test_*.py or *_test.py, any .py
+  under a tests, test or testing directory, conftest.py, pyproject.toml, setup.cfg, tox.ini, pytest.ini and .pth
+  files. In G's 129-task run, 28 runs edited protected files (19 unresolved), almost all scratch test files; no gold
+  patch touches a protected path.
+- Our self-test notebooks recorded only the exit code. From now on each run also saves the harness's test output,
+  its error reason and the agent's patch (test_output/ in the notebook output). The V and B self-tests were
+  restarted at 12:45 MT to capture this (about 16 GPU minutes lost); no outcome had been recorded.
+Candidate rule for the combined arm, decided by the amendment 15 rule only if it is tested first: "Edits to test
+files, conftest.py, pyproject.toml, setup.cfg and tox.ini are discarded by the grader; put the whole fix in source
+files, and keep every existing test in the module's test file passing."
