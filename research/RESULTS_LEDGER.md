@@ -43,5 +43,7 @@ the end.
 
 Some published tasks cannot be scored in the self-test environment: tests that import packages absent from it
 (dirty_equals, inline_snapshot) fail with or without a correct fix, and at least one task passes with no fix at all.
-A gold-patch control (amendment 17, notebook harness-gold-patch-control-129tasks) identifies these tasks; agent
-rates and the failure analysis are recomputed over the scorable tasks when it completes.
+The gold-patch control (amendment 17, notebook harness-gold-patch-control-129tasks) found 72 scorable tasks of 129: the
+gold fix fails on 54 and 3 pass with no fix. Over the 72, G resolves 27 and N 26 (38 vs 36 percent, p = 1.0); conclusions
+are unchanged, and the 31B agent solves about 37 percent of solvable tasks. Failures of G on scorable tasks: 3 of 45
+never found the right file; for E4B, 13 of 43 (30 percent).

@@ -377,3 +377,18 @@ empty patch. A task is scorable here only if gold resolves and empty does not. F
 is also reported over scorable tasks, and the failure analysis of amendment 14 is redone on them. Smoke run on 3
 tasks first. Arm outcomes of amendment 15 so far: V 4 of 16, B 6 of 16 vs G 5 (p = 1.0 both); by the registered
 rule B joins the combined arm and V does not; F pending.
+
+### Outcome of amendment 17 (recorded 2026-11-14 14:30 MT)
+
+Gold-patch control on all 129 published tasks, harness verify_task, no model, no errors: the gold patch resolves 75;
+an empty patch resolves 3 (fastapi_14077, fastapi_14851, requests_6644); 72 tasks are scorable (gold passes, empty
+fails): fastapi 29 of 67, rich 43 of 48, requests 0 of 13, httpx 0 of 1. Every earlier agent rate therefore counted
+57 tasks no agent could solve here and 3 tasks any agent solves with no change; G's 30 of 129 included all 3 free
+tasks. Recomputed over the 72 scorable tasks: G 27 vs N 26 (38 vs 36 percent, p = 1.0); fastapi replicate G 12 vs N
+14 of 29 (p = 0.62); B 5 vs G 4 of 9, V 3 vs G 4 of 9 (16-task set). Conclusions are unchanged (no difference
+detected), but the 31B agent resolves about 37 percent of solvable published tasks, not 22 percent. Failure analysis
+on scorable tasks, G: of 45 failures, 3 never found the right file, 6 read it but edited elsewhere, 26 edited the
+right file with a wrong fix (23 never ran pytest), 10 produced no patch. E4B (grep first, 46 scorable of its 56): of 43
+failures, 13 never found the right file (30 percent), 5 edited elsewhere, 25 wrong fixes (1 never ran pytest).
+From now on all self-tests use the 72 scorable tasks as the task set or report rates over them.
+Files: benchmark/harness_audit/gold_patch_control_129.csv, benchmark/harness_audit/scorable_tasks_72.txt.
