@@ -418,3 +418,16 @@ Bridge test, computed afterwards from existing agent runs without new runs: on t
 (benchmark/harness_audit/scorable_tasks_72.txt), the association between a BM25 hit and the agent resolving the task,
 separately for 31B (G and N, 129-task runs) and E4B (G-E4B, 56-task run): resolved rate among hits vs misses, Fisher
 exact test, two-sided. Prediction: the association is stronger for E4B than for 31B. Nulls are reported as not detected.
+
+## Amendment 20 (recorded 2026-11-14 15:42 MT, before any result of this arm)
+
+R-E4B = submission_v81e4b_rank: identical to G-E4B except step 0. Instead of a grep, the first call runs a 741-character
+BM25 ranker inside the sandbox through run_command: it splits every non-test Python file into 8-line chunks, scores
+them against keywords taken from the problem statement, and prints the top 10 as file and line ranges. This is the
+writeup's method (full coverage, small chunks) at the agent level, aimed at E4B's measured weakness: on scorable tasks
+G-E4B never found the right file in 13 of 43 failures.
+Gate (3-task smoke run first): the first call is the ranker and prints repository file:line ranges in at least 2 of 3.
+Test: R-E4B vs G-E4B on E4B's 46 scorable tasks of its 56-task set (G-E4B from its 56-task run, declared non-concurrent).
+Primary: resolved, exact McNemar, prediction R-E4B resolves more. Secondary: tasks whose failure is "never found the
+right file" (prediction fewer) and total tokens per task (paired Wilcoxon, prediction fewer). A null is reported as not
+detected. Leaderboard use only if R-E4B resolves more than G-E4B, and only on Pupa's go.
