@@ -52,3 +52,11 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | cck-ctx-monolithic-129 | Monolithic repository context (whole file in the prompt), 129 tasks | Tiered-context study (PREREG_tiered_context_gemma_harness.md) | Running |
 | cck-ctx-tiered-129 | Tiered repository context (index in the prompt, sections loaded on demand), 129 tasks | Same study | Running |
 | cck-ctx-tiered-smoke | Tiered context smoke test, 4 tasks | Check before the full run | All 4 ran with tool calls; full run launched |
+
+## Score work (amendment 15)
+
+| Notebook | Descriptive name | Why it ran | What it showed |
+|---|---|---|---|
+| agent-31b-test-before-submit-16tasks | 31B agent tests its change before submitting | 57 of 67 wrong fixes were never tested | Running |
+| agent-31b-budget-50calls-15min-16tasks | 31B agent with a larger budget | 42 of 99 failures used all 28 calls | Running |
+| agent-31b-create-new-files-27tasks | 31B agent allowed to create new files | all 11 tasks that need new files failed | Queued |
