@@ -48,15 +48,16 @@ gold fix fails on 54 and 3 pass with no fix. Over the 72, G resolves 27 and N 26
 are unchanged, and the 31B agent solves about 37 percent of solvable tasks. Failures of G on scorable tasks: 3 of 45
 never found the right file; for E4B, 13 of 43 (30 percent).
 
-## Limits of the agent self-test (from the gold-patch control)
+## What we learned about our local self-test (from the gold-patch control)
 
-- Use self-test results only for paired comparisons between arms on the same tasks. The 31B agent resolves about 37
-  percent of scorable published tasks but scores 0.15 to 0.17 on the hidden leaderboard tasks, a different and harder set.
-- The writeup's Section 5 compares 25 percent of 16 published tasks with public leaderboard scores; 7 of those 16 tasks
-  are not scorable in the self-test environment, so that comparison does not hold.
-- The 16-task set has only 9 scorable tasks; results on it (including V and B) are too small to support conclusions.
-  Remaining self-tests use the 72 scorable tasks (benchmark/harness_audit/scorable_tasks_72.txt).
-- Why the gold fix fails on 54 tasks: test packages missing from the environment (inline_snapshot 27, dirty_equals 7);
-  requests test files with unrelated failing tests (18); an installed httpx shadowing the repository's (1); one genuine
-  gold failure (rich_3486). No agent run resolved any task whose gold fix fails.
-
+- Our local self-test runs published tasks, while the leaderboard scores hidden tasks from other repositories. We now
+  think the two are best compared only arm against arm on the same tasks: on the published tasks that can be scored
+  locally, our 31B agent resolves about 37 percent, while its leaderboard scores are 0.15 and 0.17.
+- In the writeup we set our 4 of 16 published tasks beside public leaderboard scores. We have since learned that 7 of
+  those 16 tasks cannot be scored in our local environment, so we would no longer draw that comparison.
+- The same 16-task set has 9 scorable tasks, which is too few to say much about the arms tested on it (including V
+  and B). Our remaining self-tests use the 72 scorable tasks (benchmark/harness_audit/scorable_tasks_72.txt).
+- As far as we can tell, the gold fix fails on 54 tasks because of our environment rather than the tasks: test
+  packages we did not have (inline_snapshot 27, dirty_equals 7), requests test files whose unrelated tests fail here
+  (18), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
+  did not pass a required test. No agent run resolved a task whose gold fix fails.
