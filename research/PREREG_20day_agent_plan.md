@@ -233,3 +233,18 @@ supported: the fastapi lead from the 129-task runs (4 vs 0) did not replicate an
 paired self-tests, a mandatory full-coverage search step does not change task success detectably for the 31B agent.
 (b) Arm G submitted to the leaderboard 2026-11-14 00:00:47 UTC (ref 58324271); score pending.
 Files: benchmark/gemma_agent/selftest_results/selftest67fa_v81_grep.csv and selftest67fa_v81_noskill.csv.
+
+## Amendment 10 (recorded 2026-11-13 23:18 MT, before any training or result)
+
+Distillation LoRA for E4B, triggered because every non-training lever plateaued at 1 to 2 of 16 (amendments 2, 5, 6, 8).
+Data: resolved trajectories of the 31B arm G from the 129-task and 67-task fastapi self-tests, converted to chat
+records with the harness's nine tools (benchmark/gemma_agent/lora/build_sft.py). Training split: fastapi and
+requests, 33 trajectories over 19 tasks. Held out: every rich task (48); the 11 resolved rich trajectories are never
+trained on. Base for training: google/gemma-4 Transformers gemma-4-e4b-it; the adapter is served on
+gemma-4-e4b-it-qat-w4a16-ct. LoRA rank 16, alpha 32, attention and MLP projections of the language model, loss on
+assistant turns only, 2 epochs, learning rate 1e-4, sequences truncated at 16,384 tokens.
+Arm LG-E4B = G-E4B plus the adapter (same prompt as the training trajectories).
+Gate: a smoke run on 4 held-out rich tasks must show tool calls in every task; otherwise the adapter is reported as a
+format failure and not tested further.
+Test: LG-E4B vs G-E4B on all 48 rich tasks, fresh paired runs, exact McNemar, two-sided; prediction LG-E4B resolves
+more. A null is reported as not detected. Leaderboard use only if LG-E4B resolves more than G-E4B on the rich tasks.

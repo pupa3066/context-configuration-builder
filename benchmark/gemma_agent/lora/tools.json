@@ -1,0 +1,200 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "run_command",
+   "description": "Run a shell command in /workspace.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "command": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "command"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "submit_patch",
+   "description": "Submit the current diff as the patch.",
+   "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_status",
+   "description": "Return budget use and patch status.",
+   "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "read_file",
+   "description": "Read a file, optionally a line range.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string",
+      "description": ""
+     },
+     "start_line": {
+      "type": "integer",
+      "description": ""
+     },
+     "end_line": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "filepath"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "edit_file",
+   "description": "Replace an exact string in a file.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string",
+      "description": ""
+     },
+     "old_string": {
+      "type": "string",
+      "description": ""
+     },
+     "new_string": {
+      "type": "string",
+      "description": ""
+     },
+     "allow_multiple": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "filepath",
+     "old_string",
+     "new_string"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "write_file",
+   "description": "Write a whole file.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string",
+      "description": ""
+     },
+     "content": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "filepath",
+     "content"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_code_neighbors",
+   "description": "Graph neighbors of a code node.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "node": {
+      "type": "string",
+      "description": ""
+     },
+     "edge_type": {
+      "type": "string",
+      "description": ""
+     },
+     "max_neighbors": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "node"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "search_similar_code",
+   "description": "Search code nodes by name and embedding.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "k": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_code_subgraph",
+   "description": "Subgraph over code nodes.",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "nodes": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "nodes"
+    ]
+   }
+  }
+ }
+]
