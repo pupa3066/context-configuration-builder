@@ -287,3 +287,17 @@ vs 91 lines, so the 40-line rule was mostly not followed.
 Neither token prediction reaches p < 0.05; W is not worse on resolution in either model. The E4B saving is the
 largest token effect measured in this plan and is treated as a lead for a registered replication, not a result.
 Files: benchmark/gemma_agent/selftest_results/selftest16_v81_window.csv and selftest16_v81e4b_window.csv.
+
+## Amendment 12 (recorded 2026-11-14 08:54 MT, before any result of these runs)
+
+(a) Replication of the windowed-read lead. Fresh paired runs of W-E4B and G-E4B (unchanged arms) on 56 published
+tasks: all 48 rich tasks plus the 8 fastapi tasks of the 16-task set. Primary: total tokens per task, paired
+Wilcoxon signed-rank, two-sided; prediction W-E4B uses fewer. Co-primary: resolved tasks, exact McNemar; prediction
+W-E4B is not worse. The 16-task results of amendment 11 are not pooled. Nulls are reported as not detected.
+(b) Budget. GPU: about 2 hours of the 20.6 left before the 2026-11-21 reset. Leaderboard: one submission per day
+and one pending at a time; 18 slots remain (2026-11-15 to 2026-12-02).
+(c) Slot schedule, replacing amendment 9 (b) from 2026-11-16: 15 Nov N (already armed), 16 Nov G, 17 Nov N. If (a)
+supports both predictions (token p < 0.05, W-E4B not worse), 18 to 23 Nov alternate W-E4B and G-E4B (three each,
+W-E4B first) as hidden-set replicates of the small-model pair; otherwise G and N keep alternating. 24 Nov to 2 Dec:
+further replicates of the pair with the largest difference in mean public score. Final picks: the 31B arm and the
+E4B arm with the highest mean public score, recorded here before selection.
