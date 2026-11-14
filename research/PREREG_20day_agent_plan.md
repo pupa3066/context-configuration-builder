@@ -254,3 +254,15 @@ more. A null is reported as not detected. Leaderboard use only if LG-E4B resolve
 Arm G (ref 58324271, submitted 2026-11-14 00:00:47 UTC) scored 0.15 public; arm L (ref 58287913, effectively N plus
 one uninformative skill call) scored 0.17. One replicate each; the reported noise between identical submissions is
 about two tasks of 58, so no difference is inferred. Arm N follows on 2026-11-15 00:00 UTC per amendment 9.
+
+## Amendment 11 (recorded 2026-11-14 08:09 MT, before any token count of these runs was computed)
+
+Token use as an outcome of the thesis approach (index everything the agent may need, hand it small in-window pieces).
+(a) Existing runs, not yet analysed for tokens: total_prompt_tokens and total_completion_tokens from final_metrics of
+every trace. Pairs: G vs N on 129 tasks and on the 67 fastapi replicate (31B); G-E4B vs N-E4B on 16 tasks (E4B).
+Primary: paired Wilcoxon signed-rank on per-task total tokens, two-sided; secondary, tokens per resolved task. No
+prediction is made for G vs N, since G adds a search step but may shorten exploration.
+(b) New arms W (31B) and W-E4B: identical to G and G-E4B except one prompt rule, read at most 40 lines per read_file
+call, centred on a grep match (start_line and end_line), the agent-level form of chunking to the window. Test on the
+same 16 published tasks: W vs G and W-E4B vs G-E4B. Primary: per-task total tokens, paired Wilcoxon; prediction W
+uses fewer. Co-primary: resolved tasks, exact McNemar; prediction W is not worse. Nulls are reported as not detected.
