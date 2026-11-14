@@ -266,3 +266,11 @@ prediction is made for G vs N, since G adds a search step but may shorten explor
 call, centred on a grep match (start_line and end_line), the agent-level form of chunking to the window. Test on the
 same 16 published tasks: W vs G and W-E4B vs G-E4B. Primary: per-task total tokens, paired Wilcoxon; prediction W
 uses fewer. Co-primary: resolved tasks, exact McNemar; prediction W is not worse. Nulls are reported as not detected.
+
+### Outcome of amendment 11 (a) (recorded 2026-11-14 08:12 MT)
+
+Total tokens per task (prompt plus completion), paired Wilcoxon signed-rank, normal approximation:
+G vs N, 129 tasks: median 214,792 vs 243,611, total -2.7 percent, z = -0.92, p = 0.36.
+G vs N, 67 fastapi: median 253,677 vs 235,088, total +7.0 percent, z = +1.22, p = 0.22.
+G-E4B vs N-E4B, 16 tasks: median 126,561 vs 132,583, total +1.5 percent, z = +0.26, p = 0.80.
+A full-coverage search step does not change token use detectably; the two 31B samples point in opposite directions.
