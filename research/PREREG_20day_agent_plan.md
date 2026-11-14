@@ -438,3 +438,9 @@ The first smoke run (3 tasks) had 0 tool calls: the agent framework fills {name}
 and the ranker's f-string made it look for a variable named p, so the agent never started. The ranker now uses no
 braces (same logic and output); the validator now reads the included prompt and rejects template variables the harness
 cannot fill. The gate and test are unchanged; the smoke run is repeated.
+
+### Amendment 18, run stopped (recorded 2026-11-14 16:19 MT)
+
+On Pupa's decision, B's 72-task confirmation run was stopped at 16:18 MT, unanalysed, so the remaining GPU quota could
+complete R-E4B (amendment 20). Kaggle returns outputs only after a run ends, so no partial results were kept. B is
+rerun in full after the 2026-11-21 quota reset, as registered.
