@@ -104,3 +104,18 @@ Analysis rules fixed before the data, from a validity review:
    submission_v81_noskill (same files and checksums).
 Not confounds, noted as scope: one model (31B) and small generated files. No claim is made about the size of
 developer-written context files elsewhere.
+
+## Related registration: model-agnostic retrieval on SWE-bench Lite (recorded 2026-11-14 15:26 MT, before any result)
+
+To test the writeup's retrieval findings on a standard, model-agnostic benchmark. Queries: the problem statements of
+SWE-bench Lite's 300 test tasks (princeton-nlp/SWE-bench_Lite, 12 Python repositories), first 4,000 characters.
+Repository: each task's base_commit. Target: the 8-line chunks overlapping the lines its gold patch changes, in
+existing non-test .py files. Retrievers and code: the committed BM25 and dense retriever (bge-small-en-v1.5), k = 6, as in
+the task-grounded run (research/PREREG_20day_agent_plan.md amendment 19).
+Conditions: (1) coverage: dense at full coverage and at 25 percent of chunks, BM25 over all chunks;
+(2) chunk length: 8-line chunks vs 400-word chunks at full coverage, dense whole-chunk vs best in-window segment.
+Primary: BM25 vs dense at full coverage (paired, exact McNemar, bootstrap interval); dense full vs dense 25 percent.
+Secondary: the chunk-length conditions. Predictions, from the writeup: dense at 25 percent falls well below dense at
+full coverage while BM25 is unchanged; with 400-word chunks, best-segment scoring raises dense. Nulls are reported as
+not detected. CPU only; a 3-task smoke run first. Tasks whose gold patch edits no existing non-test .py file are excluded
+and counted.
