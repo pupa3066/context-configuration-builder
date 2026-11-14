@@ -47,3 +47,16 @@ The gold-patch control (amendment 17, notebook harness-gold-patch-control-129tas
 gold fix fails on 54 and 3 pass with no fix. Over the 72, G resolves 27 and N 26 (38 vs 36 percent, p = 1.0); conclusions
 are unchanged, and the 31B agent solves about 37 percent of solvable tasks. Failures of G on scorable tasks: 3 of 45
 never found the right file; for E4B, 13 of 43 (30 percent).
+
+## Limits of the agent self-test (from the gold-patch control)
+
+- Use self-test results only for paired comparisons between arms on the same tasks. The 31B agent resolves about 37
+  percent of scorable published tasks but scores 0.15 to 0.17 on the hidden leaderboard tasks, a different and harder set.
+- The writeup's Section 5 compares 25 percent of 16 published tasks with public leaderboard scores; 7 of those 16 tasks
+  are not scorable in the self-test environment, so that comparison does not hold.
+- The 16-task set has only 9 scorable tasks; results on it (including V and B) are too small to support conclusions.
+  Remaining self-tests use the 72 scorable tasks (benchmark/harness_audit/scorable_tasks_72.txt).
+- Why the gold fix fails on 54 tasks: test packages missing from the environment (inline_snapshot 27, dirty_equals 7);
+  requests test files with unrelated failing tests (18); an installed httpx shadowing the repository's (1); one genuine
+  gold failure (rich_3486). No agent run resolved any task whose gold fix fails.
+
