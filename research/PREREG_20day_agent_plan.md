@@ -274,3 +274,16 @@ G vs N, 129 tasks: median 214,792 vs 243,611, total -2.7 percent, z = -0.92, p =
 G vs N, 67 fastapi: median 253,677 vs 235,088, total +7.0 percent, z = +1.22, p = 0.22.
 G-E4B vs N-E4B, 16 tasks: median 126,561 vs 132,583, total +1.5 percent, z = +0.26, p = 0.80.
 A full-coverage search step does not change token use detectably; the two 31B samples point in opposite directions.
+
+### Outcome of amendment 11 (b) (recorded 2026-11-14 08:53 MT)
+
+Total tokens per task, paired Wilcoxon (normal approximation), same 16 published tasks:
+W vs G (31B): median 238,452 vs 248,902, total -1.2 percent, z = -0.72, p = 0.47. Resolved 4 vs 5 (only G rich_3777),
+McNemar p = 1.0. Compliance: whole-file reads fell from 56 to 22 of about 160 read_file calls; median ranged read 22
+vs 28.5 lines.
+W-E4B vs G-E4B: median 91,284 vs 126,561, total -19.1 percent, z = -1.81, p = 0.07. Resolved 2 vs 1 (only W
+fastapi_14077), McNemar p = 1.0. Compliance partial: whole-file reads fell from 33 to 18; median ranged read 100.5
+vs 91 lines, so the 40-line rule was mostly not followed.
+Neither token prediction reaches p < 0.05; W is not worse on resolution in either model. The E4B saving is the
+largest token effect measured in this plan and is treated as a lead for a registered replication, not a result.
+Files: benchmark/gemma_agent/selftest_results/selftest16_v81_window.csv and selftest16_v81e4b_window.csv.
