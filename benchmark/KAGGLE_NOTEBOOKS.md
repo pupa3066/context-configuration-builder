@@ -60,3 +60,13 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | agent-31b-test-before-submit-16tasks | 31B agent tests its change before submitting | 57 of 67 wrong fixes were never tested | Running |
 | agent-31b-budget-50calls-15min-16tasks | 31B agent with a larger budget | 42 of 99 failures used all 28 calls | Running |
 | agent-31b-create-new-files-27tasks | 31B agent allowed to create new files | all 11 tasks that need new files failed | Queued |
+
+## Retrieval on real problem statements (registered before results)
+
+| Notebook | Descriptive name | Why it ran | What it showed |
+|---|---|---|---|
+| harness-gold-patch-control-129tasks | Gold patch vs empty patch on all 129 published tasks | Find which tasks can be scored locally | 72 scorable; gold fails on 54 (environment), 3 pass with no fix |
+| retrieval-on-task-problem-statements | Competition problem statements as queries, gold-patch code as targets | Extend the coverage finding to real task queries; bridge to agent success | Running (125 tasks) |
+| retrieval-swebench-lite-coverage-and-chunk-length | SWE-bench Lite smoke run, 3 flask tasks | Check the notebook before the full run | Passed |
+| retrieval-swebench-lite-django, -sympy, -scientific-libs, -dev-tools-and-web | SWE-bench Lite, four repository shards | Model-agnostic test of coverage and chunk length on a standard benchmark | Running |
+| agent-31b-budget-50calls-15min-72scorable | 31B agent with a larger budget, 72 scorable tasks | Confirm the only arm that beat G (amendment 18) | Running |
