@@ -404,3 +404,17 @@ B vs G, where G is its 129-task run restricted to the same 72 tasks (27 resolved
 comparison; primary exact McNemar, prediction B resolves more; a null is reported as not detected. Quota: about 5 GPU
 hours remain before 2026-11-21; B on 72 tasks is estimated at about 3.5 hours. No submission until this result is in
 and Pupa gives the go.
+
+## Amendment 19 (recorded 2026-11-14 15:01 MT, before any result of this run)
+
+Task-grounded retrieval questions. Query: each published task's problem statement (first 4,000 characters). Target:
+the 8-line chunks overlapping the lines the gold patch changes, in existing non-test .py files outside docs_src. All
+eligible tasks (every task whose gold patch edits such a file), not the 38-task subset of the earlier audit.
+Retrievers: committed BM25 over all chunks; dense bge-small-en-v1.5 at full coverage and at 25 percent of chunks;
+the share of questions whose target is in the 25 percent index is recorded. k = 6. CPU only, no model.
+Primary (retrieval): BM25 vs dense at full coverage, paired, exact McNemar and bootstrap interval. Secondary:
+dense full vs dense 25 percent (the coverage effect on real queries).
+Bridge test, computed afterwards from existing agent runs without new runs: on the scorable tasks
+(benchmark/harness_audit/scorable_tasks_72.txt), the association between a BM25 hit and the agent resolving the task,
+separately for 31B (G and N, 129-task runs) and E4B (G-E4B, 56-task run): resolved rate among hits vs misses, Fisher
+exact test, two-sided. Prediction: the association is stronger for E4B than for 31B. Nulls are reported as not detected.
