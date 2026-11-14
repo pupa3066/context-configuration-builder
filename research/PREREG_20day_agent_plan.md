@@ -310,3 +310,16 @@ p = 1.0. The token prediction is not supported and the 19.1 percent saving seen 
 co-primary (not worse) is not contradicted. Per (c), 18 to 23 Nov keep the G/N alternation; W-E4B and G-E4B are
 not submitted. Not registered and not a result: on the 8 fastapi tasks the saving was -18.9 percent (on rich -0.8).
 Files: benchmark/gemma_agent/selftest_results/selftest56_v81e4b_window.csv and selftest56_v81e4b_grep.csv.
+
+## Amendment 13 (recorded 2026-11-14 11:56 MT, before any result of the runs named here)
+
+On Pupa's instruction, no leaderboard submission and no new Kaggle notebook until the running self-tests are complete:
+the tiered-context study runs (research/PREREG_tiered_context_gemma_harness.md, cck-ctx-monolithic-129 and
+cck-ctx-tiered-129) and then the new-files test below. The N upload armed for 2026-11-15 00:00 UTC was disarmed at
+11:55 MT; that slot is skipped, leaving at most 17. The amendment 12 schedule resumes, in order, from the first slot
+after these self-tests finish.
+New-files arm, registered now, launched only after the current runs: F = submission_v81_grep plus one prompt rule,
+"if the fix needs a new module, example or documentation file, create it with write_file, following the naming of
+existing files in that folder". Motivation (CPU analysis of existing traces): 11 of 129 published tasks need new
+files (8 under fastapi docs_src); G and N created none of them and resolved none, 9 with test-collection errors.
+Test: F vs G on those 11 tasks (primary, exact McNemar, prediction F resolves more) and on the 16-task set (not worse).
