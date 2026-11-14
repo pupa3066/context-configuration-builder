@@ -334,3 +334,18 @@ Arm V = G plus one rule: "Before submit_patch, run the existing test file for th
 (pytest <file> -q -x) and fix any failure your change caused; if no test file exists, import the changed module with
 python -c." Test: V vs G on the same 16 published tasks; primary resolved tasks, exact McNemar, prediction V resolves
 more; secondary, share of runs that ran a test. A null is reported as not detected.
+
+## Amendment 15 (recorded 2026-11-14 12:34 MT, before any result of these arms)
+
+Score priority, on Pupa's instruction. The tiered-context runs (cck-ctx-monolithic-129, cck-ctx-tiered-129) were
+stopped at 12:34 MT, unanalysed; they rerun after a quota reset as registered (recommendation R36). This supersedes
+amendment 13's order. Three one-change arms from G, each aimed at a measured failure cause of G's 129-task run:
+- V = submission_v81_verify (amendment 14): test the changed code before submit_patch.
+- F = submission_v81_newfiles (amendment 13): create new files the fix needs.
+- B = submission_v81_budget: eval budget 28 to 50 tool calls, 8 to 15 minutes, 80 to 140 turns (scorer defaults are
+  100 calls and 60 minutes). 42 of G's 99 failures used all 28 calls.
+Self-tests: V and B on the 16-task set; F on the 11 tasks whose gold fix creates files (fastapi_15661, 15030, 15280,
+14978, 14099, 14262, 14186, 15800, 14953, 13786, rich_3930) plus the 16-task set. Each vs G's runs on the same tasks
+(G's 16-task run; G's 129-task results for the 11). Primary: resolved, exact McNemar, prediction arm resolves more.
+Combination rule, fixed now: every arm whose resolved count exceeds G's on its primary set joins one combined arm,
+confirmed on as many tasks as quota allows before any submission. Risk noted: B raises per-task time on the scorer.
