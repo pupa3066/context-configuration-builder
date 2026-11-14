@@ -301,3 +301,12 @@ supports both predictions (token p < 0.05, W-E4B not worse), 18 to 23 Nov altern
 W-E4B first) as hidden-set replicates of the small-model pair; otherwise G and N keep alternating. 24 Nov to 2 Dec:
 further replicates of the pair with the largest difference in mean public score. Final picks: the 31B arm and the
 E4B arm with the highest mean public score, recorded here before selection.
+
+### Outcome of amendment 12 (a) (recorded 2026-11-14 09:40 MT)
+
+56 fresh paired tasks, no errors. Tokens: median 117,678 vs 119,676, total -3.6 percent, W-E4B lower on 31 of 56,
+Wilcoxon z = -0.33, p = 0.74. Resolved: W-E4B 3, G-E4B 4 (only W rich_3006; only G rich_3518, rich_3894), McNemar
+p = 1.0. The token prediction is not supported and the 19.1 percent saving seen on 16 tasks did not replicate; the
+co-primary (not worse) is not contradicted. Per (c), 18 to 23 Nov keep the G/N alternation; W-E4B and G-E4B are
+not submitted. Not registered and not a result: on the 8 fastapi tasks the saving was -18.9 percent (on rich -0.8).
+Files: benchmark/gemma_agent/selftest_results/selftest56_v81e4b_window.csv and selftest56_v81e4b_grep.csv.
