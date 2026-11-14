@@ -1,5 +1,12 @@
 # Pre-registration: monolithic vs tiered repository context on the Gemma 4 agent harness
 
+> **Terms used below** (editorial note added 2026-11-14; the registered text is unchanged so its history stays verifiable).
+> No-context baseline = C0. Monolithic context, the whole context file in the prompt = C1. Tiered context, an always-on
+> index in the prompt with sections loaded on demand = C2. Tiered context with tiers assigned automatically = C3.
+> Cost hypothesis, tiered uses fewer tokens than monolithic = H1. Quality hypothesis, tiered resolves no fewer tasks than
+> monolithic within a margin (delta) = H2. Tiered resolves no fewer tasks than no context = H3. Automatic tiering matches
+> manual tiering = H4.
+
 Recorded 2026-11-14 10:01 MT before any run of conditions C1 or C2 (first design, withdrawn; see Amendment 1). This applies
 research/RESEARCH_PLAN.md (design v1, 2026-09-04) to a real multi-step agent with real test grading, the run that
 research/STATUS.md lists as missing. It is separate from the Agent Track leaderboard plan and uses no leaderboard slot.

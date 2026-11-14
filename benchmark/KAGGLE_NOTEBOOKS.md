@@ -37,7 +37,7 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | cck-st16-noasync | BM25 skill blind to async code, 16 tasks | Coverage at task level | 5 of 16; not interpretable (skill defect) |
 | cck-st16-grep | Grep inside the sandbox first, 31B, 16 tasks | Fixed localizer (amendment 5) | Passes the trace check; 5 of 16 vs 4 |
 | cck-all129-grep | Grep first, 31B, all 129 tasks | Full-set test (amendment 7) | 30 of 129 (23.3 percent) |
-| cck-all129-noskill | No search step, 31B, all 129 tasks | Control for the above; C0 of the tiered study | 28 of 129 (21.7 percent); p = 0.73 vs grep |
+| cck-all129-noskill | No search step, 31B, all 129 tasks | Control for the above; the no-context baseline of the tiered-context study | 28 of 129 (21.7 percent); p = 0.73 vs grep |
 | cck-fa67-grep | Grep first, 31B, 67 fastapi tasks | Replicate the fastapi lead (amendment 9) | 14 of 67 |
 | cck-fa67-noskill | No search step, 31B, 67 fastapi tasks | Control for the above | 15 of 67; the lead did not replicate |
 | cck-st16-window | Read in 40-line windows, 31B, 16 tasks | Chunked reading at agent level (amendment 11) | Tokens -1.2 percent, not significant |
@@ -49,6 +49,6 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | cck-st16e4b-window | Small model, 40-line windows, 16 tasks | Chunked reading on E4B | Tokens -19.1 percent (p = 0.07) |
 | cck-r56e4b-window | Small model, 40-line windows, 56 new tasks | Replication (amendment 12) | Tokens -3.6 percent (p = 0.74); did not replicate |
 | cck-r56e4b-grep | Small model, grep first, 56 new tasks | Control for the above | 4 of 56 resolved vs 3 |
-| cck-ctx-monolithic-129 | Monolithic repository context (C1), 129 tasks | Tiered-context study (PREREG_tiered_context_gemma_harness.md) | Running |
-| cck-ctx-tiered-129 | Tiered repository context (C2), 129 tasks | Same study | Running |
+| cck-ctx-monolithic-129 | Monolithic repository context (whole file in the prompt), 129 tasks | Tiered-context study (PREREG_tiered_context_gemma_harness.md) | Running |
+| cck-ctx-tiered-129 | Tiered repository context (index in the prompt, sections loaded on demand), 129 tasks | Same study | Running |
 | cck-ctx-tiered-smoke | Tiered context smoke test, 4 tasks | Check before the full run | All 4 ran with tool calls; full run launched |

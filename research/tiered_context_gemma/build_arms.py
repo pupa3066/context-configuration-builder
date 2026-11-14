@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Build the monolithic (C1) and tiered (C2) arms for each repository from one generated context file.
+"""Build the monolithic (whole file in the prompt) and tiered (index in the prompt, sections on demand) arms for each repository from one generated context file.
 
-C1: the whole file in the system prompt. C2: the file split; the always-on part (header, tests, documentation
+Monolithic arm: the whole file in the system prompt. Tiered arm: the file split; the always-on part (header, tests, documentation
 examples, and an index of the layout sections) is in the system prompt, and each layout section is a skill loaded
-on demand. Same-text control: always-on part plus all sections reassemble exactly into the C1 file, and the index
-is the only added text. Both arms start from C0 (submission_v81_noskill) and add one context block.
+on demand. Same-text control: always-on part plus all sections reassemble exactly into the monolithic file, and the index
+is the only added text. Both arms start from the no-context baseline (submission_v81_noskill) and add one context block.
 
 Usage: python build_arms.py <repos_dir> <commits.txt> <out_dir>
 """
@@ -15,7 +15,7 @@ import make_context as mc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GA = os.path.join(HERE, "..", "..", "benchmark", "gemma_agent")
-C0 = os.path.join(GA, "submission_v81_noskill")
+NO_CONTEXT_BASELINE = os.path.join(GA, "submission_v81_noskill")
 
 
 def split(root, name, commit):
@@ -43,7 +43,7 @@ def split(root, name, commit):
 
 
 def write_arm(dst, prompt, skills):
-    shutil.rmtree(dst, ignore_errors=True); shutil.copytree(C0, dst)
+    shutil.rmtree(dst, ignore_errors=True); shutil.copytree(NO_CONTEXT_BASELINE, dst)
     open(os.path.join(dst, "prompts", "system.md"), "w").write(prompt)
     y = os.path.join(dst, "agent.yaml"); a = open(y).read()
     arm = "cck_" + "_".join(dst.rstrip("/").split(os.sep)[-2:])
@@ -59,7 +59,7 @@ def write_arm(dst, prompt, skills):
 
 if __name__ == "__main__":
     repos_dir, commits, out = sys.argv[1:4]
-    base = open(os.path.join(C0, "prompts", "system.md")).read().rstrip() + "\n"
+    base = open(os.path.join(NO_CONTEXT_BASELINE, "prompts", "system.md")).read().rstrip() + "\n"
     lead = "\n## Repository context\n\nThe repository context follows."
     for line in open(commits):
         short, slug, sha = line.split()
@@ -69,5 +69,5 @@ if __name__ == "__main__":
         c2 = (base + lead + " Its package layout is split into sections listed below; load a section with `load_skill`"
               " when you need it.\n\n" + always_on + index)
         write_arm(os.path.join(out, "tiered", short), c2, sections)
-        print(f"{short}: C1 prompt {len((base + lead + full).split())} words | C2 prompt {len(c2.split())} words | "
+        print(f"{short}: monolithic prompt {len((base + lead + full).split())} words | tiered prompt {len(c2.split())} words | "
               f"{len(sections)} on-demand sections | same-text control passed")

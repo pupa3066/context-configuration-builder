@@ -1,5 +1,12 @@
 # Research Plan: Access-Pattern-Tiered Context for Coding Agents
 
+> **Terms used below** (editorial note added 2026-11-14; the registered text is unchanged so its history stays verifiable).
+> No-context baseline = C0. Monolithic context, the whole context file in the prompt = C1. Tiered context, an always-on
+> index in the prompt with sections loaded on demand = C2. Tiered context with tiers assigned automatically = C3.
+> Cost hypothesis, tiered uses fewer tokens than monolithic = H1. Quality hypothesis, tiered resolves no fewer tasks than
+> monolithic within a margin (delta) = H2. Tiered resolves no fewer tasks than no context = H3. Automatic tiering matches
+> manual tiering = H4.
+
 **Status:** design v1 (2026-09-04). Pre-registration-style plan; results section to be filled after runs.
 
 ## 1. Problem & prior result

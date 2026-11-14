@@ -3,7 +3,7 @@
 
 Deterministic and snapshot-only: package layout, each module's first docstring line and top-level public names,
 test layout, and pytest settings copied from the repository's own config files. No outside information is added.
-The same text feeds C1 (monolithic, in the system prompt) and C2 (tiered, one skill per repository).
+The same text feeds the monolithic arm (whole file in the system prompt) and the tiered arm (sections loaded on demand).
 
 Usage: python make_context.py <repo_dir> <name> <commit> [--max-words 1200] > context.md
 """
