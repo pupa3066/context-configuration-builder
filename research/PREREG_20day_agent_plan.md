@@ -323,3 +323,14 @@ New-files arm, registered now, launched only after the current runs: F = submiss
 existing files in that folder". Motivation (CPU analysis of existing traces): 11 of 129 published tasks need new
 files (8 under fastapi docs_src); G and N created none of them and resolved none, 9 with test-collection errors.
 Test: F vs G on those 11 tasks (primary, exact McNemar, prediction F resolves more) and on the 16-task set (not worse).
+
+## Amendment 14 (recorded 2026-11-14 12:19 MT, before any result of this arm; launched only after the running self-tests, per amendment 13)
+
+CPU analysis of G's 129-task traces (no new runs). Among the 67 fixes in the right file that failed: 57 never ran
+pytest; the agent's patch was a median 2.75 times the gold patch's added lines; 21 skipped other files the gold fix
+changes (89 source files and 24 docs_src examples across those tasks). Observationally, runs that ran pytest resolved
+11 of 21 (0.52) and runs that did not resolved 18 of 89 (0.20); this is not causal, since easier tasks may invite testing.
+Arm V = G plus one rule: "Before submit_patch, run the existing test file for the code you changed
+(pytest <file> -q -x) and fix any failure your change caused; if no test file exists, import the changed module with
+python -c." Test: V vs G on the same 16 published tasks; primary resolved tasks, exact McNemar, prediction V resolves
+more; secondary, share of runs that ran a test. A null is reported as not detected.
