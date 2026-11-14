@@ -378,7 +378,7 @@ is also reported over scorable tasks, and the failure analysis of amendment 14 i
 tasks first. Arm outcomes of amendment 15 so far: V 4 of 16, B 6 of 16 vs G 5 (p = 1.0 both); by the registered
 rule B joins the combined arm and V does not; F pending.
 
-### Outcome of amendment 17 (recorded 2026-11-14 14:30 MT)
+### Outcome of amendment 17 (recorded 2026-11-14 14:12 MT)
 
 Gold-patch control on all 129 published tasks, harness verify_task, no model, no errors: the gold patch resolves 75;
 an empty patch resolves 3 (fastapi_14077, fastapi_14851, requests_6644); 72 tasks are scorable (gold passes, empty
