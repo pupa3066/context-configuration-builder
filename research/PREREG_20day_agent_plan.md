@@ -248,3 +248,9 @@ Gate: a smoke run on 4 held-out rich tasks must show tool calls in every task; o
 format failure and not tested further.
 Test: LG-E4B vs G-E4B on all 48 rich tasks, fresh paired runs, exact McNemar, two-sided; prediction LG-E4B resolves
 more. A null is reported as not detected. Leaderboard use only if LG-E4B resolves more than G-E4B on the rich tasks.
+
+## Leaderboard record (recorded 2026-11-14 07:57 MT)
+
+Arm G (ref 58324271, submitted 2026-11-14 00:00:47 UTC) scored 0.15 public; arm L (ref 58287913, effectively N plus
+one uninformative skill call) scored 0.17. One replicate each; the reported noise between identical submissions is
+about two tasks of 58, so no difference is inferred. Arm N follows on 2026-11-15 00:00 UTC per amendment 9.

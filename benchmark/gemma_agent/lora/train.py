@@ -42,6 +42,9 @@ qn = [n for n, _ in model.named_modules() if n.endswith('q_proj')]; print('q_pro
 TARGET = r'^(?!.*(vision|audio)).*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)$'
 model.config.use_cache = False
 model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False}); model.enable_input_require_grads()
+# The image ships torchao 0.10, older than peft's minimum; nothing here uses torchao, so skip its dispatcher.
+import peft.import_utils, peft.tuners.lora.torchao as _tq
+peft.import_utils.is_torchao_available = lambda: False; _tq.is_torchao_available = lambda: False
 model = peft.get_peft_model(model, peft.LoraConfig(r=16, lora_alpha=32, lora_dropout=0.0, target_modules=TARGET, task_type='CAUSAL_LM'))
 model.print_trainable_parameters()
 opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=1e-4)
