@@ -366,3 +366,14 @@ From the harness source (swegemma 0.2.11, harness/verification.py), read to expl
 Candidate rule for the combined arm, decided by the amendment 15 rule only if it is tested first: "Edits to test
 files, conftest.py, pyproject.toml, setup.cfg and tox.ini are discarded by the grader; put the whole fix in source
 files, and keep every existing test in the module's test file passing."
+
+## Amendment 17 (recorded 2026-11-14 13:43 MT, before any result of this control)
+
+Gold-patch control, from a senior-review recommendation. In B's self-test, 4 of 10 failures were tests that could
+not import dirty_equals or inline_snapshot, packages absent from the self-test environment and from the organizers'
+wheelhouse, so some self-test failures are unsolvable by any agent. Notebook harness-gold-patch-control-129tasks
+runs the harness's own verify_task, with no model, on every published task twice: with the gold patch and with an
+empty patch. A task is scorable here only if gold resolves and empty does not. From now on every agent self-test rate
+is also reported over scorable tasks, and the failure analysis of amendment 14 is redone on them. Smoke run on 3
+tasks first. Arm outcomes of amendment 15 so far: V 4 of 16, B 6 of 16 vs G 5 (p = 1.0 both); by the registered
+rule B joins the combined arm and V does not; F pending.
