@@ -83,3 +83,24 @@ Corrected design, replacing the conditions table above:
   with at least one load_skill call is reported (no threshold: loading on demand may legitimately be rare).
 - H2, H3, delta, alpha, Holm, repeats and labelling as registered above. Run 1: C1 and C2 fresh on 129 tasks; C0
   from the existing 129-task run, as declared.
+
+## Amendment 2 (recorded 2026-11-14 12:18 MT, before any outcome of runs cck-ctx-monolithic-129 or cck-ctx-tiered-129)
+
+Analysis rules fixed before the data, from a validity review:
+1. Tool overhead of tiering. The tiered arm declares skills, so the harness adds skill-loading tools, and possibly a
+   skill list, to every call. From the traces, the tiered arm's always-on prompt cost is measured as its prompt tokens
+   on the first model call minus the monolithic arm's, per task. It is reported beside the H1 result. H1 is tested on
+   the measured totals, which include this overhead.
+2. Largest possible saving. Per repository, the words a tiered prompt can leave out (the package-layout sections):
+   fastapi 286, httpx 246, requests 158, rich 523 (whole files 362, 264, 200, 555). Reported beside the measured saving,
+   so a null on H1 can be read against what was achievable.
+3. How often sections load. The share of tasks with at least one load_skill call, per repository. If it is under
+   20 percent, the tiered arm is described as "less context" rather than "context on demand".
+4. Results per repository as well as pooled, because tiering has 1 section for requests, 2 for httpx and rich, and
+   6 for fastapi.
+5. H3 in run 1 uses the no-context run of 12 to 13 November (different day and machine). Run 1's H3 is reported as
+   secondary; the primary H3 test uses the fresh no-context runs of runs 2 and 3.
+6. The no-context arm is also stored as benchmark/gemma_agent/context_study/none/all_repositories, an exact copy of
+   submission_v81_noskill (same files and checksums).
+Not confounds, noted as scope: one model (31B) and small generated files. No claim is made about the size of
+developer-written context files elsewhere.
