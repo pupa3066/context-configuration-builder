@@ -392,3 +392,15 @@ right file with a wrong fix (23 never ran pytest), 10 produced no patch. E4B (gr
 failures, 13 never found the right file (30 percent), 5 edited elsewhere, 25 wrong fixes (1 never ran pytest).
 From now on all self-tests use the 72 scorable tasks as the task set or report rates over them.
 Files: benchmark/harness_audit/gold_patch_control_129.csv, benchmark/harness_audit/scorable_tasks_72.txt.
+
+## Amendment 18 (recorded 2026-11-14 14:46 MT, before any result of this run)
+
+Outcome of F (amendment 15): 0 of 11 new-file tasks for F and for G; F created 0 of the 49 new files the gold fixes add,
+so the rule was not followed; on the 16-task set F 4 vs G 5 (p = 1.0). Only 4 of the 11 new-file tasks are scorable
+locally, so the statement in amendment 14 that these tasks failed because the agent never created the files is
+corrected: 7 of them cannot be solved in this environment. By the amendment 15 rule only B exceeded G, so the combined
+arm is B alone. Confirmation, as that rule requires, on the 72 scorable tasks (benchmark/harness_audit/scorable_tasks_72.txt):
+B vs G, where G is its 129-task run restricted to the same 72 tasks (27 resolved), declared as a non-concurrent
+comparison; primary exact McNemar, prediction B resolves more; a null is reported as not detected. Quota: about 5 GPU
+hours remain before 2026-11-21; B on 72 tasks is estimated at about 3.5 hours. No submission until this result is in
+and Pupa gives the go.
