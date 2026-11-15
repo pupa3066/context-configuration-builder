@@ -456,3 +456,14 @@ prediction (fewer tokens) is contradicted: the ranked search led to more reading
 better localization did not turn into solved tasks because E4B's remaining failures are wrong fixes (26) in the right
 file. Per the registered rule R-E4B is not submitted.
 File: benchmark/gemma_agent/selftest_results/selftest46_v81e4b_rank.csv.
+
+## Amendment 21 (recorded 2026-11-14 17:52 MT, before any result of this arm)
+
+RC-E4B = submission_v81e4b_rankcheck: identical to R-E4B except one rule before submit_patch: run py_compile on every
+changed file and the module's test file, fix any error the change caused, and submit only when the latest run shows no
+failure the change caused, covering every behavior the issue asks for. Motivation (CPU analysis of R-E4B's 38 non-empty
+failed patches): its own last pytest run was failing at submission in 21; 10 hidden-test failures were syntax,
+indentation, import or name errors; patches were a median 0.3 times the gold patch size. Test: RC-E4B vs R-E4B on the
+same tasks, run in the same environment (Kaggle after the 2026-11-21 quota reset, or a local machine running both arms;
+results from different environments are not pooled). Primary: resolved, exact McNemar, prediction RC-E4B resolves more.
+Secondary: submissions whose own last test run was failing (prediction fewer). A null is reported as not detected.
