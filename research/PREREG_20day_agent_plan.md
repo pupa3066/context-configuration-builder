@@ -478,3 +478,14 @@ prediction (fewer) is contradicted: the rule made the agent test more, but it st
 Both arms used a median of 11 tool calls of 28, so the budget is not what stops the repair. Run-to-run check: R-E4B
 resolved 3 of these 46 tasks in its earlier run and 4 here. RC-E4B's 5 of 46 is the highest E4B count so far, within noise.
 File: benchmark/gemma_agent/selftest_results/selftest46_e4b_rank_vs_rankcheck.csv.
+
+## Amendment 22 (recorded 2026-11-14 21:29 MT, before any result of this run)
+
+D1, retrieval ceiling for the small model (recommendation R33). Same agent as R-E4B (submission_v81e4b_rank, files
+unchanged); each task's problem statement gets one appended line naming the non-test files its gold patch changes. A
+diagnostic only, never submitted, since the scorer gives no such line. Tasks: E4B's 46 scorable tasks. Comparison:
+R-E4B's two earlier runs on the same tasks (3 and 4 resolved), declared non-concurrent. Primary: resolved with the files
+named. Decision rule fixed now: if D1 resolves 10 or more of 46, the limit includes localization the agent could still
+gain, and the distillation LoRA (R34) is registered and run after the 2026-11-21 reset; if D1 resolves 7 or fewer, the
+limit is fix-writing by the model, and the LoRA is not run on the current data (37 tasks, 7 repair examples); 8 or 9 is
+reported as inconclusive. Run by Akshay Upadhyay on his Kaggle quota, as in amendment 21.
