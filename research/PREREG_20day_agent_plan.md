@@ -516,3 +516,18 @@ On Pupa's go, arm B (submission_v81_budget, sha256 prefix e5defcd7def3510b, byte
 on 72 scorable tasks) takes the 2026-11-15 UTC leaderboard slot. Basis: B 30 vs G 27 of 72 (p = 0.51), the strongest
 31B arm measured; runtime on the scorer estimated at about 2.2 hours. Comparison on the hidden set: G 0.15, L 0.17.
 A single score is within reported noise of about two tasks of 58; no difference will be inferred from one replicate.
+
+### Outcome of amendment 19 (recorded 2026-11-15 09:40 MT)
+
+Task-grounded retrieval on 125 competition tasks (eligible: gold patch edits an existing non-test .py file), k = 6.
+Hit rates: BM25 0.184 [0.112, 0.256]; dense full 0.312 [0.232, 0.392]; dense at 25 percent 0.248 [0.176, 0.320]; the
+answer was in the 25 percent index for 0.680. Primary, BM25 vs dense at full coverage: 10 vs 26 discordant, exact
+McNemar p = 0.011, dense leads, as on SWE-bench Lite django. Secondary, coverage: dense full vs 25 percent, 17 vs 9,
+p = 0.17: same direction as django, not significant at this N. Bridge test, on scorable tasks, Fisher exact two-sided,
+resolved when retrieval hit vs miss: 31B grep-first with a BM25 hit 4 of 8 vs 22 of 61 (p = 0.46), with a dense hit 6 of
+17 vs 20 of 52 (p = 1.0); E4B with a BM25 hit 0 of 3 vs 3 of 43 (p = 1.0), with a dense hit 1 of 12 vs 2 of 34 (p = 1.0).
+The prediction (stronger association for E4B than 31B) is not supported; a retrieval hit on the problem statement
+does not predict a solved task for either model at these sample sizes.
+SWE-bench Lite shards: sympy stopped at 39 of 77 tasks and scientific-libs at 40 of 61 (session cancelled);
+partial results are saved in benchmark/swebench_lite/ and are not pooled until the shards are completed.
+Files: benchmark/harness_audit/TASK_GROUNDED_retrieval.json.

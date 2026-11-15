@@ -1,0 +1,1051 @@
+{
+ "N": 125,
+ "k": 6,
+ "cap": "25% of chunks",
+ "rates": {
+  "bm25": [
+   0.184,
+   0.112,
+   0.256
+  ],
+  "bge-small-en-v1.5_full": [
+   0.312,
+   0.232,
+   0.392
+  ],
+  "bge-small-en-v1.5_cap25": [
+   0.248,
+   0.176,
+   0.32
+  ],
+  "bge-small-en-v1.5_gold_in_cap25": [
+   0.68,
+   0.6,
+   0.768
+  ]
+ },
+ "paired": {
+  "bm25_vs_bge-small-en-v1.5_full": {
+   "mean_diff_bm25_minus_sem": -0.128,
+   "ci95": [
+    -0.216,
+    -0.032
+   ],
+   "bm25_only": 10,
+   "sem_only": 26,
+   "mcnemar_exact_p": 0.011331
+  },
+  "bm25_vs_bge-small-en-v1.5_cap25": {
+   "mean_diff_bm25_minus_sem": -0.064,
+   "ci95": [
+    -0.144,
+    0.024
+   ],
+   "bm25_only": 10,
+   "sem_only": 18,
+   "mcnemar_exact_p": 0.184933
+  }
+ },
+ "rows": [
+  {
+   "task": "fastapi_11194",
+   "chunks": 2727,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_11355",
+   "chunks": 3010,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_12942",
+   "chunks": 2751,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_13207",
+   "chunks": 3002,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_13537",
+   "chunks": 2997,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_13713",
+   "chunks": 2641,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_13786",
+   "chunks": 2987,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_13920",
+   "chunks": 2870,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14077",
+   "chunks": 2642,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14099",
+   "chunks": 2727,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14186",
+   "chunks": 2944,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14246",
+   "chunks": 2969,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14258",
+   "chunks": 2868,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14262",
+   "chunks": 2965,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14266",
+   "chunks": 2965,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14297",
+   "chunks": 3000,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14301",
+   "chunks": 2974,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14303",
+   "chunks": 2998,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14306",
+   "chunks": 3018,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14349",
+   "chunks": 2974,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14356",
+   "chunks": 2998,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14360",
+   "chunks": 3001,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14361",
+   "chunks": 2987,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14371",
+   "chunks": 3040,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14372",
+   "chunks": 2975,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14419",
+   "chunks": 2994,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14430",
+   "chunks": 3003,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14448",
+   "chunks": 3003,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14455",
+   "chunks": 3011,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14458",
+   "chunks": 3017,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14459",
+   "chunks": 3012,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14463",
+   "chunks": 2732,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14479",
+   "chunks": 3017,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14482",
+   "chunks": 3032,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14485",
+   "chunks": 3034,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14512",
+   "chunks": 3034,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14583",
+   "chunks": 3017,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14605",
+   "chunks": 3017,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14609",
+   "chunks": 3017,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14616",
+   "chunks": 2870,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14786",
+   "chunks": 2842,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14791",
+   "chunks": 2842,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_14794",
+   "chunks": 2870,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14851",
+   "chunks": 2872,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14873",
+   "chunks": 2868,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14953",
+   "chunks": 2891,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14962",
+   "chunks": 2893,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14964",
+   "chunks": 2898,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14978",
+   "chunks": 2911,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_14986",
+   "chunks": 2919,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15030",
+   "chunks": 2942,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15280",
+   "chunks": 2997,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_15588",
+   "chunks": 3004,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15589",
+   "chunks": 3006,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_15745",
+   "chunks": 3033,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15763",
+   "chunks": 3115,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15785",
+   "chunks": 3121,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_15800",
+   "chunks": 3129,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_5077",
+   "chunks": 3003,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_5624",
+   "chunks": 2993,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "fastapi_9425",
+   "chunks": 2727,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_9555",
+   "chunks": 3003,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "fastapi_9753",
+   "chunks": 3003,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "httpx_3672",
+   "chunks": 926,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6589",
+   "chunks": 764,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6592",
+   "chunks": 764,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_6629",
+   "chunks": 764,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_6644",
+   "chunks": 765,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_6757",
+   "chunks": 789,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7205",
+   "chunks": 774,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7309",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7315",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7328",
+   "chunks": 775,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7427",
+   "chunks": 868,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7433",
+   "chunks": 869,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "requests_7502",
+   "chunks": 870,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "requests_7505",
+   "chunks": 870,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_2725",
+   "chunks": 3626,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_2943",
+   "chunks": 3630,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3006",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3043",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3052",
+   "chunks": 3628,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3061",
+   "chunks": 3621,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3063",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3064",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3067",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3105",
+   "chunks": 3628,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3130",
+   "chunks": 3625,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3180",
+   "chunks": 3628,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3278",
+   "chunks": 3631,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3296",
+   "chunks": 3634,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3454",
+   "chunks": 3635,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3468",
+   "chunks": 3636,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3469",
+   "chunks": 3640,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3470",
+   "chunks": 3640,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3471",
+   "chunks": 3640,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3472",
+   "chunks": 3641,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3480",
+   "chunks": 3641,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3486",
+   "chunks": 3641,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3506",
+   "chunks": 3647,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3518",
+   "chunks": 3649,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3521",
+   "chunks": 3649,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3535",
+   "chunks": 3649,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3675",
+   "chunks": 3651,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3676",
+   "chunks": 3650,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3718",
+   "chunks": 3664,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3772",
+   "chunks": 3661,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3777",
+   "chunks": 3664,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3782",
+   "chunks": 3665,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3882",
+   "chunks": 3663,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3894",
+   "chunks": 3663,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3905",
+   "chunks": 5127,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3930",
+   "chunks": 3663,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3934",
+   "chunks": 5121,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3935",
+   "chunks": 5127,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3938",
+   "chunks": 5129,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3942",
+   "chunks": 5134,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_3944",
+   "chunks": 5136,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 0
+  },
+  {
+   "task": "rich_3953",
+   "chunks": 5136,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4006",
+   "chunks": 5137,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4070",
+   "chunks": 5139,
+   "bm25": 1,
+   "bge-small-en-v1.5_full": 1,
+   "bge-small-en-v1.5_cap25": 1,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4075",
+   "chunks": 5143,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4076",
+   "chunks": 5144,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4077",
+   "chunks": 5144,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  },
+  {
+   "task": "rich_4079",
+   "chunks": 5144,
+   "bm25": 0,
+   "bge-small-en-v1.5_full": 0,
+   "bge-small-en-v1.5_cap25": 0,
+   "bge-small-en-v1.5_gold_in_cap25": 1
+  }
+ ]
+}
