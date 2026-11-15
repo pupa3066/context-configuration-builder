@@ -467,3 +467,14 @@ indentation, import or name errors; patches were a median 0.3 times the gold pat
 same tasks, run in the same environment (Kaggle after the 2026-11-21 quota reset, or a local machine running both arms;
 results from different environments are not pooled). Primary: resolved, exact McNemar, prediction RC-E4B resolves more.
 Secondary: submissions whose own last test run was failing (prediction fewer). A null is reported as not detected.
+
+### Outcome of amendment 21 (recorded 2026-11-14 21:11 MT)
+
+Run by Akshay Upadhyay on his Kaggle quota, version 369731910 of notebook agent-e4b-fix-check-vs-ranked-search-46tasks:
+both arms in the same run, 46 scorable tasks each, no errors.
+Primary, resolved: RC-E4B 5 vs R-E4B 4 (only RC rich_3067 and rich_3535, only R rich_3471), exact McNemar p = 1.0; not
+detected. Secondary, failed submissions whose own last pytest run was failing: R-E4B 15 of 38, RC-E4B 25 of 37; the
+prediction (fewer) is contradicted: the rule made the agent test more, but it still submitted after failing runs.
+Both arms used a median of 11 tool calls of 28, so the budget is not what stops the repair. Run-to-run check: R-E4B
+resolved 3 of these 46 tasks in its earlier run and 4 here. RC-E4B's 5 of 46 is the highest E4B count so far, within noise.
+File: benchmark/gemma_agent/selftest_results/selftest46_e4b_rank_vs_rankcheck.csv.
