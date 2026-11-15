@@ -119,3 +119,16 @@ Secondary: the chunk-length conditions. Predictions, from the writeup: dense at 
 full coverage while BM25 is unchanged; with 400-word chunks, best-segment scoring raises dense. Nulls are reported as
 not detected. CPU only; a 3-task smoke run first. Tasks whose gold patch edits no existing non-test .py file are excluded
 and counted.
+
+### SWE-bench Lite retrieval, first shard result: django (recorded 2026-11-14 21:04 MT; preliminary until all shards finish)
+
+114 django tasks, none excluded; hit at k = 6 on the 8-line chunks the gold patch changes.
+Coverage (primary): dense full 0.342 [0.263, 0.439] vs dense at 25 percent 0.210 [0.140, 0.289]; 21 vs 6 discordant,
+exact McNemar p = 0.006; BM25, which always searches everything, 0.228. The coverage prediction holds on real issues.
+BM25 vs dense at full coverage (primary): 0.228 vs 0.342; 10 vs 23 discordant, p = 0.035. On real issue text dense leads,
+unlike the docstring questions, where the two were equivalent at full coverage.
+Chunk length (secondary): with 400-word chunks, dense whole-chunk 0.430 and best-segment 0.465 (8 vs 4 discordant,
+p = 0.39, same direction as the writeup, not detected); BM25 0.482. Longer chunks raised both retrievers here, but each
+400-word chunk returns far more text than an 8-line chunk, so this comparison is confounded by returned text volume, as
+the writeup's limitations note; the prediction that dense falls with chunk length is not supported on this shard.
+File: benchmark/swebench_lite/SWEBENCH_LITE_retrieval_django.json.
