@@ -489,3 +489,13 @@ named. Decision rule fixed now: if D1 resolves 10 or more of 46, the limit inclu
 gain, and the distillation LoRA (R34) is registered and run after the 2026-11-21 reset; if D1 resolves 7 or fewer, the
 limit is fix-writing by the model, and the LoRA is not run on the current data (37 tasks, 7 repair examples); 8 or 9 is
 reported as inconclusive. Run by Akshay Upadhyay on his Kaggle quota, as in amendment 21.
+
+### Outcome of amendment 22 (recorded 2026-11-14 23:21 MT)
+
+D1 run by Akshay Upadhyay on his Kaggle quota; the files line reached the agent in 46 of 46 task messages; no errors, no
+zero-tool-call runs. Primary: told which files the fix changes, E4B resolved 5 of 46 (R-E4B, not told: 3 and 4 in two
+runs; vs run 1, 3 only D1 and 1 only R, p = 0.62; vs run 2, 2 and 1, p = 1.0). Failures: 39 edited the right file with a
+wrong fix, 2 produced no patch, none failed to find the right file. By the registered rule (7 or fewer), the small model's
+limit is writing the fix, not finding it: even perfect localization adds at most about one task, and the distillation
+LoRA is not run on the current data.
+File: benchmark/gemma_agent/selftest_results/selftest46_e4b_retrieval_ceiling_d1.csv.
