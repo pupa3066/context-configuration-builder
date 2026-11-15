@@ -61,3 +61,27 @@ never found the right file; for E4B, 13 of 43 (30 percent).
   packages we did not have (inline_snapshot 27, dirty_equals 7), requests test files whose unrelated tests fail here
   (18), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
   did not pass a required test. No agent run resolved a task whose gold fix fails.
+
+## Correction for multiple comparisons (Holm, computed 2026-11-14)
+
+Exact McNemar p-values from the committed per-question and per-task results, Holm-corrected across the 13 primary tests
+listed (equivalence tests are reported separately as confidence intervals). Three results hold at a family-wise 0.05:
+the two docstring coverage tests and the chunk-length test. The SWE-bench Lite django coverage test (p = 0.006) narrowly
+misses after correction (0.059); it is one shard of the registered SWE-bench Lite test, which pools all shards.
+
+| Test | p | Holm-adjusted p | Holds at 0.05 |
+|---|---|---|---|
+| Coverage, docstrings set 1: BM25 vs dense at a 1,000-chunk budget (m1) | 1.8e-20 | 2.3e-19 | yes |
+| Chunk length: best-segment vs whole-chunk dense, 400-word chunks (m1) | 1.2e-14 | 1.4e-13 | yes |
+| Coverage, docstrings set 2: BM25 vs dense at a 1,000-chunk budget (m1) | 1.7e-13 | 1.9e-12 | yes |
+| Coverage, SWE-bench Lite django: dense full vs 25 percent coverage | 0.0059 | 0.059 | no |
+| SWE-bench Lite django: BM25 vs dense at full coverage | 0.035 | 0.32 | no |
+| Agent: G vs N, fastapi replicate, 29 scorable tasks | 0.62 | 1 | no |
+| Small model: files named (D1) vs R-E4B run 1, 46 tasks | 0.62 | 1 | no |
+| Agent: grep first (G) vs no search step (N), 72 scorable tasks | 1 | 1 | no |
+| Agent: larger budget (B) vs G, 16-task set | 1 | 1 | no |
+| Agent: test before submit (V) vs G, 16-task set | 1 | 1 | no |
+| Agent: new-files rule (F) vs G, 16-task set | 1 | 1 | no |
+| Small model: ranked chunk search (R-E4B) vs grep (G-E4B), 46 tasks | 1 | 1 | no |
+| Small model: fix check (RC-E4B) vs R-E4B, 46 tasks | 1 | 1 | no |
+

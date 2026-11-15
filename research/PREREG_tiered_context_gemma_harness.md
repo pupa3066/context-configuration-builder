@@ -132,3 +132,12 @@ p = 0.39, same direction as the writeup, not detected); BM25 0.482. Longer chunk
 400-word chunk returns far more text than an 8-line chunk, so this comparison is confounded by returned text volume, as
 the writeup's limitations note; the prediction that dense falls with chunk length is not supported on this shard.
 File: benchmark/swebench_lite/SWEBENCH_LITE_retrieval_django.json.
+
+### SWE-bench Lite: equal-text chunk-length analysis (registered 2026-11-14 23:46 MT, before any result)
+
+The django shard showed 400-word chunks raising both retrievers, but six 400-word chunks return far more text than six
+8-line chunks. To compare chunk lengths fairly, the 8-line condition is re-scored at a k that returns about the same
+number of words as k = 6 with 400-word chunks (k set per task to match the median words returned), for BM25 and dense.
+Primary: dense 8-line at equal text vs dense 400-word whole chunk, exact McNemar; prediction, from the writeup, dense
+does at least as well with short chunks at equal text. CPU only; it needs a rerun of the retrieval notebooks that
+records rankings, launched only on Pupa's go. A null is reported as not detected.
