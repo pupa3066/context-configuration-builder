@@ -509,3 +509,10 @@ median time per task 9.5 vs 6.5 minutes, longest 20.1 minutes, 2 verification ti
 643 minutes for 72 tasks, about 2.7 hours at 4 in parallel; on 58 hidden tasks that is about 2.2 hours, so runtime is
 not expected to fail the scorer. B is the strongest 31B arm measured, within noise of G.
 File: benchmark/gemma_agent/selftest_results/selftest72_v81_budget.csv.
+
+## Amendment 23 (recorded 2026-11-15 01:22 MT, before the leaderboard result)
+
+On Pupa's go, arm B (submission_v81_budget, sha256 prefix e5defcd7def3510b, byte-identical to the files self-tested
+on 72 scorable tasks) takes the 2026-11-15 UTC leaderboard slot. Basis: B 30 vs G 27 of 72 (p = 0.51), the strongest
+31B arm measured; runtime on the scorer estimated at about 2.2 hours. Comparison on the hidden set: G 0.15, L 0.17.
+A single score is within reported noise of about two tasks of 58; no difference will be inferred from one replicate.
