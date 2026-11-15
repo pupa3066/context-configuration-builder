@@ -499,3 +499,13 @@ wrong fix, 2 produced no patch, none failed to find the right file. By the regis
 limit is writing the fix, not finding it: even perfect localization adds at most about one task, and the distillation
 LoRA is not run on the current data.
 File: benchmark/gemma_agent/selftest_results/selftest46_e4b_retrieval_ceiling_d1.csv.
+
+### Outcome of amendment 18 (recorded 2026-11-15 01:17 MT)
+
+B on the 72 scorable tasks, run by Akshay Upadhyay on his Kaggle quota; no errors, no zero-tool-call runs.
+Primary: B resolved 30 vs G 27 (G from its 129-task run, declared non-concurrent); 6 only B, 3 only G; exact McNemar
+p = 0.51; not detected. Mechanism: runs that used every tool call fell from 18 to 10 and runs with no patch from 10 to 4;
+median time per task 9.5 vs 6.5 minutes, longest 20.1 minutes, 2 verification timeouts vs 1. B's total task time was
+643 minutes for 72 tasks, about 2.7 hours at 4 in parallel; on 58 hidden tasks that is about 2.2 hours, so runtime is
+not expected to fail the scorer. B is the strongest 31B arm measured, within noise of G.
+File: benchmark/gemma_agent/selftest_results/selftest72_v81_budget.csv.

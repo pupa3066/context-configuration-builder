@@ -1,0 +1,73 @@
+agent,task,resolved,patch_chars,tool_calls,exit_code,seconds,error,harness_error
+v81_budget,fastapi_11194,True,992,11,0,236.4,,
+v81_budget,fastapi_13537,True,823,13,0,233.6,,
+v81_budget,fastapi_13920,False,1788,34,1,674.1,,
+v81_budget,fastapi_14258,False,509,23,1,184.2,,
+v81_budget,fastapi_14301,True,10337,50,0,714.8,,
+v81_budget,fastapi_14306,False,4970,50,2,638.4,,
+v81_budget,fastapi_14372,True,652,21,0,199.5,,
+v81_budget,fastapi_14419,False,623,15,1,636.5,,
+v81_budget,fastapi_14448,False,3634,13,124,1208.3,,Agent exceeded session timeout (15.0 min)
+v81_budget,fastapi_14458,True,1501,15,0,760.1,,
+v81_budget,fastapi_14463,True,744,17,0,137.3,,
+v81_budget,fastapi_14479,False,521,11,1,571.9,,
+v81_budget,fastapi_14487,False,6687,46,1,908.9,,Agent exceeded session timeout (15.0 min)
+v81_budget,fastapi_14492,True,388,11,0,62.4,,
+v81_budget,fastapi_14616,False,2284,50,1,760.0,,
+v81_budget,fastapi_14786,True,403,10,0,66.9,,
+v81_budget,fastapi_14794,True,790,14,0,160.1,,
+v81_budget,fastapi_14873,True,3824,49,0,584.6,,
+v81_budget,fastapi_14986,False,1190,36,1,553.8,,
+v81_budget,fastapi_15280,False,13241,43,2,909.4,,Agent exceeded session timeout (15.0 min)
+v81_budget,fastapi_15588,False,1698,33,1,458.9,,
+v81_budget,fastapi_15589,True,2977,44,0,909.7,,
+v81_budget,fastapi_15661,False,2271,11,2,430.1,,
+v81_budget,fastapi_15800,False,2896,25,1,394.9,,
+v81_budget,fastapi_5077,True,2144,47,0,797.6,,
+v81_budget,fastapi_5624,True,758,28,0,466.1,,
+v81_budget,fastapi_9425,True,573,43,0,422.3,,
+v81_budget,fastapi_9555,True,2277,18,0,279.2,,
+v81_budget,fastapi_9753,True,2020,31,0,408.6,,
+v81_budget,rich_2725,True,1098,16,0,224.6,,
+v81_budget,rich_2943,True,399,26,0,173.3,,
+v81_budget,rich_3006,True,557,16,0,172.1,,
+v81_budget,rich_3043,False,521,17,1,509.3,,
+v81_budget,rich_3052,False,3390,21,1,328.5,,
+v81_budget,rich_3061,False,7201,50,1,657.5,,
+v81_budget,rich_3063,False,2621,36,1,904.5,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3067,True,652,43,0,620.7,,
+v81_budget,rich_3105,False,0,31,-1,903.4,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3180,False,1328,18,1,671.8,,
+v81_budget,rich_3278,False,681,19,1,565.4,,
+v81_budget,rich_3454,True,654,15,0,151.6,,
+v81_budget,rich_3468,False,1953,39,1,699.0,,
+v81_budget,rich_3470,False,2390,45,1,906.4,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3471,False,1158,22,1,905.3,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3472,False,0,50,1,690.2,,
+v81_budget,rich_3480,True,1460,24,0,753.1,,
+v81_budget,rich_3506,True,1501,23,0,905.4,,
+v81_budget,rich_3518,True,528,18,0,374.6,,
+v81_budget,rich_3521,False,0,20,-1,902.3,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3535,False,464,16,1,264.1,,
+v81_budget,rich_3675,False,720,15,1,117.8,,
+v81_budget,rich_3676,False,1954,24,1,262.3,,
+v81_budget,rich_3718,True,766,20,0,273.8,,
+v81_budget,rich_3772,False,2419,17,124,780.1,,
+v81_budget,rich_3777,False,3338,50,1,699.9,,
+v81_budget,rich_3782,False,682,27,1,906.0,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3882,True,502,21,0,173.0,,
+v81_budget,rich_3894,True,765,10,0,242.5,,
+v81_budget,rich_3905,True,626,14,0,96.8,,
+v81_budget,rich_3930,False,4574,21,2,660.4,,
+v81_budget,rich_3934,False,1528,34,1,907.3,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3935,False,5657,46,1,904.9,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3938,False,1979,47,1,744.0,,
+v81_budget,rich_3942,False,0,31,-1,903.3,,Agent exceeded session timeout (15.0 min)
+v81_budget,rich_3944,False,1338,23,1,406.6,,
+v81_budget,rich_3953,False,1771,25,1,604.6,,
+v81_budget,rich_4006,False,1019,36,1,834.7,,
+v81_budget,rich_4070,False,6298,50,1,570.5,,
+v81_budget,rich_4075,True,763,50,0,449.1,,
+v81_budget,rich_4076,False,434,50,1,367.5,,
+v81_budget,rich_4077,False,401,18,1,297.6,,
+v81_budget,rich_4079,True,1230,50,0,346.2,,
