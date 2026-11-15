@@ -58,8 +58,8 @@ never found the right file; for E4B, 13 of 43 (30 percent).
 - The same 16-task set has 9 scorable tasks, which is too few to say much about the arms tested on it (including V
   and B). Our remaining self-tests use the 72 scorable tasks (benchmark/harness_audit/scorable_tasks_72.txt).
 - As far as we can tell, the gold fix fails on 54 tasks because of our environment rather than the tasks: test
-  packages we did not have (inline_snapshot 27, dirty_equals 7), requests test files whose unrelated tests fail here
-  (18), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
+  packages we did not have (inline_snapshot 27, dirty_equals 7), test files whose other tests fail here (18: requests
+  12, rich 4, fastapi 2), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
   did not pass a required test. No agent run resolved a task whose gold fix fails.
 
 ## Correction for multiple comparisons (Holm, computed 2026-11-14)
