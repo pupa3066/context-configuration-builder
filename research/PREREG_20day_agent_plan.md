@@ -444,3 +444,15 @@ cannot fill. The gate and test are unchanged; the smoke run is repeated.
 On Pupa's decision, B's 72-task confirmation run was stopped at 16:18 MT, unanalysed, so the remaining GPU quota could
 complete R-E4B (amendment 20). Kaggle returns outputs only after a run ends, so no partial results were kept. B is
 rerun in full after the 2026-11-21 quota reset, as registered.
+
+### Outcome of amendment 20 (recorded 2026-11-14 17:29 MT)
+
+R-E4B vs G-E4B on E4B's 46 scorable tasks, no errors. Gate: the ranker's output listed repository chunks in 44 of 46.
+Primary, resolved: 3 vs 3 (each solved 3 the other did not), exact McNemar p = 1.0; not detected.
+Secondary, localization: tasks whose failure is "never found the right file" fell from 13 to 5; tasks in which the agent
+read or edited a file the gold fix changes rose from 33 to 38 of 46 (7 only R-E4B, 2 only G-E4B, exact McNemar p = 0.18).
+Secondary, tokens: median 143,106 vs 113,059 per task, total +15.8 percent, paired Wilcoxon z = +2.23, p = 0.025; the
+prediction (fewer tokens) is contradicted: the ranked search led to more reading. Interpretation, labelled as such:
+better localization did not turn into solved tasks because E4B's remaining failures are wrong fixes (26) in the right
+file. Per the registered rule R-E4B is not submitted.
+File: benchmark/gemma_agent/selftest_results/selftest46_v81e4b_rank.csv.
