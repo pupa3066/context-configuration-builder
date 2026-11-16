@@ -49,24 +49,33 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | cck-st16e4b-window | Small model, 40-line windows, 16 tasks | Chunked reading on E4B | Tokens -19.1 percent (p = 0.07) |
 | cck-r56e4b-window | Small model, 40-line windows, 56 new tasks | Replication (amendment 12) | Tokens -3.6 percent (p = 0.74); did not replicate |
 | cck-r56e4b-grep | Small model, grep first, 56 new tasks | Control for the above | 4 of 56 resolved vs 3 |
-| cck-ctx-monolithic-129 | Monolithic repository context (whole file in the prompt), 129 tasks | Tiered-context study (PREREG_tiered_context_gemma_harness.md) | Running |
-| cck-ctx-tiered-129 | Tiered repository context (index in the prompt, sections loaded on demand), 129 tasks | Same study | Running |
+| cck-ctx-monolithic-129 | Monolithic repository context (whole file in the prompt), 129 tasks | Tiered-context study (PREREG_tiered_context_gemma_harness.md) | Stopped unanalysed for score work (plan amendment 15); notebook removed; rerun registered |
+| cck-ctx-tiered-129 | Tiered repository context (index in the prompt, sections loaded on demand), 129 tasks | Same study | Stopped unanalysed (plan amendment 15); notebook removed; rerun registered |
 | cck-ctx-tiered-smoke | Tiered context smoke test, 4 tasks | Check before the full run | All 4 ran with tool calls; full run launched |
 
 ## Score work (amendment 15)
 
 | Notebook | Descriptive name | Why it ran | What it showed |
 |---|---|---|---|
-| agent-31b-test-before-submit-16tasks | 31B agent tests its change before submitting | 57 of 67 wrong fixes were never tested | Running |
-| agent-31b-budget-50calls-15min-16tasks | 31B agent with a larger budget | 42 of 99 failures used all 28 calls | Running |
-| agent-31b-create-new-files-27tasks | 31B agent allowed to create new files | all 11 tasks that need new files failed | Queued |
+| agent-31b-test-before-submit-16tasks | 31B agent tests its change before submitting | 57 of 67 wrong fixes were never tested | V 4 of 16 vs G 5, p = 1.0 |
+| agent-31b-budget-50calls-15min-16tasks | 31B agent with a larger budget | 42 of 99 failures used all 28 calls | B 6 of 16 vs G 5, p = 1.0; confirmed on 72 scorable tasks below |
+| agent-31b-create-new-files-27tasks | 31B agent allowed to create new files | 11 tasks need new files (4 scorable) | F 4 of 16 vs G 5, p = 1.0; F created none of the 49 new files the gold fixes add |
 
 ## Retrieval on real problem statements (registered before results)
 
 | Notebook | Descriptive name | Why it ran | What it showed |
 |---|---|---|---|
 | harness-gold-patch-control-129tasks | Gold patch vs empty patch on all 129 published tasks | Find which tasks can be scored locally | 72 scorable; gold fails on 54 (environment), 3 pass with no fix |
-| retrieval-on-task-problem-statements | Competition problem statements as queries, gold-patch code as targets | Extend the coverage finding to real task queries; bridge to agent success | Running (125 tasks) |
+| retrieval-on-task-problem-statements | Competition problem statements as queries, gold-patch code as targets | Extend the coverage finding to real task queries; bridge to agent success | Dense beats BM25 at full coverage, 0.312 vs 0.184 (p = 0.011); coverage 0.312 vs 0.248 (p = 0.17); a retrieval hit does not predict a solved task |
 | retrieval-swebench-lite-coverage-and-chunk-length | SWE-bench Lite smoke run, 3 flask tasks | Check the notebook before the full run | Passed |
-| retrieval-swebench-lite-django, -sympy, -scientific-libs, -dev-tools-and-web | SWE-bench Lite, four repository shards | Model-agnostic test of coverage and chunk length on a standard benchmark | Running |
-| agent-31b-budget-50calls-15min-72scorable | 31B agent with a larger budget, 72 scorable tasks | Confirm the only arm that beat G (amendment 18) | Running |
+| retrieval-swebench-lite-django, -sympy, -scientific-libs, -dev-tools-and-web | SWE-bench Lite, four repository shards | Model-agnostic test of coverage and chunk length on a standard benchmark | django complete: coverage p = 0.006, dense beats BM25 p = 0.035. sympy stopped at 39 of 77 and scientific-libs at 40 of 61; dev-tools-and-web removed; rerun needed before the pooled test |
+| agent-31b-budget-50calls-15min-72scorable | 31B agent with a larger budget, 72 scorable tasks | Confirm the only arm that beat G (amendment 18) | 30 vs 27, p = 0.51; on the leaderboard B exceeded the 12-hour runtime limit (no score) |
+
+## Small model, after the gold-patch control (registered before results)
+
+| Notebook | Descriptive name | Why it ran | What it showed |
+|---|---|---|---|
+| agent-e4b-ranked-chunk-search-smoke3 | Ranked 8-line chunk search for E4B, 3-task smoke run | Gate before the full run (amendment 20) | First run had 0 tool calls (a template variable in the prompt); repeated after the fix before the full run |
+| agent-e4b-ranked-chunk-search-46scorable | Ranked 8-line lexical chunk search vs grep, E4B, 46 scorable tasks | The writeup's method at agent level (amendment 20) | Solved 3 vs 3; never found the right file 13 to 5; tokens +15.8 percent (p = 0.025) |
+| agent-e4b-fix-check-vs-ranked-search-46tasks | Fix check before submit vs ranked search, E4B, same run | Remaining failures were wrong fixes (amendment 21) | 5 vs 4, p = 1.0; submissions after a failing own test rose 15 to 25 |
+| agent-e4b-retrieval-ceiling-gold-files-46tasks | E4B told the files the gold fix changes, 46 tasks | Retrieval ceiling for the small model (amendment 22) | 5 of 46; 39 wrong fixes in the right file; limit is writing the fix |
