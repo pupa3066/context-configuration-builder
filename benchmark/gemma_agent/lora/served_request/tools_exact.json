@@ -1,0 +1,189 @@
+[
+ {
+  "type": "function",
+  "function": {
+   "name": "run_command",
+   "description": "Execute a shell command inside the repository sandbox.\n\nYou can run any shell command (Python scripts, tests, git commands, etc.).\nThe command runs in the repository workspace. No network access.\n\nArgs:\n    command: Shell command to execute (e.g., \"pytest tests/\", \"python3 script.py\").\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "command": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "command"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "read_file",
+   "description": "Read the contents of a file from the repository workspace.\n\nSupports reading specific line ranges using start_line and end_line (1-indexed).\nTo avoid overwhelming the context window, large files are automatically truncated\nto a maximum number of lines (default: 150 lines).\n\nArgs:\n    filepath: Relative path within the workspace directory (e.g., \"fastapi/main.py\", \"pyproject.toml\").\n    start_line: Optional starting line number (1-indexed, inclusive).\n    end_line: Optional ending line number (1-indexed, inclusive).\n\nReturns:\n    Dictionary containing file content, line range, and truncation status.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string"
+     },
+     "start_line": {
+      "nullable": true,
+      "type": "integer"
+     },
+     "end_line": {
+      "nullable": true,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "filepath"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "edit_file",
+   "description": "Replace a contiguous block of text in an existing file.\n\nMore token-efficient than write_file for targeted changes. Provide 2-4 lines of unique\nsurrounding context in old_string to ensure an unambiguous match.\n\nArgs:\n    filepath: Relative path to the target file.\n    old_string: Text block to replace.\n    new_string: Replacement text block.\n    allow_multiple: Replace all occurrences of old_string if True.\n\nReturns:\n    Dictionary containing file status, occurrences count, match strategy, and unified diff.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string"
+     },
+     "old_string": {
+      "type": "string"
+     },
+     "new_string": {
+      "type": "string"
+     },
+     "allow_multiple": {
+      "default": false,
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "filepath",
+     "old_string",
+     "new_string"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "write_file",
+   "description": "Create or overwrite a file in the workspace.\n\nArgs:\n    filepath: Relative path to the file to create or overwrite.\n    content: Full content of the file.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "filepath": {
+      "type": "string"
+     },
+     "content": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "filepath",
+     "content"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_status",
+   "description": "Check active budget details (time, tool calls) and active patch details.",
+   "parameters": {
+    "type": "object",
+    "properties": {}
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "submit_patch",
+   "description": "Capture the current working tree modifications as the agent's submission.\n\nThis generates a unified git diff against the baseline commit. The agent\ncan submit multiple times; only the final submission is evaluated.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {}
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_code_neighbors",
+   "description": "Discover structural code graph neighbors (callers and callees) for a given code node.\n\nArgs:\n    node: Dotted symbol path or suffix of the function, method, or class node (e.g. 'pkg.module.Class.method', 'Class.method', or 'parse_request').\n    edge_type: Optional edge relation filter (e.g. 'calls', case-insensitive).\n    max_neighbors: Maximum number of neighbor nodes to return (default: 50).\n\nReturns:\n    Dictionary with list of neighbor node names and count.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "node": {
+      "type": "string"
+     },
+     "edge_type": {
+      "nullable": true,
+      "type": "string"
+     },
+     "max_neighbors": {
+      "default": 50,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "node"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "search_similar_code",
+   "description": "Find semantically similar code functions and classes using precomputed graph embeddings.\n\nArgs:\n    query: Dotted symbol path or suffix of a function/method/class in the repository (e.g. 'pkg.module.Class.method', 'Class.method', or 'func_name') to find similar code for. Falls back to lexical keyword matching if no symbol matches.\n    k: Number of most similar code nodes to return (default: 10).\n\nReturns:\n    Dictionary containing matching node names, code snippets, and similarity scores.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "k": {
+      "default": 10,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  }
+ },
+ {
+  "type": "function",
+  "function": {
+   "name": "get_code_subgraph",
+   "description": "Extract the relationship graph (nodes and connecting edges) for a focal set of code elements.\n\nArgs:\n    nodes: List of dotted symbol paths or suffix names (e.g. ['pkg.mod.Class.method', 'helper_fn']) to include in the induced subgraph.\n\nReturns:\n    Dictionary detailing the subgraph nodes and connecting directed edges.\n",
+   "parameters": {
+    "type": "object",
+    "properties": {
+     "nodes": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "nodes"
+    ]
+   }
+  }
+ }
+]

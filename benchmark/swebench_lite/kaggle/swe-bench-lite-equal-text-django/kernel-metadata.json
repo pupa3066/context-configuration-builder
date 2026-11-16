@@ -1,0 +1,15 @@
+{
+ "id": "purnimapathak15/swe-bench-lite-equal-text-django",
+ "title": "SWE-bench Lite equal text, django",
+ "code_file": "swe-bench-lite-equal-text-django.ipynb",
+ "language": "python",
+ "kernel_type": "notebook",
+ "is_private": true,
+ "enable_gpu": false,
+ "enable_tpu": false,
+ "enable_internet": true,
+ "dataset_sources": [],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "model_sources": []
+}

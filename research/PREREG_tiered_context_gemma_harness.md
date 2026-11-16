@@ -141,3 +141,21 @@ number of words as k = 6 with 400-word chunks (k set per task to match the media
 Primary: dense 8-line at equal text vs dense 400-word whole chunk, exact McNemar; prediction, from the writeup, dense
 does at least as well with short chunks at equal text. CPU only; it needs a rerun of the retrieval notebooks that
 records rankings, launched only on Pupa's go. A null is reported as not detected.
+
+### SWE-bench Lite rerun with gold ranks and the equal-text analysis: implementation (recorded 2026-11-16 15:24 MT, before any result)
+
+Why a rerun: the sympy and scientific-libs shards stopped at Kaggle's 12-hour session limit (39 of 77 and 40 of 61
+tasks, about 1,050 seconds per task), the dev-tools-and-web shard never ran, and the equal-text analysis needs rankings
+the first run did not record. Code: benchmark/swebench_lite/eqtext_rankings.py. The registered columns are computed by
+the same code as before, so on Kaggle the rerun must reproduce the earlier rows; any difference is reported. Known
+limit: the 25 percent coverage sample indexes chunks in filesystem walk order, so other machines can draw a different
+sample (seen locally on one flask task); Kaggle reruns use the same environment.
+Equal text, defined now: W400 is the number of words in the top 6 whole 400-word chunks a retriever returns for a task;
+k_eq is the smallest k whose top k 8-line chunks from the same retriever contain at least W400 words (2 local smoke
+tasks: 1 to 2 percent more words). Primary: dense 8-line at k_eq vs dense 400-word whole chunks at k = 6, exact
+McNemar, two-sided; prediction, from the writeup: short chunks do at least as well at equal text. Secondary: the same
+for BM25, and k from the median words per 8-line chunk (the median reading of the earlier wording). Gold ranks are
+recorded for every retriever. Holm within the retrieval family of plan amendment 24 (pooled coverage, pooled BM25 vs
+dense, equal text). Pooling: benchmark/swebench_lite/pool_swebench_lite.py (no task twice; reproduction check).
+Runs: 9 CPU notebooks, task slices sized to stay under 9 hours at the measured rate, with a 10.5-hour save-and-stop
+guard: django 1, sympy 3, scientific libraries 3, dev-tools-and-web 2. Launched only on Pupa's go.

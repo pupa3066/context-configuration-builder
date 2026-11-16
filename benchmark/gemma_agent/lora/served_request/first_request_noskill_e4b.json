@@ -1,0 +1,206 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert autonomous software engineer assigned to resolve an issue in a repository efficiently and decisively.\n\n## Core Objective: Fast, Minimal, and Precise Fixes\nAim to understand, resolve, and submit the fix in the minimum number of tool calls (under 8\u201310 turns). Move directly from the problem statement to the relevant files, apply the solution, verify with a targeted test, and submit.\n\n## Workflow\n\n### 1. Identify Target Files Immediately\n- Extract filenames, functions, classes, CLI subcommands, or error messages directly from the problem statement.\n- Read only the specific target files and lines using `read_file` or search tools. Do not wander across unrelated files.\n- If the problem statement does not provide explicit file paths, use `search_similar_code` with keywords from the error message to locate relevant files efficiently, rather than running `find` or `grep` across the entire repo.\n\n### 2. Implement the Solution Directly\n- Apply the minimal necessary fix or feature directly to the source files using `edit_file` or `write_file`.\n- Strictly adhere to specified error strings, exception types, HTTP status codes, and API signatures.\n- For documentation code tasks (e.g. FastAPI), edit executable code under `docs_src/`.\n\n### 3. Run Targeted Tests Only (Existing Tests May Be Broken)\n- **Run ONLY Targeted Tests**: Run only the specific test file or test method directly verifying the bug or feature you modified (e.g. `pytest tests/test_target.py -k test_feature` or `python3 -m unittest tests.test_target`).\n- **Be Aware That Existing Tests May Be Broken**: Many repositories contain pre-existing test breakages, missing test data fixtures (e.g. `/test_data`), or environment import errors unrelated to your task.\n- **Do NOT Attempt to Fix Existing Tests**: If an existing test fails due to pre-existing repository issues or missing fixtures, IGNORE IT. Never spend turns attempting to repair pre-existing test failures, create test stubs, or alter test code.\n- **STRICT RULE: NEVER Run Bare Pytest or Full-Repo Sweeps**: NEVER run bare `pytest`, `pytest .`, `python3 -m unittest discover`, or full-repo test suites without specifying a target file. Full test suites take several minutes, cause catastrophic timeouts, and exhaust your turn and time budgets.\n- If you need to locate the test file, find it explicitly with `find tests -name \"*<name>*.py\"` instead of running the test runner across the repo.\n\n### 4. Immediate Patch Submission\n- Once your targeted test passes:\n  1. Call `submit_patch` immediately.\n  2. Verify `patch_size > 0` and `files_changed > 0`.\n  3. Output a short summary of the fix to end the session.\n\n## Anti-Patterns to Avoid\n- **NEVER modify, create, or delete test files** (`*_test.py`, `test_*.py`, or anything under `tests/`). All changes must be to source implementation files. Modifying tests results in an automatic evaluation failure.\n- **NEVER run full repository test suites** (e.g., bare `pytest` or `pytest .`) \u2014 always specify the exact test file path.\n- **NEVER attempt to fix or repair existing tests or pre-existing repository breakages** \u2014 your task is strictly to implement the fix for the reported issue in source code.\n- **NEVER search outside `/workspace`** for source files or packages (e.g., `/usr/local/lib/`, `/wheels/`, `/opt/`). All repository code and test dependencies are pre-installed. If `ModuleNotFoundError` occurs during test runs, focus on fixing code under `/workspace`, not looking for missing system packages.\n- Do NOT spend turns running broad exploratory searches if the file path or symbol is obvious.\n- Do NOT refactor or reformat unrelated functions or files.\n- Do NOT conclude without submitting a non-empty patch (`patch_size > 0`). Every task requires concrete source modifications. Concluding that the codebase is already clean without making changes is an anti-pattern.\n\n\nYou are an agent. Your internal name is \"cck_v81e4b_noskill\"."
+  },
+  {
+   "role": "user",
+   "content": "You are evaluating a software engineering task for repository OWNER/REPO.\n\nProblem Statement:\nPROBLEM_STATEMENT\n\n## Task Budget (Session terminates when any budget is exhausted)\n- Time allowance: 8 minutes\n- Tool calls allowance: 28 calls\n- Max loop iterations: 80 turns\n\n## Execution Environment Rules\n- Single command timeout: 240 seconds (commands exceeding this fail without ending the session)\n- Command output limit: 5000 characters\n- File view limit: 150 lines per read_file call\n- File character limit: 10000 characters per read_file call\n- Environment is offline (no network/PyPI access). All repository and test dependencies are ALREADY pre-installed. Do NOT attempt to run pip install or download packages.\n\n## Instructions:\n0. All source code is under `/workspace`. Do NOT search outside `/workspace` (e.g. `/usr/`, `/wheels/`, system site-packages). If imports fail, the issue is in the source code under `/workspace`, not in missing system packages.\n1. Analyze the problem statement and any provided hints carefully to identify all requested script paths, CLI subcommands, or Python modules.\n2. Inspect existing codebase conventions and test files before making edits.\n3. Verify your implementation using targeted tests or inline assertions before submitting.\n4. Call submit_patch only after your implementation is complete and verified.\n5. As your final action, you must return a text-only response reporting your completion to terminate the session.\n## Workspace Layout\nThe repository is located at `/workspace`. Here is the directory tree (up to 3 levels):\n```\nWORKSPACE_TREE\n```\n"
+  }
+ ],
+ "tools": [
+  {
+   "type": "function",
+   "function": {
+    "name": "run_command",
+    "description": "Execute a shell command inside the repository sandbox.\n\nYou can run any shell command (Python scripts, tests, git commands, etc.).\nThe command runs in the repository workspace. No network access.\n\nArgs:\n    command: Shell command to execute (e.g., \"pytest tests/\", \"python3 script.py\").\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "command": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "command"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "read_file",
+    "description": "Read the contents of a file from the repository workspace.\n\nSupports reading specific line ranges using start_line and end_line (1-indexed).\nTo avoid overwhelming the context window, large files are automatically truncated\nto a maximum number of lines (default: 150 lines).\n\nArgs:\n    filepath: Relative path within the workspace directory (e.g., \"fastapi/main.py\", \"pyproject.toml\").\n    start_line: Optional starting line number (1-indexed, inclusive).\n    end_line: Optional ending line number (1-indexed, inclusive).\n\nReturns:\n    Dictionary containing file content, line range, and truncation status.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "filepath": {
+       "type": "string"
+      },
+      "start_line": {
+       "nullable": true,
+       "type": "integer"
+      },
+      "end_line": {
+       "nullable": true,
+       "type": "integer"
+      }
+     },
+     "required": [
+      "filepath"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "edit_file",
+    "description": "Replace a contiguous block of text in an existing file.\n\nMore token-efficient than write_file for targeted changes. Provide 2-4 lines of unique\nsurrounding context in old_string to ensure an unambiguous match.\n\nArgs:\n    filepath: Relative path to the target file.\n    old_string: Text block to replace.\n    new_string: Replacement text block.\n    allow_multiple: Replace all occurrences of old_string if True.\n\nReturns:\n    Dictionary containing file status, occurrences count, match strategy, and unified diff.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "filepath": {
+       "type": "string"
+      },
+      "old_string": {
+       "type": "string"
+      },
+      "new_string": {
+       "type": "string"
+      },
+      "allow_multiple": {
+       "default": false,
+       "type": "boolean"
+      }
+     },
+     "required": [
+      "filepath",
+      "old_string",
+      "new_string"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "write_file",
+    "description": "Create or overwrite a file in the workspace.\n\nArgs:\n    filepath: Relative path to the file to create or overwrite.\n    content: Full content of the file.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "filepath": {
+       "type": "string"
+      },
+      "content": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "filepath",
+      "content"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "get_status",
+    "description": "Check active budget details (time, tool calls) and active patch details.",
+    "parameters": {
+     "type": "object",
+     "properties": {}
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "submit_patch",
+    "description": "Capture the current working tree modifications as the agent's submission.\n\nThis generates a unified git diff against the baseline commit. The agent\ncan submit multiple times; only the final submission is evaluated.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {}
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "get_code_neighbors",
+    "description": "Discover structural code graph neighbors (callers and callees) for a given code node.\n\nArgs:\n    node: Dotted symbol path or suffix of the function, method, or class node (e.g. 'pkg.module.Class.method', 'Class.method', or 'parse_request').\n    edge_type: Optional edge relation filter (e.g. 'calls', case-insensitive).\n    max_neighbors: Maximum number of neighbor nodes to return (default: 50).\n\nReturns:\n    Dictionary with list of neighbor node names and count.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "node": {
+       "type": "string"
+      },
+      "edge_type": {
+       "nullable": true,
+       "type": "string"
+      },
+      "max_neighbors": {
+       "default": 50,
+       "type": "integer"
+      }
+     },
+     "required": [
+      "node"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "search_similar_code",
+    "description": "Find semantically similar code functions and classes using precomputed graph embeddings.\n\nArgs:\n    query: Dotted symbol path or suffix of a function/method/class in the repository (e.g. 'pkg.module.Class.method', 'Class.method', or 'func_name') to find similar code for. Falls back to lexical keyword matching if no symbol matches.\n    k: Number of most similar code nodes to return (default: 10).\n\nReturns:\n    Dictionary containing matching node names, code snippets, and similarity scores.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "query": {
+       "type": "string"
+      },
+      "k": {
+       "default": 10,
+       "type": "integer"
+      }
+     },
+     "required": [
+      "query"
+     ]
+    }
+   }
+  },
+  {
+   "type": "function",
+   "function": {
+    "name": "get_code_subgraph",
+    "description": "Extract the relationship graph (nodes and connecting edges) for a focal set of code elements.\n\nArgs:\n    nodes: List of dotted symbol paths or suffix names (e.g. ['pkg.mod.Class.method', 'helper_fn']) to include in the induced subgraph.\n\nReturns:\n    Dictionary detailing the subgraph nodes and connecting directed edges.\n",
+    "parameters": {
+     "type": "object",
+     "properties": {
+      "nodes": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "nodes"
+     ]
+    }
+   }
+  }
+ ],
+ "gen": {
+  "temperature": 0.2,
+  "max_completion_tokens": 8192,
+  "top_p": 0.95
+ }
+}
