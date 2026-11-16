@@ -541,3 +541,13 @@ is published, and the estimate was wrong. Arms L and G (8 minutes, 28 tool calls
 (15 minutes, 50 calls, 140 turns; self-test mean 8.9 vs 6.2 minutes per task for G) did not. No hidden-set comparison
 of B is possible. Gate added: benchmark/gemma_agent/validate_submission.py now rejects any eval_config.yaml budget above
 the largest that finished on the scorer. Best leaderboard score stays 0.17 (arm L).
+
+### Outcome of amendment 10 (recorded 2026-11-16 13:29 MT)
+
+Not completed; no result exists. Training run 1 failed before training: the base image's transformers 5.0.0 has no
+Gemma 4 support (fixed with the organizers' wheelhouse, 5.13.1). Run 2 was queued on 2026-11-14 (commit 088294b) and
+the LoRA work was paused at 08:56 MT that day to give the GPU quota to the amendment 12 replication. The training
+notebook (cck-e4b-lora-train) is no longer on the account, no adapter was kept, and the gate and the test never ran.
+Amendment 22's rule (D1 resolved 5, so no LoRA on the current 37-task data) then stood. A new LoRA design with
+external training data is registered separately (amendment 24) after a data audit; it states which
+parts of amendment 10 it reuses.

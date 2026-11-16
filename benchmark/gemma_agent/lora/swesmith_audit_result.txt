@@ -1,0 +1,34 @@
+rows 24100 models [('claude-3-7-sonnet-20250219', 17715), ('claude-3-5-sonnet-20241022', 5751), ('gpt-4o-2024-08-06', 634)]
+resolved 9427
+unique repos (all) 129 | resolved 125
+overlap starlette ['encode__starlette'] 141 resolved rows
+overlap pydantic ['pydantic__pydantic'] 316 resolved rows
+overlap click ['pallets__click'] 76 resolved rows
+bug kinds (resolved) [('lm_rewrite', 1948), ('func_pm_ctrl_shuffle', 840), ('combine_file', 443), ('func_pm_ctrl_invert_if', 408), ('func_pm_remove_assign', 355), ('combine_module', 333), ('func_pm_remove_cond', 275), ('func_pm_class_rm_funcs', 180), ('func_pm_remove_loop', 111), ('func_pm_op_swap', 108), ('func_pm_op_change', 99), ('func_pm_class_rm_base', 67)]
+tools (resolved, calls) [('str_replace_editor', 47571), ('bash', 36036), ('submit', 5817)]
+str_replace_editor subcommands not split; action heads [('str_replace_editor', 47571), ('cd', 18147), ('submit', 5813), ('python', 5189), ('grep', 4470), ('find', 3794), ('rm', 2404), ('pip', 529), ('python3', 479), ('chmod', 139)]
+last action is submit (resolved) 3333 of 9427
+content tokens (Gemma 4 tokenizer, chat template excluded), resolved: median 22650, p25 15177, p75 35296, p90 55278
+  resolved fitting 8000: 317 | and last submit: 148
+  resolved fitting 12000: 1232 | and last submit: 516
+  resolved fitting 16000: 2654 | and last submit: 1076
+  resolved fitting 24000: 5049 | and last submit: 1959
+  resolved fitting 32000: 6633 | and last submit: 2499
+messages per run, resolved: median 45, p25 33, p75 65, p90 93
+patch files, resolved: median 1, p25 1, p75 2, p90 3 | non-test .py files: median 1, p25 0, p75 1, p90 2 | multi-src-file 1247
+patch changed lines, resolved: median 12, p25 1, p75 38, p90 93
+runs with extra files besides source (repro scripts etc.): 2130
+
+USABLE base (resolved, ends in submit, edits >=1 non-test .py, no overlapping repo): 2356 runs, 119 repos
+  models [('claude-3-7-sonnet-20250219', 1742), ('claude-3-5-sonnet-20241022', 493), ('gpt-4o-2024-08-06', 121)]
+  fitting 8000 content tokens: 80
+  fitting 12000 content tokens: 327
+  fitting 16000 content tokens: 744
+  fitting 24000 content tokens: 1380
+  within 16k: bug kinds [('func_pm_ctrl_shuffle', 121), ('combine_module', 54), ('func_pm_ctrl_invert_if', 44), ('func_pm_remove_assign', 39), ('combine_file', 35), ('func_pm_remove_cond', 26)]
+  within 16k: changed lines median 20, p25 8, p75 44, p90 97 | multi-src-file 128
+  all usable: changed lines median 19, p25 7, p75 48, p90 109
+resolved with empty patch field: 2282
+all129 129 files median 1 max 26 multi-file 38 | changed lines median 12 p25 4 p75 44
+scorable72 72 files median 1.0 max 26 multi-file 17 | changed lines median 7.0 p25 3 p75 34
+str_replace_editor subcommands (resolved runs, shard tool-1): view 2726, str_replace 2059, create 609, insert 28, undo_edit 4
