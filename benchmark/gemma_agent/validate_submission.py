@@ -158,6 +158,28 @@ def check_ref(root, rel, where, seen):
     check_agent(root, load_yaml(root, p), rel, seen)
 
 
+# Scorer runtime gate. The scorer allows 12 hours for all hidden tasks, including sandbox setup.
+# Arms L and G (8 min, 28 calls, 80 turns per task) finished on the scorer; arm B (15 min, 50 calls,
+# 140 turns; self-test mean 8.9 min per task vs 6.2 for G) exceeded the limit and got no score
+# (submission 58376497). Budgets above the largest ones that finished are rejected.
+SCORER_PASSED_CAPS = {"max_time_minutes": 8, "max_tool_calls": 28, "max_turns": 80}
+
+
+def check_runtime(root):
+    p = os.path.join(root, "eval_config.yaml")
+    if not os.path.isfile(p):
+        err("eval_config.yaml missing: per-task budget unknown, scorer runtime cannot be checked")
+        return
+    ev = (yaml.safe_load(open(p)) or {}).get("evaluation") or {}
+    for k, cap in SCORER_PASSED_CAPS.items():
+        v = ev.get(k)
+        if v is None:
+            err(f"eval_config.yaml: {k} not set (scorer default unknown; largest that finished is {cap})")
+        elif v > cap:
+            err(f"eval_config.yaml: {k}={v} > {cap}, the largest that finished within the scorer's "
+                f"12-hour limit (B at 15 min/50 calls/140 turns exceeded it)")
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
@@ -182,6 +204,7 @@ def main():
     if len(roots) == 1:
         rp = os.path.join(root, roots[0])
         check_agent(root, load_yaml(root, rp), roots[0], {rp})
+    check_runtime(root)
     if errors:
         print("INVALID:")
         for e in errors:

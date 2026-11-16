@@ -531,3 +531,13 @@ does not predict a solved task for either model at these sample sizes.
 SWE-bench Lite shards: sympy stopped at 39 of 77 tasks and scientific-libs at 40 of 61 (session cancelled);
 partial results are saved in benchmark/swebench_lite/ and are not pooled until the shards are completed.
 Files: benchmark/harness_audit/TASK_GROUNDED_retrieval.json.
+
+### Outcome of amendment 23 (recorded 2026-11-15 20:10 MT)
+
+Submission 58376497 (arm B) received no score. Scorer message: the submission exceeded the allowed runtime. The
+competition allows 12 hours for the agent to submit patches for all hidden tasks, including sandbox setup. The
+estimate in the amendment 18 outcome (about 2.2 hours) assumed 58 hidden tasks and 4 tasks in parallel; neither number
+is published, and the estimate was wrong. Arms L and G (8 minutes, 28 tool calls, 80 turns per task) finished; B
+(15 minutes, 50 calls, 140 turns; self-test mean 8.9 vs 6.2 minutes per task for G) did not. No hidden-set comparison
+of B is possible. Gate added: benchmark/gemma_agent/validate_submission.py now rejects any eval_config.yaml budget above
+the largest that finished on the scorer. Best leaderboard score stays 0.17 (arm L).
