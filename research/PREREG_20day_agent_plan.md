@@ -549,5 +549,26 @@ Gemma 4 support (fixed with the organizers' wheelhouse, 5.13.1). Run 2 was queue
 the LoRA work was paused at 08:56 MT that day to give the GPU quota to the amendment 12 replication. The training
 notebook (cck-e4b-lora-train) is no longer on the account, no adapter was kept, and the gate and the test never ran.
 Amendment 22's rule (D1 resolved 5, so no LoRA on the current 37-task data) then stood. A new LoRA design with
-external training data is registered separately (amendment 24) after a data audit; it states which
+external training data is registered separately in a later amendment after a data audit; it states which
 parts of amendment 10 it reuses.
+
+## Amendment 24 (recorded 2026-11-16 14:39 MT): analysis rules for all later tests
+
+Reason: none of the 20 registered agent tests detected a difference, several used controls from a different run, and
+the Holm families were chosen after the results (research/RESULTS_LEDGER.md, Holm section). From now on:
+1. Families, declared now. Retrieval family: the pooled SWE-bench Lite tests (coverage; BM25 vs dense at full
+   coverage) and the registered equal-text chunk-length test. Agent family: every agent test registered after this
+   amendment. Holm is applied within each family and, as before, across all primary tests; both are reported.
+2. Detectable effect stated before any agent run. With exact McNemar, two-sided, p < 0.05 needs at least 6 net wins with
+   no losses, 8 with 1, or 10 with 2, at any task count. Each agent amendment states its expected effect in tasks and
+   runs only if that effect reaches this size, or it uses replicates and says so.
+3. Same-run controls only. Both arms of an agent test run in the same session on the same tasks; results from
+   different runs or environments are not paired.
+4. Scorer runtime. Submission budgets stay within the largest that finished on the scorer (8 minutes, 28 tool calls,
+   80 turns per task), enforced by benchmark/gemma_agent/validate_submission.py.
+5. Scope. The thesis tests are retrieval tests; agent tests are reported as task-completion evidence. A fix-writing
+   LoRA for the small model is prize engineering, outside the thesis, registered separately only after Pupa decides
+   on the training data's terms (SWE-smith trajectories, generated with third-party models; audit in
+   benchmark/gemma_agent/lora/swesmith_audit_result.txt).
+Next thesis work, in order: the equal-text chunk-length analysis and the remaining SWE-bench Lite shards (CPU), then the
+pooled SWE-bench Lite result.
