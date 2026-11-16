@@ -85,6 +85,14 @@ never found the right file; for E4B, 13 of 43 (30 percent).
   packages we did not have (inline_snapshot 27, dirty_equals 7), test files whose other tests fail here (18: requests
   12, rich 4, fastapi 2), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
   did not pass a required test. No agent run resolved a task whose gold fix fails.
+- Prior reports. Other participants found these limits first, on the competition forum: the missing inline_snapshot and
+  dirty_equals packages (34 tasks) and an httpbin fixture behind 12 psf/requests failures, with a measured ceiling of 74
+  of 129 (larry54321zhao, 2026, Kaggle forum topic 757661, 10 November); and the harness conventions that make rich_3486
+  and fastapi_14186 unresolvable even with the gold fix (Hersh Mittelman, 2026, Kaggle forum topics 751707 and 757893).
+  Our control, run on 14 November, agrees with both; what it adds is the empty-patch run, which
+  removes the 3 tasks that pass with no fix (fastapi_14077, fastapi_14851, requests_6644), giving 72 scorable tasks.
+  The cause of the 12 requests failures is not visible in the 6,000-character test-output tail we saved; it is
+  consistent with the httpbin fixture reported in topic 757661.
 
 ## Correction for multiple comparisons (Holm, recomputed 2026-11-16)
 
