@@ -85,14 +85,18 @@ never found the right file; for E4B, 13 of 43 (30 percent).
   packages we did not have (inline_snapshot 27, dirty_equals 7), test files whose other tests fail here (18: requests
   12, rich 4, fastapi 2), and an installed httpx that appears to shadow the repository's (1); in one task (rich_3486) the gold fix itself
   did not pass a required test. No agent run resolved a task whose gold fix fails.
-- Prior reports. Other participants found these limits first, on the competition forum: the missing inline_snapshot and
-  dirty_equals packages (34 tasks) and an httpbin fixture behind 12 psf/requests failures, with a measured ceiling of 74
-  of 129 (larry54321zhao, 2026, Kaggle forum topic 757661, 10 November); and the harness conventions that make rich_3486
-  and fastapi_14186 unresolvable even with the gold fix (Hersh Mittelman, 2026, Kaggle forum topics 751707 and 757893).
-  Our control, run on 14 November, agrees with both; what it adds is the empty-patch run, which
-  removes the 3 tasks that pass with no fix (fastapi_14077, fastapi_14851, requests_6644), giving 72 scorable tasks.
-  The cause of the 12 requests failures is not visible in the 6,000-character test-output tail we saved; it is
-  consistent with the httpbin fixture reported in topic 757661.
+- Prior reports. Other participants found these limits first, on the competition forum: gold patches failing for most
+  fastapi and requests tasks because test packages are missing (topic 743973, 28 September); a gold-patch and
+  empty-patch audit of all 129 tasks with 68 valid (Manohar Papasani, 2026, Kaggle forum topic 756400, 6 November); the
+  missing inline_snapshot and dirty_equals packages (34 tasks) and an httpbin fixture behind 12 psf/requests failures,
+  with a ceiling of 74 of 129 (larry54321zhao, 2026, Kaggle forum topic 757661, 10 November); and harness conventions
+  that make rich_3486 and fastapi_14186 unresolvable (Hersh Mittelman, 2026, Kaggle forum topics 751707 and 757893).
+  Several Paper Track writeups report the same ceiling (70 to 75 of 129 in the Kaggle subprocess sandbox, 3 tasks passing
+  with an empty patch). Our control, run on 14 November, agrees; its 72 scorable tasks are the denominator of our
+  self-tests, not a new finding. The cause of the 12 requests failures is not visible in the 6,000-character test-output
+  tail we saved; it is consistent with the httpbin fixture reported in topic 757661.
+- The async gap in the code index was first reported by Jason Wold (2026, Kaggle forum topic 742911, 24 September:
+  0 of 305 async definitions present) before the organizers' note (topic 745998); our writeup credits only the note.
 
 ## Correction for multiple comparisons (Holm, recomputed 2026-11-16)
 
