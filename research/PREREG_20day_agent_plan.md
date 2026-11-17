@@ -572,3 +572,17 @@ the Holm families were chosen after the results (research/RESULTS_LEDGER.md, Hol
    benchmark/gemma_agent/lora/swesmith_audit_result.txt).
 Next thesis work, in order: the equal-text chunk-length analysis and the remaining SWE-bench Lite shards (CPU), then the
 pooled SWE-bench Lite result.
+
+## Amendment 25 (recorded 2026-11-16 22:49 MT, before this submission)
+
+Slot of 2026-11-17 UTC, by the registered schedule: amendment 12 (c) gives N, G, N from its first slot; the N slot of
+15 Nov was skipped (amendment 13) and that day went to B (amendment 23), so the next slot in order is N. Arm N =
+submission_v81_noskill, the official sample prompt with no search step; its four files are byte-identical (SHA-256) to
+those self-tested in cck-all129-noskill (26 of 72 scorable tasks). Budget 8 minutes, 28 tool calls, 80 turns per task,
+the largest that finished on the scorer (amendment 24, rule 4); the validator passes. Zip sha256 prefix ccebd7de700cfb6c,
+one root agent.yaml, one model line. Pre-submission smoke test (4 scorable tasks N solved before, notebook
+agent-31b-arm-n-presubmit-smoke-4tasks, run on a teammate's GPU quota): pass = every task makes tool calls and a
+non-empty patch, no errors. Submitted only if the smoke test passes and Pupa says go. Purpose: the first hidden-set score
+of N, a replicate against G 0.15 and L 0.17 (L was effectively N plus one uninformative skill call). One score is within
+reported noise (about 2 tasks of 58; other teams report identical bundles ranging 0.12 to 0.17), so no difference
+will be inferred from it.
