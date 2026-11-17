@@ -79,3 +79,10 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 | agent-e4b-ranked-chunk-search-46scorable | Ranked 8-line lexical chunk search vs grep, E4B, 46 scorable tasks | The writeup's method at agent level (amendment 20) | Solved 3 vs 3; never found the right file 13 to 5; tokens +15.8 percent (p = 0.025) |
 | agent-e4b-fix-check-vs-ranked-search-46tasks | Fix check before submit vs ranked search, E4B, same run | Remaining failures were wrong fixes (amendment 21) | 5 vs 4, p = 1.0; submissions after a failing own test rose 15 to 25 |
 | agent-e4b-retrieval-ceiling-gold-files-46tasks | E4B told the files the gold fix changes, 46 tasks | Retrieval ceiling for the small model (amendment 22) | 5 of 46; 39 wrong fixes in the right file; limit is writing the fix |
+
+## Score work after the B runtime failure (registered before results)
+
+| Notebook | Descriptive name | Why it ran | What it showed |
+|---|---|---|---|
+| agent-31b-arm-n-presubmit-smoke-4tasks | The exact arm N submission zip, 4 scorable tasks N solved before | Check the zip before the 17 Nov slot (amendment 25) | Saved without GPU; run by a teammate |
+| agent-31b-edit-by-15th-call-vs-no-search-72 | Edit by the 15th tool call (ED) vs no search step (N), same session, 72 scorable tasks | Amendment 26 | Saved without GPU; run by a teammate |
