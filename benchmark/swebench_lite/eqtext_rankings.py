@@ -12,7 +12,7 @@ same code, so a rerun must reproduce them. Added per task: the rank of the first
 Known limit, kept for reproducibility: the 25 percent coverage sample indexes chunks in os.walk order, which differs
 between filesystems; reruns on Kaggle reproduce the registered run, other machines may not for that column.
 Params (env or defaults): SHARD_REPOS (comma list), SLICE ("start:end" over the shard's sorted eligible tasks),
-OUT (output path), SMOKE ("1" = first 2 eligible tasks), GUARD_S (stop and save after this many seconds).
+TASK_IDS (comma list, top-up runs), OUT (output path), SMOKE ("1" = first 2 eligible tasks), GUARD_S (stop and save after this many seconds).
 """
 import subprocess, sys, os, json, re, hashlib, collections, random, math, time, urllib.request, statistics
 
@@ -68,6 +68,8 @@ excluded = sum(1 for r, e in eligible if not e)
 eligible = sorted([(r, e) for r, e in eligible if e], key=lambda x: x[0]['instance_id'])
 eligible = [x for x in eligible if x[0]['repo'] in SHARD_REPOS]
 a, b = SLICE.split(':'); eligible = eligible[int(a) if a else None:int(b) if b else None]
+TASK_IDS = [x for x in os.environ.get('TASK_IDS', '').split(',') if x]  # top-up runs: exact task list, selection only
+if TASK_IDS: eligible = [x for x in eligible if x[0]['instance_id'] in TASK_IDS]
 if SMOKE: eligible = eligible[:2]
 print('tasks in this run:', len(eligible), '| repos:', dict(collections.Counter(r['repo'] for r, _ in eligible)), flush=True)
 
