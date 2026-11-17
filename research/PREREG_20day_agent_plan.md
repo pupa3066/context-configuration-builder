@@ -586,3 +586,19 @@ non-empty patch, no errors. Submitted only if the smoke test passes and Pupa say
 of N, a replicate against G 0.15 and L 0.17 (L was effectively N plus one uninformative skill call). One score is within
 reported noise (about 2 tasks of 58; other teams report identical bundles ranging 0.12 to 0.17), so no difference
 will be inferred from it.
+
+## Amendment 26 (recorded 2026-11-17 11:57 MT, before any run of this arm)
+
+Edit-deadline arm ED = submission_v81_editby15: arm N plus one prompt line in its implementation step, "make your best
+source edit with edit_file by your 15th tool call, even if you are not yet certain; then test and refine it" (wording
+from Pupa), and the agent name. Same budget as N (8 minutes, 28 calls, 80 turns), so the scorer runtime gate holds.
+Motivation (measured): the harness already grades unsubmitted edits on disk, so N's 9 and G's 10 no-patch runs on the 72
+scorable tasks never edited source; forum topic 749198 reports no-edit tasks falling from 25 to 7 under an
+edit-by-call-12 prompt, with solved tasks 26 to 30 in a comparison confounded by nine differences.
+Test: ED vs N on the 72 scorable tasks, both arms in the same session (amendment 24, rule 3), run on a teammate's GPU.
+Primary: resolved, exact McNemar, two-sided; prediction ED resolves more. Expected effect 1 to 3 tasks, below the 6 net
+wins this test needs (amendment 24, rule 2), so a null is expected even if the effect is real and is reported as not
+detected. Secondary: runs with no source change (prediction fewer); tool-call index of the first applied source edit
+(paired Wilcoxon, prediction earlier); runs that change only wrong files (watched, since forcing edits may add them).
+Leaderboard rule, fixed now: ED takes the next slot if it resolves at least as many tasks as N in this run; otherwise G
+does (amendment 12). That is a slot decision, not a claim that ED is better.
