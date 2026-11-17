@@ -30,6 +30,15 @@ def boot(h, nb=1000):
     return [round(sum(h) / n, 4), round(ms[25], 4), round(ms[975], 4)]
 
 
+def paired_diff(a, b, nb=10000, seed=0):
+    n = len(a); rng = random.Random(seed); d = [x - y for x, y in zip(a, b)]
+    ms = sorted(sum(d[rng.randrange(n)] for _ in range(n)) / n for _ in range(nb))
+    lo, hi = ms[int(0.05 * nb)], ms[int(0.95 * nb) - 1]
+    verdict = 'worse' if hi < 0 else ('non-inferior' if lo > -0.10 else 'inconclusive')
+    return dict(diff=round(sum(d) / n, 4), ci90=[round(lo, 4), round(hi, 4)], margin_supported=round(max(0.0, -lo), 4),
+                verdict_margin_0_10=verdict)
+
+
 def holm(named):
     s = sorted(named.items(), key=lambda kv: kv[1]); m = len(s); run = 0.0; out = {}
     for i, (k, p) in enumerate(s):
@@ -59,9 +68,14 @@ def main(out, files):
     tests = {'coverage_dense_full_vs_cap25': mcnemar(H['dense_full'], H['dense_cap25']),
              'method_bm25_vs_dense_full': mcnemar(H['bm25'], H['dense_full']),
              'eqtext_dense_lines8_vs_words400_whole': mcnemar(H['dense_lines8_eqtext'], H['dense_words400_whole'])}
+    tests['eqtext_dense_lines8_vs_words400_whole'].update(paired_diff(H['dense_lines8_eqtext'], H['dense_words400_whole']))
     adj = holm({k: v['p'] for k, v in tests.items()})
     for k in tests: tests[k]['holm_family_retrieval'] = adj[k]
-    sec = {'eqtext_bm25_lines8_vs_words400': mcnemar(H['bm25_lines8_eqtext'], H['bm25_words400']),
+    e = tests['eqtext_dense_lines8_vs_words400_whole']
+    if e['verdict_margin_0_10'] == 'non-inferior' and e['diff'] > 0 and e['holm_family_retrieval'] < 0.05:
+        e['verdict_margin_0_10'] = 'better'
+    sec = {'eqtext_bm25_lines8_vs_words400': dict(mcnemar(H['bm25_lines8_eqtext'], H['bm25_words400']),
+                                                    **paired_diff(H['bm25_lines8_eqtext'], H['bm25_words400'])),
            'eqtext_median_k_dense': mcnemar(H['dense_lines8_eqtext_med'], H['dense_words400_whole']),
            'bestseg_vs_whole_words400': mcnemar(H['dense_words400_bestseg'], H['dense_words400_whole'])}
     res = dict(N=len(rows), repos=dict(collections.Counter(r['repo'] for r in rows)), partial_inputs=partial,

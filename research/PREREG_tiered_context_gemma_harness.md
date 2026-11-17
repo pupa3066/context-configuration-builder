@@ -159,3 +159,14 @@ recorded for every retriever. Holm within the retrieval family of plan amendment
 dense, equal text). Pooling: benchmark/swebench_lite/pool_swebench_lite.py (no task twice; reproduction check).
 Runs: 9 CPU notebooks, task slices sized to stay under 9 hours at the measured rate, with a 10.5-hour save-and-stop
 guard: django 1, sympy 3, scientific libraries 3, dev-tools-and-web 2. Launched only on Pupa's go.
+
+### Equal-text analysis: decision rule added (recorded 2026-11-16 19:29 MT, runs in progress, no result seen; Kaggle returns outputs only when a run ends)
+
+Review found that the registered prediction, short chunks do at least as well at equal text, cannot be supported by a
+non-significant two-sided McNemar test alone. Added, using the writeup's method (paired bootstrap, 90 percent interval,
+margin 0.10, as in its Section 3.3): the paired difference d = hit rate of dense 8-line chunks at k_eq minus hit rate of
+dense 400-word whole chunks, with a 90 percent paired bootstrap interval (10,000 resamples of tasks, seed 0). Short
+chunks are "at least as good" (non-inferior) if the interval's lower bound is above -0.10; "better" additionally needs
+McNemar p below 0.05 after Holm in the retrieval family; "worse" if the upper bound is below 0. Otherwise the result is
+inconclusive. The smallest margin the data supports (the negative of the lower bound) is reported. The same is reported
+for BM25 as a secondary result. Code: benchmark/swebench_lite/pool_swebench_lite.py.
