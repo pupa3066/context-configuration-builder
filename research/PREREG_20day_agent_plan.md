@@ -602,3 +602,10 @@ detected. Secondary: runs with no source change (prediction fewer); tool-call in
 (paired Wilcoxon, prediction earlier); runs that change only wrong files (watched, since forcing edits may add them).
 Leaderboard rule, fixed now: ED takes the next slot if it resolves at least as many tasks as N in this run; otherwise G
 does (amendment 12). That is a slot decision, not a claim that ED is better.
+
+### Amendment 25, submission record (recorded 2026-11-17 15:36 MT)
+
+Smoke test passed on a teammate's GPU run of agent-31b-arm-n-zip-smoke-4tasks-pinned-env: 4 of 4 tasks made tool calls
+(11 to 20 steps), produced non-empty source-only patches, and passed their tests (9, 2, 8 and 39 tests). Arm N submitted
+on Pupa's go: ref 58483761, 2026-11-17 22:36 UTC, zip sha256 prefix ccebd7de700cfb6c. The first attempt was refused
+because the file must be named submission.zip; the same bytes were resubmitted under that name. Score pending.
