@@ -581,7 +581,7 @@ submission_v81_noskill, the official sample prompt with no search step; its four
 those self-tested in cck-all129-noskill (26 of 72 scorable tasks). Budget 8 minutes, 28 tool calls, 80 turns per task,
 the largest that finished on the scorer (amendment 24, rule 4); the validator passes. Zip sha256 prefix ccebd7de700cfb6c,
 one root agent.yaml, one model line. Pre-submission smoke test (4 scorable tasks N solved before, notebook
-agent-31b-arm-n-presubmit-smoke-4tasks, run on a teammate's GPU quota): pass = every task makes tool calls and a
+agent-31b-arm-n-zip-smoke-4tasks-pinned-env, run on a teammate's GPU quota): pass = every task makes tool calls and a
 non-empty patch, no errors. Submitted only if the smoke test passes and Pupa says go. Purpose: the first hidden-set score
 of N, a replicate against G 0.15 and L 0.17 (L was effectively N plus one uninformative skill call). One score is within
 reported noise (about 2 tasks of 58; other teams report identical bundles ranging 0.12 to 0.17), so no difference

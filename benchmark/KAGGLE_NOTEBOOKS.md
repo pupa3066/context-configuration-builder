@@ -84,5 +84,7 @@ writeup; "amendment" refers to research/PREREG_20day_agent_plan.md unless noted.
 
 | Notebook | Descriptive name | Why it ran | What it showed |
 |---|---|---|---|
-| agent-31b-arm-n-presubmit-smoke-4tasks | The exact arm N submission zip, 4 scorable tasks N solved before | Check the zip before the 17 Nov slot (amendment 25) | Saved without GPU; run by a teammate |
-| agent-31b-edit-by-15th-call-vs-no-search-72 | Edit by the 15th tool call (ED) vs no search step (N), same session, 72 scorable tasks | Amendment 26 | Saved without GPU; run by a teammate |
+| agent-31b-arm-n-presubmit-smoke-4tasks | First build of the arm N zip smoke test | Amendment 25 | Superseded: created on the latest image (Python 3.13), so editor runs could not install the competition wheels |
+| agent-31b-arm-n-zip-smoke-4tasks-pinned-env | The exact arm N submission zip, 4 scorable tasks N solved before, Python 3.12 image pinned from version 1 | Check the zip before the 17 Nov slot (amendment 25) | CPU self-test passed (install, compile, weights, 4 of 4 tasks); GPU run by a teammate |
+| agent-31b-edit-by-15th-call-vs-no-search-72 | First build of the ED vs N test | Amendment 26 | Superseded for the same environment reason |
+| agent-31b-edit-by-15-vs-n-72tasks-pinned-env | Edit by the 15th tool call (ED) vs no search step (N), same session, 72 scorable tasks, Python 3.12 image pinned from version 1 | Amendment 26 | CPU self-test passed (both arms compile, 72 of 72 tasks); GPU run by a teammate |
