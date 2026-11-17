@@ -170,3 +170,19 @@ chunks are "at least as good" (non-inferior) if the interval's lower bound is ab
 McNemar p below 0.05 after Holm in the retrieval family; "worse" if the upper bound is below 0. Otherwise the result is
 inconclusive. The smallest margin the data supports (the negative of the lower bound) is reported. The same is reported
 for BM25 as a secondary result. Code: benchmark/swebench_lite/pool_swebench_lite.py.
+
+### SWE-bench Lite rerun, django shard (recorded 2026-11-16 22:44 MT; preliminary, the registered tests pool all shards)
+
+The decision rule above was committed at 19:29 MT (c351400), before this run ended (about 22:05 MT); it was pushed only
+after this result was available. 114 tasks; every registered column reproduces the earlier django run on all 114.
+Equal text (primary): dense 8-line chunks at k_eq 0.623 [0.535, 0.711] vs dense 400-word whole chunks 0.430; 33 vs 11
+discordant, exact McNemar p = 0.0013; d = +0.193, 90 percent interval [0.105, 0.281]; verdict "better" at shard level.
+Both arms return the same text (median 2,081 vs 2,074 words; median k_eq 71). Secondary, BM25 at equal text: 8-line
+0.386 vs 400-word 0.482; 7 vs 18, p = 0.043; d = -0.097 [-0.167, -0.026], "worse": BM25 gains from longer chunks.
+Best-segment scoring of 400-word chunks 0.465 vs whole 0.430 (8 vs 4, p = 0.39). Median-based k: same as primary (0.632).
+Coverage and BM25 vs dense reproduce the earlier shard (p = 0.006 and 0.035). Within the retrieval family, Holm at
+shard level: 0.012, 0.035, 0.0038. Interpretation, labelled as such: the short-chunk advantage at equal text is specific
+to the dense retriever, which fits the writeup's mechanism (an embedder sees only its input window); BM25, which reads
+every word, does better with longer chunks. Best-segment scoring recovers only a small part of the dense gap, so
+truncation may not be the whole mechanism (spreading the same text over more locations is an alternative); the opposite
+direction for BM25 argues against spreading alone. File: benchmark/swebench_lite/SWEBENCH_LITE_eqtext_django.json.
