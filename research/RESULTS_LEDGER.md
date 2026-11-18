@@ -6,14 +6,18 @@ research/PREREG_20day_agent_plan.md, research/PREREG_agent_retrieval_order.md an
 research/PREREG_tiered_context_gemma_harness.md). Agent self-test rates are on published tasks; see the caution at
 the end.
 
-## What the evidence says (updated 2026-11-16)
+## What the evidence says (updated 2026-11-18)
 
 The index decides what retrieval can find. Coverage, not the retrieval method, decided the lexical-versus-dense
-comparison in two controlled sets, and chunks longer than the embedder window hid code from it; these three tests hold
-after Holm correction over all 26 primary tests. The competition index contains none of the 1,014 async functions of
-fastapi and httpx. On real problem statements at full coverage, dense retrieval found the changed code more often than
-BM25 (125 competition tasks and 114 django tasks), so the evidence supports coverage as the deciding factor, not lexical
-search as the better method; these real-query results hold only in a retrieval-only family chosen after the results.
+comparison in two controlled sets of docstring questions, and chunks longer than the embedder window hid code from it.
+Both findings then replicated on 300 real GitHub issues (SWE-bench Lite, 12 repositories): dense retrieval found the
+changed code for 0.263 of issues with all code indexed against 0.143 with a quarter of it, and at equal returned text
+8-line chunks beat 400-word chunks for dense retrieval (0.523 vs 0.377), while BM25 went the other way. Five results
+hold after Holm correction over all 27 primary tests: the two docstring coverage tests, the writeup's chunk-length
+test, SWE-bench Lite coverage and SWE-bench Lite equal-text chunk length. The competition index contains none of the
+1,014 async functions of fastapi and httpx. On real issue text with full coverage, dense retrieval found the changed
+code more often than BM25 (125 competition tasks and 300 SWE-bench Lite tasks); that holds within the retrieval family
+declared in advance, not over all 27 tests.
 
 At the agent level, retrieval is not what limits task completion. Of the 31B agent's 45 failures on scorable tasks, 3
 never found the right file and 26 wrote a wrong fix in the right file; a retrieval hit on the problem statement did not
@@ -33,7 +37,7 @@ no losses to reach p < 0.05, and the largest net difference any arm showed was 3
 | Same pattern on the toolkit repository | Replication, small N | Same direction, N = 34 |
 | Real issue texts as queries | Exploratory, after the writeup | BM25 0.26, dense 0.37 full and 0.24 at 25 percent coverage (N = 38, no significant difference) |
 | Real problem statements, 125 competition tasks | Registered, plan amendment 19 | Primary, BM25 vs dense at full coverage: 0.184 vs 0.312, p = 0.011, dense leads. Secondary, coverage: dense full 0.312 vs 25 percent 0.248, p = 0.17, not detected |
-| SWE-bench Lite, django shard (114 tasks; preliminary, the registered test pools all shards) | Registered, tiered-context plan, SWE-bench Lite section | Coverage: dense full 0.342 vs 25 percent 0.210, p = 0.006. BM25 vs dense at full coverage: 0.228 vs 0.342, p = 0.035, dense leads. Chunk length (secondary): not supported, and confounded by returned text volume; an equal-text analysis is registered and not yet run. Other shards incomplete |
+| SWE-bench Lite, all 300 tasks, 12 repositories | Registered, tiered-context plan, SWE-bench Lite sections; family declared in plan amendment 24 | Coverage: dense full 0.263 vs 25 percent 0.143, p = 7e-6. BM25 vs dense at full coverage: 0.190 vs 0.263, p = 0.012, dense leads. Equal-text chunk length: dense 8-line 0.523 vs 400-word 0.377, p = 2.3e-5, verdict "better" under the rule set before results; BM25 the other way (0.390 vs 0.447, p = 0.043). The 193 tasks also run before reproduce exactly. The django shard (114 tasks) was reported first as preliminary |
 | Bridge: does a retrieval hit predict a solved task? | Registered, plan amendment 19 | Not supported for 31B or E4B (Fisher p = 0.46 to 1.0) |
 
 ## Agent experiments (registered tests, in order)
@@ -98,25 +102,24 @@ never found the right file; for E4B, 13 of 43 (30 percent).
 - The async gap in the code index was first reported by Jason Wold (2026, Kaggle forum topic 742911, 24 September:
   0 of 305 async definitions present) before the organizers' note (topic 745998); our writeup credits only the note.
 
-## Correction for multiple comparisons (Holm, recomputed 2026-11-16)
+## Correction for multiple comparisons (Holm, recomputed 2026-11-18)
 
-Exact p-values from the recorded outcomes, Holm-corrected. Script: research/holm_primary_tests.py. Neither family below
-was declared before the results. Family 1, every primary test with an outcome (26), is reported as primary because it
-is the stricter choice; family 2, the six retrieval tests, is labelled post hoc. Secondary outcomes (for example the
-token increase of R-E4B, p = 0.025) are not corrected and are not used as confirmatory. From 2026-11-16, families are
-declared in advance (plan amendment 24). The previous 13-test table (2026-11-14) is superseded; it reached the same
-conclusion for family 1.
+Exact p-values from the recorded outcomes, Holm-corrected. Script: research/holm_primary_tests.py. Family 1, every
+primary test with an outcome (27), is the stricter and primary choice; family 2, the retrieval tests only, was chosen
+after the results and is labelled post hoc. The family declared in advance for the pooled SWE-bench Lite tests (plan
+amendment 24: coverage, BM25 vs dense, equal text) holds in full: Holm 2.1e-5, 0.012 and 4.6e-5. The SWE-bench Lite
+pooled tests replace the django-shard entries of the 2026-11-16 table, and the equal-text test is added.
 
-
-Family 1, primary: every primary test with an outcome (m = 26). Three hold.
+Family 1, primary: every primary test with an outcome (m = 27). Five hold.
 | Test | p | Holm-adjusted p | Holds at 0.05 |
 |---|---|---|---|
-| Coverage, docstrings set 1: BM25 vs dense at a 1,000-chunk budget | 1.8e-20 | 4.7e-19 | yes |
-| Chunk length: best-segment vs whole-chunk dense, 400-word chunks | 1.2e-14 | 3e-13 | yes |
-| Coverage, docstrings set 2: BM25 vs dense at a 1,000-chunk budget | 1.7e-13 | 4.1e-12 | yes |
-| SWE-bench Lite django shard: dense full vs 25 percent coverage | 0.0059 | 0.14 | no |
+| Coverage, docstrings set 1: BM25 vs dense at a 1,000-chunk budget | 1.8e-20 | 4.9e-19 | yes |
+| Chunk length: best-segment vs whole-chunk dense, 400-word chunks | 1.2e-14 | 3.1e-13 | yes |
+| Coverage, docstrings set 2: BM25 vs dense at a 1,000-chunk budget | 1.7e-13 | 4.2e-12 | yes |
+| SWE-bench Lite, 300 tasks: dense full vs 25 percent coverage | 7.1e-06 | 0.00017 | yes |
+| SWE-bench Lite, 300 tasks: dense 8-line chunks at equal text vs 400-word chunks | 2.3e-05 | 0.00053 | yes |
 | Real problem statements, 125 tasks: BM25 vs dense at full coverage | 0.011 | 0.24 | no |
-| SWE-bench Lite django shard: BM25 vs dense at full coverage | 0.035 | 0.74 | no |
+| SWE-bench Lite, 300 tasks: BM25 vs dense at full coverage | 0.011 | 0.24 | no |
 | Tokens, 40-line windows vs grep, E4B, 16 tasks | 0.07 | 1 | no |
 | Tokens, G vs N, 67 fastapi tasks | 0.22 | 1 | no |
 | Tokens, G vs N, 129 tasks | 0.36 | 1 | no |
@@ -138,12 +141,13 @@ Family 1, primary: every primary test with an outcome (m = 26). Three hold.
 | E4B: ranked 8-line chunk search (R-E4B) vs grep, 46 tasks | 1 | 1 | no |
 | E4B: fix check (RC-E4B) vs R-E4B, 46 tasks | 1 | 1 | no |
 
-Family 2, post hoc: retrieval tests only (m = 6). All six hold, including the two real-query tests in which dense leads; the django results are one shard of a pooled test.
+Family 2, post hoc: retrieval tests only (m = 7). All seven hold.
 | Test | p | Holm-adjusted p | Holds at 0.05 |
 |---|---|---|---|
-| Coverage, docstrings set 1: BM25 vs dense at a 1,000-chunk budget | 1.8e-20 | 1.1e-19 | yes |
-| Chunk length: best-segment vs whole-chunk dense, 400-word chunks | 1.2e-14 | 6e-14 | yes |
-| Coverage, docstrings set 2: BM25 vs dense at a 1,000-chunk budget | 1.7e-13 | 6.8e-13 | yes |
-| SWE-bench Lite django shard: dense full vs 25 percent coverage | 0.0059 | 0.018 | yes |
+| Coverage, docstrings set 1: BM25 vs dense at a 1,000-chunk budget | 1.8e-20 | 1.3e-19 | yes |
+| Chunk length: best-segment vs whole-chunk dense, 400-word chunks | 1.2e-14 | 7.2e-14 | yes |
+| Coverage, docstrings set 2: BM25 vs dense at a 1,000-chunk budget | 1.7e-13 | 8.5e-13 | yes |
+| SWE-bench Lite, 300 tasks: dense full vs 25 percent coverage | 7.1e-06 | 2.8e-05 | yes |
+| SWE-bench Lite, 300 tasks: dense 8-line chunks at equal text vs 400-word chunks | 2.3e-05 | 6.9e-05 | yes |
 | Real problem statements, 125 tasks: BM25 vs dense at full coverage | 0.011 | 0.022 | yes |
-| SWE-bench Lite django shard: BM25 vs dense at full coverage | 0.035 | 0.035 | yes |
+| SWE-bench Lite, 300 tasks: BM25 vs dense at full coverage | 0.011 | 0.022 | yes |
