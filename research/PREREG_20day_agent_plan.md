@@ -623,3 +623,12 @@ Zip sha256 prefix 694c2049087854d9. No GPU smoke test is possible before the 21 
 already run on 46 tasks. Expected hidden-set score, labelled as an estimate: the 31B agent scores about 0.4 times its
 local scorable rate (0.15 to 0.17 vs 0.37), which puts E4B (0.11 locally) near 0.05, consistent with other teams' E4B
 entries (0.01 to 0.10).
+
+### Amendment 25 outcome and the 18 Nov slot (recorded 2026-11-18 14:14 MT)
+
+Arm N (ref 58483761) scored 0.17 public, after about 21.5 hours in the scoring queue; arm L, effectively N plus one
+uninformative skill call, also scored 0.17, and arm G 0.15. One replicate each, within the reported noise of two to
+three tasks of 58, so no difference is inferred. The 18 Nov UTC slot went to arm G by the registered schedule
+(amendment 12) on Pupa's instruction to submit a prepared entry: zip sha256 prefix ff1c2bd926a23752, files
+byte-identical to its 129-task self-test, submitted automatically once N finished scoring (ref 58524103). Amendment 27
+(first E4B entry) stays a proposal until a GPU smoke test is possible after the 21 Nov quota reset.
