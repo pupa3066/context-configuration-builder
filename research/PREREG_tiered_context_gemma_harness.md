@@ -186,3 +186,24 @@ to the dense retriever, which fits the writeup's mechanism (an embedder sees onl
 every word, does better with longer chunks. Best-segment scoring recovers only a small part of the dense gap, so
 truncation may not be the whole mechanism (spreading the same text over more locations is an alternative); the opposite
 direction for BM25 argues against spreading alone. File: benchmark/swebench_lite/SWEBENCH_LITE_eqtext_django.json.
+
+### SWE-bench Lite: pooled outcome, all 300 tasks (recorded 2026-11-18 09:35 MT)
+
+All 300 SWE-bench Lite test tasks, 12 repositories, none excluded; the 193 tasks also run before reproduce every
+registered column exactly. Family declared in advance (plan amendment 24), Holm within it:
+- Coverage: dense at full coverage 0.263 [0.217, 0.313] vs at 25 percent 0.143; 50 vs 14 discordant, exact McNemar
+  p = 7.1e-6, Holm 2.1e-5. Holds.
+- BM25 vs dense at full coverage: 0.190 vs 0.263; 24 vs 46, p = 0.0115, Holm 0.0115. Dense leads. Holds in this family;
+  over all 27 primary tests it does not (Holm 0.24).
+- Equal text (primary of the chunk-length analysis): dense 8-line chunks at k_eq 0.523 vs dense 400-word whole chunks
+  0.377; 75 vs 31, p = 2.3e-5, Holm 4.6e-5; d = +0.147, 90 percent interval [0.093, 0.200]; verdict "better" under the
+  rule registered before results. Both return the same text (median k_eq 71 eight-line chunks).
+Secondary, uncorrected: BM25 at equal text 0.390 (8-line) vs 0.447 (400-word); 23 vs 40, p = 0.043; d = -0.057
+[-0.100, -0.013], "worse": BM25 does better with longer chunks. Median-based k gives the same dense result (80 vs 31).
+Best-segment scoring of 400-word chunks 0.393 vs whole 0.377 (12 vs 7, p = 0.36), so best-segment scoring recovers
+little of the gap; truncation is not the whole mechanism.
+Over all 27 primary tests (research/holm_primary_tests.py), five hold: both docstring coverage tests, the writeup's
+chunk-length test, SWE-bench Lite coverage (Holm 0.00017) and SWE-bench Lite equal text (Holm 0.00053).
+Status: empirical (real issue texts, N = 300, pre-registered, reproduced). Interpretation, labelled as such: on real
+issues, coverage decides what dense retrieval can find, and at equal reading cost short chunks help an embedder but
+not BM25. File: benchmark/swebench_lite/SWEBENCH_LITE_eqtext_pooled300.json.

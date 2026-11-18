@@ -50,7 +50,7 @@ def main(out, files):
     rows, seen, partial = [], set(), []
     for f in files:
         d = json.load(open(f))
-        if d.get('partial'): partial.append(f)
+        if d.get('partial'): partial.append(os.path.basename(f))
         for r in d['rows']:
             assert r['task'] not in seen, f'duplicate task {r["task"]}'
             seen.add(r['task']); rows.append(r)
