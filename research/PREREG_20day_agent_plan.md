@@ -609,3 +609,17 @@ Smoke test passed on a teammate's GPU run of agent-31b-arm-n-zip-smoke-4tasks-pi
 (11 to 20 steps), produced non-empty source-only patches, and passed their tests (9, 2, 8 and 39 tests). Arm N submitted
 on Pupa's go: ref 58483761, 2026-11-17 22:36 UTC, zip sha256 prefix ccebd7de700cfb6c. The first attempt was refused
 because the file must be named submission.zip; the same bytes were resubmitted under that name. Score pending.
+
+## Amendment 27 (recorded 2026-11-17 17:37 MT, before any E4B leaderboard submission; used only on Pupa's go)
+
+Proposed use of the 2026-11-18 UTC slot: the first small-model entry, replacing that day's G slot of amendment 12 (c).
+Reason: no E2B or E4B submission exists, the small-model prize ranks only those, and a second G score would add one
+degree of freedom to the noise estimate. Arm, by the registered rule "best E4B arm by measured self-test" (R35):
+RC-E4B (submission_v81e4b_rankcheck), 5 of 46 scorable tasks in one run; R-E4B solved 3 and 4 in two runs, G-E4B 3,
+W-E4B 2; no difference is detected (p = 1.0), so the choice rests on the rule, not on evidence that RC-E4B is better.
+Files byte-identical (SHA-256) to those run in agent-e4b-fix-check-vs-ranked-search-46tasks; validator and runtime gate
+pass (8 minutes, 28 calls, 80 turns); measured mean 2.3 minutes per task, below G's 6.2, which finished on the scorer.
+Zip sha256 prefix 694c2049087854d9. No GPU smoke test is possible before the 21 Nov quota reset; the files are the ones
+already run on 46 tasks. Expected hidden-set score, labelled as an estimate: the 31B agent scores about 0.4 times its
+local scorable rate (0.15 to 0.17 vs 0.37), which puts E4B (0.11 locally) near 0.05, consistent with other teams' E4B
+entries (0.01 to 0.10).
